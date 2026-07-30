@@ -246,6 +246,79 @@ const LEVELS = [
       "A <em>dhaba</em> is a roadside eatery — truck-driver canteens that became beloved institutions. The chai is strong, the charpais are creaky, and the conversation is exactly the one you just learned.",
     ],
   },
+  {
+    id: "L11",
+    title: "Raste · Places & Directions",
+    subtitle: "Get anywhere: left, right, straight, and 'where is…?'",
+    intro:
+      "Level 6 gave you 'kahāṉ hai?' — now you can understand the answer. Directions plus the places you'll actually ask about. Practice pointing while you say them; your hands learn Urdu too.",
+    items: [
+      { ur: "دائیں", tr: "dāeṉ", en: "right", note: "" },
+      { ur: "بائیں", tr: "bāeṉ", en: "left", note: "Rhymes with dāeṉ — and both end in Sound School's nasal hum." },
+      { ur: "سیدھا", tr: "sīdhā", en: "straight ahead", note: "'Sīdhā jāeṉ' — go straight. The answer to most direction questions." },
+      { ur: "قریب", tr: "qarīb", en: "near", note: "Starts with Sound School's deep ق." },
+      { ur: "دور", tr: "dūr", en: "far", note: "" },
+      { ur: "بازار", tr: "bāzār", en: "market / bazaar", note: "English borrowed this one too — via Persian." },
+      { ur: "ہسپتال", tr: "haspatāl", en: "hospital", note: "English 'hospital' in an Urdu outfit — you already know it." },
+      { ur: "اسٹیشن", tr: "isṭeshan", en: "station", note: "Same trick: listen and you'll hear 'station'." },
+      { ur: "مسجد", tr: "masjid", en: "mosque", note: "" },
+      { ur: "اسٹیشن کہاں ہے؟", tr: "isṭeshan kahāṉ hai?", en: "Where is the station?", note: "L6's pattern with L11's places. Ask with confidence." },
+      { ur: "دائیں مڑیں", tr: "dāeṉ muṛeṉ", en: "turn right", note: "Muṛeṉ = please turn — with the retroflex flap ڑ you trained for." },
+    ],
+    funFacts: [
+      "Urdu absorbed English infrastructure words wholesale — <em>isṭeshan</em>, <em>haspatāl</em>, <em>bas asṭāp</em>. Colonial railways left their vocabulary parked all over the language. If you're lost, half the words you need are English wearing a shalwar kameez.",
+      "Notice loanwords grow a leading <em>i-</em>: station → <em>isṭeshan</em>, school → <em>iskūl</em>. Urdu phonology dislikes starting words with 'st' or 'sk', so it politely adds a vowel ramp.",
+      "Directions come with a bonus workout: <em>muṛeṉ</em> (turn) uses the retroflex flap ڑ, and <em>dāeṉ/bāeṉ</em> end in nasal hums. Asking for directions IS Sound School revision.",
+    ],
+  },
+  {
+    id: "L12",
+    title: "Mausam · Weather",
+    subtitle: "The world's most reliable small talk",
+    intro:
+      "Weather talk opens conversations in every language — and in Urdu it comes with real drama: loo winds, monsoons, and winters people wait all year for. Pattern of the level: 'āj ___ hai' (today it's ___).",
+    items: [
+      { ur: "موسم", tr: "mausam", en: "weather / season", note: "Also gave English the word 'monsoon', via Arabic mawsim." },
+      { ur: "گرمی", tr: "garmī", en: "heat / summer", note: "" },
+      { ur: "سردی", tr: "sardī", en: "cold / winter", note: "Garmī–sardī: the two poles of desi life." },
+      { ur: "بارش", tr: "bārish", en: "rain", note: "" },
+      { ur: "دھوپ", tr: "dhūp", en: "sunshine", note: "Aspirated dh — palm up, feel the puff." },
+      { ur: "ہوا", tr: "havā", en: "wind / air", note: "" },
+      { ur: "بادل", tr: "bādal", en: "clouds", note: "" },
+      { ur: "آج گرمی ہے", tr: "āj garmī hai", en: "It's hot today", note: "L8's āj + L12's garmī. The pattern for all weather." },
+      { ur: "بارش ہو رہی ہے", tr: "bārish ho rahī hai", en: "It's raining", note: "Literally 'rain is happening' — weather 'happens' in Urdu." },
+      { ur: "کیا خوبصورت موسم ہے!", tr: "kyā khūbsūrat mausam hai!", en: "What beautiful weather!", note: "Kyā as an exclamation — 'what a…!' Bonus use of your L6 word." },
+    ],
+    funFacts: [
+      "English took <em>monsoon</em> from the same root as <em>mausam</em> — Arabic <em>mawsim</em>, 'season'. In South Asia the monsoon isn't background weather; it's a season-long event with its own songs, foods (pakoras are mandatory), and poetry.",
+      "The first monsoon rain after months of garmī has its own vocabulary: the smell of rain on dry earth even has a borrowed name in English — 'petrichor' — but desi kids just call the whole ritual 'barish!' and run outside.",
+      "<em>Kyā</em> moonlights again: at the front of an exclamation it means 'what a…!' — <em>kyā bāt hai!</em> (literally 'what a thing!') is the everyday phrase for 'wonderful!' or 'well said!'",
+    ],
+  },
+  {
+    id: "L13",
+    title: "Dil ki Batain · Feelings & Small Talk",
+    subtitle: "Say how you are — and bless like a local",
+    intro:
+      "The words that make you sound human instead of textbook: feelings, hunger, and the blessing-words (mashāAllah, inshāAllah) that pepper every real Urdu conversation. This is the level that makes aunties adopt you.",
+    items: [
+      { ur: "خوش", tr: "khush", en: "happy", note: "As in khushī (happiness) — the root of English 'cushy'!" },
+      { ur: "اداس", tr: "udās", en: "sad", note: "The mood of every great ghazal." },
+      { ur: "تھکا ہوا", tr: "thakā huā", en: "tired (male speaker)", note: "Women say 'thakī huī' — gender agreement again." },
+      { ur: "مجھے بھوک لگی ہے", tr: "mujhe bhūk lagī hai", en: "I'm hungry", note: "Literally 'hunger has attached to me' — very vivid." },
+      { ur: "مجھے پیاس لگی ہے", tr: "mujhe pyās lagī hai", en: "I'm thirsty", note: "Same pattern: thirst attaches." },
+      { ur: "سب ٹھیک ہے؟", tr: "sab ṭhīk hai?", en: "Is everything okay?", note: "Sab = everything/everyone. The caring check-in." },
+      { ur: "ماشاءاللہ", tr: "mashāAllah", en: "wonderful! (lit. 'as God willed')", note: "Said when praising — babies, grades, biryani. Protects from the evil eye." },
+      { ur: "ان شاءاللہ", tr: "inshāAllah", en: "God willing / hopefully", note: "Attaches to any future plan. Also the world's politest 'maybe'." },
+      { ur: "شاباش", tr: "shābāsh", en: "well done! bravo!", note: "The app has been saying it to you since Level 1." },
+      { ur: "کوئی بات نہیں، سب ٹھیک ہے", tr: "koī bāt nahīṉ, sab ṭhīk hai", en: "No worries, everything's fine", note: "L10's comfort phrase + L13's sab ṭhīk. Instant reassurance." },
+    ],
+    funFacts: [
+      "<em>InshāAllah</em> officially means 'God willing' — but every desi child knows that 'inshāAllah, we'll see' from a parent means the theme-park trip is never happening. Learn the word AND its diplomatic uses.",
+      "<em>MashāAllah</em> does double duty: praise plus protection. Complimenting a baby without it can earn you a sharp look — the word shields the praised from nazar (the evil eye).",
+      "Hunger and thirst 'attach' to you in Urdu (<em>bhūk lagī hai</em>), the same grammar as liking things (<em>pasand hai</em>, L9). Feelings in Urdu are things that happen TO you — grammatically, you're never to blame.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -447,6 +520,41 @@ const READING_UNITS = [
       "Inside right-to-left Urdu text, numbers still run left-to-right — your eyes learn to switch direction mid-line without noticing. Readers do it thousands of times a day.",
     ],
   },
+  {
+    id: "R6",
+    title: "Board Parhiye · Signboards",
+    subtitle: "Read the street like a local",
+    intro:
+      "Final reading test: the street itself. These are the words painted on shop shutters, gates, and bus stops across Pakistan. Half are English loanwords in Nastaliq disguise — sound them out and grin when they turn into words you already knew.",
+    sections: [
+      {
+        heading: "Signs you'll actually see",
+        note: "Tap to hear. Imagine each one hand-painted on a shutter in truck-art colors.",
+        words: [
+          { ur: "کھلا ہے", tr: "khulā hai", en: "OPEN", spell: "the shopkeeper's welcome" },
+          { ur: "بند ہے", tr: "band hai", en: "CLOSED", spell: "come back after chai" },
+          { ur: "دکان", tr: "dukān", en: "shop", spell: "dāl + kāf + alif + nūn" },
+          { ur: "خطرہ", tr: "khatrah", en: "DANGER", spell: "starts with Sound School's خ rasp" },
+          { ur: "بس اسٹاپ", tr: "bas asṭāp", en: "bus stop", spell: "sound it out — it's English!" },
+          { ur: "اسکول", tr: "iskūl", en: "school", spell: "school with Urdu's 'i-' ramp" },
+          { ur: "ہسپتال", tr: "haspatāl", en: "hospital", spell: "your L11 word, on a real sign" },
+          { ur: "خوش آمدید", tr: "khush āmdīd", en: "WELCOME", spell: "khush (happy, L13) + āmdīd (arrival) — painted over every gate" },
+        ],
+      },
+      {
+        heading: "Reader's field notes",
+        facts: [
+          "Shop signs love the word order <span class='ur-inline'>دکان</span> + owner's name — 'Bilal General Store' becomes a bilingual mashup, English and Nastaliq sharing one board.",
+          "<strong>خوش آمدید</strong> (welcome) arches over wedding halls, motorway toll gates, and truck bumpers alike. It's the phrase most likely to greet you in beautiful calligraphy.",
+          "Once you can read <em>bas asṭāp</em> and <em>iskūl</em>, you've unlocked the secret: a huge share of urban signage is just English, lovingly transliterated. Reading Pakistan is easier than it looks.",
+        ],
+      },
+    ],
+    funFacts: [
+      "Pakistani truck art turns signboards into a folk-art form — trucks carry couplets, blessings (mashāAllah, buri nazar wale tera muhn kala!), and portraits in riotous color. Reading Nastaliq unlocks an entire moving art gallery.",
+      "Hand-painted signage survived in Pakistan long after vinyl printing arrived — master khattāt (calligraphers) still paint Nastaliq by brush, and you can spot the human hand in every stroke.",
+    ],
+  },
 ];
 
 const QUIZ_PASS_PERCENT = 70;
@@ -538,6 +646,54 @@ const CULTURE_UNITS = [
       "Many kahāwateṉ exist nearly word-for-word across Urdu, Hindi, and Punjabi — proof that the subcontinent's grandmothers have been running a shared wisdom network for centuries.",
     ],
   },
+  {
+    id: "C3",
+    title: "Ghazal 101 · Poetry's Crown",
+    subtitle: "How Urdu's signature art form actually works",
+    intro:
+      "You've tasted Ghalib — now learn the machine behind the magic. A ghazal is a chain of self-contained couplets (sher) sharing one meter and one rhyme scheme. Learn two technical words — radif and qafiya — and you'll hear the architecture in every ghazal ever sung.",
+    sections: [
+      {
+        heading: "The rules of the game",
+        facts: [
+          "<strong>Sher</strong> — a two-line couplet, complete in itself. Each sher is its own tiny story; a ghazal is an anthology, not a narrative.",
+          "<strong>Radif</strong> — the identical refrain that ends both lines of the opening couplet, then the second line of every couplet after. The audience hears it coming and often says it WITH the singer.",
+          "<strong>Qafiya</strong> — the rhyming word just before the radif. Radif stays fixed; qafiya changes. That tension is the engine of the form.",
+          "<strong>Maqta</strong> — the final couplet, where the poet signs the poem by working in their pen name (takhallus).",
+        ],
+      },
+      {
+        heading: "Hear the radif — Ghalib's most beloved opening",
+        note: "Both lines end in 'kyā hai' — that's the radif. The rhymes before it (huā / dawā) are the qafiya. Tap each line and listen for the pattern.",
+        verse: [
+          { ur: "دل ناداں تجھے ہوا کیا ہے", tr: "dil-e-nādāṉ tujhe huā kyā hai", en: "Oh naive heart, what has come over you?" },
+          { ur: "آخر اس درد کی دوا کیا ہے", tr: "ākhir is dard kī dawā kyā hai", en: "What, after all, is the cure for this pain?" },
+        ],
+        credit: "— Mirza Ghalib (matla — the opening couplet)",
+      },
+      {
+        heading: "The poet signs off — a maqta",
+        note: "Watch Ghalib drop his own name into the final couplet — poetry's original signature move.",
+        verse: [
+          { ur: "ہیں اور بھی دنیا میں سخنور بہت اچھے", tr: "haiṉ aur bhī dunyā meṉ sukhanwar bahut achhe", en: "There are plenty of fine poets in the world…" },
+          { ur: "کہتے ہیں کہ غالب کا ہے اندازِ بیاں اور", tr: "kahte haiṉ ki Ghālib kā hai andāz-e-bayāṉ aur", en: "…but they say Ghalib's way with words is something else entirely" },
+        ],
+        credit: "— Mirza Ghalib (maqta — yes, he's bragging, and yes, he earned it)",
+      },
+      {
+        heading: "Mushaira survival guide",
+        facts: [
+          "At a mushā'ira (poetry gathering), applause is verbal: <strong>“wāh wāh!”</strong> for a good line, <strong>“mukarrar!”</strong> (again!) to demand an instant encore of a couplet.",
+          "Poets recite the first line slowly, twice, letting the audience savor the setup — then land the second line like a punchline. The pause is the performance.",
+          "Ghazals live twice: on the page and in song. Mehdi Hassan, Begum Akhtar, Farida Khanum, and Jagjit Singh made ghazal-singing its own art — 'Ranjish hi sahi' or 'Aaj jane ki zid na karo' are the gateway listens.",
+        ],
+      },
+    ],
+    funFacts: [
+      "The radif turns audiences into co-performers: everyone knows the refrain is coming, so the whole hall says it together. A ghazal is the only poetry form with a built-in singalong.",
+      "Ghalib wrote his greatest work in the 1850s while chronically broke, endlessly witty about it — his letters complain about mangoes, debts, and critics in equal measure. He remains Urdu's most quoted personality, ghost-writing the subcontinent's captions and toasts 170 years on.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -575,11 +731,11 @@ const DAILY_QUESTIONS = 5;
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 3, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 6, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 9, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 13, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 18, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 4, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 8, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 12, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 17, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 22, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────

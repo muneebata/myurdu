@@ -4,13 +4,13 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 
 ## Features
 
-- **Speak & Listen track** — 10 levels that build on each other (Greetings → Introductions → Numbers → Family → Food → Question Words → Essential Verbs → Time & Days → Colors & Likes → a capstone chai-dhaba conversation), following CEFR A1 / frequency-research priorities:
+- **Speak & Listen track** — 13 levels that build on each other (Greetings → Introductions → Numbers → Family → Food → Question Words → Essential Verbs → Time & Days → Colors & Likes → the chai-dhaba conversation → Places & Directions → Weather → Feelings & Small Talk), following CEFR A1 / frequency-research priorities:
   - 🔊 **Listen** / 🐢 **Slow** — unhurried audio for pronunciation. Plays a real recording from `audio/` when one exists; otherwise browser TTS (Urdu voice → Hindi voice reading transliteration → any voice).
   - 🎤 **Say it** — microphone pronunciation check (Web Speech API, Chrome/Edge), scored against the target phrase.
   - 6-question quiz per level; 70%+ unlocks the next.
 - **Sound School (Awaazain)** — how to physically make the sounds English lacks: the tapped/rolled R, retroflex ٹ ڈ ڑ, dental ت د, aspiration (ھ), throat sounds (خ غ ق), and nasal ں — each with an animated mouth diagram (side-view SVG showing tongue placement, in `diagrams.js`), tongue-placement instructions, tap-to-hear practice words, and links out to YouTube tutorials and Wikipedia phonetics pages with audio.
-- **Learn to Read track** — 5 units: Nastaliq shape-families, positional forms, vowels, sounding out real words, and Urdu numerals (۱۲۳ — read prices and signs).
-- **Virsa (Heritage) track** — 2 units: poems and rhymes every Urdu speaker knows (Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, a listening list — Dil Dil Pakistan, Nusrat, Coke Studio, Faiz) and classic proverbs (kahawatain). All quoted verse is public-domain.
+- **Learn to Read track** — 6 units: Nastaliq shape-families, positional forms, vowels, sounding out real words, Urdu numerals (۱۲۳), and real-world signboard reading.
+- **Virsa (Heritage) track** — 3 units: Ghazal 101 (radif, qafiya, mushaira etiquette — with Ghalib), poems and rhymes every Urdu speaker knows (Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, a listening list — Dil Dil Pakistan, Nusrat, Coke Studio, Faiz) and classic proverbs (kahawatain). All quoted verse is public-domain.
 - **Daily Drills** —
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
   - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.

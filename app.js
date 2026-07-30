@@ -74,7 +74,7 @@ function deleteProfile(name) {
 function renderProfiles() {
   const names = Object.keys(root.profiles);
   app().innerHTML = `
-    ${backBar("Learners · Kaun seekh raha hai?", root.active ? "renderHome()" : "renderProfiles()")}
+    ${backBar("Learners · Kaun seekh raha hai?", root.active ? "renderHome()" : null)}
     <div class="roster">
       <h2 class="retro">Who's learning today?</h2>
       <p class="lesson-intro">Each learner gets their own progress, title, and streak — stored on this device.</p>
@@ -520,7 +520,7 @@ function answerQuiz(i) {
     else if (j === i) el.classList.add("wrong");
   });
   if (chosen.correct) quiz.correct++;
-  if (quiz.kind === "callback" && q.item) {
+  if (q.item) {
     const lt = (profile().leitner ||= {});
     const key = Speech.slug(q.item.tr);
     const cur = lt[key] || { b: 0, t: 0 };
@@ -767,7 +767,7 @@ function completeUnit(unitsName, i) {
 function backBar(title, backFn = "renderHome()") {
   return `
     <div class="topbar">
-      <button class="btn back" onclick="${backFn}">← Back</button>
+      ${backFn ? `<button class="btn back" onclick="${backFn}">← Back</button>` : ""}
       <span class="topbar-title">${title}</span>
     </div>`;
 }
