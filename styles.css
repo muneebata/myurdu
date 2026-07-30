@@ -510,3 +510,9 @@ body {
 /* ── historic site markers (Naqsha) ── */
 .geo-site { fill: #d9a413; stroke: #5a4632; stroke-width: 1.5; }
 .geo-site.geo-hi { fill: var(--rose); animation: geo-blink 1.1s ease-in-out infinite; }
+
+/* ── neighbor countries & lakes (Naqsha) ── */
+.geo-country { fill: #efe8d0; stroke: #d9cda8; stroke-width: 1; }
+.geo-country.geo-hi { fill: var(--mustard); animation: geo-blink 1.1s ease-in-out infinite; }
+.geo-lake { fill: #4ba3c3; stroke: #fffdf3; stroke-width: 1.5; }
+.geo-lake.geo-hi { fill: var(--rose); animation: geo-grow 1.1s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }

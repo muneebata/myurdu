@@ -884,6 +884,7 @@ function geoPrompt(type) {
     city: "Which city is the glowing dot?",
     feature: "Which natural feature is highlighted?",
     site: "Which landmark is marked (the glowing diamond)?",
+    country: "Which neighboring country is highlighted?",
   }[type];
 }
 
