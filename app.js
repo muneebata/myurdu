@@ -270,6 +270,21 @@ function dueReviewCount() {
   return due;
 }
 
+
+const URDU_DIGITS = { "0": "۰", "1": "۱", "2": "۲", "3": "۳", "4": "۴", "5": "۵", "6": "۶", "7": "۷", "8": "۸", "9": "۹" };
+function urduNum(n) {
+  return String(n).split("").map((d) => URDU_DIGITS[d] || d).join("");
+}
+
+function ledgerRow(onclick, num, title, urName, sub, statusHtml) {
+  return `
+    <button class="lrow" onclick="${onclick}">
+      <div class="lnum ur">${num}</div>
+      <div class="lt">${esc(title)}${urName ? `<span class="lu ur">${esc(urName)}</span>` : ""}<span class="ls">${esc(sub)}</span></div>
+      <div class="lst-wrap">${statusHtml}</div>
+    </button>`;
+}
+
 // ── Home ─────────────────────────────────────────────────────
 
 function renderHome() {
@@ -315,74 +330,100 @@ function renderHome() {
 
     <section>
       <h2 class="track-title retro">🎲 Roz ka Khel · Daily Games <span class="track-sub">short, every day — that's how words stick</span></h2>
-      <div class="cards">
-        <button class="card drill" onclick="startDaily()">
-          <div class="card-num gold">Aaj ka Khel · Today's Game</div>
-          <div class="card-title">Desi Roots</div>
-          <div class="card-sub">English words that came from Urdu — today's five, same for everyone</div>
-          <div class="card-status">${playedToday ? `✅ Done today · best ${p.dailyBest[todayKey()] ?? 0}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
-        </button>
-        <button class="card drill" onclick="startGeo()">
-          <div class="card-num gold">Naqsha · Map Game</div>
-          <div class="card-title">Naqsha Challenge</div>
-          <div class="card-sub">A feature lights up on the map of Pakistan — name it. Today's five, same for everyone</div>
-          <div class="card-status">${p.dailyBest[todayKey() + "#geo"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#geo"]}/${GEO_QUESTIONS} · replay?` : "▶ Play today's map"}</div>
-        </button>
-        <button class="card drill" onclick="startSuno()">
-          <div class="card-num gold">Suno! · Listen</div>
-          <div class="card-title">Suno! Challenge</div>
-          <div class="card-sub">Pure ear training: hear the Urdu, pick the meaning — today's five, same for everyone</div>
-          <div class="card-status">${p.dailyBest[todayKey() + "#suno"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#suno"]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
-        </button>
-        <button class="card drill" onclick="startCallback()">
-          <div class="card-num gold">Yaaddasht · Memory</div>
-          <div class="card-title">Callback Round</div>
-          <div class="card-sub">Rapid-fire review pulled from everything you've already passed</div>
-          <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
-        </button>
-      </div>
       ${kahawat ? `
       <button class="proverb-card" onclick='Speech.speak(${JSON.stringify(kahawat.ur)}, ${JSON.stringify(kahawat.tr)}, {slow:true})'>
         <span class="proverb-tag">🗣️ Aaj ki Kahawat · Proverb of the day — tap to hear</span>
         <span class="proverb-ur ur">${esc(kahawat.ur)}</span>
         <span class="proverb-en">${esc(kahawat.en)}</span>
+        ${kahawat.ctx ? `<span class="proverb-ctx">${esc(kahawat.ctx)}</span>` : ""}
       </button>` : ""}
-      <div class="cards" hidden>
+      <div class="tickets2">
+        <button class="ticket2" style="--tk:var(--mustard)" onclick="startDaily()">
+          <span class="tstub"><span>AAJ KA KHEL</span></span>
+          <div class="card-num gold">Aaj ka Khel · Today's Game</div>
+          <div class="card-title">Desi Roots <span class="tu ur">جڑیں</span></div>
+          <div class="card-sub">English words that secretly came from Urdu</div>
+          <div class="card-status">${p.dailyBest[todayKey()] != null ? `✅ Done today · best ${p.dailyBest[todayKey()]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
+        </button>
+        <button class="ticket2" style="--tk:var(--teal)" onclick="startGeo()">
+          <span class="tstub"><span>AAJ KA KHEL</span></span>
+          <div class="card-num" style="color:var(--teal)">Naqsha · Map Game</div>
+          <div class="card-title">Naqsha Challenge <span class="tu ur">نقشہ</span></div>
+          <div class="card-sub">A feature lights up on the map of Pakistan — name it</div>
+          <div class="card-status">${p.dailyBest[todayKey() + "#geo"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#geo"]}/${GEO_QUESTIONS} · replay?` : "▶ Play today's map"}</div>
+        </button>
+        <button class="ticket2" style="--tk:var(--rose)" onclick="startSuno()">
+          <span class="tstub"><span>AAJ KA KHEL</span></span>
+          <div class="card-num" style="color:var(--rose)">Suno! · Listen</div>
+          <div class="card-title">Suno! Challenge <span class="tu ur">سنو</span></div>
+          <div class="card-sub">Pure ear training: hear the Urdu, pick the meaning</div>
+          <div class="card-status">${p.dailyBest[todayKey() + "#suno"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#suno"]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
+        </button>
+        <button class="ticket2" style="--tk:var(--terracotta)" onclick="startCallback()">
+          <span class="tstub"><span>YAADDASHT</span></span>
+          <div class="card-num" style="color:var(--terracotta)">Yaaddasht · Memory</div>
+          <div class="card-title">Callback Round <span class="tu ur">یادداشت</span></div>
+          <div class="card-sub">Rapid-fire review pulled from everything you've passed</div>
+          <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
+        </button>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely</span></h2>
+      <div class="ledger2">
+        ${LEVELS.map((lv, i) => {
+          const done = isCompleted(lv.id);
+          const score = p.scores[lv.id];
+          const st = done ? `<span class="lst done">✅ Passed${score != null ? ` · ${score}%` : ""}</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openLevel(${i})`, urduNum(i + 1), lv.title, lv.urName, lv.subtitle, st);
+        }).join("")}
       </div>
     </section>
 
     <section>
       <h2 class="track-title retro">👄 Awaazain · Sound School <span class="track-sub">train your mouth for the sounds English doesn't have</span></h2>
-      <div class="cards">
-        ${SOUND_UNITS.map((u, i) => unitCard(u, i, "SOUND_UNITS", "sounds", "Sounds")).join("")}
-      </div>
-    </section>
-
-    <section>
-      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely; quizzes earn your titles</span></h2>
-      <div class="cards">
-        ${LEVELS.map((lv, i) => levelCard(lv, i)).join("")}
+      <div class="ledger2">
+        ${SOUND_UNITS.map((u, i) => {
+          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openUnit('SOUND_UNITS',${i})`, "ھ", u.title, null, u.subtitle, st);
+        }).join("")}
       </div>
     </section>
 
     <section>
       <h2 class="track-title retro">📖 Learn to Read <span class="track-sub">the Nastaliq script, from zero</span></h2>
-      <div class="cards">
-        ${READING_UNITS.map((u, i) => unitCard(u, i, "READING_UNITS", "reading", "Unit")).join("")}
+      <div class="ledger2">
+        ${READING_UNITS.map((u, i) => {
+          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openUnit('READING_UNITS',${i})`, urduNum(i + 1), u.title, null, u.subtitle, st);
+        }).join("")}
       </div>
     </section>
 
     <section>
       <h2 class="track-title retro">🎵 Virsa · Heritage <span class="track-sub">poems, rhymes, and the songs everyone knows</span></h2>
-      <div class="cards">
-        ${CULTURE_UNITS.map((u, i) => unitCard(u, i, "CULTURE_UNITS", "culture", "Virsa")).join("")}
+      <div class="pages2">
+        ${CULTURE_UNITS.map((u, i) => `
+        <button class="page2" onclick="openUnit('CULTURE_UNITS',${i})">
+          <div class="card-num">Virsa ${String(i + 1).padStart(2, "0")}${isCompleted(u.id) ? " · ✅" : ""}</div>
+          ${u.cover ? `<span class="pu ur">${esc(u.cover)}</span>` : ""}
+          <div class="card-sub">${esc(u.subtitle)}</div>
+        </button>`).join("")}
       </div>
     </section>
 
     <section>
-      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — no vocabulary required, open in any order</span></h2>
-      <div class="cards">
-        ${PAKISTAN_UNITS.map((u, i) => unitCard(u, i, "PAKISTAN_UNITS", "pakistan", "Break", true)).join("")}
+      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — open in any order</span></h2>
+      <div class="postcards2">
+        ${PAKISTAN_UNITS.map((u, i) => `
+        <button class="postcard2" onclick="openUnit('PAKISTAN_UNITS',${i})">
+          <span class="pstamp ur">پاکستان</span>
+          <div class="card-num">Break ${String(i + 1).padStart(2, "0")}</div>
+          <div class="card-title">${esc(u.title)}</div>
+          <div class="card-sub">${esc(u.subtitle)}</div>
+          <span class="paddr"><span>${esc(u.postfrom || "")}</span><span>${isCompleted(u.id) ? "✅ Done" : "▶ Start"}</span></span>
+        </button>`).join("")}
       </div>
     </section>
 

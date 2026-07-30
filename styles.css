@@ -454,3 +454,48 @@ body {
   .hero { display: flex; flex-direction: column; align-items: center; }
   .hero .hero-strap { align-self: stretch; }
 }
+
+/* ── v3 cards: tickets, ledgers, pages, postcards ── */
+.tickets2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin-top: 14px; }
+.ticket2 { position: relative; font: inherit; color: inherit; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 13px 16px 12px 52px; cursor: pointer; text-align: left; transition: transform 0.12s, box-shadow 0.12s; }
+.ticket2:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(90, 60, 20, 0.16); }
+.ticket2::before { content: ""; position: absolute; left: 38px; top: 9px; bottom: 9px; border-left: 1.5px dashed var(--line); }
+.tstub { position: absolute; left: 0; top: 0; bottom: 0; width: 38px; border-radius: 14.5px 0 0 14.5px; background: var(--tk, var(--mustard)); display: flex; align-items: center; justify-content: center; }
+.tstub span { transform: rotate(-90deg); white-space: nowrap; font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 0.56rem; letter-spacing: 0.22em; color: #fffdf3; }
+.ticket2 .card-title { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ticket2 .tu { font-weight: 400; color: var(--teal); font-size: 1.02rem; }
+.ticket2 .card-status { border-top: 1.5px solid var(--line); padding-top: 7px; }
+
+.ledger2 { background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.lrow { display: grid; grid-template-columns: 56px 1fr auto; gap: 14px; align-items: center; width: 100%; padding: 11px 18px 11px 0; border: none; border-bottom: 1px solid var(--line); cursor: pointer; font: inherit; color: inherit; background: none; text-align: left; }
+.lrow:last-child { border-bottom: none; }
+.lrow:hover { background: #fbf5e0; }
+.lnum { color: var(--teal-dark); font-size: 1.15rem; align-self: stretch; display: flex; align-items: center; justify-content: center; border-right: 1.5px solid var(--line); }
+.lrow .lt { font-weight: 700; font-size: 0.95rem; }
+.lrow .lt .lu { color: var(--teal); font-weight: 400; font-size: 1rem; margin-left: 7px; }
+.lrow .ls { display: block; font-weight: 400; font-size: 0.8rem; color: var(--muted); margin-top: 1px; }
+.lst { font-size: 0.82rem; font-weight: 700; color: var(--teal-dark); white-space: nowrap; }
+.lst.done { color: #35a065; }
+
+.pages2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
+.page2 { position: relative; font: inherit; color: inherit; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px 12px 28px; text-align: center; cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; }
+.page2:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(90, 60, 20, 0.16); }
+.page2::before { content: ""; position: absolute; left: 15px; top: 12px; bottom: 12px; border-left: 1.5px solid rgba(176, 84, 100, 0.55); }
+.page2 .card-num { color: var(--rose); }
+.page2 .pu { font-size: 1.4rem; line-height: 2; color: var(--teal-dark); display: block; }
+.page2 .card-sub { margin-top: 2px; }
+
+.postcards2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; }
+.postcard2 { position: relative; font: inherit; color: inherit; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px 42px; text-align: left; cursor: pointer; transition: transform 0.12s, box-shadow 0.12s; }
+.postcard2:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(90, 60, 20, 0.16); }
+.pstamp { position: absolute; top: 10px; right: 10px; width: 40px; height: 46px; background: var(--mustard); border: 2px dashed #fffdf3; outline: 1.5px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 0.92rem; color: #fffdf3; transform: rotate(2.5deg); }
+.postcard2 .card-num { color: #01411C; }
+.postcard2 .card-title { margin-right: 54px; }
+.postcard2 .card-sub { margin-right: 54px; }
+.paddr { position: absolute; left: 16px; right: 16px; bottom: 10px; border-top: 1px solid var(--line); padding-top: 6px; font-size: 0.72rem; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+
+.proverb-ctx { display: block; margin-top: 5px; font-size: 0.78rem; color: #9b7508; }
+@media (max-width: 560px) {
+  .lrow { grid-template-columns: 44px 1fr; }
+  .lrow .lst-wrap { grid-column: 2; }
+}
