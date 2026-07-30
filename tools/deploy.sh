@@ -1,0 +1,14 @@
+#!/bin/bash
+# Deploy myurdu.org: stamp a fresh cache-busting version on all asset
+# URLs, then commit and push. ALWAYS deploy with this script — hand
+# deploys without a version bump cause stale-cache version skew.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+V=$(date +%Y%m%d%H%M)
+sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html
+git add -A
+git -c user.name="Muneeb Ata" -c user.email="ata.muneeb@gmail.com" commit -m "${1:-Deploy} (assets v$V)
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
+git push
+echo "Deployed with asset version $V"
