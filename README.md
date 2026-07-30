@@ -22,6 +22,7 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
   - Both daily games end with a Wordle-style 📤 share card (emoji squares + streak) via the native share sheet or clipboard.
   - *Suno! Challenge*: pure ear training — hear a native clip, pick the meaning. Date-seeded daily five.
   - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.
+- **Zero-friction start:** first visit lands directly on the full home screen as guest learner "Mehmaan" — nothing asked. Accounts are optional, offered via a "💾 Save your progress" button (top left) with an explicit promise: email used only for login, no marketing, ever.
 - **Learners & titles** — multiple named profiles on one device, each with its own progress, streak, and title (Talib-e-Ilm → Shagird → … → Ustaadh-e-Azam) earned by completing levels/units.
 
 ## Audio: real neural Urdu clips (included)

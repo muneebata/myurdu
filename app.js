@@ -103,35 +103,40 @@ function renderProfiles() {
                onkeydown="if(event.key==='Enter')addProfile(this.value)" />
         <button class="btn primary" onclick="addProfile(document.getElementById('new-profile').value)">Join in →</button>
       </div>
-      ${cloudCard()}
+      <p class="hint">Progress is saved on this device — and to your free account if you sign in (💾 top left of the home screen).</p>
     </div>
   `;
 }
 
-function cloudCard() {
-  if (!Cloud.enabled())
-    return `<p class="hint">Progress lives in this browser.</p>`;
-  if (Cloud.status === "in")
-    return `
-      <div class="cloud-card">
-        <p class="cloud-line">☁️ Syncing as <strong>${esc(Cloud.user.email)}</strong> — every learner on this device is backed up.</p>
-        <button class="btn small" onclick="cloudSignOut()">Sign out</button>
-      </div>`;
-  return `
-    <div class="cloud-card">
-      <p class="cloud-line"><strong>☁️ Cloud sync</strong> — back up this device's learners and continue on any other device.</p>
+function showAccount() {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  const inner = Cloud.status === "in"
+    ? `
+      <h2 class="retro">☁️ Progress saved</h2>
+      <p>Signed in as <strong>${esc(Cloud.user.email)}</strong>. Every learner on this device is backed up automatically and follows you to any device you sign in on.</p>
+      <div class="result-actions">
+        <button class="btn" onclick="Cloud.signOut(); this.closest('.modal-overlay').remove(); renderHome();">Sign out</button>
+        <button class="btn primary" onclick="this.closest('.modal-overlay').remove()">Done</button>
+      </div>`
+    : `
+      <h2 class="retro">💾 Save your progress</h2>
+      <p>Playing works fine without an account — everything is saved on this device. Sign in to back it up and continue on any other device.</p>
       <div class="cloud-form">
         <input id="cloud-email" class="input" type="email" placeholder="Email" autocomplete="email" />
         <input id="cloud-pass" class="input" type="password" placeholder="Password (8+ characters)" autocomplete="current-password"
                onkeydown="if(event.key==='Enter')cloudAuth(false)" />
       </div>
       <div class="cloud-actions">
-        <button class="btn primary" onclick="cloudAuth(false)">Sign in</button>
-        <button class="btn" onclick="cloudAuth(true)">Create account</button>
+        <button class="btn primary" onclick="cloudAuth(false)">Log in</button>
+        <button class="btn" onclick="cloudAuth(true)">Create free account</button>
       </div>
       <p class="hint"><button class="linklike" onclick="cloudForgot()">Forgot password?</button></p>
       <div id="cloud-status"></div>
-    </div>`;
+      <p class="no-spam">🔒 Your email is used only for logging in. No newsletters, no marketing, no spam — ever. Urdu Ustaadh is completely free.</p>`;
+  overlay.innerHTML = `<div class="modal-card">${inner}</div>`;
+  document.body.appendChild(overlay);
 }
 
 async function cloudAuth(create) {
@@ -145,7 +150,8 @@ async function cloudAuth(create) {
   out.innerHTML = `<div class="pr listening">☁️ ${create ? "Creating account" : "Signing in"}…</div>`;
   try {
     await (create ? Cloud.signUp(email, pass) : Cloud.signIn(email, pass));
-    renderProfiles();
+    document.querySelector(".modal-overlay")?.remove();
+    renderHome();
   } catch (e) {
     out.innerHTML = `<div class="pr bad">⚠️ ${esc(e.message)}</div>`;
   }
@@ -165,11 +171,6 @@ async function cloudForgot() {
   } catch (e) {
     out.innerHTML = `<div class="pr warn">⚠️ Couldn't send just now — email sending may not be configured yet. (${esc(e.message)})</div>`;
   }
-}
-
-function cloudSignOut() {
-  Cloud.signOut();
-  renderProfiles();
 }
 
 // ── Progress & ranks ─────────────────────────────────────────
@@ -272,7 +273,13 @@ function dueReviewCount() {
 // ── Home ─────────────────────────────────────────────────────
 
 function renderHome() {
-  if (!root.active) return renderProfiles();
+  if (!root.active) {
+    // First visit: start instantly as "Mehmaan" (guest) — no questions
+    // asked. Learners can rename/add profiles or sign in whenever.
+    if (!root.profiles["Mehmaan"]) root.profiles["Mehmaan"] = blankProfile();
+    root.active = "Mehmaan";
+    saveRoot();
+  }
   const p = profile();
   const pct = overallPercent();
   const rank = rankFor(p);
@@ -288,6 +295,7 @@ function renderHome() {
     <header class="hero">
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
