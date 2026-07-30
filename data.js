@@ -722,13 +722,41 @@ const PAKISTAN_UNITS = [
         ],
       },
       {
+        heading: "The mountain north, up close",
+        facts: [
+          "<strong>Hunza Valley</strong> — apricot orchards under 7,000-meter walls, ancient forts at Baltit and Altit, and legendary longevity lore. The valley floor sits at 2,400 m; the view goes up another five kilometers.",
+          "<strong>Nanga Parbat (8,126 m)</strong> — the 'Killer Mountain' anchoring the western Himalaya, with the planet's biggest single vertical rise: the Rupal Face, a 4,600 m wall. Fairy Meadows sits at its feet, named exactly right.",
+          "<strong>Deosai Plains</strong> — the world's second-highest plateau (~4,100 m): a summer carpet of wildflowers, home to Himalayan brown bears, snowbound eight months a year.",
+          "<strong>The Khunjerab Pass (4,693 m)</strong> — the highest paved international border crossing on Earth, where the Karakoram Highway hands you to China. Border guards play cricket up there in summer.",
+        ],
+      },
+      {
+        heading: "Rivers, plains, and the five of Punjab",
+        facts: [
+          "Punjab literally means <em>panj āb</em> — five waters: the Jhelum, Chenab, Ravi, Sutlej, and Beas, all draining into the Indus. The world's largest contiguous canal-irrigation system turns their water into wheat, rice, and mangoes.",
+          "<strong>Tarbela Dam</strong> on the Indus is one of the largest earth-filled dams on the planet — a wall of dirt and rock 143 m high, feeding both farms and the power grid.",
+          "Where the Indus finally meets the sea, it fans into a delta of <strong>mangrove forests</strong> — nurseries for shrimp and fish, and a natural storm shield for the coast.",
+        ],
+      },
+      {
+        heading: "Extremes worth bragging about",
+        facts: [
+          "<strong>Heat:</strong> Mohenjo-daro recorded 53.7°C (128.7°F) in 2010 — among the highest reliably measured temperatures anywhere, ever.",
+          "<strong>Cold:</strong> the Karakoram holds the largest glaciers outside the polar regions — Baltoro and Biafo are rivers of ice over 60 km long.",
+          "<strong>Strange and wonderful:</strong> Hingol National Park in Balochistan has active mud volcanoes and the 'Princess of Hope' rock spire (named by Angelina Jolie on a UN visit); Ziarat's juniper forest is among the oldest living forests on Earth — some trees pre-date Islam.",
+        ],
+      },
+      {
         heading: "Geography words worth stealing",
         note: "Tap to hear — these show up in place-names everywhere.",
         words: [
           { ur: "دریا", tr: "daryā", en: "river", spell: "as in Daryā-e-Sindh, the Indus" },
           { ur: "پہاڑ", tr: "pahāṛ", en: "mountain", spell: "retroflex ڑ workout" },
+          { ur: "وادی", tr: "wādī", en: "valley", spell: "as in Wādī-e-Hunza" },
+          { ur: "جھیل", tr: "jhīl", en: "lake", spell: "Saif-ul-Malook, the fairy-tale jhīl" },
           { ur: "صحرا", tr: "sehrā", en: "desert", spell: "as in the Thar" },
           { ur: "سمندر", tr: "samundar", en: "sea", spell: "the Arabian Sea coast" },
+          { ur: "ساحل", tr: "sāhil", en: "shore / coast", spell: "Karachi's Clifton sāhil" },
           { ur: "شہر", tr: "shehr", en: "city", spell: "Karachi: Pakistan's biggest shehr" },
         ],
       },
@@ -738,29 +766,56 @@ const PAKISTAN_UNITS = [
           "<strong>Karachi</strong> — 20-million-plus megacity, port, and money machine. Started as a fishing village called Kolachi.",
           "<strong>Lahore</strong> — the cultural capital: Mughal forts, food streets, and the proverb 'who hasn't seen Lahore hasn't been born.'",
           "<strong>Islamabad</strong> — purpose-built capital from the 1960s, all grids and greenery under the Margalla Hills. Pakistanis joke it's 'ten minutes from Pakistan.'",
+          "<strong>Peshawar, Quetta, Multan, Gwadar</strong> — the ancient gate, the mountain bowl, the city of saints, the deep-sea port. Four completely different Pakistans.",
         ],
       },
     ],
     funFacts: [
       "Pakistan has the largest glaciers outside the polar regions — the Karakoram's Baltoro and Siachen are rivers of ice tens of kilometers long, feeding the Indus through the summer melt.",
       "The N-35 — the Karakoram Highway — is often called the eighth wonder of the world: a paved road over the 4,700 m Khunjerab Pass into China, threaded between avalanche chutes by 1970s engineers.",
+      "Lake Saif-ul-Malook (3,224 m) comes with its own fairy tale: a prince who fell in love with a fairy princess there. On a still night the Milky Way reflects in it — locals say that's when the fairies come down.",
     ],
   },
   {
     id: "P2",
     title: "Saqafat · Culture",
-    subtitle: "Truck art, qawwali, cricket, and competitive hospitality",
+    subtitle: "Truck art, qawwali, dramas, and competitive hospitality",
     intro:
-      "Pakistani culture runs loud, generous, and ornamented — trucks painted like jewelry boxes, weddings that last a week, and a national talent for feeding guests past all reason.",
+      "Pakistani culture runs loud, generous, and ornamented — trucks painted like jewelry boxes, weddings that last a week, dramas the whole subcontinent watches, and a national talent for feeding guests past all reason.",
     sections: [
       {
         heading: "The essentials",
         facts: [
           "<strong>Truck art</strong> — working trucks decorated bumper-to-bumper with calligraphy, portraits, chained hearts, and poetry. Owners spend fortunes; the truck is the canvas of the working class.",
           "<strong>Qawwali</strong> — Sufi devotional music built on handclaps, harmonium, and ecstatic call-and-response. Nusrat Fateh Ali Khan took it from shrine courtyards to world stages.",
-          "<strong>Cricket is the second religion.</strong> The 1992 World Cup win is national scripture; street-corner 'tape-ball' cricket is played in every gali (alley) in the country.",
           "<strong>Shalwar kameez</strong> — the national dress for everyone: loose trousers, long tunic, infinitely adaptable from farm work to bridal couture.",
           "<strong>Mehmān-nawāzī</strong> (hospitality) is a competitive sport. Refusing food is a negotiation you will lose — remember Level 5's 'bas, shukriya' and deploy it early.",
+        ],
+      },
+      {
+        heading: "The screen & the sound",
+        facts: [
+          "<strong>PTV's golden age</strong> gave the whole subcontinent its water-cooler moments: <em>Dhoop Kinare</em>, <em>Tanhaiyaan</em>, <em>Ankahi</em> — and yes, <em>Alpha Bravo Charlie</em> (1998), whose 90s warmth inspired this very app's design.",
+          "<strong>Modern dramas</strong> carry the torch: <em>Humsafar</em> (2011) made Fawad Khan and Mahira Khan continental stars and put Hum TV on the map.",
+          "<strong>Coke Studio</strong> — the fusion series that became South Asia's biggest musical export; 'Pasoori' (2022) hit global charts in a Punjabi-Urdu blend.",
+          "<strong>Mehdi Hassan &amp; Noor Jehan</strong> — the king of ghazal and the Melody Queen: two voices that defined the radio century. Lata Mangeshkar said God speaks through Mehdi Hassan's throat.",
+        ],
+      },
+      {
+        heading: "Festivals & the calendar",
+        facts: [
+          "<strong>Ramzan</strong> reshapes the whole month: pre-dawn sehri meals, sunset iftars where the entire country stops at once, and TV schedules built around it.",
+          "<strong>Both Eids</strong> — Eid-ul-Fitr (sweets, eidi cash for kids, new clothes) and Eid-ul-Azha (sacrifice and meat distribution) — are multi-day national reunions.",
+          "<strong>Basant</strong> — Lahore's legendary spring kite festival: rooftops, yellow clothes, and the sky full of paper. <strong>14 August</strong> turns every street green and white with flags, badges, and bunting.",
+          "<strong>Shaadi season</strong> (winter) is its own festival: mehndi night (music + henna), baraat (groom's procession), walima (reception) — each with its own outfit, playlist, and biryani.",
+        ],
+      },
+      {
+        heading: "Craft country",
+        facts: [
+          "<strong>Ajrak</strong> — Sindh's deep-red block-printed cloth, worn as turban, shawl, and gift of honor; the pattern tradition is thousands of years old.",
+          "<strong>Multani blue pottery, Peshawari chappal, khussa shoes, Sindhi topi</strong> — every region signs its name in a craft. The Peshawari chappal even walked into international fashion collections.",
+          "<strong>Mehndi (henna)</strong> — hands painted for every celebration; the darker the stain, goes the aunty-lore, the deeper the love.",
         ],
       },
       {
@@ -770,14 +825,18 @@ const PAKISTAN_UNITS = [
           { ur: "مہمان", tr: "mehmān", en: "guest", spell: "sacred status in any desi home" },
           { ur: "شادی", tr: "shādī", en: "wedding", spell: "multi-day, multi-outfit, multi-biryani" },
           { ur: "دعوت", tr: "dāwat", en: "feast / dinner invitation", spell: "arrive hungry, surrender early" },
+          { ur: "مہندی", tr: "mehndī", en: "henna (and the henna night)", spell: "the celebration in a cone" },
+          { ur: "پتنگ", tr: "patang", en: "kite", spell: "Basant's main character" },
           { ur: "میلہ", tr: "melā", en: "fair / festival", spell: "as in the crowds: 'it's a melā in here!'" },
           { ur: "رسم", tr: "rasm", en: "custom / ritual", spell: "every shādī has a dozen" },
+          { ur: "تحفہ", tr: "tohfā", en: "gift", spell: "never arrive at a dāwat without one" },
         ],
       },
     ],
     funFacts: [
-      "A Pakistani wedding is a festival season, not an event: mehndi (music + henna night), baraat (groom's procession), walima (reception) — each with its own dress code, playlist, and biryani. Guests budget a week and several outfits.",
+      "A Pakistani wedding is a festival season, not an event: mehndi, baraat, walima — each with its own dress code, playlist, and biryani. Guests budget a week and several outfits.",
       "The Karachi-vs-Lahore biryani rivalry is a genuine cultural fault line: Karachi insists on aloo (potatoes) in biryani, Lahore considers that heresy. Choose your answer based on who's at the table.",
+      "Truck art has its own genre of one-liner poetry painted on bumpers. A beloved classic: <em>burī nazar wāle, terā muṉh kālā</em> — 'may the face of the evil-eyed turn black.' Part blessing, part roast.",
     ],
   },
   {
@@ -785,16 +844,48 @@ const PAKISTAN_UNITS = [
     title: "Tareekh · History",
     subtitle: "5,000 years: Indus cities to Independence",
     intro:
-      "The land that is now Pakistan has hosted one of humanity's first great civilizations, Buddhist universities, Mughal splendor, and the birth of a nation — all along the same river.",
+      "The land that is now Pakistan has hosted one of humanity's first great civilizations, Buddhist universities, Sufi saints, Mughal splendor, and the birth of a nation — all along the same river.",
     sections: [
       {
-        heading: "The long arc",
+        heading: "Deep time: the Indus cities",
         facts: [
-          "<strong>~2500 BCE — the Indus Valley Civilization.</strong> Mohenjo-daro (Sindh) and Harappa (Punjab) had grid streets, standardized bricks, and covered drains — indoor plumbing millennia before Rome.",
-          "<strong>~500 BCE–500 CE — Gandhara.</strong> Around Taxila and Peshawar, a Buddhist civilization flourished where Greek and South Asian art fused — the first human-form Buddha statues wear Greek robes.",
-          "<strong>1526–1700s — the Mughals.</strong> Lahore became an imperial jewel: the Badshahi Mosque, Shalimar Gardens, and the fort still anchor the old city.",
-          "<strong>1947 — Independence.</strong> On 14 August, Pakistan was born from Partition, led by Muhammad Ali Jinnah (Quaid-e-Azam, 'the Great Leader') and dreamed up in part by the poet you met in Virsa — Allama Iqbal. Partition also brought one of history's largest migrations, with millions displaced and enormous human cost — a memory that still shapes the region.",
-          "<strong>The modern chapter:</strong> the 1992 cricket World Cup, Abdul Sattar Edhi's world-famous ambulance charity, and Malala Yousafzai — the youngest Nobel laureate in history.",
+          "<strong>~2500 BCE — Mohenjo-daro and Harappa.</strong> Grid streets, standardized bricks, covered drains, public baths — indoor plumbing millennia before Rome. At its peak the Indus civilization was larger than Egypt and Mesopotamia combined.",
+          "Its <strong>script is still undeciphered</strong> — thousands of inscribed seals, no Rosetta Stone. One of archaeology's great unsolved puzzles is sitting in Sindh.",
+          "The famous bronze <em>Dancing Girl</em> statuette of Mohenjo-daro — four inches of pure attitude, hand on hip — is 4,500 years old.",
+        ],
+      },
+      {
+        heading: "Gandhara: the Buddhist millennium",
+        facts: [
+          "Around <strong>Taxila and Peshawar</strong> (roughly 500 BCE–500 CE), the Gandhara civilization flourished at the crossroads of the Silk Road.",
+          "<strong>Taxila</strong> hosted one of the ancient world's great centers of learning — students traveled from across Asia to study medicine, law, and archery there.",
+          "Gandhara gave the world the <strong>first human-form Buddha statues</strong> — carved with Greek robes and wavy hair, a fusion of Athens and the subcontinent that exists nowhere else.",
+        ],
+      },
+      {
+        heading: "Saints and emperors",
+        facts: [
+          "<strong>The Sufis</strong> carried Islam through poetry and music: Data Ganj Bakhsh in Lahore, Lal Shahbaz Qalandar in Sehwan (whose shrine's ecstatic <em>dhamaal</em> drumming continues nightly), Abdullah Shah Ghazi watching over Karachi's coast.",
+          "<strong>The Mughals (1526–1700s)</strong> made Lahore an imperial jewel: the Badshahi Mosque (for centuries the world's largest), Shalimar Gardens, and the Lahore Fort still anchor the old city.",
+          "<strong>The British Raj</strong> left railways, cantonments, cricket, and the English-Urdu code-switching that Pakistanis still speak in daily.",
+        ],
+      },
+      {
+        heading: "1947: the founding cast",
+        facts: [
+          "<strong>Allama Iqbal</strong> — the poet you met in Virsa — articulated the dream of a separate homeland in his 1930 Allahabad address. He died in 1938, nine years before it came true.",
+          "<strong>Muhammad Ali Jinnah (Quaid-e-Azam, 'the Great Leader')</strong> — the London-trained barrister who argued a country into existence. On <strong>14 August 1947</strong>, Pakistan was born.",
+          "<strong>Fatima Jinnah</strong> — his sister, a dentist by training — became Mādar-e-Millat, 'Mother of the Nation,' and later ran for president herself in 1965.",
+          "Partition also brought one of history's largest migrations, with millions displaced and enormous human cost on all sides — a memory that still shapes the region.",
+        ],
+      },
+      {
+        heading: "Since then, in fast-forward",
+        facts: [
+          "<strong>1971</strong> — after a brutal war, East Pakistan became Bangladesh: the borders you saw in the map game date from then.",
+          "<strong>1992</strong> — Imran Khan's 'cornered tigers' won the Cricket World Cup, a moment burned into national memory (much more in the Sports unit).",
+          "<strong>Abdul Sattar Edhi</strong> built the world's largest volunteer ambulance network from a single Karachi clinic — when he died in 2016, he was mourned like a head of state.",
+          "<strong>Malala Yousafzai</strong> became the youngest Nobel laureate in history (2014, at 17); <strong>Arfa Karim</strong> had already become the world's youngest Microsoft Certified Professional at nine.",
         ],
       },
       {
@@ -804,13 +895,176 @@ const PAKISTAN_UNITS = [
           { ur: "تاریخ", tr: "tārīkh", en: "history (also: date)", spell: "one word, two jobs" },
           { ur: "آزادی", tr: "āzādī", en: "freedom / independence", spell: "the word of 14 August" },
           { ur: "قوم", tr: "qaum", en: "nation / people", spell: "Sound School's deep ق" },
+          { ur: "بادشاہ", tr: "bādshāh", en: "king / emperor", spell: "as in the Badshahi Mosque" },
+          { ur: "قلعہ", tr: "qilā", en: "fort", spell: "every old city has one" },
+          { ur: "مزار", tr: "mazār", en: "shrine / mausoleum", spell: "Jinnah's white-marble mazār crowns Karachi" },
           { ur: "یادگار", tr: "yādgār", en: "monument / memorial", spell: "literally 'memory-keeper'" },
         ],
       },
     ],
     funFacts: [
       "The name 'Pakistan' was coined in 1933 as a composite: P-unjab, A-fghania, K-ashmir, S-indh, and Balochi-STAN — and it also reads as 'land of the pure' (pāk = pure). A national name that's both an acronym and a pun: extremely Urdu behavior.",
-      "Mohenjo-daro means 'mound of the dead' in Sindhi — its real ancient name is unknown, because the Indus script is still undeciphered. One of archaeology's great unsolved puzzles is sitting in Sindh.",
+      "Minar-e-Pakistan in Lahore marks the spot of the 1940 Lahore Resolution — and the Badshahi Mosque next door is so photogenic the two make the country's most recognizable skyline.",
+      "Jinnah's 11 August 1947 speech to the Constituent Assembly — 'you are free to go to your temples, you are free to go to your mosques' — is still quoted in every debate about the country's founding vision.",
+    ],
+  },
+  {
+    id: "P4",
+    title: "Khel · Sports",
+    subtitle: "Cornered tigers, squash dynasties, and polo in the sky",
+    intro:
+      "Pakistan doesn't just play sports — it produces eras. A cricket World Cup written like a film script, the most dominant champion in the history of ANY sport, and a polo ground above the clouds.",
+    sections: [
+      {
+        heading: "Cricket: the second religion",
+        facts: [
+          "<strong>1992, Melbourne.</strong> Nearly eliminated mid-tournament, captain Imran Khan told his team to fight 'like cornered tigers.' They won the whole World Cup. The phrase, the fielding, Wasim Akram's double-strike — all of it is national scripture.",
+          "<strong>Street cricket ('tape-ball')</strong> is the country's true academy: a tennis ball wrapped in electrical tape, played in every gali. It builds the wristy, improvisational style Pakistani batsmen and bowlers are famous for.",
+          "<strong>Reverse swing</strong> — making an old ball curve the 'wrong' way at high speed — was pioneered by Pakistani fast bowlers (Sarfraz Nawaz → Imran → Wasim and Waqar, the 'two Ws'). It changed fast bowling worldwide.",
+          "The <strong>PSL</strong> (Pakistan Super League) brought big-stage cricket home, and the 2017 Champions Trophy final — a thrashing of India at the Oval — is rewatched like a comfort film.",
+        ],
+      },
+      {
+        heading: "The squash dynasty",
+        facts: [
+          "<strong>Jahangir Khan went unbeaten for five years and 555 matches</strong> (1981–86) — the longest winning streak by any athlete in any professional sport, ever. Read that again.",
+          "He and <strong>Jansher Khan</strong> won 16 British Opens and 14 World Opens between them; for nearly two decades the squash world simply played for second place.",
+          "The dynasty came from one extended family in Peshawar — a father coaching sons and nephews on cement courts. Sporting empires have started with less, but not often.",
+        ],
+      },
+      {
+        heading: "Beyond the boundary",
+        facts: [
+          "<strong>Field hockey</strong> is the official national sport: 3 Olympic golds and a record 4 World Cups — the 1970s-80s teams played hockey the way Brazil played football.",
+          "<strong>Shandur Top (3,700 m)</strong> hosts the world's highest polo tournament: Chitral vs Gilgit, freestyle rules, on a pass between mountain ranges. Spectators camp for days.",
+          "<strong>Kabaddi</strong> — the ancient raid-and-tag sport — packs stadiums in Punjab, and Pakistan's team is a perennial World Cup finalist.",
+          "In the mountains, <strong>high-altitude porters from Hunza and Baltistan</strong> are the quiet superstars of world mountaineering — many K2 summits ride on their ropes and route-finding.",
+        ],
+      },
+      {
+        heading: "Sports words to know",
+        note: "Tap to hear.",
+        words: [
+          { ur: "کھیل", tr: "khel", en: "game / sport", spell: "as in Roz ka Khel — your daily games!" },
+          { ur: "جیت", tr: "jīt", en: "win / victory", spell: "the 1992 word" },
+          { ur: "ہار", tr: "hār", en: "defeat (also: garland!)", spell: "lose the match, still get flowers" },
+          { ur: "میدان", tr: "maidān", en: "field / ground", spell: "every mohalla has one" },
+          { ur: "کپتان", tr: "kaptān", en: "captain", spell: "say it and everyone pictures 1992" },
+        ],
+      },
+    ],
+    funFacts: [
+      "The word <em>hār</em> means both 'defeat' and 'flower garland' — so at Pakistani airports, returning teams get hār for their hār. The puns write themselves.",
+      "Tape-ball cricket is such a distinct institution that international players who grew up on it credit it for their unorthodox skills — a tennis ball taped tight swings viciously and teaches improvisation no academy can.",
+    ],
+  },
+  {
+    id: "P5",
+    title: "Dastarkhwan · Food",
+    subtitle: "A regional eating tour, from nihari dawn to falooda midnight",
+    intro:
+      "The dastarkhwan is the cloth spread for a meal — and Pakistan's is enormous. Every province cooks a different country. Arrive hungry; this unit has no other prerequisite.",
+    sections: [
+      {
+        heading: "The regional tour",
+        facts: [
+          "<strong>Punjab:</strong> nihari (slow-cooked overnight stew, eaten at DAWN — breakfast of emperors), paye, sarson kā sāg with makkī kī roṭī, and lassi in clay tumblers.",
+          "<strong>Karachi &amp; Sindh:</strong> the famous aloo-wali biryani, bun kebab from street carts, Sindhi sāī bhājī, and nimco by the paper bag.",
+          "<strong>Khyber Pakhtunkhwa:</strong> chapli kebab (a spiced patty the size of your face, fried in sight of the Khyber), kabuli pulao, and namkeen gosht — meat, salt, fat, perfection.",
+          "<strong>Balochistan:</strong> sajji — whole lamb salt-roasted on stakes around a fire — and kaak, bread baked hard on hot stones.",
+        ],
+      },
+      {
+        heading: "The sweet department",
+        facts: [
+          "<strong>Mithai</strong> is a love language: gulab jamun, jalebi (fried spirals of syrup), barfi, kheer. Good news travels in a box of mithai — job, engagement, exam result, all of it.",
+          "<strong>Falooda</strong> — rose syrup, vermicelli, basil seeds, ice cream — is dessert, drink, and architecture at once.",
+          "<strong>Rooh Afza</strong>, the rose-colored 'soul refresher' syrup invented in 1906, is summer in a bottle — stirred into milk at every iftar table on both sides of the border.",
+        ],
+      },
+      {
+        heading: "Mango season (a national event)",
+        facts: [
+          "Pakistan is one of the world's top mango producers, and <strong>mango season (May–September) is treated like a holiday</strong> — crates travel between families as serious diplomatic gifts.",
+          "The great debate: <strong>Sindhri vs Chaunsa vs Anwar Ratol.</strong> Sindh backs the honey-sweet Sindhri; Punjab swears by Chaunsa; the tiny aromatic Anwar Ratol has a cult following. There is no neutral position.",
+          "Mango diplomacy is real: Pakistani leaders have gifted crates to heads of state for decades. A well-timed box of Anwar Ratols opens doors treaties can't.",
+        ],
+      },
+      {
+        heading: "Street & chai culture",
+        facts: [
+          "<strong>Gol gappay</strong> (crisp shells filled with spiced water), <strong>dahi bhallay, samosas, pakoras</strong> — street food is an evening ritual, not a snack.",
+          "<strong>Doodh patti</strong> — tea brewed entirely in milk, no water allowed — is the dhaba standard, served scalding in glasses, endlessly refilled.",
+          "First monsoon rain = mandatory pakoras. This is not a suggestion; it is meteorologically enforced national policy.",
+        ],
+      },
+      {
+        heading: "Food words to know",
+        note: "Tap to hear — then go eat something.",
+        words: [
+          { ur: "مٹھائی", tr: "miṭhāī", en: "sweets", spell: "good news comes in boxes of it" },
+          { ur: "آم", tr: "ām", en: "mango", spell: "the king of fruits — and of arguments" },
+          { ur: "دودھ", tr: "doodh", en: "milk", spell: "as in doodh patti chai" },
+          { ur: "گرم", tr: "garam", en: "hot (temperature)", spell: "as in garam chai, garam samosay" },
+          { ur: "میٹھا", tr: "mīṭhā", en: "sweet (taste)", spell: "the national flavor" },
+          { ur: "نمک", tr: "namak", en: "salt", spell: "namkeen = the salty snack family" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Nihari's name comes from <em>nahār</em>, Arabic for 'morning' — it was slow-cooked all night and eaten at dawn by Mughal-era laborers (and, legend says, nobles curing hangovers). Eating a heavy meat stew for breakfast remains a proud national habit.",
+      "The chai-wala's glass is engineered culture: doodh patti is served too hot to hold on purpose — you pour it into the saucer and sip from that. Slowing you down is the point; the conversation is the meal.",
+    ],
+  },
+  {
+    id: "P6",
+    title: "Qudrat · Nature & Wildlife",
+    subtitle: "Corkscrew horns, blind dolphins, and leopards made of snow",
+    intro:
+      "Qudrat means nature — and Pakistan's runs from mangrove coast to 8,000-meter ice. Its wildlife list reads like a fantasy novel: a goat with corkscrew horns, a dolphin that swims sideways in a river, and a ghost cat patrolling the Karakoram.",
+    sections: [
+      {
+        heading: "The national cast",
+        facts: [
+          "<strong>Markhor</strong> — the national animal: a wild mountain goat with meter-long corkscrew horns that looks Photoshopped. Once nearly extinct, community-run conservation in the north brought it roaring back — one of Asia's great comeback stories.",
+          "<strong>Chukar partridge</strong> — the national bird, a red-legged mountain runner beloved in folk poetry as a symbol of intense (and slightly unhinged) love.",
+          "<strong>Deodar</strong> — the national tree: cathedral-sized Himalayan cedars whose name means 'timber of the gods.'",
+          "<strong>Jasmine (chambeli)</strong> — the national flower, threaded into bracelets sold at every traffic light on summer evenings.",
+        ],
+      },
+      {
+        heading: "The rare and the strange",
+        facts: [
+          "<strong>The Indus blind dolphin (bhulan)</strong> — one of the world's few freshwater dolphins, functionally blind, navigating the silty river by echolocation and often swimming on its side. Numbers are slowly recovering.",
+          "<strong>Snow leopards</strong> patrol Gilgit-Baltistan's crags — one of the world's healthiest populations of the 'ghost of the mountains.'",
+          "<strong>Himalayan brown bears</strong> dig marmots on the Deosai plateau; <strong>Marco Polo sheep</strong> with curling meter-wide horns graze the Khunjerab borderlands.",
+          "<strong>Green turtles</strong> nest on Karachi's own beaches at Sandspit — megacity on one side of the sand, ancient reptile ritual on the other.",
+        ],
+      },
+      {
+        heading: "Wild places to know",
+        facts: [
+          "<strong>Deosai National Park</strong> — the 'Land of Giants': a 4,100 m plateau that becomes a wildflower sea each July.",
+          "<strong>Hingol National Park</strong> — Balochistan's badlands: mud volcanoes, canyon spires, ibex on cliffs, and crocodiles in the Hingol river.",
+          "<strong>Astola Island</strong> — Pakistan's largest offshore island and first marine protected area: turtle beaches and coral in the Arabian Sea.",
+          "<strong>Ziarat's juniper valley</strong> — thousands of hectares of trees up to several millennia old; locals call the oldest ones 'living fossils.'",
+        ],
+      },
+      {
+        heading: "Nature words to know",
+        note: "Tap to hear.",
+        words: [
+          { ur: "جانور", tr: "jānwar", en: "animal", spell: "" },
+          { ur: "پرندہ", tr: "parindah", en: "bird", spell: "poetic plural: parinde" },
+          { ur: "درخت", tr: "darakht", en: "tree", spell: "" },
+          { ur: "پھول", tr: "phūl", en: "flower", spell: "aspirated ph — Sound School!" },
+          { ur: "جنگل", tr: "jangal", en: "forest", spell: "the word English took as 'jungle'" },
+        ],
+      },
+    ],
+    funFacts: [
+      "The markhor's name is Persian for 'snake-eater' — folklore claims it kills and eats snakes (it doesn't; it's a vegetarian goat with a dramatic reputation). The corkscrew horns are real, though: up to 160 cm of built-in mythology.",
+      "Trophy-hunt permits for a handful of aging markhor sell for hundreds of thousands of dollars, and most of the money goes to the mountain villages that protect the herds — the counterintuitive economics that saved the species.",
     ],
   },
 ];
@@ -874,11 +1128,11 @@ const DAILY_QUESTIONS = 5;
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 4, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 9, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 14, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 20, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 25, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 5, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 10, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 15, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 22, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 28, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
