@@ -104,7 +104,18 @@ SITES = {
     "derawar": (71.33, 28.77), "khewra": (73.01, 32.65),
     "khunjerab": (75.42, 36.85), "tarbela": (72.70, 34.09),
     "hingol": (65.30, 25.55), "mehrgarh": (67.62, 29.39),
+    "makli": (67.90, 24.77), "kartarpur": (74.93, 32.09),
+    "takhtibahi": (71.95, 34.32),
 }
+
+LAKES = {
+    "saifulmalook": (73.70, 34.88), "attabad": (74.87, 36.31),
+}
+
+# neighboring countries (Natural Earth 50m admin-0), drawn pale and
+# clipped to the frame so Naqsha can ask about borders
+NEIGHBORS_SRC = "/private/tmp/claude-501/-Users-muneebata-Desktop/54d4d988-c913-4d31-a511-36dc06161133/scratchpad/ne_admin0_50m.geojson"
+NEIGHBOR_IDS = {"IND": "india", "CHN": "china", "AFG": "afghanistan", "IRN": "iran"}
 city_svg = "\n".join(
     f'  <circle id="{cid}" class="geo-city" cx="{proj(*ll)[0]:.1f}" cy="{proj(*ll)[1]:.1f}" r="6"/>'
     for cid, ll in CITIES.items()
@@ -115,6 +126,37 @@ INDUS_WPTS = [(75.6, 35.3), (74.6, 35.5), (73.6, 35.2), (72.9, 34.9), (72.2, 33.
               (68.9, 27.7), (68.4, 25.4), (68.3, 24.8), (67.9, 24.4), (67.4, 24.0)]
 ipts = [proj(*p) for p in INDUS_WPTS]
 indus_d = f"M{ipts[0][0]:.1f},{ipts[0][1]:.1f}" + "".join(f"L{x:.1f},{y:.1f}" for x, y in ipts[1:])
+
+lake_svg = "\n".join(
+    f'  <circle id="{lid}" class="geo-lake" cx="{proj(*ll)[0]:.1f}" cy="{proj(*ll)[1]:.1f}" r="5"/>'
+    for lid, ll in LAKES.items()
+)
+
+nd = json.load(open(NEIGHBORS_SRC))
+neighbor_paths = []
+for f in nd["features"]:
+    cid = NEIGHBOR_IDS.get(f["properties"].get("ADM0_A3"))
+    if not cid:
+        continue
+    g = f["geometry"]
+    polys = g["coordinates"] if g["type"] == "MultiPolygon" else [g["coordinates"]]
+    ds = []
+    for poly in polys:
+        pts = [proj(lon, lat) for lon, lat in poly[0]]
+        xs = [pt[0] for pt in pts]; ys = [pt[1] for pt in pts]
+        # skip rings nowhere near the frame
+        if max(xs) < -80 or min(xs) > 530 or max(ys) < -80 or min(ys) > 520:
+            continue
+        kept = []
+        for x, y in pts:
+            if not kept or (x - kept[-1][0]) ** 2 + (y - kept[-1][1]) ** 2 >= 2.5 ** 2:
+                kept.append((x, y))
+        if len(kept) < 8:
+            continue
+        ds.append("M" + "L".join(f"{x:.0f},{y:.0f}" for x, y in kept) + "Z")
+    if ds:
+        neighbor_paths.append(f'    <path id="{cid}" class="geo-country" d="{"".join(ds)}"/>')
+neighbor_svg = "\n".join(neighbor_paths)
 
 site_svg = "\n".join(
     f'  <rect id="{sid}" class="geo-site" x="{proj(*ll)[0]-5:.1f}" y="{proj(*ll)[1]-5:.1f}" width="10" height="10" transform="rotate(45 {proj(*ll)[0]:.1f} {proj(*ll)[1]:.1f})"/>'
@@ -144,7 +186,11 @@ svg = f'''// ──────────────────────�
 // ─────────────────────────────────────────────────────────────
 
 const PAK_MAP_SVG = `
-<svg id="pakmap" viewBox="0 0 {W + 2 * PAD:.0f} {VH:.0f}" role="img" aria-label="Map of Pakistan">
+<svg id="pakmap" viewBox="0 0 {W + 2 * PAD:.0f} {VH:.0f}" role="img" aria-label="Map of Pakistan and its neighbors">
+  <defs><clipPath id="pakframe"><rect x="0" y="0" width="{W + 2 * PAD:.0f}" height="{VH:.0f}"/></clipPath></defs>
+  <g clip-path="url(#pakframe)">
+{neighbor_svg}
+  </g>
   <path id="sea" class="geo-sea" d="{sea_d}"/>
 {province_svg}
   <ellipse id="thar" class="geo-thar" cx="{tx:.1f}" cy="{ty:.1f}" rx="24" ry="32"/>
@@ -154,6 +200,7 @@ const PAK_MAP_SVG = `
   <polygon id="tirichmir" class="geo-peak" points="{tmx:.1f},{tmy - 9:.1f} {tmx + 7:.1f},{tmy + 5:.1f} {tmx - 7:.1f},{tmy + 5:.1f}"/>
 {site_svg}
 {city_svg}
+{lake_svg}
 </svg>`;
 '''
 open(OUT, "w").write(svg)

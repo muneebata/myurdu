@@ -1159,6 +1159,15 @@ const GEO_FEATURES = [
   { id: "hingol", type: "site", name: "Hingol National Park", ur: "ہنگول", tr: "Hingol", blurb: "Balochistan's badlands: mud volcanoes, canyon spires, and the 'Princess of Hope' rock." },
   { id: "mehrgarh", type: "site", name: "Mehrgarh", ur: "مہرگڑھ", tr: "Mehrgaṛh", blurb: "A farming village 9,000 years ago — one of South Asia's oldest settlements, the deep root beneath the Indus cities." },
   { id: "tirichmir", type: "feature", name: "Tirich Mir", ur: "ترچ میر", tr: "Tirich Mīr", blurb: "The crown of the Hindu Kush (7,708 m), looming over Chitral — the third great range's highest point." },
+  { id: "makli", type: "site", name: "Makli Necropolis", ur: "مکلی", tr: "Maklī", blurb: "One of the world's largest necropolises, near Thatta — half a million tombs across a UNESCO-listed hillside." },
+  { id: "kartarpur", type: "site", name: "Kartarpur", ur: "کرتارپور", tr: "Kartārpur", blurb: "Gurdwara Darbar Sahib, where Guru Nanak spent his final years — since 2019, a visa-free corridor brings Sikh pilgrims across the border daily." },
+  { id: "takhtibahi", type: "site", name: "Takht-i-Bahi", ur: "تخت بھائی", tr: "Takht Bhāī", blurb: "A Buddhist monastery on a Gandhara ridge — UNESCO-listed and remarkably intact after nearly 2,000 years." },
+  { id: "saifulmalook", type: "feature", name: "Lake Saif-ul-Malook", ur: "جھیل سیف الملوک", tr: "Jhīl Saif-ul-Malūk", blurb: "The fairy-tale lake at 3,224 m — legend says a prince fell in love with a fairy princess on its shore." },
+  { id: "attabad", type: "feature", name: "Attabad Lake", ur: "عطا آباد جھیل", tr: "Attāābād Jhīl", blurb: "Born in 2010 when a landslide dammed the Hunza River — its impossible turquoise is now the most photographed water in the north." },
+  { id: "india", type: "country", name: "India", ur: "بھارت", tr: "Bhārat", blurb: "The eastern neighbor — the border runs from the Arabian Sea marshes through Punjab's fields to the Kashmir mountains." },
+  { id: "china", type: "country", name: "China", ur: "چین", tr: "Chīn", blurb: "The northeastern neighbor across the Karakoram — connected by the Khunjerab Pass, the highest paved border crossing on Earth." },
+  { id: "afghanistan", type: "country", name: "Afghanistan", ur: "افغانستان", tr: "Afghānistān", blurb: "The northwestern neighbor along the long Durand Line — the Khyber Pass has linked the two sides for millennia." },
+  { id: "iran", type: "country", name: "Iran", ur: "ایران", tr: "Īrān", blurb: "The southwestern neighbor across Balochistan's deserts — and the source of much of Urdu's poetic vocabulary." },
 ];
 
 const GEO_QUESTIONS = 5;
@@ -1224,6 +1233,12 @@ const LOANWORDS = [
   { en: "jildi", ur: "جلدی", tr: "jaldī", meaning: "quickly!", borrower: "English", story: "British Army slang 'get a jildi on' is Urdu jaldī (hurry) in fatigues. Drill sergeants have been shouting Urdu for a century." },
   { en: "char", ur: "چائے", tr: "chāy", meaning: "tea", borrower: "English", story: "A British 'nice cup of char' is chāy in disguise — the same word as chai, absorbed twice by English through different doors." },
   { en: "wallah", ur: "والا", tr: "wālā", meaning: "the one who does / deals in", borrower: "English", story: "The Urdu suffix -wālā (the chai-wallah, the rickshaw-wallah) became an English word for any specialist. Cricket commentators remain the last great wallah-users." },
+  { en: "rupee", ur: "روپیہ", tr: "rūpiyah", meaning: "the silver coin / currency", story: "Sher Shah Suri standardized the silver rūpiya in the 1540s — from his fort at Rohtas he also gave half of Asia its word for money: rupee, rupiah, and beyond." },
+  { en: "raj", ur: "راج", tr: "rāj", meaning: "rule / reign", story: "English took rāj (rule) whole — 'the British Raj' — and still uses it for any era of dominance: the license raj, a cricket board's raj." },
+  { en: "sits", ur: "چھینٹ", tr: "chhīṉṭ", meaning: "spotted, sprinkled cloth", borrower: "Dutch", story: "The same chhīṉṭ that became English chintz sailed with the Dutch East India Company as sits — prized calico that Amsterdam once tried to ban for being too popular." },
+  { en: "atjar", ur: "اچار", tr: "achār", meaning: "pickle", borrower: "Afrikaans", story: "Achār traveled to Malay as acar, then to the Cape with Malay cooks — Afrikaans atjar is a four-continent pickle: South Asia, Southeast Asia, Africa, and every Sunday table since." },
+  { en: "serikali", ur: "سرکار", tr: "sarkār", meaning: "government / authority", borrower: "Swahili", story: "The Urdu-Persian sarkār (government) crossed the Indian Ocean and became Swahili serikali — the standard word for government across East Africa. An entire state apparatus, linguistically imported." },
+  { en: "bima", ur: "بیمہ", tr: "bīmā", meaning: "insurance", borrower: "Swahili", story: "Swahili bima (insurance) is the Urdu-Persian bīmā, carried by Indian Ocean merchants who insured their cargo long before modern paperwork." },
 ];
 
 const DAILY_QUESTIONS = 5;
