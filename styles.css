@@ -409,3 +409,30 @@ body {
 /* ── Real sagittal diagrams (Sound School) ── */
 .mouth-real { width: 100%; max-width: 270px; height: auto; background: #fffdf6; border-radius: 12px; border: 1.5px solid var(--line); }
 .credit { text-align: center; color: var(--muted); font-size: 0.75rem; margin-top: 18px; }
+
+/* ── Review banner, proverb of the day, Suno!, certificate ── */
+.review-banner {
+  display: block; margin: 16px auto 0; font: inherit; font-weight: 700;
+  background: #fdf4d7; border: 2px solid var(--mustard); color: #6b5416;
+  border-radius: 999px; padding: 9px 20px; cursor: pointer;
+}
+.review-banner:hover { background: #fbeec7; }
+.proverb-card {
+  display: flex; flex-direction: column; gap: 4px; width: 100%; margin-top: 14px;
+  font: inherit; text-align: center; cursor: pointer;
+  background: var(--card); border: 1.5px solid var(--line); border-top: 5px solid var(--rose);
+  border-radius: 16px; padding: 14px 18px; box-shadow: var(--shadow);
+}
+.proverb-card:hover { background: #fdfaf0; }
+.proverb-tag {
+  font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--rose);
+}
+.proverb-ur { font-size: 1.5rem; line-height: 2.1; color: var(--teal-dark); }
+.proverb-en { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+.suno-prompt { text-align: center; }
+.suno-prompt .btn { margin: 6px 4px; }
+.cert-tag { border-color: var(--teal); color: var(--teal-dark); cursor: pointer; }
+.cert-tag:hover { background: #f2ead2; }
+.cert-modal { max-width: 720px; }
+#cert-canvas { width: 100%; height: auto; border-radius: 10px; }

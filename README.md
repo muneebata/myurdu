@@ -12,10 +12,15 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 - **Learn to Read track** — 6 units: Nastaliq shape-families, positional forms, vowels, sounding out real words, Urdu numerals (۱۲۳), and real-world signboard reading.
 - **Virsa (Heritage) track** — 3 units: Ghazal 101 (radif, qafiya, mushaira etiquette — with Ghalib), poems and rhymes every Urdu speaker knows (Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, a listening list — Dil Dil Pakistan, Nusrat, Coke Studio, Faiz) and classic proverbs (kahawatain). All quoted verse is public-domain.
 - **Thora Break track** — "tired of Urdu?" six comprehensive free-roam modules on Pakistan itself: Geography (K2, Hunza, Deosai, the five rivers), Culture (truck art, PTV dramas, festivals, crafts), History (Indus cities → Gandhara → Sufis & Mughals → 1947 → today), Sports (1992, the squash dynasty, Shandur polo), Food (a full regional eating tour + mango season), and Nature & Wildlife (markhor, Indus dolphin, snow leopards) — each smuggling in Urdu words with audio.
+- **Spaced review that initiates:** the home screen shows a "N words due for review" banner when Leitner boxes come due (rest intervals 0/1/2/4/8 days by box).
+- **Proverb of the day** on the home screen, rotating daily through the kahawatain with audio.
+- **Certificates (Sanad):** earn a title, tap 🎓 to render a downloadable truck-art-styled certificate.
+- **PWA:** installable (manifest + service worker — network-first HTML so no staleness, cache-first for versioned assets and audio → offline play after first visit).
 - **Daily Drills** — all daily games reset at midnight US Central time (America/Chicago), so the whole world plays the same puzzle on the same day:
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
   - *Naqsha Challenge*: a real-geometry SVG map of Pakistan (Natural Earth 10m admin boundaries, public domain; cities/K2/Indus placed by true coordinates — regenerate via `tools/gen_map.py`) lights up a province, city, river, or peak — name it. Date-seeded daily five.
   - Both daily games end with a Wordle-style 📤 share card (emoji squares + streak) via the native share sheet or clipboard.
+  - *Suno! Challenge*: pure ear training — hear a native clip, pick the meaning. Date-seeded daily five.
   - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.
 - **Learners & titles** — multiple named profiles on one device, each with its own progress, streak, and title (Talib-e-Ilm → Shagird → … → Ustaadh-e-Azam) earned by completing levels/units.
 
@@ -47,6 +52,11 @@ The app ships with a complete sync layer ([sync.js](sync.js)) targeting a [Pocke
 4. Put the service URL in [config.js](config.js): `window.MYURDU_API = "https://<your-domain>";` and deploy.
 
 With `MYURDU_API` empty the cloud UI is hidden and the app runs fully local, exactly as before. Cost: Railway Hobby $5/mo covers this comfortably; the static site stays free on GitHub Pages.
+
+## Enabling extras
+
+- **Analytics:** Cloudflare dashboard → Analytics & Logs → Web Analytics → enable for myurdu.org with automatic setup (zero code; CSP already allows the beacon). Cookieless and private.
+- **Password-reset emails:** PocketBase admin → Settings → Mail settings → add SMTP credentials (Brevo/Resend free tiers work), and set the Application URL. The app's "Forgot password?" link is already wired.
 
 ## Security posture
 

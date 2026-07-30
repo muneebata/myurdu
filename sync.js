@@ -98,6 +98,10 @@ const Cloud = {
     this.onChange?.();
   },
 
+  async requestReset(email) {
+    return this.api("POST", "/api/collections/users/request-password-reset", { email });
+  },
+
   signOut(notify = true) {
     this.token = null;
     this.user = null;
