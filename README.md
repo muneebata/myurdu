@@ -4,16 +4,16 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 
 ## Features
 
-- **Speak & Listen track** — 5 levels (Greetings → Introductions → Numbers → Family → Food) that build on each other:
+- **Speak & Listen track** — 10 levels that build on each other (Greetings → Introductions → Numbers → Family → Food → Question Words → Essential Verbs → Time & Days → Colors & Likes → a capstone chai-dhaba conversation), following CEFR A1 / frequency-research priorities:
   - 🔊 **Listen** / 🐢 **Slow** — unhurried audio for pronunciation. Plays a real recording from `audio/` when one exists; otherwise browser TTS (Urdu voice → Hindi voice reading transliteration → any voice).
   - 🎤 **Say it** — microphone pronunciation check (Web Speech API, Chrome/Edge), scored against the target phrase.
   - 6-question quiz per level; 70%+ unlocks the next.
 - **Sound School (Awaazain)** — how to physically make the sounds English lacks: the tapped/rolled R, retroflex ٹ ڈ ڑ, dental ت د, aspiration (ھ), throat sounds (خ غ ق), and nasal ں — each with an animated mouth diagram (side-view SVG showing tongue placement, in `diagrams.js`), tongue-placement instructions, tap-to-hear practice words, and links out to YouTube tutorials and Wikipedia phonetics pages with audio.
-- **Learn to Read track** — 4 units on the Nastaliq script: shape-families, positional forms, vowels, then sounding out real words.
-- **Virsa (Heritage) track** — poems and rhymes every Urdu speaker knows: Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, plus a listening list (Dil Dil Pakistan, Nusrat, Coke Studio, Faiz). All quoted verse is public-domain.
+- **Learn to Read track** — 5 units: Nastaliq shape-families, positional forms, vowels, sounding out real words, and Urdu numerals (۱۲۳ — read prices and signs).
+- **Virsa (Heritage) track** — 2 units: poems and rhymes every Urdu speaker knows (Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, a listening list — Dil Dil Pakistan, Nusrat, Coke Studio, Faiz) and classic proverbs (kahawatain). All quoted verse is public-domain.
 - **Daily Drills** —
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
-  - *Callback Round*: retention quiz sampled from everything already passed.
+  - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.
 - **Learners & titles** — multiple named profiles on one device, each with its own progress, streak, and title (Talib-e-Ilm → Shagird → … → Ustaadh-e-Azam) earned by completing levels/units.
 
 ## Audio: real neural Urdu clips (included)
@@ -58,7 +58,7 @@ Note for Claude Code preview: the sandboxed preview server can't read `~/Desktop
 
 ## Roadmap
 
-- Levels 6–10: daily routine & verbs · places & directions · time, days, weather · feelings & small talk · a capstone full conversation.
-- Virsa 2–4: childhood rhymes deep-dive · Dil Dil Pakistan & pop history (commentary, licensed audio only) · the ghazal, properly.
-- Reading 5+: reading full sentences, Urdu numerals (۱۲۳), signboard practice.
-- Spaced-repetition scheduling for the Callback Round; cloud accounts via Supabase.
+- Levels 11+: places & directions · weather · past/future tense · feelings & opinions.
+- Virsa 3+: childhood rhymes deep-dive · Dil Dil Pakistan & pop history (commentary, licensed audio only) · the ghazal, properly.
+- Reading 6+: reading full sentences, signboard practice.
+- Cloud accounts via Supabase for cross-device sync.

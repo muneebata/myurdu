@@ -31,7 +31,7 @@ function esc(s) {
 // ── Profiles ─────────────────────────────────────────────────
 
 function blankProfile() {
-  return { completed: {}, scores: {}, streak: 0, lastDaily: null, dailyBest: {} };
+  return { completed: {}, scores: {}, streak: 0, lastDaily: null, dailyBest: {}, leitner: {} };
 }
 
 function profile() {
@@ -366,9 +366,13 @@ let quiz = null;
 
 function buildQuestions(items, pool, count) {
   const chosen = shuffle(items).slice(0, Math.min(count, items.length));
-  return chosen.map((item) => {
+  return chosen.map((item) => Object.assign(makeQuestion(item, pool), { item }));
+}
+
+function makeQuestion(item, pool) {
+  {
     const mode = Math.random();
-    const distractors = shuffle(pool.filter((x) => x !== item)).slice(0, 3);
+    const distractors = shuffle(pool.filter((x) => x.tr !== item.tr)).slice(0, 3);
     if (mode < 0.34) {
       return {
         prompt: `<div class="q-ur ur">${esc(item.ur)}</div><div class="q-tr">${esc(item.tr)}</div><p>What does this mean?</p>`,
@@ -387,7 +391,7 @@ function buildQuestions(items, pool, count) {
         autoplay: true,
       };
     }
-  });
+  }
 }
 
 function startQuiz(levelIdx) {
@@ -408,11 +412,21 @@ function startCallback() {
   const doneLevels = LEVELS.filter((lv) => isCompleted(lv.id));
   const source = doneLevels.length ? doneLevels : [LEVELS[0]];
   const items = source.flatMap((lv) => lv.items);
+  // Leitner-style spaced retrieval: pull the weakest, least-recently-seen
+  // words first (box 0 = shaky, box 4 = solid), with a little shuffle so
+  // rounds don't repeat verbatim.
+  const lt = (profile().leitner ||= {});
+  const ranked = [...items].sort((a, b) => {
+    const ra = lt[Speech.slug(a.tr)] || { b: 0, t: 0 };
+    const rb = lt[Speech.slug(b.tr)] || { b: 0, t: 0 };
+    return ra.b - rb.b || ra.t - rb.t;
+  });
+  const pool = shuffle(ranked.slice(0, Math.min(10, ranked.length)));
   quiz = {
     kind: "callback",
     title: "Callback Round",
     backFn: "renderHome()",
-    questions: buildQuestions(items, items, 6),
+    questions: buildQuestions(pool, items, 6),
     current: 0,
     correct: 0,
   };
@@ -453,6 +467,13 @@ function answerQuiz(i) {
     else if (j === i) el.classList.add("wrong");
   });
   if (chosen.correct) quiz.correct++;
+  if (quiz.kind === "callback" && q.item) {
+    const lt = (profile().leitner ||= {});
+    const key = Speech.slug(q.item.tr);
+    const cur = lt[key] || { b: 0, t: 0 };
+    lt[key] = { b: chosen.correct ? Math.min(cur.b + 1, 4) : 0, t: Date.now() };
+    saveRoot();
+  }
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">
       ${chosen.correct ? "✅ Sahī! (Correct!)" : "❌ Not this one — the answer is highlighted."}
@@ -504,7 +525,7 @@ function finishCallback() {
       <div class="result-emoji">${pct >= 70 ? "🧠" : "🔁"}</div>
       <h2 class="retro">${pct >= 70 ? "Memory holding strong" : "Time for a refresher"}</h2>
       <p class="result-score">${quiz.correct} / ${quiz.questions.length} recalled</p>
-      <p>${pct >= 70 ? "Old words, still sharp. Come back tomorrow — spacing out reviews is what locks them in." : "No shame — forgetting is part of learning. Revisit the missions these came from and drill again."}</p>
+      <p>${pct >= 70 ? "Old words, still sharp. Words you aced move to a higher box and rest; anything missed comes straight back next round — that spacing is what locks them in." : "No shame — forgetting is part of learning. Revisit the missions these came from and drill again."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startCallback()">Run it again →</button>
         <button class="btn" onclick="renderHome()">Home</button>
