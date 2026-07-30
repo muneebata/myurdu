@@ -124,6 +124,128 @@ const LEVELS = [
       "Urdu is a champion borrower: <em>pānī</em> is Sanskrit-derived, <em>chāy</em> came via Persian from Chinese, <em>mazedār</em> is Persian, <em>shukriya</em> is Arabic. One sentence can span four civilizations.",
     ],
   },
+  {
+    id: "L6",
+    title: "Sawalat · Question Words",
+    subtitle: "Ask anything — the seven little keys",
+    intro:
+      "Question words are the highest-value words in any language: seven of them unlock every conversation. Urdu's all start with k — and with 'kahāṉ hai?' you can find anything on Earth.",
+    items: [
+      { ur: "کیا", tr: "kyā", en: "what", note: "Also turns any sentence into a yes/no question — see the fun fact." },
+      { ur: "کون", tr: "kaun", en: "who", note: "" },
+      { ur: "کہاں", tr: "kahāṉ", en: "where", note: "The single most useful question word for a traveller." },
+      { ur: "کب", tr: "kab", en: "when", note: "" },
+      { ur: "کیوں", tr: "kyūṉ", en: "why", note: "Every Urdu-speaking toddler's favourite word." },
+      { ur: "کیسے", tr: "kaise", en: "how", note: "'Kaise haiṉ āp?' — another way to ask how someone is." },
+      { ur: "کتنا", tr: "kitnā", en: "how much", note: "You met its plural 'kitne' at the bazaar in Level 5." },
+      { ur: "یہاں", tr: "yahāṉ", en: "here", note: "" },
+      { ur: "وہاں", tr: "wahāṉ", en: "there", note: "kahāṉ–yahāṉ–wahāṉ: where–here–there. A rhyming set." },
+      { ur: "باتھ روم کہاں ہے؟", tr: "bāthrūm kahāṉ hai?", en: "Where is the bathroom?", note: "Pattern: ___ kahāṉ hai? = where is ___? Works for everything." },
+    ],
+    funFacts: [
+      "Start any statement with <em>kyā</em> and it becomes a yes/no question: “āp ṭhīk haiṉ” (you're fine) → “kyā āp ṭhīk haiṉ?” (are you fine?). One word, instant question — no rearranging like English.",
+      "English question words cluster on <strong>wh-</strong> (who, what, where); Urdu's cluster on <strong>k-</strong> (kaun, kyā, kahāṉ). Same convergent evolution, different letter.",
+      "The rhyme trio <em>kahāṉ / yahāṉ / wahāṉ</em> (where / here / there) is your free gift: learn one, get three.",
+    ],
+  },
+  {
+    id: "L7",
+    title: "Kaam · Essential Verbs",
+    subtitle: "Eat, drink, go, come — the engines of every sentence",
+    intro:
+      "Corpus research says a handful of verbs power most daily speech. Here are Urdu's core eight, plus the sentence pattern that runs them. Remember the golden rule from Level 2: the verb always parks at the END.",
+    items: [
+      { ur: "کھانا", tr: "khānā", en: "to eat", note: "Yes — the same word as 'food' from Level 5. Context decides." },
+      { ur: "پینا", tr: "pīnā", en: "to drink", note: "" },
+      { ur: "جانا", tr: "jānā", en: "to go", note: "" },
+      { ur: "آنا", tr: "ānā", en: "to come", note: "" },
+      { ur: "دیکھنا", tr: "dekhnā", en: "to see / watch", note: "'Dekho!' — look! You'll hear it constantly." },
+      { ur: "کرنا", tr: "karnā", en: "to do", note: "The workhorse: pairs with nouns to make new verbs — kām karnā (to work)." },
+      { ur: "بولنا", tr: "bolnā", en: "to speak", note: "From Level 2's 'āhista boliye' — now you own the verb itself." },
+      { ur: "سمجھنا", tr: "samajhnā", en: "to understand", note: "" },
+      { ur: "میں بازار جا رہا ہوں", tr: "maiṉ bāzār jā rahā hūṉ", en: "I am going to the bazaar", note: "SOV in action: 'I bazaar going am.' Verb last, always." },
+      { ur: "مجھے سمجھ نہیں آیا", tr: "mujhe samajh nahīṉ āyā", en: "I didn't understand", note: "The honest learner's best sentence. Deploy freely." },
+    ],
+    funFacts: [
+      "Every Urdu infinitive ends in <strong>-nā</strong>: khānā, pīnā, jānā, ānā. Spot a -nā, you've spotted a verb. English wishes it were this organised.",
+      "<em>Karnā</em> (to do) is Urdu's LEGO brick: <em>kām karnā</em> (work-do = to work), <em>fon karnā</em> (phone-do = to call), <em>maaf karnā</em> (forgive-do = to forgive). Learn one verb, unlock dozens.",
+      "Urdu word order is basically Yoda's: “maiṉ chāy pī rahā hūṉ” = “I tea drinking am.” Embrace the inner Yoda and the grammar clicks.",
+    ],
+  },
+  {
+    id: "L8",
+    title: "Waqt · Time & Days",
+    subtitle: "Today, tomorrow, and the word that means both",
+    intro:
+      "Time words let you make plans — and Urdu's are famously efficient: one word covers both yesterday AND tomorrow, and context does the rest. Combine these with Level 7 verbs: 'maiṉ kal ā rahā hūṉ' — I'm coming tomorrow.",
+    items: [
+      { ur: "آج", tr: "āj", en: "today", note: "" },
+      { ur: "کل", tr: "kal", en: "yesterday AND tomorrow", note: "One word, both directions — the verb tense tells you which. See the fun fact." },
+      { ur: "پرسوں", tr: "parsoṉ", en: "two days away (either direction)", note: "Same trick as kal, one day further out." },
+      { ur: "صبح", tr: "subah", en: "morning", note: "'Subah bakhair' — good morning." },
+      { ur: "دوپہر", tr: "dopahar", en: "afternoon", note: "Literally 'two watches' — old-school timekeeping." },
+      { ur: "شام", tr: "shām", en: "evening", note: "" },
+      { ur: "رات", tr: "rāt", en: "night", note: "'Shab bakhair' — good night (shab is the poetic word for rāt)." },
+      { ur: "ابھی", tr: "abhī", en: "right now", note: "'Abhī abhī' doubled = just this second." },
+      { ur: "بعد میں", tr: "baad meṉ", en: "later", note: "The polite way to dodge anything." },
+      { ur: "ہفتہ", tr: "hafta", en: "week (also Saturday)", note: "From Persian haft, seven — a week of seven days." },
+      { ur: "جمعہ", tr: "jumma", en: "Friday", note: "The week's big day — 'Jumma Mubarak!' greetings fly every Friday." },
+    ],
+    funFacts: [
+      "<em>Kal</em> means yesterday OR tomorrow — the verb disambiguates: “kal maiṉ gayā” (yesterday I went) vs “kal maiṉ jāūṉgā” (tomorrow I'll go). Urdu treats time as distance from today, not direction. <em>Parsoṉ</em> does the same at two days.",
+      "<em>Dopahar</em> (afternoon) literally means 'two <em>pahars</em>' — a pahar is an ancient three-hour watch of the day. The old eight-watch clock still hides inside everyday words.",
+      "Many Urdu day-names count in Persian: <em>do-shamba</em>, <em>se-shamba</em>… but Friday is <em>jumma</em> (from Arabic 'gathering') — the day everyone meets.",
+    ],
+  },
+  {
+    id: "L9",
+    title: "Rang aur Pasand · Colors & Likes",
+    subtitle: "Say what you love — in full color",
+    intro:
+      "Research on vocabulary retention is clear: words stick when they're about YOU. This level gives you colors plus the 'pasand hai' pattern — from here on, you can state a preference about anything you've learned.",
+    items: [
+      { ur: "لال", tr: "lāl", en: "red", note: "Also means 'ruby' and 'darling' — a very affectionate color." },
+      { ur: "نیلا", tr: "nīlā", en: "blue", note: "" },
+      { ur: "ہرا", tr: "harā", en: "green", note: "The color of Pakistan's flag — 'sabz' is its Persian twin." },
+      { ur: "پیلا", tr: "pīlā", en: "yellow", note: "" },
+      { ur: "کالا", tr: "kālā", en: "black", note: "" },
+      { ur: "سفید", tr: "safed", en: "white", note: "" },
+      { ur: "گلابی", tr: "gulābī", en: "pink", note: "Literally 'rose-colored' — from gulāb, rose." },
+      { ur: "رنگ", tr: "rang", en: "color", note: "As in Holi's 'rang' — and 'rangīn', colorful." },
+      { ur: "مجھے نیلا رنگ پسند ہے", tr: "mujhe nīlā rang pasand hai", en: "I like (the color) blue", note: "Pattern: mujhe ___ pasand hai = I like ___." },
+      { ur: "مجھے چائے پسند ہے", tr: "mujhe chāy pasand hai", en: "I like tea", note: "Levels 5 + 9, one sentence. It's all one language now." },
+      { ur: "آپ کو کیا پسند ہے؟", tr: "āp ko kyā pasand hai?", en: "What do you like?", note: "Level 6's kyā earning its keep. Ask everyone." },
+    ],
+    funFacts: [
+      "“Mujhe chāy pasand hai” is literally “to-me tea pleasing is” — likes work like Spanish <em>gustar</em>: the thing you love does the verb, you just receive the feeling. Very romantic grammar.",
+      "<em>Gulābī</em> (pink) comes from <em>gulāb</em> (rose), which is Persian for 'rose water' — gul (flower) + āb (water). Inside the word for pink there's a whole garden.",
+      "<em>Mehndi</em> green, <em>gulābī</em> pink, <em>surkh</em> deep red — wedding season owns half the Urdu color vocabulary.",
+    ],
+  },
+  {
+    id: "L10",
+    title: "Guftagu · At the Chai Dhaba",
+    subtitle: "The capstone: a real conversation, start to finish",
+    intro:
+      "Graduation scene: a roadside chai dhaba. Every line below uses what you've already built — greetings (L1), questions (L6), numbers (L3), food (L5), time (L8). Play both sides out loud: order the chai, then be the chai-wala. When this flows, you're conversational.",
+    items: [
+      { ur: "یہاں چائے اچھی ہے؟", tr: "yahāṉ chāy achhī hai?", en: "Is the tea good here?", note: "You, sitting down. L6's yahāṉ + L5's chāy." },
+      { ur: "جی ہاں، بہت مزیدار!", tr: "jī hāṉ, bahut mazedār!", en: "Oh yes — very delicious!", note: "Chai-wala, with justified confidence." },
+      { ur: "دو چائے دیجیے", tr: "do chāy dījiye", en: "Two teas, please", note: "Dījiye = 'please give' — the polite request ending. L3's do." },
+      { ur: "کتنے روپے؟", tr: "kitne rupaye?", en: "How many rupees?", note: "Rupaye — the currency. L5's kitne, now with money." },
+      { ur: "سو روپے", tr: "sau rupaye", en: "One hundred rupees", note: "Sau = 100. Your first big number." },
+      { ur: "یہ لیجیے", tr: "yeh lījiye", en: "Here you go", note: "Lījiye = 'please take' — dījiye's twin. Hand over the cash." },
+      { ur: "بہت شکریہ", tr: "bahut shukriya", en: "Thank you very much", note: "L1 + L5's bahut. Gratitude, upgraded." },
+      { ur: "کوئی بات نہیں", tr: "koī bāt nahīṉ", en: "Don't mention it / no problem", note: "Literally 'no matter at all' — the universal de-escalator." },
+      { ur: "پھر ملیں گے", tr: "phir mileṉge", en: "We'll meet again", note: "The warm goodbye between people who mean it." },
+      { ur: "اللہ حافظ", tr: "Allāh hāfiz", en: "Goodbye (God protect you)", note: "Level 1's fun fact, now in your own mouth. Full circle." },
+    ],
+    funFacts: [
+      "<em>Dījiye</em> (please give) and <em>lījiye</em> (please take) are the -iye ending doing its magic: it turns any verb stem into a gracious request. Boliye (please speak), baiṭhiye (please sit), khāiye (please eat) — instant courtesy.",
+      "<em>Koī bāt nahīṉ</em> is the load-bearing phrase of desi politeness: it answers apologies, thanks, and minor disasters alike. Master it and you can absorb almost any social situation.",
+      "A <em>dhaba</em> is a roadside eatery — truck-driver canteens that became beloved institutions. The chai is strong, the charpais are creaky, and the conversation is exactly the one you just learned.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -279,6 +401,52 @@ const READING_UNITS = [
       "Urdu spelling is far more regular than English: once you know the letters, most words read exactly as written. No 'though/tough/through' nonsense.",
     ],
   },
+  {
+    id: "R5",
+    title: "Ginti · Urdu Numerals",
+    subtitle: "Read prices, plates, and clock faces",
+    intro:
+      "Urdu has its own digits — you'll meet them on banknotes, truck art, wedding invitations, and old clock faces. Ten shapes and you can read any number in the bazaar. Bonus twist: even inside right-to-left text, numbers run left-to-right.",
+    sections: [
+      {
+        heading: "The ten digits",
+        note: "Tap each to hear the number. You already know all the words from Level 3 — these are just their costumes.",
+        letters: [
+          { ch: "۱", name: "ek", sound: "1" },
+          { ch: "۲", name: "do", sound: "2" },
+          { ch: "۳", name: "tīn", sound: "3" },
+          { ch: "۴", name: "chār", sound: "4" },
+          { ch: "۵", name: "pāṉch", sound: "5" },
+          { ch: "۶", name: "chhe", sound: "6" },
+          { ch: "۷", name: "sāt", sound: "7" },
+          { ch: "۸", name: "āṭh", sound: "8" },
+          { ch: "۹", name: "nau", sound: "9" },
+          { ch: "۱۰", name: "das", sound: "10" },
+        ],
+      },
+      {
+        heading: "Read a price tag",
+        note: "Real bazaar practice. Numbers read left-to-right even though the words around them read right-to-left.",
+        words: [
+          { ur: "۵ روپے", tr: "pāṉch rupaye", en: "5 rupees", spell: "digit ۵ + rupaye" },
+          { ur: "۱۰ روپے", tr: "das rupaye", en: "10 rupees", spell: "۱ and ۰ — reading left to right" },
+          { ur: "۱۰۰ روپے", tr: "sau rupaye", en: "100 rupees", spell: "the chai bill from Level 10" },
+        ],
+      },
+      {
+        heading: "Where you'll see them",
+        facts: [
+          "<strong>Banknotes</strong> — every Pakistani rupee note carries both numeral systems. Pull up a picture of a 100-rupee note and read the ۱۰۰.",
+          "<strong>Truck art</strong> — route numbers and phone numbers, painted in loving flourish.",
+          "<strong>Dates</strong> — Urdu newspapers print dates in these digits; wedding invitations always do.",
+        ],
+      },
+    ],
+    funFacts: [
+      "These are the 'Eastern Arabic' numerals — and here's the loop: Europe's 1-2-3 are called 'Arabic numerals' because they arrived via the Arab world from INDIA. The subcontinent invented the system, exported it both ways, and kept its own handwriting.",
+      "Inside right-to-left Urdu text, numbers still run left-to-right — your eyes learn to switch direction mid-line without noticing. Readers do it thousands of times a day.",
+    ],
+  },
 ];
 
 const QUIZ_PASS_PERCENT = 70;
@@ -337,6 +505,39 @@ const CULTURE_UNITS = [
       "Iqbal's 'Lab pe aati hai dua' and Ghalib's couplets are public-domain treasures — Urdu's canon is older than copyright, free for every learner.",
     ],
   },
+  {
+    id: "C2",
+    title: "Kahawatain · Proverbs",
+    subtitle: "The one-liners every aunty has locked and loaded",
+    intro:
+      "Proverbs (kahāwateṉ) are Urdu's compressed wisdom — vivid little scenes starring camels, monkeys, and buffaloes that get deployed daily in every household. Drop one at the right moment and you'll earn more respect than a hundred grammatically perfect sentences. Tap each to hear it.",
+    sections: [
+      {
+        heading: "Five proverbs to know",
+        note: "Each is a tiny movie. Learn the image and the meaning follows.",
+        verse: [
+          { ur: "نیکی کر دریا میں ڈال", tr: "nekī kar, daryā meṉ ḍāl", en: "Do a good deed and throw it in the river — do good expecting nothing back" },
+          { ur: "ڈوبتے کو تنکے کا سہارا", tr: "ḍūbte ko tinke kā sahārā", en: "To the drowning, even a straw is support — any hope helps in desperation" },
+          { ur: "بندر کیا جانے ادرک کا سواد", tr: "bandar kyā jāne adrak kā swād", en: "What does a monkey know of ginger's taste — pearls before swine" },
+          { ur: "جس کی لاٹھی اس کی بھینس", tr: "jis kī lāṭhī, us kī bhaiṉs", en: "Whoever holds the stick owns the buffalo — might makes right" },
+          { ur: "اونٹ کے منہ میں زیرہ", tr: "ūṉṭ ke muṉh meṉ zīrā", en: "Cumin in a camel's mouth — a laughably small portion" },
+        ],
+        credit: "— traditional kahāwateṉ, polished by centuries of aunties",
+      },
+      {
+        heading: "How to deploy a proverb",
+        facts: [
+          "Timing is everything: a proverb lands after the situation is obvious to everyone. Cousin got a tiny slice of cake? <em>“Ūṉṭ ke muṉh meṉ zīrā.”</em> Room nods sagely.",
+          "Notice L6's <em>kyā</em> inside the monkey proverb — 'bandar KYĀ jāne' (what would a monkey know). Your question words moonlight in rhetorical flourishes.",
+          "Proverbs are also pronunciation gyms: <em>ḍūbte</em> opens with a retroflex ḍ, <em>bhaiṉs</em> ends on a nasal — Sound School's greatest hits in the wild.",
+        ],
+      },
+    ],
+    funFacts: [
+      "Urdu proverb-dropping is a competitive sport at family gatherings: the elder who lands the most apt kahāwat wins the room. There is no trophy; the trophy is the sage nodding.",
+      "Many kahāwateṉ exist nearly word-for-word across Urdu, Hindi, and Punjabi — proof that the subcontinent's grandmothers have been running a shared wisdom network for centuries.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -374,11 +575,11 @@ const DAILY_QUESTIONS = 5;
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 2, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 4, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 6, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 8, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 10, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 3, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 6, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 9, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 13, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 18, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
