@@ -1,0 +1,13 @@
+{
+  "name": "Urdu Ustaadh",
+  "short_name": "Urdu Ustaadh",
+  "description": "Learn Urdu — speak it, hear it, read it. Free forever.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf3e1",
+  "theme_color": "#12808b",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

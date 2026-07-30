@@ -129,6 +129,7 @@ function cloudCard() {
         <button class="btn primary" onclick="cloudAuth(false)">Sign in</button>
         <button class="btn" onclick="cloudAuth(true)">Create account</button>
       </div>
+      <p class="hint"><button class="linklike" onclick="cloudForgot()">Forgot password?</button></p>
       <div id="cloud-status"></div>
     </div>`;
 }
@@ -147,6 +148,22 @@ async function cloudAuth(create) {
     renderProfiles();
   } catch (e) {
     out.innerHTML = `<div class="pr bad">⚠️ ${esc(e.message)}</div>`;
+  }
+}
+
+async function cloudForgot() {
+  const email = document.getElementById("cloud-email")?.value.trim();
+  const out = document.getElementById("cloud-status");
+  if (!email) {
+    out.innerHTML = `<div class="pr warn">Type your email above first, then tap Forgot password.</div>`;
+    return;
+  }
+  out.innerHTML = `<div class="pr listening">☁️ Requesting reset link…</div>`;
+  try {
+    await Cloud.requestReset(email);
+    out.innerHTML = `<div class="pr good">📬 If that account exists, a reset link is on its way. Check your inbox (and spam).</div>`;
+  } catch (e) {
+    out.innerHTML = `<div class="pr warn">⚠️ Couldn't send just now — email sending may not be configured yet. (${esc(e.message)})</div>`;
   }
 }
 
@@ -234,6 +251,24 @@ function seededPick(arr, count, rng) {
   return a.slice(0, count);
 }
 
+// Words due for review: seen in quizzes before, and past their box's
+// rest interval (box 0 = due now, then 1/2/4/8 days).
+const BOX_REST_DAYS = [0, 1, 2, 4, 8];
+
+function dueReviewCount() {
+  const p = profile();
+  if (!p || !p.leitner) return 0;
+  const pool = LEVELS.filter((lv) => isCompleted(lv.id)).flatMap((lv) => lv.items);
+  const now = Date.now();
+  let due = 0;
+  for (const item of pool) {
+    const e = p.leitner[Speech.slug(item.tr)];
+    if (!e) continue;
+    if (now - e.t >= BOX_REST_DAYS[Math.min(e.b, 4)] * 86400000) due++;
+  }
+  return due;
+}
+
 // ── Home ─────────────────────────────────────────────────────
 
 function renderHome() {
@@ -243,6 +278,12 @@ function renderHome() {
   const rank = rankFor(p);
   const notice = Speech.voiceNotice();
   const playedToday = p.lastDaily === todayKey();
+  const due = dueReviewCount();
+  const kahawat = (() => {
+    const c2 = CULTURE_UNITS.find((u) => u.id === "C2");
+    const verse = c2?.sections.find((sec) => sec.verse)?.verse || [];
+    return verse.length ? verse[daySeed() % verse.length] : null;
+  })();
   app().innerHTML = `
     <header class="hero">
       <div class="hero-strap"></div>
@@ -254,12 +295,14 @@ function renderHome() {
         <button class="tag profile-tag" onclick="renderProfiles()" title="Switch learner">👤 ${esc(root.active)} ▾</button>
         <span class="tag rank-tag">★ ${rank.name} · <span class="ur-inline">${rank.ur}</span></span>
         <span class="tag streak-tag">🔥 ${p.streak}-day streak</span>
+        ${completedCount() >= RANKS[1].need ? `<button class="tag cert-tag" onclick="showCertificate()" title="Your certificate">🎓 Sanad</button>` : ""}
       </div>
       <div class="progress-wrap" title="${pct}% complete">
         <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
         <span class="progress-label">${pct}% complete</span>
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
+      ${due > 0 ? `<button class="review-banner" onclick="startCallback()">📚 ${due} word${due === 1 ? "" : "s"} due for review — two minutes, let's go →</button>` : ""}
     </header>
 
     <section>
@@ -277,12 +320,26 @@ function renderHome() {
           <div class="card-sub">A feature lights up on the map of Pakistan — name it. Today's five, same for everyone</div>
           <div class="card-status">${p.dailyBest[todayKey() + "#geo"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#geo"]}/${GEO_QUESTIONS} · replay?` : "▶ Play today's map"}</div>
         </button>
+        <button class="card drill" onclick="startSuno()">
+          <div class="card-num gold">Suno! · Listen</div>
+          <div class="card-title">Suno! Challenge</div>
+          <div class="card-sub">Pure ear training: hear the Urdu, pick the meaning — today's five, same for everyone</div>
+          <div class="card-status">${p.dailyBest[todayKey() + "#suno"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#suno"]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
+        </button>
         <button class="card drill" onclick="startCallback()">
           <div class="card-num gold">Yaaddasht · Memory</div>
           <div class="card-title">Callback Round</div>
           <div class="card-sub">Rapid-fire review pulled from everything you've already passed</div>
-          <div class="card-status">▶ Six quick callbacks</div>
+          <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
         </button>
+      </div>
+      ${kahawat ? `
+      <button class="proverb-card" onclick='Speech.speak(${JSON.stringify(kahawat.ur)}, ${JSON.stringify(kahawat.tr)}, {slow:true})'>
+        <span class="proverb-tag">🗣️ Aaj ki Kahawat · Proverb of the day — tap to hear</span>
+        <span class="proverb-ur ur">${esc(kahawat.ur)}</span>
+        <span class="proverb-en">${esc(kahawat.en)}</span>
+      </button>` : ""}
+      <div class="cards" hidden>
       </div>
     </section>
 
@@ -698,9 +755,9 @@ function updateDailyStreak() {
 
 // Wordle-style shareable result. `game` is "roots" or "geo".
 function shareDaily(game, btn) {
-  const g = game === "geo" ? geo : daily;
+  const g = game === "geo" ? geo : game === "suno" ? suno : daily;
   if (!g) return;
-  const name = game === "geo" ? "Naqsha Challenge 🗺️" : "Desi Roots 🌱";
+  const name = game === "geo" ? "Naqsha Challenge 🗺️" : game === "suno" ? "Suno! Challenge 🎧" : "Desi Roots 🌱";
   const squares = g.results.map((r) => (r ? "🟩" : "🟥")).join("");
   const text = `Urdu Ustaadh · ${name}\n${todayKey()}  ${squares}  ${g.correct}/${g.questions.length}\n🔥 ${profile().streak}-day streak\nhttps://myurdu.org`;
   const done = () => { if (btn) btn.textContent = "Copied! ✅"; };
@@ -825,6 +882,147 @@ function finishGeo() {
   `;
 }
 
+// ── Daily game: Suno! (listening) ────────────────────────────
+
+let suno = null;
+
+function startSuno() {
+  const rng = mulberry32(daySeed() + 13);
+  const pool = LEVELS.flatMap((lv) => lv.items);
+  const picks = seededPick(pool, DAILY_QUESTIONS, rng);
+  const questions = picks.map((item) => {
+    const distractors = seededPick(pool.filter((x) => x.tr !== item.tr && x.en !== item.en), 3, rng);
+    return {
+      item,
+      options: seededPick([item, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === item })),
+    };
+  });
+  suno = { questions, current: 0, correct: 0, results: [] };
+  renderSunoQuestion();
+}
+
+function renderSunoQuestion() {
+  const q = suno.questions[suno.current];
+  app().innerHTML = `
+    ${backBar("Suno! Challenge · Listen")}
+    <div class="quiz-progress">Sound ${suno.current + 1} of ${suno.questions.length} · ${todayKey()}</div>
+    <div class="quiz-card">
+      <div class="quiz-prompt suno-prompt">
+        <p>🎧 Listen closely — what does it mean?</p>
+        <button class="btn primary big" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)})'>▶ Play the sound</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)}, {slow:true})'>🐢 Slow</button>
+      </div>
+      <div class="quiz-options">
+        ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerSuno(${i})">${esc(o.label)}</button>`).join("")}
+      </div>
+      <div id="quiz-feedback"></div>
+    </div>
+  `;
+  Speech.speak(q.item.ur, q.item.tr);
+  window.scrollTo(0, 0);
+}
+
+function answerSuno(i) {
+  const q = suno.questions[suno.current];
+  const chosen = q.options[i];
+  q.options.forEach((o, j) => {
+    const el = $(`#opt-${j}`);
+    el.disabled = true;
+    if (o.correct) el.classList.add("correct");
+    else if (j === i) el.classList.add("wrong");
+  });
+  if (chosen.correct) suno.correct++;
+  suno.results.push(chosen.correct);
+  $("#quiz-feedback").innerHTML = `
+    <div class="pr ${chosen.correct ? "good" : "bad"}">
+      ${chosen.correct ? "✅ Sahī!" : "❌ Not this one."}
+      It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong> — ${esc(q.item.en)}
+    </div>
+    <button class="btn primary" onclick="nextSuno()">${suno.current + 1 < suno.questions.length ? "Next sound →" : "Finish →"}</button>`;
+}
+
+function nextSuno() {
+  suno.current++;
+  if (suno.current < suno.questions.length) renderSunoQuestion();
+  else finishSuno();
+}
+
+function finishSuno() {
+  const p = profile();
+  const key = todayKey() + "#suno";
+  const firstRunToday = updateDailyStreak();
+  p.dailyBest[key] = Math.max(p.dailyBest[key] || 0, suno.correct);
+  saveRoot();
+  app().innerHTML = `
+    ${backBar("Suno! Challenge · results")}
+    <div class="result-card pass">
+      <div class="result-emoji">🎧</div>
+      <h2 class="retro">${suno.correct === suno.questions.length ? "Golden ears!" : "Good listening"}</h2>
+      <p class="result-score">${suno.correct} / ${suno.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="share-squares">${suno.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
+      <p>${firstRunToday ? "Streak updated — five new sounds tomorrow." : "Replays sharpen the ear; the streak already counted today."}</p>
+      <div class="result-actions">
+        <button class="btn primary big" onclick="shareDaily('suno', this)">📤 Share score</button>
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Certificate (Sanad) ──────────────────────────────────────
+
+async function showCertificate() {
+  const p = profile();
+  const rank = rankFor(p);
+  const name = root.active;
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal-card cert-modal">
+      <canvas id="cert-canvas" width="1000" height="700"></canvas>
+      <div class="result-actions">
+        <a class="btn primary" id="cert-dl" download="urdu-ustaadh-sanad.png">⬇️ Download</a>
+        <button class="btn" onclick="this.closest('.modal-overlay').remove()">Close</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  try { await document.fonts.load("700 60px 'Baloo 2'"); } catch {}
+  const cv = document.getElementById("cert-canvas");
+  const ctx = cv.getContext("2d");
+  // parchment + border
+  ctx.fillStyle = "#faf3e1"; ctx.fillRect(0, 0, 1000, 700);
+  ctx.strokeStyle = "#12808b"; ctx.lineWidth = 14; ctx.strokeRect(18, 18, 964, 664);
+  ctx.strokeStyle = "#d9a413"; ctx.lineWidth = 3; ctx.setLineDash([12, 8]);
+  ctx.strokeRect(38, 38, 924, 624); ctx.setLineDash([]);
+  // test-card bars
+  const bars = ["#12808b", "#d9a413", "#c26a3a", "#b05464", "#6f8f4e", "#7a5ba6", "#c9b98a"];
+  bars.forEach((c, i) => { ctx.fillStyle = c; ctx.fillRect(60 + i * 126, 58, 126, 16); });
+  // logo
+  const logo = new Image();
+  logo.src = "icon-192.png";
+  await new Promise((res) => { logo.onload = res; logo.onerror = res; });
+  ctx.drawImage(logo, 440, 95, 120, 120);
+  // text
+  ctx.textAlign = "center"; ctx.fillStyle = "#0c5f66";
+  ctx.font = "700 44px 'Baloo 2', sans-serif";
+  ctx.fillText("Urdu Ustaadh · Sanad", 500, 270);
+  ctx.fillStyle = "#8a7458"; ctx.font = "24px 'Baloo 2', sans-serif";
+  ctx.fillText("Certificate of Achievement", 500, 305);
+  ctx.fillStyle = "#3b2e1f"; ctx.font = "28px 'Baloo 2', sans-serif";
+  ctx.fillText("This certifies that", 500, 370);
+  ctx.fillStyle = "#0c5f66"; ctx.font = "700 56px 'Baloo 2', sans-serif";
+  ctx.fillText(name, 500, 435);
+  ctx.fillStyle = "#3b2e1f"; ctx.font = "28px 'Baloo 2', sans-serif";
+  ctx.fillText("has earned the title of", 500, 485);
+  ctx.fillStyle = "#9b7508"; ctx.font = "700 42px 'Baloo 2', sans-serif";
+  ctx.fillText("★ " + rank.name + " ★", 500, 540);
+  ctx.fillStyle = "#8a7458"; ctx.font = "22px 'Baloo 2', sans-serif";
+  ctx.fillText(todayKey() + "  ·  myurdu.org  ·  free forever", 500, 610);
+  document.getElementById("cert-dl").href = cv.toDataURL("image/png");
+}
+
 // ── Reading & culture units ──────────────────────────────────
 
 function openUnit(unitsName, i) {
@@ -946,6 +1144,10 @@ function shuffle(arr) {
 }
 
 // ── Boot ─────────────────────────────────────────────────────
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
 
 Speech.init();
 Speech.onVoiceChange = () => {
