@@ -1,6 +1,6 @@
 # Urdu Ustaadh — اردو استاد
 
-A web app for learning Urdu: speak it, hear it, read it. Themed after warm 90s PTV nostalgia — the era of *Alpha Bravo Charlie*: retro test-card bars, PTV teal, mustard, and terracotta.
+Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: speak it, hear it, read it. Themed after warm 90s PTV nostalgia — the era of *Alpha Bravo Charlie*: retro test-card bars, PTV teal, mustard, and terracotta.
 
 ## Features
 
