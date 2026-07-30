@@ -348,7 +348,7 @@ const READING_UNITS = [
     sections: [
       {
         heading: "Three big ideas",
-        img: { src: "images/calligraphy.jpg", alt: "Nastaliq calligraphy artwork", caption: "Nastaliq calligraphy \u2014 the hanging, diagonal style Urdu calls home.", credit: "Photo: \u0641\u0631\u0632\u0627\u0646 \u06a9\u0631\u0645\u0627\u0646\u06cc \u0646\u0698\u0627\u062f at Persian Wikipedia \u00b7 public domain \u00b7 via Wikimedia Commons" },
+        img: { src: "images/calligraphy.jpg", alt: "Nastaliq calligraphy artwork", caption: "An illuminated master-calligraphy piece whose words literally read khatt-e Nastaliq — 'the Nastaliq script'. Finish this track and you can read it yourself.", credit: "Photo: \u0641\u0631\u0632\u0627\u0646 \u06a9\u0631\u0645\u0627\u0646\u06cc \u0646\u0698\u0627\u062f at Persian Wikipedia \u00b7 public domain \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Right to left.</strong> Lines start on the right. Books open 'backwards' to English eyes.",
           "<strong>Letters connect.</strong> Like cursive, most letters join to their neighbours and change shape when they do.",
@@ -745,7 +745,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The mountain north, up close",
-        img: { src: "images/k2.jpg", alt: "Camel caravan in the Karakoram with snow peaks behind", caption: "An expedition caravan deep in the Karakoram, on the approach to K2.", credit: "Photo: Jan Reurink from Netherlands \u00b7 CC BY 2.0 \u00b7 via Wikimedia Commons" },
+        img: { src: "images/hunza.jpg", alt: "Hunza Valley terraces and peaks from Eagle's Nest", caption: "Hunza Valley from Eagle's Nest \u2014 orchards under 7,000-meter walls.", credit: "Photo: Alllexxxis \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Hunza Valley</strong> — apricot orchards under 7,000-meter walls, ancient forts at Baltit and Altit, and legendary longevity lore. The valley floor sits at 2,400 m; the view goes up another five kilometers.",
           "<strong>Nanga Parbat (8,126 m)</strong> — the 'Killer Mountain' anchoring the western Himalaya, with the planet's biggest single vertical rise: the Rupal Face, a 4,600 m wall. Fairy Meadows sits at its feet, named exactly right.",
@@ -755,7 +755,6 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Rivers, plains, and the five of Punjab",
-        img: { src: "images/hunza.jpg", alt: "Hunza Valley terraces and peaks from Eagle's Nest", caption: "Hunza Valley from Eagle's Nest \u2014 orchards under 7,000-meter walls.", credit: "Photo: Alllexxxis \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "Punjab literally means <em>panj āb</em> — five waters: the Jhelum, Chenab, Ravi, Sutlej, and Beas, all draining into the Indus. The world's largest contiguous canal-irrigation system turns their water into wheat, rice, and mangoes.",
           "<strong>Tarbela Dam</strong> on the Indus is one of the largest earth-filled dams on the planet — a wall of dirt and rock 143 m high, feeding both farms and the power grid.",
@@ -764,7 +763,6 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Extremes worth bragging about",
-        img: { src: "images/deosai.jpg", alt: "Wildflower plains of Deosai with mountains behind", caption: "The Deosai Plains \u2014 the 'Land of Giants', 4,100 meters up.", credit: "Photo: Iamsania \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Heat:</strong> Mohenjo-daro recorded 53.7°C (128.7°F) in 2010 — among the highest reliably measured temperatures anywhere, ever.",
           "<strong>Cold:</strong> the Karakoram holds the largest glaciers outside the polar regions — Baltoro and Biafo are rivers of ice over 60 km long.",
@@ -956,7 +954,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "Cricket: the second religion",
-        img: { src: "images/stadium.jpg", alt: "Gaddafi Stadium Lahore lit at night", caption: "Gaddafi Stadium, Lahore, on a match night.", credit: "Photo: Younisjunejo \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+        img: { src: "images/stadium.jpg", alt: "Gaddafi Stadium Lahore lit at night", caption: "A packed house under the floodlights — big-match night.", credit: "Photo: Younisjunejo \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>1992, Melbourne.</strong> Nearly eliminated mid-tournament, captain Imran Khan told his team to fight 'like cornered tigers.' They won the whole World Cup. The phrase, the fielding, Wasim Akram's double-strike — all of it is national scripture.",
           "<strong>Street cricket ('tape-ball')</strong> is the country's true academy: a tennis ball wrapped in electrical tape, played in every gali. It builds the wristy, improvisational style Pakistani batsmen and bowlers are famous for.",
@@ -1009,7 +1007,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The regional tour",
-        img: { src: "images/biryani.jpg", alt: "Plate of biryani with rice, meat and potato", caption: "Biryani with aloo \u2014 Karachi's side of the great potato debate.", credit: "Photo: DeepanjanGhosh \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+        img: { src: "images/biryani.jpg", alt: "Plate of biryani with rice, meat and potato", caption: "Biryani with aloo and boiled egg — exhibit A for the pro-potato faction.", credit: "Photo: DeepanjanGhosh \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Punjab:</strong> nihari (slow-cooked overnight stew, eaten at DAWN — breakfast of emperors), paye, sarson kā sāg with makkī kī roṭī, and lassi in clay tumblers.",
           "<strong>Karachi &amp; Sindh:</strong> the famous aloo-wali biryani, bun kebab from street carts, Sindhi sāī bhājī, and nimco by the paper bag.",
@@ -1070,7 +1068,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The national cast",
-        img: { src: "images/markhor.jpg", alt: "A markhor with corkscrew horns", caption: "The markhor and its corkscrew horns \u2014 the national animal that looks Photoshopped.", credit: "Photo: Bill Abbott \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
+        img: { src: "images/markhor.jpg", alt: "A markhor with corkscrew horns", caption: "A markhor and its corkscrew horns, photographed at Los Angeles Zoo — the national animal that looks Photoshopped.", credit: "Photo: Bill Abbott \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Markhor</strong> — the national animal: a wild mountain goat with meter-long corkscrew horns that looks Photoshopped. Once nearly extinct, community-run conservation in the north brought it roaring back — one of Asia's great comeback stories.",
           "<strong>Chukar partridge</strong> — the national bird, a red-legged mountain runner beloved in folk poetry as a symbol of intense (and slightly unhinged) love.",
@@ -1080,7 +1078,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The rare and the strange",
-        img: { src: "images/snowleopard.jpg", alt: "Snow leopard portrait", caption: "The snow leopard \u2014 the ghost of the Karakoram.", credit: "Photo: Tambako The Jaguar \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
+        img: { src: "images/snowleopard.jpg", alt: "Snow leopard portrait", caption: "The snow leopard — the ghost of the mountains.", credit: "Photo: Tambako The Jaguar \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>The Indus blind dolphin (bhulan)</strong> — one of the world's few freshwater dolphins, functionally blind, navigating the silty river by echolocation and often swimming on its side. Numbers are slowly recovering.",
           "<strong>Snow leopards</strong> patrol Gilgit-Baltistan's crags — one of the world's healthiest populations of the 'ghost of the mountains.'",
