@@ -243,6 +243,20 @@ function mulberry32(a) {
   };
 }
 
+// No-repeat rotation: shuffle the whole pool once per cycle (seeded,
+// so identical worldwide), then deal `count` per day off the deck.
+// Nothing repeats until the deck runs out; then a fresh shuffle.
+function cycleDraw(pool, count, seedBase) {
+  const [y, m, d] = todayKey().split("-").map(Number);
+  const dayIndex = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+  const daysPerCycle = Math.max(1, Math.floor(pool.length / count));
+  const cycle = Math.floor(dayIndex / daysPerCycle);
+  const pos = dayIndex % daysPerCycle;
+  const rng = mulberry32(seedBase + cycle * 7919);
+  const deck = seededPick(pool, pool.length, rng);
+  return deck.slice(pos * count, pos * count + count);
+}
+
 function seededPick(arr, count, rng) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -734,9 +748,12 @@ let daily = null;
 
 function startDaily() {
   const rng = mulberry32(daySeed());
-  const words = seededPick(LOANWORDS, DAILY_QUESTIONS, rng);
+  const words = cycleDraw(LOANWORDS, DAILY_QUESTIONS, 1);
   const questions = words.map((w) => {
-    const distractors = seededPick(LOANWORDS.filter((x) => x !== w), 3, rng);
+    // distractors must differ in meaning AND word — several loanwords
+    // share a root (pijama/pyjamas, champú/shampoo)
+    const candidates = LOANWORDS.filter((x) => x.meaning !== w.meaning && x.en !== w.en);
+    const distractors = seededPick(candidates, 3, rng);
     return {
       word: w,
       options: seededPick([w, ...distractors], 4, rng).map((x) => ({ label: x.meaning, correct: x === w })),
@@ -753,7 +770,7 @@ function renderDailyQuestion() {
     <div class="quiz-progress">Word ${daily.current + 1} of ${daily.questions.length} · ${todayKey()}</div>
     <div class="quiz-card">
       <div class="quiz-prompt">
-        <p class="daily-lead">English borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
+        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
         <div class="q-ur ur">${esc(q.word.ur)}</div>
         <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})'>🔊</button></div>
         <p>What does it literally mean?</p>
@@ -848,7 +865,7 @@ let geo = null;
 
 function startGeo() {
   const rng = mulberry32(daySeed() + 7);
-  const picks = seededPick(GEO_FEATURES, GEO_QUESTIONS, rng);
+  const picks = cycleDraw(GEO_FEATURES, GEO_QUESTIONS, 7001);
   const questions = picks.map((f) => {
     const sameType = GEO_FEATURES.filter((x) => x.type === f.type && x !== f);
     const distractors = seededPick(sameType, 3, rng);
@@ -862,7 +879,12 @@ function startGeo() {
 }
 
 function geoPrompt(type) {
-  return { province: "Which province or territory is highlighted?", city: "Which city is the glowing dot?", feature: "Which natural feature is highlighted?" }[type];
+  return {
+    province: "Which province or territory is highlighted?",
+    city: "Which city is the glowing dot?",
+    feature: "Which natural feature is highlighted?",
+    site: "Which historic place is marked (the glowing diamond)?",
+  }[type];
 }
 
 function renderGeoQuestion() {
@@ -938,7 +960,7 @@ let suno = null;
 function startSuno() {
   const rng = mulberry32(daySeed() + 13);
   const pool = LEVELS.flatMap((lv) => lv.items);
-  const picks = seededPick(pool, DAILY_QUESTIONS, rng);
+  const picks = cycleDraw(pool, DAILY_QUESTIONS, 13001);
   const questions = picks.map((item) => {
     const distractors = seededPick(pool.filter((x) => x.tr !== item.tr && x.en !== item.en), 3, rng);
     return {
