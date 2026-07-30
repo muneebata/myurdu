@@ -276,8 +276,8 @@ function renderHome() {
   if (!root.active) {
     // First visit: start instantly as "Mehmaan" (guest) — no questions
     // asked. Learners can rename/add profiles or sign in whenever.
-    if (!root.profiles["Mehmaan"]) root.profiles["Mehmaan"] = blankProfile();
-    root.active = "Mehmaan";
+    if (!root.profiles["Guest - Mehmaan"]) root.profiles["Guest - Mehmaan"] = blankProfile();
+    root.active = "Guest - Mehmaan";
     saveRoot();
   }
   const p = profile();
