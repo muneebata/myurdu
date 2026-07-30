@@ -340,3 +340,13 @@ body {
   color: var(--teal-dark); background: #eef3ee; border-color: #c4d4c4;
 }
 .btn.link:hover { background: #e0eae0; }
+
+/* ── Cloud sync ── */
+.cloud-card {
+  margin-top: 26px; background: var(--card); border: 1.5px dashed var(--teal);
+  border-radius: 16px; padding: 16px 18px; text-align: center;
+}
+.cloud-line { margin: 0 0 10px; font-size: 0.92rem; }
+.cloud-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+.cloud-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+#cloud-status { margin-top: 4px; text-align: left; }
