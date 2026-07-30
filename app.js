@@ -57,13 +57,17 @@ Cloud.init();
 renderHome();
 }
 
-function switchProfile(name) {
+function switchProfileAt(i) {
+  const name = Object.keys(root.profiles)[i];
+  if (name == null) return;
   root.active = name;
   saveRoot();
   renderHome();
 }
 
-function deleteProfile(name) {
+function deleteProfileAt(i) {
+  const name = Object.keys(root.profiles)[i];
+  if (name == null) return;
   if (!confirm(`Remove learner "${name}" and their progress?`)) return;
   delete root.profiles[name];
   if (root.active === name) root.active = Object.keys(root.profiles)[0] || null;
@@ -83,12 +87,12 @@ function renderProfiles() {
         names.length
           ? `<div class="roster-list">${names
               .map(
-                (n) => `
+                (n, i) => `
         <div class="roster-row ${n === root.active ? "active" : ""}">
-          <button class="btn roster-name" onclick="switchProfile('${esc(n).replace(/'/g, "\\'")}')">
+          <button class="btn roster-name" onclick="switchProfileAt(${i})">
             👤 ${esc(n)} <span class="roster-rank">${rankFor(root.profiles[n]).name}</span>
           </button>
-          <button class="btn danger small" onclick="deleteProfile('${esc(n).replace(/'/g, "\\'")}')">✕</button>
+          <button class="btn danger small" onclick="deleteProfileAt(${i})">✕</button>
         </div>`
               )
               .join("")}</div>`
@@ -176,12 +180,15 @@ function rankFor(p) {
   return r;
 }
 
-function levelUnlocked(i) {
-  return i === 0 || isCompleted(LEVELS[i - 1].id);
+// The whole curriculum is open — no sequential locks. Levels still
+// suggest an order (they reference each other), and quizzes still
+// mark things passed for titles/progress, but learners roam free.
+function levelUnlocked() {
+  return true;
 }
 
-function unitUnlocked(units, i) {
-  return i === 0 || isCompleted(units[i - 1].id);
+function unitUnlocked() {
+  return true;
 }
 
 function overallPercent() {
@@ -287,7 +294,7 @@ function renderHome() {
     </section>
 
     <section>
-      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">levels build on each other — pass one to unlock the next</span></h2>
+      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely; quizzes earn your titles</span></h2>
       <div class="cards">
         ${LEVELS.map((lv, i) => levelCard(lv, i)).join("")}
       </div>
@@ -329,7 +336,7 @@ function levelCard(lv, i) {
       <div class="card-title">${esc(lv.title)}</div>
       <div class="card-sub">${esc(lv.subtitle)}</div>
       <div class="card-status">${
-        done ? `✅ Passed${score != null ? ` · ${score}%` : ""}` : unlocked ? "▶ Start" : "🔒 Finish the previous level"
+        done ? `✅ Passed${score != null ? ` · ${score}%` : ""}` : unlocked ? "▶ Start" : "▶ Start"
       }</div>
     </button>`;
 }
@@ -344,7 +351,7 @@ function unitCard(u, i, unitsName, cls, label, alwaysOpen = false) {
       <div class="card-num">${label} ${String(i + 1).padStart(2, "0")}</div>
       <div class="card-title">${esc(u.title)}</div>
       <div class="card-sub">${esc(u.subtitle)}</div>
-      <div class="card-status">${done ? "✅ Done" : unlocked ? "▶ Start" : "🔒 Finish the previous unit"}</div>
+      <div class="card-status">${done ? "✅ Done" : unlocked ? "▶ Start" : "▶ Start"}</div>
     </button>`;
 }
 
@@ -371,7 +378,7 @@ function openLevel(i) {
     <div class="phrase-list">${body}</div>
     <div class="lesson-actions">
       <button class="btn primary big" onclick="startQuiz(${i})">Take the Level ${i + 1} quiz →</button>
-      <p class="hint">Score ${QUIZ_PASS_PERCENT}%+ to unlock the next level.</p>
+      <p class="hint">Score ${QUIZ_PASS_PERCENT}%+ to mark this level passed.</p>
     </div>
   `;
   window.scrollTo(0, 0);
@@ -580,7 +587,7 @@ function finishLevelQuiz() {
       <p>${
         passed
           ? nextIdx < LEVELS.length
-            ? `You've unlocked <strong>Level ${nextIdx + 1}: ${esc(LEVELS[nextIdx].title)}</strong>.`
+            ? `Next up: <strong>Level ${nextIdx + 1}: ${esc(LEVELS[nextIdx].title)}</strong>.`
             : "Speaking track: complete! 🏆"
           : `You need ${QUIZ_PASS_PERCENT}% to pass. Review the phrases and go again — repetition is the whole game.`
       }</p>
@@ -911,8 +918,9 @@ function showAbout() {
     <div class="modal-card">
       <img src="icon-192.png" alt="" class="modal-logo" />
       <h2 class="retro">Urdu Ustaadh</h2>
-      <p>Urdu Ustaadh is a project of <strong>Muneeb Ata Enterprises</strong>.</p>
-      <p>Learn more at <a href="https://muneebata.com" target="_blank" rel="noopener">muneebata.com</a></p>
+      <p>Urdu Ustaadh is made with love for people who want to learn Urdu and immerse themselves in Pakistani culture, history, and traditions.</p>
+      <p><strong>It is free, and is intended to be free forever.</strong></p>
+      <p>Urdu Ustaadh is a project of <strong>Muneeb Ata Enterprises</strong>. Learn more at <a href="https://muneebata.com" target="_blank" rel="noopener">muneebata.com</a></p>
       <button class="btn primary" onclick="this.closest('.modal-overlay').remove()">Chalo, back to learning</button>
     </div>`;
   document.body.appendChild(overlay);
