@@ -736,6 +736,7 @@ const PAKISTAN_UNITS = [
       {
         heading: "The big picture",
         mapEmbed: true,
+        img: { src: "images/k2.jpg", alt: "K2 seen from base camp with expedition tents below", caption: "K2 from base camp — 8,611 meters of the Savage Mountain.", credit: "Photo: Zacharie Grossen · CC BY-SA 4.0 · via Wikimedia Commons" },
         facts: [
           "<strong>Four provinces + two territories:</strong> Punjab (over half the population), Sindh (Karachi and the coast), Khyber Pakhtunkhwa (the mountain northwest), Balochistan (biggest by far, emptiest by far) — plus Gilgit-Baltistan and Azad Jammu &amp; Kashmir in the high north.",
           "<strong>The Indus is the spine.</strong> Rising near Tibet, it runs the entire length of the country and waters the plains that feed it — the same river that named India, Sindh, AND Hindustan.",
@@ -745,8 +746,10 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The mountain north, up close",
-        img: { src: "images/hunza.jpg", alt: "Hunza Valley terraces and peaks from Eagle's Nest", caption: "Hunza Valley from Eagle's Nest \u2014 orchards under 7,000-meter walls.", credit: "Photo: Alllexxxis \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
-        facts: [
+        img: [
+          { src: "images/hunza.jpg", alt: "Hunza Valley terraces and peaks from Eagle's Nest", caption: "Hunza Valley from Eagle's Nest \u2014 orchards under 7,000-meter walls.", credit: "Photo: Alllexxxis \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+          { src: "images/deosai.jpg", alt: "Treeless green Deosai plateau with snow peaks on the horizon", caption: "The Deosai plateau in summer — treeless, green, and 4,100 meters up.", credit: "Photo: Jameel Ahmed (Hunzographer) · CC BY-SA 4.0 · via Wikimedia Commons" },
+        ],        facts: [
           "<strong>Hunza Valley</strong> — apricot orchards under 7,000-meter walls, ancient forts at Baltit and Altit, and legendary longevity lore. The valley floor sits at 2,400 m; the view goes up another five kilometers.",
           "<strong>Nanga Parbat (8,126 m)</strong> — the 'Killer Mountain' anchoring the western Himalaya, with the planet's biggest single vertical rise: the Rupal Face, a 4,600 m wall. Fairy Meadows sits at its feet, named exactly right.",
           "<strong>Deosai Plains</strong> — the world's second-highest plateau (~4,100 m): a summer carpet of wildflowers, home to Himalayan brown bears, snowbound eight months a year.",
@@ -755,6 +758,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Rivers, plains, and the five of Punjab",
+        img: { src: "images/indus.jpg", alt: "Sunset over the Indus at the arched Sukkur Barrage", caption: "Sunset on the Indus at the Sukkur Barrage — headworks of the world's largest canal-irrigation system.", credit: "Photo: Ghulam Rasool Shar · CC BY-SA 4.0 · via Wikimedia Commons" },
         facts: [
           "Punjab literally means <em>panj āb</em> — five waters: the Jhelum, Chenab, Ravi, Sutlej, and Beas, all draining into the Indus. The world's largest contiguous canal-irrigation system turns their water into wheat, rice, and mangoes.",
           "<strong>Tarbela Dam</strong> on the Indus is one of the largest earth-filled dams on the planet — a wall of dirt and rock 143 m high, feeding both farms and the power grid.",
