@@ -8,6 +8,7 @@ const LEVELS = [
   {
     id: "L1",
     title: "Salaam! · Greetings",
+    urName: "سلام",
     subtitle: "Your first words — greet anyone, anywhere",
     intro:
       "Urdu speakers greet warmly and often. Master these and you can open (and close) any conversation. Listen first, repeat out loud — Urdu is best learned ear-first.",
@@ -31,6 +32,7 @@ const LEVELS = [
   {
     id: "L2",
     title: "Mulaqat · Introductions",
+    urName: "ملاقات",
     subtitle: "Say who you are, ask who they are",
     intro:
       "Now that you can greet (Level 1), let's exchange names and origins. You'll also meet Urdu's famous three levels of 'you' — politeness is built right into the grammar.",
@@ -53,6 +55,7 @@ const LEVELS = [
   {
     id: "L3",
     title: "Ginti · Numbers",
+    urName: "گنتی",
     subtitle: "Count to ten, ask 'how many?'",
     intro:
       "Numbers unlock shopping, time, and small talk. Combine them with your Level 2 patterns: 'mere do bhāī haiṉ' — but that's Level 4's preview. First, one to ten.",
@@ -78,6 +81,7 @@ const LEVELS = [
   {
     id: "L4",
     title: "Khandan · Family & People",
+    urName: "خاندان",
     subtitle: "Talk about the people in your life",
     intro:
       "Family is the heart of Urdu conversation. Combine these with Level 3 numbers ('mere do bhāī haiṉ' — I have two brothers) and Level 2 patterns to introduce your whole family.",
@@ -103,6 +107,7 @@ const LEVELS = [
   {
     id: "L5",
     title: "Khana · Food & Requests",
+    urName: "کھانا",
     subtitle: "Order food, ask prices, praise the cook",
     intro:
       "The victory lap: everything comes together. Greetings (L1), polite requests (L2's āp), numbers for prices (L3) — now use them where it matters most: food.",
@@ -127,6 +132,7 @@ const LEVELS = [
   {
     id: "L6",
     title: "Sawalat · Question Words",
+    urName: "سوالات",
     subtitle: "Ask anything — the seven little keys",
     intro:
       "Question words are the highest-value words in any language: seven of them unlock every conversation. Urdu's all start with k — and with 'kahāṉ hai?' you can find anything on Earth.",
@@ -151,6 +157,7 @@ const LEVELS = [
   {
     id: "L7",
     title: "Kaam · Essential Verbs",
+    urName: "کام",
     subtitle: "Eat, drink, go, come — the engines of every sentence",
     intro:
       "Corpus research says a handful of verbs power most daily speech. Here are Urdu's core eight, plus the sentence pattern that runs them. Remember the golden rule from Level 2: the verb always parks at the END.",
@@ -175,6 +182,7 @@ const LEVELS = [
   {
     id: "L8",
     title: "Waqt · Time & Days",
+    urName: "وقت",
     subtitle: "Today, tomorrow, and the word that means both",
     intro:
       "Time words let you make plans — and Urdu's are famously efficient: one word covers both yesterday AND tomorrow, and context does the rest. Combine these with Level 7 verbs: 'maiṉ kal ā rahā hūṉ' — I'm coming tomorrow.",
@@ -200,6 +208,7 @@ const LEVELS = [
   {
     id: "L9",
     title: "Rang aur Pasand · Colors & Likes",
+    urName: "رنگ",
     subtitle: "Say what you love — in full color",
     intro:
       "Research on vocabulary retention is clear: words stick when they're about YOU. This level gives you colors plus the 'pasand hai' pattern — from here on, you can state a preference about anything you've learned.",
@@ -225,6 +234,7 @@ const LEVELS = [
   {
     id: "L10",
     title: "Guftagu · At the Chai Dhaba",
+    urName: "گفتگو",
     subtitle: "The capstone: a real conversation, start to finish",
     intro:
       "Graduation scene: a roadside chai dhaba. Every line below uses what you've already built — greetings (L1), questions (L6), numbers (L3), food (L5), time (L8). Play both sides out loud: order the chai, then be the chai-wala. When this flows, you're conversational.",
@@ -249,6 +259,7 @@ const LEVELS = [
   {
     id: "L11",
     title: "Raste · Places & Directions",
+    urName: "راستے",
     subtitle: "Get anywhere: left, right, straight, and 'where is…?'",
     intro:
       "Level 6 gave you 'kahāṉ hai?' — now you can understand the answer. Directions plus the places you'll actually ask about. Practice pointing while you say them; your hands learn Urdu too.",
@@ -274,6 +285,7 @@ const LEVELS = [
   {
     id: "L12",
     title: "Mausam · Weather",
+    urName: "موسم",
     subtitle: "The world's most reliable small talk",
     intro:
       "Weather talk opens conversations in every language — and in Urdu it comes with real drama: loo winds, monsoons, and winters people wait all year for. Pattern of the level: 'āj ___ hai' (today it's ___).",
@@ -298,6 +310,7 @@ const LEVELS = [
   {
     id: "L13",
     title: "Dil ki Batain · Feelings & Small Talk",
+    urName: "دل کی باتیں",
     subtitle: "Say how you are — and bless like a local",
     intro:
       "The words that make you sound human instead of textbook: feelings, hunger, and the blessing-words (mashāAllah, inshāAllah) that pepper every real Urdu conversation. This is the level that makes aunties adopt you.",
@@ -567,6 +580,7 @@ const CULTURE_UNITS = [
   {
     id: "C1",
     title: "Virsa · Poems & Rhymes",
+    cover: "لب پہ آتی ہے دعا",
     subtitle: "The verses every Urdu speaker grew up on",
     intro:
       "Language lives in its poetry. These are the lines Pakistani kids sing at school assembly, the rhymes their parents taught them, and a taste of the ghazal tradition. Tap any line to hear it — poems are the best pronunciation coaches.",
@@ -616,6 +630,7 @@ const CULTURE_UNITS = [
   {
     id: "C2",
     title: "Kahawatain · Proverbs",
+    cover: "اونٹ کے منہ میں زیرہ",
     subtitle: "The one-liners every aunty has locked and loaded",
     intro:
       "Proverbs (kahāwateṉ) are Urdu's compressed wisdom — vivid little scenes starring camels, monkeys, and buffaloes that get deployed daily in every household. Drop one at the right moment and you'll earn more respect than a hundred grammatically perfect sentences. Tap each to hear it.",
@@ -624,11 +639,11 @@ const CULTURE_UNITS = [
         heading: "Five proverbs to know",
         note: "Each is a tiny movie. Learn the image and the meaning follows.",
         verse: [
-          { ur: "نیکی کر دریا میں ڈال", tr: "nekī kar, daryā meṉ ḍāl", en: "Do a good deed and throw it in the river — do good expecting nothing back" },
-          { ur: "ڈوبتے کو تنکے کا سہارا", tr: "ḍūbte ko tinke kā sahārā", en: "To the drowning, even a straw is support — any hope helps in desperation" },
-          { ur: "بندر کیا جانے ادرک کا سواد", tr: "bandar kyā jāne adrak kā swād", en: "What does a monkey know of ginger's taste — pearls before swine" },
-          { ur: "جس کی لاٹھی اس کی بھینس", tr: "jis kī lāṭhī, us kī bhaiṉs", en: "Whoever holds the stick owns the buffalo — might makes right" },
-          { ur: "اونٹ کے منہ میں زیرہ", tr: "ūṉṭ ke muṉh meṉ zīrā", en: "Cumin in a camel's mouth — a laughably small portion" },
+          { ur: "نیکی کر دریا میں ڈال", tr: "nekī kar, daryā meṉ ḍāl", en: "Do a good deed and throw it in the river — do good expecting nothing back", ctx: "A centuries-old folk saying, beloved of elders — offered when you help someone who may never repay you, and that's exactly the point." },
+          { ur: "ڈوبتے کو تنکے کا سہارا", tr: "ḍūbte ko tinke kā sahārā", en: "To the drowning, even a straw is support — any hope helps in desperation", ctx: "Traditional Urdu-Persian wisdom, quoted for centuries whenever someone in a desperate spot clutches at the thinnest of hopes." },
+          { ur: "بندر کیا جانے ادرک کا سواد", tr: "bandar kyā jāne adrak kā swād", en: "What does a monkey know of ginger's taste — pearls before swine", ctx: "The classic bazaar retort, passed down through generations — deployed when something fine is wasted on someone who can't appreciate it." },
+          { ur: "جس کی لاٹھی اس کی بھینس", tr: "jis kī lāṭhī, us kī bhaiṉs", en: "Whoever holds the stick owns the buffalo — might makes right", ctx: "An old saying from rural Punjab's cattle disputes — now quoted about politics, cricket umpires, and anyone who wins by strength alone." },
+          { ur: "اونٹ کے منہ میں زیرہ", tr: "ūṉṭ ke muṉh meṉ zīrā", en: "Cumin in a camel's mouth — a laughably small portion", ctx: "A traditional favorite of aunties at dinner tables everywhere — said when a serving is comically too small for the appetite it faces." },
         ],
         credit: "— traditional kahāwateṉ, polished by centuries of aunties",
       },
@@ -649,6 +664,7 @@ const CULTURE_UNITS = [
   {
     id: "C3",
     title: "Ghazal 101 · Poetry's Crown",
+    cover: "دل ناداں تجھے ہوا کیا ہے",
     subtitle: "How Urdu's signature art form actually works",
     intro:
       "You've tasted Ghalib — now learn the machine behind the magic. A ghazal is a chain of self-contained couplets (sher) sharing one meter and one rhyme scheme. Learn two technical words — radif and qafiya — and you'll hear the architecture in every ghazal ever sung.",
@@ -708,6 +724,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P1",
     title: "Naqsha · Geography",
+    postfrom: "from: Gilgit-Baltistan",
     subtitle: "K2, the Indus, and five very different provinces",
     intro:
       "Pakistan runs from the second-highest point on Earth down to the Arabian Sea in under 2,000 km — glaciers to mangroves. Here's the lay of the land (with a few Urdu words smuggled in, because we can't help ourselves).",
@@ -779,6 +796,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P2",
     title: "Saqafat · Culture",
+    postfrom: "from: a Lahore mehndi night",
     subtitle: "Truck art, qawwali, dramas, and competitive hospitality",
     intro:
       "Pakistani culture runs loud, generous, and ornamented — trucks painted like jewelry boxes, weddings that last a week, dramas the whole subcontinent watches, and a national talent for feeding guests past all reason.",
@@ -842,6 +860,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P3",
     title: "Tareekh · History",
+    postfrom: "from: Mohenjo-daro, 2500 BCE",
     subtitle: "5,000 years: Indus cities to Independence",
     intro:
       "The land that is now Pakistan has hosted one of humanity's first great civilizations, Buddhist universities, Sufi saints, Mughal splendor, and the birth of a nation — all along the same river.",
@@ -911,6 +930,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P4",
     title: "Khel · Sports",
+    postfrom: "from: the 1992 dressing room",
     subtitle: "Cornered tigers, squash dynasties, and polo in the sky",
     intro:
       "Pakistan doesn't just play sports — it produces eras. A cricket World Cup written like a film script, the most dominant champion in the history of ANY sport, and a polo ground above the clouds.",
@@ -961,6 +981,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P5",
     title: "Dastarkhwan · Food",
+    postfrom: "from: a Karachi dhaba at dawn",
     subtitle: "A regional eating tour, from nihari dawn to falooda midnight",
     intro:
       "The dastarkhwan is the cloth spread for a meal — and Pakistan's is enormous. Every province cooks a different country. Arrive hungry; this unit has no other prerequisite.",
@@ -1019,6 +1040,7 @@ const PAKISTAN_UNITS = [
   {
     id: "P6",
     title: "Qudrat · Nature & Wildlife",
+    postfrom: "from: the Deosai plains",
     subtitle: "Corkscrew horns, blind dolphins, and leopards made of snow",
     intro:
       "Qudrat means nature — and Pakistan's runs from mangrove coast to 8,000-meter ice. Its wildlife list reads like a fantasy novel: a goat with corkscrew horns, a dolphin that swims sideways in a river, and a ghost cat patrolling the Karakoram.",
