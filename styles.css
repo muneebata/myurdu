@@ -499,3 +499,10 @@ body {
   .lrow { grid-template-columns: 44px 1fr; }
   .lrow .lst-wrap { grid-column: 2; }
 }
+
+/* ── Unit photos with citations ── */
+.photo { margin: 6px 0 16px; text-align: center; }
+.photo img { max-width: 100%; width: auto; max-height: 340px; border-radius: 12px; border: 1.5px solid var(--line); box-shadow: var(--shadow); }
+.photo figcaption { font-size: 0.85rem; color: var(--muted); max-width: 560px; margin: 6px auto 0; }
+.photo-credit { display: block; font-size: 0.72rem; color: #b0a186; margin-top: 1px; }
+.map-embed #pakmap { max-width: 380px; }

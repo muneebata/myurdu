@@ -731,6 +731,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The big picture",
+        mapEmbed: true,
         facts: [
           "<strong>Four provinces + two territories:</strong> Punjab (over half the population), Sindh (Karachi and the coast), Khyber Pakhtunkhwa (the mountain northwest), Balochistan (biggest by far, emptiest by far) — plus Gilgit-Baltistan and Azad Jammu &amp; Kashmir in the high north.",
           "<strong>The Indus is the spine.</strong> Rising near Tibet, it runs the entire length of the country and waters the plains that feed it — the same river that named India, Sindh, AND Hindustan.",
@@ -740,6 +741,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The mountain north, up close",
+        img: { src: "images/k2.jpg", alt: "Camel caravan in the Karakoram with snow peaks behind", caption: "An expedition caravan deep in the Karakoram, on the approach to K2.", credit: "Photo: Jan Reurink from Netherlands \u00b7 CC BY 2.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Hunza Valley</strong> — apricot orchards under 7,000-meter walls, ancient forts at Baltit and Altit, and legendary longevity lore. The valley floor sits at 2,400 m; the view goes up another five kilometers.",
           "<strong>Nanga Parbat (8,126 m)</strong> — the 'Killer Mountain' anchoring the western Himalaya, with the planet's biggest single vertical rise: the Rupal Face, a 4,600 m wall. Fairy Meadows sits at its feet, named exactly right.",
@@ -749,6 +751,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Rivers, plains, and the five of Punjab",
+        img: { src: "images/hunza.jpg", alt: "Hunza Valley terraces and peaks from Eagle's Nest", caption: "Hunza Valley from Eagle's Nest \u2014 orchards under 7,000-meter walls.", credit: "Photo: Alllexxxis \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "Punjab literally means <em>panj āb</em> — five waters: the Jhelum, Chenab, Ravi, Sutlej, and Beas, all draining into the Indus. The world's largest contiguous canal-irrigation system turns their water into wheat, rice, and mangoes.",
           "<strong>Tarbela Dam</strong> on the Indus is one of the largest earth-filled dams on the planet — a wall of dirt and rock 143 m high, feeding both farms and the power grid.",
@@ -757,6 +760,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Extremes worth bragging about",
+        img: { src: "images/deosai.jpg", alt: "Wildflower plains of Deosai with mountains behind", caption: "The Deosai Plains \u2014 the 'Land of Giants', 4,100 meters up.", credit: "Photo: Iamsania \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Heat:</strong> Mohenjo-daro recorded 53.7°C (128.7°F) in 2010 — among the highest reliably measured temperatures anywhere, ever.",
           "<strong>Cold:</strong> the Karakoram holds the largest glaciers outside the polar regions — Baltoro and Biafo are rivers of ice over 60 km long.",
@@ -803,6 +807,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The essentials",
+        img: { src: "images/truckart.jpg", alt: "Decorated Pakistani truck with a huge cargo load on a highway", caption: "A working truck in full regalia near Thatta \u2014 art, engineering, and optimism about load limits.", credit: "Photo: A.Savin \u00b7 FAL \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Truck art</strong> — working trucks decorated bumper-to-bumper with calligraphy, portraits, chained hearts, and poetry. Owners spend fortunes; the truck is the canvas of the working class.",
           "<strong>Qawwali</strong> — Sufi devotional music built on handclaps, harmonium, and ecstatic call-and-response. Nusrat Fateh Ali Khan took it from shrine courtyards to world stages.",
@@ -830,6 +835,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Craft country",
+        img: { src: "images/ajrak.jpg", alt: "Deep red Ajrak block-printed cloth", caption: "Ajrak \u2014 Sindh's block-printed cloth, a pattern tradition thousands of years old.", credit: "Photo: Ahub1988 \u00b7 CC BY-SA 3.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Ajrak</strong> — Sindh's deep-red block-printed cloth, worn as turban, shawl, and gift of honor; the pattern tradition is thousands of years old.",
           "<strong>Multani blue pottery, Peshawari chappal, khussa shoes, Sindhi topi</strong> — every region signs its name in a craft. The Peshawari chappal even walked into international fashion collections.",
@@ -867,6 +873,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "Deep time: the Indus cities",
+        img: { src: "images/mohenjodaro.jpg", alt: "Ruins of Mohenjo-daro with the stupa mound", caption: "Mohenjo-daro, Sindh \u2014 grid streets and covered drains, 4,500 years old.", credit: "Photo: Saqib Qayyum \u00b7 CC BY-SA 3.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>~2500 BCE — Mohenjo-daro and Harappa.</strong> Grid streets, standardized bricks, covered drains, public baths — indoor plumbing millennia before Rome. At its peak the Indus civilization was larger than Egypt and Mesopotamia combined.",
           "Its <strong>script is still undeciphered</strong> — thousands of inscribed seals, no Rosetta Stone. One of archaeology's great unsolved puzzles is sitting in Sindh.",
@@ -883,6 +890,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Saints and emperors",
+        img: { src: "images/badshahi.jpg", alt: "Badshahi Mosque in Lahore", caption: "The Badshahi Mosque, Lahore \u2014 for three centuries the largest mosque on Earth.", credit: "Photo: Muhammad Umair Mirza \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>The Sufis</strong> carried Islam through poetry and music: Data Ganj Bakhsh in Lahore, Lal Shahbaz Qalandar in Sehwan (whose shrine's ecstatic <em>dhamaal</em> drumming continues nightly), Abdullah Shah Ghazi watching over Karachi's coast.",
           "<strong>The Mughals (1526–1700s)</strong> made Lahore an imperial jewel: the Badshahi Mosque (for centuries the world's largest), Shalimar Gardens, and the Lahore Fort still anchor the old city.",
@@ -891,6 +899,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "1947: the founding cast",
+        img: { src: "images/jinnah.jpg", alt: "Portrait of Muhammad Ali Jinnah as a young man, 1910", caption: "Muhammad Ali Jinnah in 1910 \u2014 the young Bombay barrister who would argue a country into existence.", credit: "Photo: unknown (1910) \u00b7 public domain \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Allama Iqbal</strong> — the poet you met in Virsa — articulated the dream of a separate homeland in his 1930 Allahabad address. He died in 1938, nine years before it came true.",
           "<strong>Muhammad Ali Jinnah (Quaid-e-Azam, 'the Great Leader')</strong> — the London-trained barrister who argued a country into existence. On <strong>14 August 1947</strong>, Pakistan was born.",
@@ -954,6 +963,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Beyond the boundary",
+        img: { src: "images/shandur.jpg", alt: "Polo match at Shandur Top with mountains behind", caption: "Polo at Shandur Top, 3,700 m \u2014 the world's highest polo ground.", credit: "Photo: Addden321 \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Field hockey</strong> is the official national sport: 3 Olympic golds and a record 4 World Cups — the 1970s-80s teams played hockey the way Brazil played football.",
           "<strong>Shandur Top (3,700 m)</strong> hosts the world's highest polo tournament: Chitral vs Gilgit, freestyle rules, on a pass between mountain ranges. Spectators camp for days.",
@@ -988,6 +998,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The regional tour",
+        img: { src: "images/biryani.jpg", alt: "Plate of biryani with rice, meat and potato", caption: "Biryani with aloo \u2014 Karachi's side of the great potato debate.", credit: "Photo: DeepanjanGhosh \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Punjab:</strong> nihari (slow-cooked overnight stew, eaten at DAWN — breakfast of emperors), paye, sarson kā sāg with makkī kī roṭī, and lassi in clay tumblers.",
           "<strong>Karachi &amp; Sindh:</strong> the famous aloo-wali biryani, bun kebab from street carts, Sindhi sāī bhājī, and nimco by the paper bag.",
@@ -997,6 +1008,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The sweet department",
+        img: { src: "images/jalebi.jpg", alt: "Fresh orange jalebi spirals", caption: "Jalebi \u2014 fried spirals of syrup, sold hot by the newspaper-full.", credit: "Photo: Gaurav Dhwaj Khadka \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Mithai</strong> is a love language: gulab jamun, jalebi (fried spirals of syrup), barfi, kheer. Good news travels in a box of mithai — job, engagement, exam result, all of it.",
           "<strong>Falooda</strong> — rose syrup, vermicelli, basil seeds, ice cream — is dessert, drink, and architecture at once.",
@@ -1047,6 +1059,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "The national cast",
+        img: { src: "images/markhor.jpg", alt: "A markhor with corkscrew horns", caption: "The markhor and its corkscrew horns \u2014 the national animal that looks Photoshopped.", credit: "Photo: Bill Abbott \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Markhor</strong> — the national animal: a wild mountain goat with meter-long corkscrew horns that looks Photoshopped. Once nearly extinct, community-run conservation in the north brought it roaring back — one of Asia's great comeback stories.",
           "<strong>Chukar partridge</strong> — the national bird, a red-legged mountain runner beloved in folk poetry as a symbol of intense (and slightly unhinged) love.",
@@ -1056,6 +1069,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "The rare and the strange",
+        img: { src: "images/snowleopard.jpg", alt: "Snow leopard portrait", caption: "The snow leopard \u2014 the ghost of the Karakoram.", credit: "Photo: Tambako The Jaguar \u00b7 CC BY-SA 2.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>The Indus blind dolphin (bhulan)</strong> — one of the world's few freshwater dolphins, functionally blind, navigating the silty river by echolocation and often swimming on its side. Numbers are slowly recovering.",
           "<strong>Snow leopards</strong> patrol Gilgit-Baltistan's crags — one of the world's healthiest populations of the 'ghost of the mountains.'",
