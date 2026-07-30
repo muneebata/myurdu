@@ -1081,6 +1081,19 @@ function openUnit(unitsName, i) {
   for (const sec of u.sections) {
     body += `<div class="read-section"><h3>${sec.heading}</h3>`;
     if (sec.note) body += `<p class="read-note">${sec.note}</p>`;
+    if (sec.img) {
+      body += `
+      <figure class="photo">
+        <img src="${sec.img.src}" alt="${esc(sec.img.alt || "")}" loading="lazy" />
+        <figcaption>${esc(sec.img.caption || "")}<span class="photo-credit">${esc(sec.img.credit || "")}</span></figcaption>
+      </figure>`;
+    }
+    if (sec.mapEmbed && typeof PAK_MAP_SVG !== "undefined") {
+      body += `
+      <figure class="photo map-embed">${PAK_MAP_SVG}
+        <figcaption>Pakistan's provinces, the Indus, and K2 — the same map as the Naqsha Challenge.<span class="photo-credit">Map data: Natural Earth (public domain)</span></figcaption>
+      </figure>`;
+    }
     const dia = sec.diagram && typeof SOUND_DIAGRAMS !== "undefined" ? SOUND_DIAGRAMS[sec.diagram] : null;
     if (dia) body += `<figure class="diagram">${dia.svg}<figcaption>${esc(dia.caption)}</figcaption></figure>`;
     if (sec.facts) body += sec.facts.map((f) => `<p class="read-fact">${f}</p>`).join("");
