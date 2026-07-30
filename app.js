@@ -1082,11 +1082,13 @@ function openUnit(unitsName, i) {
     body += `<div class="read-section"><h3>${sec.heading}</h3>`;
     if (sec.note) body += `<p class="read-note">${sec.note}</p>`;
     if (sec.img) {
-      body += `
+      for (const im of [sec.img].flat()) {
+        body += `
       <figure class="photo">
-        <img src="${sec.img.src}" alt="${esc(sec.img.alt || "")}" loading="lazy" />
-        <figcaption>${esc(sec.img.caption || "")}<span class="photo-credit">${esc(sec.img.credit || "")}</span></figcaption>
+        <img src="${im.src}" alt="${esc(im.alt || "")}" loading="lazy" />
+        <figcaption>${esc(im.caption || "")}<span class="photo-credit">${esc(im.credit || "")}</span></figcaption>
       </figure>`;
+      }
     }
     if (sec.mapEmbed && typeof PAK_MAP_SVG !== "undefined") {
       body += `

@@ -348,6 +348,7 @@ const READING_UNITS = [
     sections: [
       {
         heading: "Three big ideas",
+        img: { src: "images/calligraphy.jpg", alt: "Nastaliq calligraphy artwork", caption: "Nastaliq calligraphy \u2014 the hanging, diagonal style Urdu calls home.", credit: "Photo: \u0641\u0631\u0632\u0627\u0646 \u06a9\u0631\u0645\u0627\u0646\u06cc \u0646\u0698\u0627\u062f at Persian Wikipedia \u00b7 public domain \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>Right to left.</strong> Lines start on the right. Books open 'backwards' to English eyes.",
           "<strong>Letters connect.</strong> Like cursive, most letters join to their neighbours and change shape when they do.",
@@ -587,6 +588,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "Lab pe aati hai dua — the school-assembly prayer",
+        img: { src: "images/iqbal.jpg", alt: "Portrait of Allama Muhammad Iqbal", caption: "Allama Iqbal \u2014 the poet-philosopher every Pakistani schoolchild recites each morning.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
         note: "Allama Iqbal wrote this children's prayer-poem in 1902. To this day, millions of schoolchildren across Pakistan recite it every single morning at assembly. Ask any Urdu speaker — they know it by heart.",
         verse: [
           { ur: "لب پہ آتی ہے دعا بن کے تمنا میری", tr: "lab pe ātī hai duā ban ke tamannā merī", en: "My longing comes to my lips, transformed into a prayer" },
@@ -605,6 +607,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "A taste of Ghalib — the ghazal master",
+        img: { src: "images/ghalib.jpg", alt: "Photograph of Mirza Ghalib wearing a tall cap", caption: "Mirza Ghalib himself, photographed in Delhi in the 1860s.", credit: "Photo: unknown (1860s) \u00b7 public domain \u00b7 via Wikimedia Commons" },
         note: "Mirza Ghalib (1797–1869) is Urdu's most quoted poet. This couplet uses hazār (thousand) — Level 3 numbers, poet-grade. Urdu speakers drop his couplets into conversation the way English speakers quote Shakespeare.",
         verse: [
           { ur: "ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے", tr: "hazāroṉ khwāhisheṉ aisī ke har khwāhish pe dam nikle", en: "Thousands of desires, each worth dying for…" },
@@ -637,6 +640,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "Five proverbs to know",
+        img: { src: "images/camel.jpg", alt: "Camels in the Thar desert", caption: "Camels of the Thar \u2014 picture handing one of these a single cumin seed.", credit: "Photo: Vyacheslav Argenberg \u00b7 CC BY 4.0 \u00b7 via Wikimedia Commons" },
         note: "Each is a tiny movie. Learn the image and the meaning follows.",
         verse: [
           { ur: "نیکی کر دریا میں ڈال", tr: "nekī kar, daryā meṉ ḍāl", en: "Do a good deed and throw it in the river — do good expecting nothing back", ctx: "A centuries-old folk saying, beloved of elders — offered when you help someone who may never repay you, and that's exactly the point." },
@@ -873,8 +877,10 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "Deep time: the Indus cities",
-        img: { src: "images/mohenjodaro.jpg", alt: "Ruins of Mohenjo-daro with the stupa mound", caption: "Mohenjo-daro, Sindh \u2014 grid streets and covered drains, 4,500 years old.", credit: "Photo: Saqib Qayyum \u00b7 CC BY-SA 3.0 \u00b7 via Wikimedia Commons" },
-        facts: [
+        img: [
+          { src: "images/mohenjodaro.jpg", alt: "Ruins of Mohenjo-daro with the stupa mound", caption: "Mohenjo-daro, Sindh \u2014 grid streets and covered drains, 4,500 years old.", credit: "Photo: Saqib Qayyum \u00b7 CC BY-SA 3.0 \u00b7 via Wikimedia Commons" },
+          { src: "images/dancinggirl.jpg", alt: "Bronze Dancing Girl statuette of Mohenjo-daro", caption: "The Dancing Girl of Mohenjo-daro — four inches of 4,500-year-old attitude.", credit: "Photo: Joe Ravi (photo) \u00b7 CC BY-SA 3.0 \u00b7 via Wikimedia Commons" },
+        ],        facts: [
           "<strong>~2500 BCE — Mohenjo-daro and Harappa.</strong> Grid streets, standardized bricks, covered drains, public baths — indoor plumbing millennia before Rome. At its peak the Indus civilization was larger than Egypt and Mesopotamia combined.",
           "Its <strong>script is still undeciphered</strong> — thousands of inscribed seals, no Rosetta Stone. One of archaeology's great unsolved puzzles is sitting in Sindh.",
           "The famous bronze <em>Dancing Girl</em> statuette of Mohenjo-daro — four inches of pure attitude, hand on hip — is 4,500 years old.",
@@ -882,6 +888,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Gandhara: the Buddhist millennium",
+        img: { src: "images/gandhara.jpg", alt: "Stone head of the Buddha from Gandhara", caption: "A Gandhara Buddha, carved in present-day Pakistan ~1,700 years ago \u2014 Greek waves, South Asian serenity.", credit: "Photo: Daderot \u00b7 CC0 \u00b7 via Wikimedia Commons" },
         facts: [
           "Around <strong>Taxila and Peshawar</strong> (roughly 500 BCE–500 CE), the Gandhara civilization flourished at the crossroads of the Silk Road.",
           "<strong>Taxila</strong> hosted one of the ancient world's great centers of learning — students traveled from across Asia to study medicine, law, and archery there.",
@@ -890,8 +897,10 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Saints and emperors",
-        img: { src: "images/badshahi.jpg", alt: "Badshahi Mosque in Lahore", caption: "The Badshahi Mosque, Lahore \u2014 for three centuries the largest mosque on Earth.", credit: "Photo: Muhammad Umair Mirza \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
-        facts: [
+        img: [
+          { src: "images/badshahi.jpg", alt: "Badshahi Mosque in Lahore", caption: "The Badshahi Mosque, Lahore \u2014 for three centuries the largest mosque on Earth.", credit: "Photo: Muhammad Umair Mirza \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+          { src: "images/karachi1890.jpg", alt: "Bird's-eye view of Karachi in 1890", caption: "Karachi under the Raj, 1890 — a bird's-eye view of Saddar Bazaar.", credit: "Photo: British Library collection \u00b7 public domain \u00b7 via Wikimedia Commons" },
+        ],        facts: [
           "<strong>The Sufis</strong> carried Islam through poetry and music: Data Ganj Bakhsh in Lahore, Lal Shahbaz Qalandar in Sehwan (whose shrine's ecstatic <em>dhamaal</em> drumming continues nightly), Abdullah Shah Ghazi watching over Karachi's coast.",
           "<strong>The Mughals (1526–1700s)</strong> made Lahore an imperial jewel: the Badshahi Mosque (for centuries the world's largest), Shalimar Gardens, and the Lahore Fort still anchor the old city.",
           "<strong>The British Raj</strong> left railways, cantonments, cricket, and the English-Urdu code-switching that Pakistanis still speak in daily.",
@@ -909,6 +918,7 @@ const PAKISTAN_UNITS = [
       },
       {
         heading: "Since then, in fast-forward",
+        img: { src: "images/minar.jpg", alt: "Minar-e-Pakistan tower in Lahore", caption: "Minar-e-Pakistan, Lahore \u2014 built where the 1940 resolution was passed.", credit: "Photo: Kamran Aslam \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>1971</strong> — after a brutal war, East Pakistan became Bangladesh: the borders you saw in the map game date from then.",
           "<strong>1992</strong> — Imran Khan's 'cornered tigers' won the Cricket World Cup, a moment burned into national memory (much more in the Sports unit).",
@@ -946,6 +956,7 @@ const PAKISTAN_UNITS = [
     sections: [
       {
         heading: "Cricket: the second religion",
+        img: { src: "images/stadium.jpg", alt: "Gaddafi Stadium Lahore lit at night", caption: "Gaddafi Stadium, Lahore, on a match night.", credit: "Photo: Younisjunejo \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
         facts: [
           "<strong>1992, Melbourne.</strong> Nearly eliminated mid-tournament, captain Imran Khan told his team to fight 'like cornered tigers.' They won the whole World Cup. The phrase, the fielding, Wasim Akram's double-strike — all of it is national scripture.",
           "<strong>Street cricket ('tape-ball')</strong> is the country's true academy: a tennis ball wrapped in electrical tape, played in every gali. It builds the wristy, improvisational style Pakistani batsmen and bowlers are famous for.",
