@@ -1019,7 +1019,7 @@ async function showCertificate() {
   ctx.fillStyle = "#9b7508"; ctx.font = "700 42px 'Baloo 2', sans-serif";
   ctx.fillText("★ " + rank.name + " ★", 500, 540);
   ctx.fillStyle = "#8a7458"; ctx.font = "22px 'Baloo 2', sans-serif";
-  ctx.fillText(todayKey() + "  ·  myurdu.org  ·  learn Urdu for free", 500, 610);
+  ctx.fillText(todayKey() + "  ·  myurdu.org  ·  a free Urdu-learning resource", 500, 610);
   document.getElementById("cert-dl").href = cv.toDataURL("image/png");
 }
 
