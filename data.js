@@ -1153,6 +1153,12 @@ const GEO_FEATURES = [
   { id: "rohtas", type: "site", name: "Rohtas Fort", ur: "قلعہ روہتاس", tr: "Qilā Rohtās", blurb: "Sher Shah Suri's colossal 16th-century garrison fort — 4 km of walls, never taken by storm. UNESCO-listed." },
   { id: "derawar", type: "site", name: "Derawar Fort", ur: "قلعہ دراوڑ", tr: "Qilā Derāwar", blurb: "Forty mighty bastions rising out of the Cholistan desert — visible for miles across the dunes." },
   { id: "nangaparbat", type: "feature", name: "Nanga Parbat", ur: "ننگا پربت", tr: "Nangā Parbat", blurb: "The 'Killer Mountain' (8,126 m) — anchor of the western Himalaya, with the planet's biggest vertical wall, the Rupal Face." },
+  { id: "khewra", type: "site", name: "the Khewra Salt Mine", ur: "کھیوڑہ", tr: "Khewṛā", blurb: "Source of the world-famous pink rock salt, mined since antiquity — legend says Alexander's horses discovered it by licking the rocks." },
+  { id: "khunjerab", type: "site", name: "the Khunjerab Pass", ur: "درۂ خنجراب", tr: "Darrah-e-Khunjerāb", blurb: "At 4,693 m, the highest paved border crossing on Earth — where the Karakoram Highway hands you to China." },
+  { id: "tarbela", type: "site", name: "Tarbela Dam", ur: "تربیلا", tr: "Tarbelā", blurb: "One of the largest earth-filled dams on the planet, holding back the Indus for farms and the power grid." },
+  { id: "hingol", type: "site", name: "Hingol National Park", ur: "ہنگول", tr: "Hingol", blurb: "Balochistan's badlands: mud volcanoes, canyon spires, and the 'Princess of Hope' rock." },
+  { id: "mehrgarh", type: "site", name: "Mehrgarh", ur: "مہرگڑھ", tr: "Mehrgaṛh", blurb: "A farming village 9,000 years ago — one of South Asia's oldest settlements, the deep root beneath the Indus cities." },
+  { id: "tirichmir", type: "feature", name: "Tirich Mir", ur: "ترچ میر", tr: "Tirich Mīr", blurb: "The crown of the Hindu Kush (7,708 m), looming over Chitral — the third great range's highest point." },
 ];
 
 const GEO_QUESTIONS = 5;
@@ -1201,6 +1207,23 @@ const LOANWORDS = [
   { en: "châle", ur: "شال", tr: "shāl", meaning: "woven wrap", borrower: "French", story: "The shāl that became the English shawl also became the French châle and Italian scialle — Kashmir's looms clothed all of Europe's shoulders." },
   { en: "cachemira", ur: "کشمیر", tr: "Kashmīr", meaning: "Kashmir — the valley itself", borrower: "Spanish", story: "The valley's name became the wool's name: Spanish cachemira, French cachemire, English cashmere. Few places get knitted into this many languages." },
   { en: "bungaló", ur: "بنگلہ", tr: "banglā", meaning: "Bengal-style house", borrower: "Spanish", story: "The banglā house style kept moving after English: Spanish bungaló, French bungalow, Italian bungalow — a one-storey word with global square footage." },
+  { en: "gari", ur: "گاڑی", tr: "gāṛī", meaning: "vehicle / car", borrower: "Swahili", story: "Indian traders carried gāṛī across the Indian Ocean — in Swahili, gari is simply the everyday word for a car, from Mombasa to Dar es Salaam." },
+  { en: "duka", ur: "دکان", tr: "dukān", meaning: "shop", borrower: "Swahili", story: "East Africa's corner shop is a duka — dukān with the ending worn smooth by a century of Swahili. The shopkeeper is a mduka-wallah of sorts." },
+  { en: "pesa", ur: "پیسہ", tr: "paisā", meaning: "money", borrower: "Swahili", story: "Swahili pesa (money) is the Urdu paisā — which means Kenya's famous M-Pesa mobile money is literally 'mobile paisā'. The subcontinent's smallest coin became Africa's biggest fintech brand." },
+  { en: "laki", ur: "لاکھ", tr: "lākh", meaning: "one hundred thousand", borrower: "Swahili", story: "The South Asian lākh (100,000) crossed the ocean whole: Swahili counts big numbers in laki. Two number systems, one trade route." },
+  { en: "biriani", ur: "بریانی", tr: "biryānī", meaning: "the layered rice dish", borrower: "Swahili", story: "Zanzibar's beloved biriani came with Indian Ocean traders — proof that biryani arguments now span two continents." },
+  { en: "roti", ur: "روٹی", tr: "roṭī", meaning: "flatbread", borrower: "Malay", story: "In Malaysia and Indonesia, roti means bread of every kind — roti canai stalls are national institutions. The word arrived with Indian traders and never left the menu." },
+  { en: "cuti", ur: "چھٹی", tr: "chhuṭṭī", meaning: "holiday / leave", borrower: "Malay", story: "Malay cuti — vacation — is the Urdu chhuṭṭī. An entire nation books its chhuṭṭī without knowing it." },
+  { en: "dobi", ur: "دھوبی", tr: "dhobī", meaning: "washerman / laundry", borrower: "Malay", story: "Malaysia's laundry shops are kedai dobi — dhobī shops. The washerman's trade name traveled with the diaspora." },
+  { en: "topi", ur: "ٹوپی", tr: "ṭopī", meaning: "hat / cap", borrower: "Malay", story: "Malay topi (hat) is the Urdu ṭopī, straight across. Same head, same word, different hemisphere." },
+  { en: "acar", ur: "اچار", tr: "achār", meaning: "pickle", borrower: "Malay", story: "Malay and Indonesian acar — pickled vegetables — is achār. The pickle jar is one of history's great travelers." },
+  { en: "Dschungel", ur: "جنگل", tr: "jangal", meaning: "forest / wild land", borrower: "German", story: "Jangal reached English as 'jungle', then kept marching into German as Dschungel — spelled the hard way, as German insists." },
+  { en: "Punsch", ur: "پانچ", tr: "pāṉch", meaning: "five", borrower: "German", story: "The five-ingredient pāṉch became English punch, then German Punsch — now steaming at every Christmas market. An Urdu number keeping Bavaria warm." },
+  { en: "panka", ur: "پنکھا", tr: "pankhā", meaning: "fan", borrower: "Gulf Arabic", story: "In Gulf Arabic dialects the ceiling fan is a panka — the Urdu pankhā, carried across the Arabian Sea by generations of workers and traders." },
+  { en: "doolally", ur: "دیولالی", tr: "Deolālī", meaning: "Deolali — the transit camp", borrower: "English", story: "British soldiers waiting endless months at the Deolali camp went slowly mad with boredom — 'gone doolally' still means 'lost the plot'." },
+  { en: "jildi", ur: "جلدی", tr: "jaldī", meaning: "quickly!", borrower: "English", story: "British Army slang 'get a jildi on' is Urdu jaldī (hurry) in fatigues. Drill sergeants have been shouting Urdu for a century." },
+  { en: "char", ur: "چائے", tr: "chāy", meaning: "tea", borrower: "English", story: "A British 'nice cup of char' is chāy in disguise — the same word as chai, absorbed twice by English through different doors." },
+  { en: "wallah", ur: "والا", tr: "wālā", meaning: "the one who does / deals in", borrower: "English", story: "The Urdu suffix -wālā (the chai-wallah, the rickshaw-wallah) became an English word for any specialist. Cricket commentators remain the last great wallah-users." },
 ];
 
 const DAILY_QUESTIONS = 5;
