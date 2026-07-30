@@ -698,6 +698,149 @@ const CULTURE_UNITS = [
 
 // ─────────────────────────────────────────────────────────────
 // Daily game — English words that marched out of Urdu/Hindustani
+
+// ─────────────────────────────────────────────────────────────
+// Thora Break — tired of Urdu? Explore Pakistan instead.
+// Free-roam modules (no locks): geography, culture, history.
+// ─────────────────────────────────────────────────────────────
+
+const PAKISTAN_UNITS = [
+  {
+    id: "P1",
+    title: "Naqsha · Geography",
+    subtitle: "K2, the Indus, and five very different provinces",
+    intro:
+      "Pakistan runs from the second-highest point on Earth down to the Arabian Sea in under 2,000 km — glaciers to mangroves. Here's the lay of the land (with a few Urdu words smuggled in, because we can't help ourselves).",
+    sections: [
+      {
+        heading: "The big picture",
+        facts: [
+          "<strong>Four provinces + two territories:</strong> Punjab (over half the population), Sindh (Karachi and the coast), Khyber Pakhtunkhwa (the mountain northwest), Balochistan (biggest by far, emptiest by far) — plus Gilgit-Baltistan and Azad Jammu &amp; Kashmir in the high north.",
+          "<strong>The Indus is the spine.</strong> Rising near Tibet, it runs the entire length of the country and waters the plains that feed it — the same river that named India, Sindh, AND Hindustan.",
+          "<strong>Three mountain ranges collide</strong> in the north — Karakoram, Himalaya, and Hindu Kush meet in Gilgit-Baltistan. Five of the world's fourteen 8,000-meter peaks are in Pakistan.",
+          "<strong>K2 (8,611 m)</strong> is Earth's second-highest mountain and, by climbers' reckoning, a harder prize than Everest — nicknamed the Savage Mountain.",
+        ],
+      },
+      {
+        heading: "Geography words worth stealing",
+        note: "Tap to hear — these show up in place-names everywhere.",
+        words: [
+          { ur: "دریا", tr: "daryā", en: "river", spell: "as in Daryā-e-Sindh, the Indus" },
+          { ur: "پہاڑ", tr: "pahāṛ", en: "mountain", spell: "retroflex ڑ workout" },
+          { ur: "صحرا", tr: "sehrā", en: "desert", spell: "as in the Thar" },
+          { ur: "سمندر", tr: "samundar", en: "sea", spell: "the Arabian Sea coast" },
+          { ur: "شہر", tr: "shehr", en: "city", spell: "Karachi: Pakistan's biggest shehr" },
+        ],
+      },
+      {
+        heading: "City fly-by",
+        facts: [
+          "<strong>Karachi</strong> — 20-million-plus megacity, port, and money machine. Started as a fishing village called Kolachi.",
+          "<strong>Lahore</strong> — the cultural capital: Mughal forts, food streets, and the proverb 'who hasn't seen Lahore hasn't been born.'",
+          "<strong>Islamabad</strong> — purpose-built capital from the 1960s, all grids and greenery under the Margalla Hills. Pakistanis joke it's 'ten minutes from Pakistan.'",
+        ],
+      },
+    ],
+    funFacts: [
+      "Pakistan has the largest glaciers outside the polar regions — the Karakoram's Baltoro and Siachen are rivers of ice tens of kilometers long, feeding the Indus through the summer melt.",
+      "The N-35 — the Karakoram Highway — is often called the eighth wonder of the world: a paved road over the 4,700 m Khunjerab Pass into China, threaded between avalanche chutes by 1970s engineers.",
+    ],
+  },
+  {
+    id: "P2",
+    title: "Saqafat · Culture",
+    subtitle: "Truck art, qawwali, cricket, and competitive hospitality",
+    intro:
+      "Pakistani culture runs loud, generous, and ornamented — trucks painted like jewelry boxes, weddings that last a week, and a national talent for feeding guests past all reason.",
+    sections: [
+      {
+        heading: "The essentials",
+        facts: [
+          "<strong>Truck art</strong> — working trucks decorated bumper-to-bumper with calligraphy, portraits, chained hearts, and poetry. Owners spend fortunes; the truck is the canvas of the working class.",
+          "<strong>Qawwali</strong> — Sufi devotional music built on handclaps, harmonium, and ecstatic call-and-response. Nusrat Fateh Ali Khan took it from shrine courtyards to world stages.",
+          "<strong>Cricket is the second religion.</strong> The 1992 World Cup win is national scripture; street-corner 'tape-ball' cricket is played in every gali (alley) in the country.",
+          "<strong>Shalwar kameez</strong> — the national dress for everyone: loose trousers, long tunic, infinitely adaptable from farm work to bridal couture.",
+          "<strong>Mehmān-nawāzī</strong> (hospitality) is a competitive sport. Refusing food is a negotiation you will lose — remember Level 5's 'bas, shukriya' and deploy it early.",
+        ],
+      },
+      {
+        heading: "Culture words to know",
+        note: "Tap to hear.",
+        words: [
+          { ur: "مہمان", tr: "mehmān", en: "guest", spell: "sacred status in any desi home" },
+          { ur: "شادی", tr: "shādī", en: "wedding", spell: "multi-day, multi-outfit, multi-biryani" },
+          { ur: "دعوت", tr: "dāwat", en: "feast / dinner invitation", spell: "arrive hungry, surrender early" },
+          { ur: "میلہ", tr: "melā", en: "fair / festival", spell: "as in the crowds: 'it's a melā in here!'" },
+          { ur: "رسم", tr: "rasm", en: "custom / ritual", spell: "every shādī has a dozen" },
+        ],
+      },
+    ],
+    funFacts: [
+      "A Pakistani wedding is a festival season, not an event: mehndi (music + henna night), baraat (groom's procession), walima (reception) — each with its own dress code, playlist, and biryani. Guests budget a week and several outfits.",
+      "The Karachi-vs-Lahore biryani rivalry is a genuine cultural fault line: Karachi insists on aloo (potatoes) in biryani, Lahore considers that heresy. Choose your answer based on who's at the table.",
+    ],
+  },
+  {
+    id: "P3",
+    title: "Tareekh · History",
+    subtitle: "5,000 years: Indus cities to Independence",
+    intro:
+      "The land that is now Pakistan has hosted one of humanity's first great civilizations, Buddhist universities, Mughal splendor, and the birth of a nation — all along the same river.",
+    sections: [
+      {
+        heading: "The long arc",
+        facts: [
+          "<strong>~2500 BCE — the Indus Valley Civilization.</strong> Mohenjo-daro (Sindh) and Harappa (Punjab) had grid streets, standardized bricks, and covered drains — indoor plumbing millennia before Rome.",
+          "<strong>~500 BCE–500 CE — Gandhara.</strong> Around Taxila and Peshawar, a Buddhist civilization flourished where Greek and South Asian art fused — the first human-form Buddha statues wear Greek robes.",
+          "<strong>1526–1700s — the Mughals.</strong> Lahore became an imperial jewel: the Badshahi Mosque, Shalimar Gardens, and the fort still anchor the old city.",
+          "<strong>1947 — Independence.</strong> On 14 August, Pakistan was born from Partition, led by Muhammad Ali Jinnah (Quaid-e-Azam, 'the Great Leader') and dreamed up in part by the poet you met in Virsa — Allama Iqbal. Partition also brought one of history's largest migrations, with millions displaced and enormous human cost — a memory that still shapes the region.",
+          "<strong>The modern chapter:</strong> the 1992 cricket World Cup, Abdul Sattar Edhi's world-famous ambulance charity, and Malala Yousafzai — the youngest Nobel laureate in history.",
+        ],
+      },
+      {
+        heading: "History words to know",
+        note: "Tap to hear.",
+        words: [
+          { ur: "تاریخ", tr: "tārīkh", en: "history (also: date)", spell: "one word, two jobs" },
+          { ur: "آزادی", tr: "āzādī", en: "freedom / independence", spell: "the word of 14 August" },
+          { ur: "قوم", tr: "qaum", en: "nation / people", spell: "Sound School's deep ق" },
+          { ur: "یادگار", tr: "yādgār", en: "monument / memorial", spell: "literally 'memory-keeper'" },
+        ],
+      },
+    ],
+    funFacts: [
+      "The name 'Pakistan' was coined in 1933 as a composite: P-unjab, A-fghania, K-ashmir, S-indh, and Balochi-STAN — and it also reads as 'land of the pure' (pāk = pure). A national name that's both an acronym and a pun: extremely Urdu behavior.",
+      "Mohenjo-daro means 'mound of the dead' in Sindhi — its real ancient name is unknown, because the Indus script is still undeciphered. One of archaeology's great unsolved puzzles is sitting in Sindh.",
+    ],
+  },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Naqsha Challenge — map features (ids match pakmap.js SVG)
+// ─────────────────────────────────────────────────────────────
+
+const GEO_FEATURES = [
+  { id: "punjab", type: "province", name: "Punjab", ur: "پنجاب", tr: "Panjāb", blurb: "Home to over half of all Pakistanis — the name means 'five rivers' (panj āb)." },
+  { id: "sindh", type: "province", name: "Sindh", ur: "سندھ", tr: "Sindh", blurb: "Named for the Indus (Sindhu) — home of Karachi, Mohenjo-daro, and Sufi shrines." },
+  { id: "kp", type: "province", name: "Khyber Pakhtunkhwa", ur: "خیبر پختونخوا", tr: "Khaibar Pakhtūnkhwā", blurb: "The mountain northwest — Peshawar's ancient bazaars and the gateway of empires." },
+  { id: "balochistan", type: "province", name: "Balochistan", ur: "بلوچستان", tr: "Balochistān", blurb: "Pakistan's largest province by area and its emptiest — deserts, mountains, and the Gwadar coast." },
+  { id: "gb", type: "province", name: "Gilgit-Baltistan", ur: "گلگت بلتستان", tr: "Gilgit Baltistān", blurb: "Where Karakoram, Himalaya, and Hindu Kush collide — home of K2 and trekker heaven." },
+  { id: "ajk", type: "province", name: "Azad Kashmir", ur: "آزاد کشمیر", tr: "Āzād Kashmīr", blurb: "Green valleys and rivers in the high northeast." },
+  { id: "karachi", type: "city", name: "Karachi", ur: "کراچی", tr: "Karāchī", blurb: "The 20-million-strong megacity and port — Pakistan's money machine, once a fishing village called Kolachi." },
+  { id: "lahore", type: "city", name: "Lahore", ur: "لاہور", tr: "Lāhaur", blurb: "The cultural heart — Mughal monuments and food streets. 'Who hasn't seen Lahore hasn't been born.'" },
+  { id: "islamabad", type: "city", name: "Islamabad", ur: "اسلام آباد", tr: "Islāmābād", blurb: "The purpose-built 1960s capital, gridded and green beneath the Margalla Hills." },
+  { id: "peshawar", type: "city", name: "Peshawar", ur: "پشاور", tr: "Peshāwar", blurb: "One of South Asia's oldest living cities — 2,000+ years guarding the Khyber Pass." },
+  { id: "quetta", type: "city", name: "Quetta", ur: "کوئٹہ", tr: "Koiṭah", blurb: "Balochistan's high-altitude capital, ringed by mountains — famous for dried fruit and sajji." },
+  { id: "gwadar", type: "city", name: "Gwadar", ur: "گوادر", tr: "Gwādar", blurb: "The hammerhead peninsula port on the Arabian Sea's far western coast." },
+  { id: "multan", type: "city", name: "Multan", ur: "ملتان", tr: "Multān", blurb: "The City of Saints — shrines, blue pottery, and legendary summer heat." },
+  { id: "indus", type: "feature", name: "the Indus River", ur: "دریائے سندھ", tr: "Daryā-e-Sindh", blurb: "Pakistan's 3,200 km spine — it watered one of humanity's first civilizations and named India, Sindh, and Hindustan." },
+  { id: "k2", type: "feature", name: "K2", ur: "کے ٹو", tr: "Ke Ṭū", blurb: "Earth's second-highest peak (8,611 m) — the 'Savage Mountain', a harder climb than Everest." },
+  { id: "thar", type: "feature", name: "the Thar Desert", ur: "صحرائے تھر", tr: "Sehrā-e-Thar", blurb: "A living desert of peacocks and folk music that turns green in the monsoon." },
+  { id: "sea", type: "feature", name: "the Arabian Sea", ur: "بحیرہ عرب", tr: "Bahīrah-e-Arab", blurb: "1,000+ km of coastline, from the mangroves of the Indus delta to Gwadar." },
+];
+
+const GEO_QUESTIONS = 5;
+
 // ─────────────────────────────────────────────────────────────
 
 const LOANWORDS = [
@@ -732,10 +875,10 @@ const DAILY_QUESTIONS = 5;
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 4, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 8, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 12, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 17, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 22, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 9, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 14, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 20, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 25, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────

@@ -2,7 +2,7 @@
 // Urdu Ustaadh — app shell, profiles, lessons, quizzes, drills
 // ─────────────────────────────────────────────────────────────
 
-const TRACKS = { READING_UNITS: READING_UNITS, CULTURE_UNITS: CULTURE_UNITS, SOUND_UNITS: SOUND_UNITS };
+const TRACKS = { READING_UNITS: READING_UNITS, CULTURE_UNITS: CULTURE_UNITS, SOUND_UNITS: SOUND_UNITS, PAKISTAN_UNITS: PAKISTAN_UNITS };
 
 const Store = {
   KEY: "urdu-ustaadh-v1",
@@ -184,7 +184,7 @@ function unitUnlocked(units, i) {
 }
 
 function overallPercent() {
-  const total = LEVELS.length + READING_UNITS.length + CULTURE_UNITS.length + SOUND_UNITS.length;
+  const total = LEVELS.length + READING_UNITS.length + CULTURE_UNITS.length + SOUND_UNITS.length + PAKISTAN_UNITS.length;
   return Math.round((completedCount() / total) * 100);
 }
 
@@ -254,6 +254,12 @@ function renderHome() {
           <div class="card-sub">English words that came from Urdu — today's five, same for everyone</div>
           <div class="card-status">${playedToday ? `✅ Done today · best ${p.dailyBest[todayKey()] ?? 0}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
         </button>
+        <button class="card drill" onclick="startGeo()">
+          <div class="card-num gold">Naqsha · Map Game</div>
+          <div class="card-title">Naqsha Challenge</div>
+          <div class="card-sub">A feature lights up on the map of Pakistan — name it. Today's five, same for everyone</div>
+          <div class="card-status">${p.dailyBest[todayKey() + "#geo"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#geo"]}/${GEO_QUESTIONS} · replay?` : "▶ Play today's map"}</div>
+        </button>
         <button class="card drill" onclick="startCallback()">
           <div class="card-num gold">Yaaddasht · Memory</div>
           <div class="card-title">Callback Round</div>
@@ -291,6 +297,13 @@ function renderHome() {
       </div>
     </section>
 
+    <section>
+      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — no vocabulary required, open in any order</span></h2>
+      <div class="cards">
+        ${PAKISTAN_UNITS.map((u, i) => unitCard(u, i, "PAKISTAN_UNITS", "pakistan", "Break", true)).join("")}
+      </div>
+    </section>
+
     <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button></footer>
   `;
 }
@@ -311,9 +324,9 @@ function levelCard(lv, i) {
     </button>`;
 }
 
-function unitCard(u, i, unitsName, cls, label) {
+function unitCard(u, i, unitsName, cls, label, alwaysOpen = false) {
   const units = TRACKS[unitsName];
-  const unlocked = unitUnlocked(units, i);
+  const unlocked = alwaysOpen || unitUnlocked(units, i);
   const done = isCompleted(u.id);
   return `
     <button class="card ${cls} ${unlocked ? "" : "locked"} ${done ? "done" : ""}"
@@ -606,7 +619,7 @@ function startDaily() {
       options: seededPick([w, ...distractors], 4, rng).map((x) => ({ label: x.meaning, correct: x === w })),
     };
   });
-  daily = { questions, current: 0, correct: 0 };
+  daily = { questions, current: 0, correct: 0, results: [] };
   renderDailyQuestion();
 }
 
@@ -641,6 +654,7 @@ function answerDaily(i) {
     else if (j === i) el.classList.add("wrong");
   });
   if (chosen.correct) daily.correct++;
+  daily.results.push(chosen.correct);
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">
       ${chosen.correct ? "✅ Sahī!" : "❌ Not quite."} <em>${esc(q.word.story)}</em>
@@ -654,7 +668,7 @@ function nextDaily() {
   else finishDaily();
 }
 
-function finishDaily() {
+function updateDailyStreak() {
   const p = profile();
   const today = todayKey();
   const firstRunToday = p.lastDaily !== today;
@@ -665,6 +679,30 @@ function finishDaily() {
     p.streak = p.lastDaily === yKey ? p.streak + 1 : 1;
     p.lastDaily = today;
   }
+  return firstRunToday;
+}
+
+// Wordle-style shareable result. `game` is "roots" or "geo".
+function shareDaily(game, btn) {
+  const g = game === "geo" ? geo : daily;
+  if (!g) return;
+  const name = game === "geo" ? "Naqsha Challenge 🗺️" : "Desi Roots 🌱";
+  const squares = g.results.map((r) => (r ? "🟩" : "🟥")).join("");
+  const text = `Urdu Ustaadh · ${name}\n${todayKey()}  ${squares}  ${g.correct}/${g.questions.length}\n🔥 ${profile().streak}-day streak\nhttps://myurdu.org`;
+  const done = () => { if (btn) btn.textContent = "Copied! ✅"; };
+  if (navigator.share) {
+    navigator.share({ text }).then(done).catch(() => navigator.clipboard?.writeText(text).then(done));
+  } else if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(done);
+  } else {
+    prompt("Copy your result:", text);
+  }
+}
+
+function finishDaily() {
+  const p = profile();
+  const today = todayKey();
+  const firstRunToday = updateDailyStreak();
   p.dailyBest[today] = Math.max(p.dailyBest[today] || 0, daily.correct);
   saveRoot();
   app().innerHTML = `
@@ -673,9 +711,100 @@ function finishDaily() {
       <div class="result-emoji">🔥</div>
       <h2 class="retro">${daily.correct === daily.questions.length ? "Perfect round!" : "Round complete"}</h2>
       <p class="result-score">${daily.correct} / ${daily.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="share-squares">${daily.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
       <p>${firstRunToday ? "Streak updated. Same time tomorrow — a new five will be waiting." : "Already counted today — replays sharpen, streaks stay honest."}</p>
       <div class="result-actions">
-        <button class="btn primary big" onclick="startCallback()">Now try a Callback Round →</button>
+        <button class="btn primary big" onclick="shareDaily('roots', this)">📤 Share score</button>
+        <button class="btn" onclick="startGeo()">Play the map game →</button>
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Daily game: Naqsha Challenge (map) ───────────────────────
+
+let geo = null;
+
+function startGeo() {
+  const rng = mulberry32(daySeed() + 7);
+  const picks = seededPick(GEO_FEATURES, GEO_QUESTIONS, rng);
+  const questions = picks.map((f) => {
+    const sameType = GEO_FEATURES.filter((x) => x.type === f.type && x !== f);
+    const distractors = seededPick(sameType, 3, rng);
+    return {
+      feature: f,
+      options: seededPick([f, ...distractors], 4, rng).map((x) => ({ label: x.name, correct: x === f })),
+    };
+  });
+  geo = { questions, current: 0, correct: 0, results: [] };
+  renderGeoQuestion();
+}
+
+function geoPrompt(type) {
+  return { province: "Which province or territory is highlighted?", city: "Which city is the glowing dot?", feature: "Which natural feature is highlighted?" }[type];
+}
+
+function renderGeoQuestion() {
+  const q = geo.questions[geo.current];
+  app().innerHTML = `
+    ${backBar("Naqsha Challenge · Map Game")}
+    <div class="quiz-progress">Round ${geo.current + 1} of ${geo.questions.length} · ${todayKey()}</div>
+    <div class="quiz-card">
+      <div class="map-wrap">${PAK_MAP_SVG}</div>
+      <p class="geo-q">${geoPrompt(q.feature.type)}</p>
+      <div class="quiz-options">
+        ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerGeo(${i})">${esc(o.label)}</button>`).join("")}
+      </div>
+      <div id="quiz-feedback"></div>
+    </div>
+  `;
+  document.querySelector(`#pakmap #${q.feature.id}`)?.classList.add("geo-hi");
+  window.scrollTo(0, 0);
+}
+
+function answerGeo(i) {
+  const q = geo.questions[geo.current];
+  const chosen = q.options[i];
+  q.options.forEach((o, j) => {
+    const el = $(`#opt-${j}`);
+    el.disabled = true;
+    if (o.correct) el.classList.add("correct");
+    else if (j === i) el.classList.add("wrong");
+  });
+  if (chosen.correct) geo.correct++;
+  geo.results.push(chosen.correct);
+  $("#quiz-feedback").innerHTML = `
+    <div class="pr ${chosen.correct ? "good" : "bad"}">
+      ${chosen.correct ? "✅ Sahī!" : `❌ It's ${esc(q.feature.name)}.`}
+      <em>${esc(q.feature.blurb)}</em>
+      <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>
+    </div>
+    <button class="btn primary" onclick="nextGeo()">${geo.current + 1 < geo.questions.length ? "Next →" : "Finish →"}</button>`;
+}
+
+function nextGeo() {
+  geo.current++;
+  if (geo.current < geo.questions.length) renderGeoQuestion();
+  else finishGeo();
+}
+
+function finishGeo() {
+  const p = profile();
+  const key = todayKey() + "#geo";
+  const firstRunToday = updateDailyStreak();
+  p.dailyBest[key] = Math.max(p.dailyBest[key] || 0, geo.correct);
+  saveRoot();
+  app().innerHTML = `
+    ${backBar("Naqsha Challenge · results")}
+    <div class="result-card pass">
+      <div class="result-emoji">🗺️</div>
+      <h2 class="retro">${geo.correct === geo.questions.length ? "Perfect — a true naqsha-nawis!" : "Map explored"}</h2>
+      <p class="result-score">${geo.correct} / ${geo.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="share-squares">${geo.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
+      <p>${firstRunToday ? "Streak updated. A new map lights up tomorrow." : "Replays welcome — the streak already counted today."}</p>
+      <div class="result-actions">
+        <button class="btn primary big" onclick="shareDaily('geo', this)">📤 Share score</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>

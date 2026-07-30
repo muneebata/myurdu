@@ -11,8 +11,11 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 - **Sound School (Awaazain)** — how to physically make the sounds English lacks: the tapped/rolled R, retroflex ٹ ڈ ڑ, dental ت د, aspiration (ھ), throat sounds (خ غ ق), and nasal ں — each with an animated mouth diagram (side-view SVG showing tongue placement, in `diagrams.js`), tongue-placement instructions, tap-to-hear practice words, and links out to YouTube tutorials and Wikipedia phonetics pages with audio.
 - **Learn to Read track** — 6 units: Nastaliq shape-families, positional forms, vowels, sounding out real words, Urdu numerals (۱۲۳), and real-world signboard reading.
 - **Virsa (Heritage) track** — 3 units: Ghazal 101 (radif, qafiya, mushaira etiquette — with Ghalib), poems and rhymes every Urdu speaker knows (Iqbal's *Lab pe aati hai dua*, Ghalib, *Machhli jal ki rani*, a listening list — Dil Dil Pakistan, Nusrat, Coke Studio, Faiz) and classic proverbs (kahawatain). All quoted verse is public-domain.
+- **Thora Break track** — "tired of Urdu?" free-roam modules on Pakistan itself: geography (K2, the Indus, provinces), culture (truck art, qawwali, wedding season), and history (Mohenjo-daro to Independence) — each smuggling in a few Urdu words with audio.
 - **Daily Drills** —
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
+  - *Naqsha Challenge*: a stylized SVG map of Pakistan lights up a province, city, river, or peak — name it. Date-seeded daily five.
+  - Both daily games end with a Wordle-style 📤 share card (emoji squares + streak) via the native share sheet or clipboard.
   - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.
 - **Learners & titles** — multiple named profiles on one device, each with its own progress, streak, and title (Talib-e-Ilm → Shagird → … → Ustaadh-e-Azam) earned by completing levels/units.
 
