@@ -75,6 +75,7 @@ function renderProfiles() {
   const names = Object.keys(root.profiles);
   app().innerHTML = `
     ${backBar("Learners · Kaun seekh raha hai?", root.active ? "renderHome()" : null)}
+    <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
     <div class="roster">
       <h2 class="retro">Who's learning today?</h2>
       <p class="lesson-intro">Each learner gets their own progress, title, and streak — stored on this device.</p>
@@ -190,14 +191,22 @@ function overallPercent() {
 
 // ── Daily-game helpers (date-seeded so everyone gets the same drill) ──
 
+// Daily games flip at midnight US Central time (America/Chicago), so
+// the whole world gets the same puzzle on the same "day".
 function todayKey() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit",
+  }).format(new Date());
+}
+
+function shiftKey(key, days) {
+  const [y, m, d] = key.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d + days));
+  return `${dt.getUTCFullYear()}-${String(dt.getUTCMonth() + 1).padStart(2, "0")}-${String(dt.getUTCDate()).padStart(2, "0")}`;
 }
 
 function daySeed() {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  return Number(todayKey().replaceAll("-", ""));
 }
 
 function mulberry32(a) {
@@ -230,7 +239,8 @@ function renderHome() {
   app().innerHTML = `
     <header class="hero">
       <div class="hero-strap"></div>
-      <div class="hero-urdu ur">اردو استاد</div>
+      <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
       <div class="id-row">
@@ -673,10 +683,7 @@ function updateDailyStreak() {
   const today = todayKey();
   const firstRunToday = p.lastDaily !== today;
   if (firstRunToday) {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yKey = `${yesterday.getFullYear()}-${String(yesterday.getMonth() + 1).padStart(2, "0")}-${String(yesterday.getDate()).padStart(2, "0")}`;
-    p.streak = p.lastDaily === yKey ? p.streak + 1 : 1;
+    p.streak = p.lastDaily === shiftKey(today, -1) ? p.streak + 1 : 1;
     p.lastDaily = today;
   }
   return firstRunToday;
@@ -872,6 +879,9 @@ function openUnit(unitsName, i) {
     body += `</div>`;
   }
   body += u.funFacts.map(funFact).join("");
+  if (unitsName === "SOUND_UNITS" && typeof SOUND_DIAGRAMS_CREDIT !== "undefined") {
+    body += `<p class="credit">${esc(SOUND_DIAGRAMS_CREDIT)}</p>`;
+  }
 
   app().innerHTML = `
     ${backBar(`${esc(u.title)}`)}
@@ -889,6 +899,23 @@ function completeUnit(unitsName, i) {
   markCompleted(units[i].id);
   if (i + 1 < units.length) openUnit(unitsName, i + 1);
   else renderHome();
+}
+
+// ── About ────────────────────────────────────────────────────
+
+function showAbout() {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal-card">
+      <img src="icon-192.png" alt="" class="modal-logo" />
+      <h2 class="retro">Urdu Ustaadh</h2>
+      <p>Urdu Ustaadh is a project of <strong>Muneeb Ata Enterprises</strong>.</p>
+      <p>Learn more at <a href="https://muneebata.com" target="_blank" rel="noopener">muneebata.com</a></p>
+      <button class="btn primary" onclick="this.closest('.modal-overlay').remove()">Chalo, back to learning</button>
+    </div>`;
+  document.body.appendChild(overlay);
 }
 
 // ── Shared bits ──────────────────────────────────────────────

@@ -30,7 +30,7 @@ body {
   line-height: 1.55;
 }
 
-#app { max-width: 880px; margin: 0 auto; padding: 0 20px 80px; }
+#app { max-width: 880px; margin: 0 auto; padding: 0 20px 80px; position: relative; }
 
 .ur, .ur-inline {
   font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Urdu Typesetting", serif;
@@ -320,9 +320,9 @@ body {
   animation: puff-out 1.5s ease-out infinite;
 }
 @keyframes puff-out {
-  0% { transform: translateX(4px); opacity: 0; }
+  0% { transform: translateX(-4px); opacity: 0; }
   30% { opacity: 1; }
-  100% { transform: translateX(-10px); opacity: 0; }
+  100% { transform: translateX(10px); opacity: 0; }
 }
 .m-buzz { fill: none; stroke: var(--rose); stroke-width: 2.5; stroke-linecap: round; }
 .m-flow {
@@ -380,3 +380,32 @@ body {
 .geo-city, .geo-peak { transform-box: fill-box; transform-origin: center; }
 
 .share-squares { font-size: 1.4rem; letter-spacing: 2px; margin: 2px 0 10px; }
+
+/* ── Hero logo & About ── */
+.hero { position: relative; }
+.hero-logo {
+  width: 116px; height: 116px; border-radius: 26px; margin: 6px auto 8px;
+  display: block; box-shadow: 0 4px 14px rgba(90, 60, 20, 0.25);
+}
+.about-btn {
+  position: absolute; top: 24px; right: 20px;
+  font: inherit; font-size: 0.82rem; font-weight: 700;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 999px;
+  padding: 5px 12px; cursor: pointer; color: var(--teal-dark); z-index: 6;
+}
+.about-btn:hover { background: #f2ead2; }
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(59, 46, 31, 0.55);
+  display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px;
+}
+.modal-card {
+  background: var(--card); border-radius: 20px; border-top: 6px solid var(--teal);
+  padding: 28px 26px; max-width: 420px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.modal-logo { width: 84px; height: 84px; border-radius: 18px; }
+.modal-card h2 { margin: 10px 0 6px; color: var(--teal-dark); }
+.modal-card a { color: var(--teal); font-weight: 700; }
+
+/* ── Real sagittal diagrams (Sound School) ── */
+.mouth-real { width: 100%; max-width: 270px; height: auto; background: #fffdf6; border-radius: 12px; border: 1.5px solid var(--line); }
+.credit { text-align: center; color: var(--muted); font-size: 0.75rem; margin-top: 18px; }
