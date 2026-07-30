@@ -101,7 +101,9 @@ CITIES = {
 SITES = {
     "harappa": (72.87, 30.63), "taxila": (72.80, 33.74),
     "khyberpass": (71.07, 34.08), "rohtas": (73.57, 32.97),
-    "derawar": (71.33, 28.77),
+    "derawar": (71.33, 28.77), "khewra": (73.01, 32.65),
+    "khunjerab": (75.42, 36.85), "tarbela": (72.70, 34.09),
+    "hingol": (65.30, 25.55), "mehrgarh": (67.62, 29.39),
 }
 city_svg = "\n".join(
     f'  <circle id="{cid}" class="geo-city" cx="{proj(*ll)[0]:.1f}" cy="{proj(*ll)[1]:.1f}" r="6"/>'
@@ -121,6 +123,7 @@ site_svg = "\n".join(
 
 k2x, k2y = proj(76.51, 35.88)
 npx, npy = proj(74.59, 35.24)
+tmx, tmy = proj(71.84, 36.26)
 tx, ty = proj(69.9, 25.6)  # Thar center (Pakistani Tharparkar)
 
 COAST = [(61.7, 25.05), (64.6, 25.0), (66.5, 24.7), (66.98, 24.7), (67.3, 24.55), (67.4, 23.9), (68.2, 23.7), (68.8, 23.9)]
@@ -148,6 +151,7 @@ const PAK_MAP_SVG = `
   <path id="indus" class="geo-river" d="{indus_d}"/>
   <polygon id="k2" class="geo-peak" points="{k2x:.1f},{k2y - 9:.1f} {k2x + 7:.1f},{k2y + 5:.1f} {k2x - 7:.1f},{k2y + 5:.1f}"/>
   <polygon id="nangaparbat" class="geo-peak" points="{npx:.1f},{npy - 9:.1f} {npx + 7:.1f},{npy + 5:.1f} {npx - 7:.1f},{npy + 5:.1f}"/>
+  <polygon id="tirichmir" class="geo-peak" points="{tmx:.1f},{tmy - 9:.1f} {tmx + 7:.1f},{tmy + 5:.1f} {tmx - 7:.1f},{tmy + 5:.1f}"/>
 {site_svg}
 {city_svg}
 </svg>`;

@@ -883,7 +883,7 @@ function geoPrompt(type) {
     province: "Which province or territory is highlighted?",
     city: "Which city is the glowing dot?",
     feature: "Which natural feature is highlighted?",
-    site: "Which historic place is marked (the glowing diamond)?",
+    site: "Which landmark is marked (the glowing diamond)?",
   }[type];
 }
 

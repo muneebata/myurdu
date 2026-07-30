@@ -21,11 +21,17 @@ const PAK_MAP_SVG = `
   <path id="indus" class="geo-river" d="M401.6,64.0L375.0,57.8L348.5,67.0L329.9,76.3L311.3,107.0L292.8,147.0L276.8,171.6L266.2,211.6L274.2,245.4L245.0,276.2L223.8,297.7L210.5,368.5L207.8,386.9L197.2,399.2L184.0,411.5"/>
   <polygon id="k2" class="geo-peak" points="425.7,37.1 432.7,51.1 418.7,51.1"/>
   <polygon id="nangaparbat" class="geo-peak" points="374.7,56.8 381.7,70.8 367.7,70.8"/>
+  <polygon id="tirichmir" class="geo-peak" points="301.8,25.4 308.8,39.4 294.8,39.4"/>
   <rect id="harappa" class="geo-site" x="324.1" y="202.6" width="10" height="10" transform="rotate(45 329.1 207.6)"/>
   <rect id="taxila" class="geo-site" x="322.3" y="106.9" width="10" height="10" transform="rotate(45 327.3 111.9)"/>
   <rect id="khyberpass" class="geo-site" x="276.3" y="96.5" width="10" height="10" transform="rotate(45 281.3 101.5)"/>
   <rect id="rohtas" class="geo-site" x="342.7" y="130.6" width="10" height="10" transform="rotate(45 347.7 135.6)"/>
   <rect id="derawar" class="geo-site" x="283.2" y="259.8" width="10" height="10" transform="rotate(45 288.2 264.8)"/>
+  <rect id="khewra" class="geo-site" x="327.8" y="140.5" width="10" height="10" transform="rotate(45 332.8 145.5)"/>
+  <rect id="khunjerab" class="geo-site" x="391.8" y="11.3" width="10" height="10" transform="rotate(45 396.8 16.3)"/>
+  <rect id="tarbela" class="geo-site" x="319.6" y="96.2" width="10" height="10" transform="rotate(45 324.6 101.2)"/>
+  <rect id="hingol" class="geo-site" x="123.2" y="358.8" width="10" height="10" transform="rotate(45 128.2 363.8)"/>
+  <rect id="mehrgarh" class="geo-site" x="184.8" y="240.7" width="10" height="10" transform="rotate(45 189.8 245.7)"/>
   <circle id="islamabad" class="geo-city" cx="334.1" cy="113.5" r="6"/>
   <circle id="peshawar" class="geo-city" cx="294.9" cy="103.6" r="6"/>
   <circle id="lahore" class="geo-city" cx="368.1" cy="179.3" r="6"/>
