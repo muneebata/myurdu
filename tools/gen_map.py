@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+"""Generate pakmap.js from Natural Earth 10m admin-1 boundaries (public domain).
+
+Real geometry, lightly simplified for a game board. Cities, K2, the Indus
+waypoints, and the Thar are placed from real coordinates via the same
+projection.
+"""
+import json, math
+
+SRC = "/private/tmp/claude-501/-Users-muneebata-Desktop/54d4d988-c913-4d31-a511-36dc06161133/scratchpad/ne_admin1_10m.geojson"
+OUT = "/Users/muneebata/Desktop/urdu-ustaadh/pakmap.js"
+
+NAME_TO_ID = {
+    "Northern Areas": "gb",
+    "K.P.": "kp",
+    "F.A.T.A.": "kp",       # merged into KP in 2018
+    "Baluchistan": "balochistan",
+    "Punjab": "punjab",
+    "F.C.T.": "punjab",     # Islamabad Capital Territory — a speck; folded in visually
+    "Sind": "sindh",
+    "Azad Kashmir": "ajk",
+}
+
+d = json.load(open(SRC))
+pak = [f for f in d["features"] if f["properties"].get("adm0_a3") == "PAK"]
+
+# ── projection: equirectangular with mid-latitude correction ──
+all_pts = []
+for f in pak:
+    g = f["geometry"]
+    polys = g["coordinates"] if g["type"] == "MultiPolygon" else [g["coordinates"]]
+    for poly in polys:
+        all_pts.extend(poly[0])
+lons = [p[0] for p in all_pts]; lats = [p[1] for p in all_pts]
+lon0, lon1 = min(lons), max(lons)
+lat0, lat1 = min(lats), max(lats)
+latm = math.radians((lat0 + lat1) / 2)
+W = 430.0
+k = W / ((lon1 - lon0) * math.cos(latm))
+H = (lat1 - lat0) * k
+PAD = 10.0
+
+def proj(lon, lat):
+    x = (lon - lon0) * math.cos(latm) * k + PAD
+    y = (lat1 - lat) * k + PAD
+    return x, y
+
+def simplify(ring, tol=1.6):
+    out = []
+    for lon, lat in ring:
+        x, y = proj(lon, lat)
+        if not out or (x - out[-1][0]) ** 2 + (y - out[-1][1]) ** 2 >= tol ** 2:
+            out.append((x, y))
+    return out
+
+def ring_to_d(ring):
+    pts = simplify(ring)
+    if len(pts) < 8:
+        return ""
+    cmds = [f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"]
+    cmds += [f"L{x:.1f},{y:.1f}" for x, y in pts[1:]]
+    return "".join(cmds) + "Z"
+
+# ── build province paths (merge multi-name units into one id) ──
+paths = {}
+for f in pak:
+    pid = NAME_TO_ID.get(f["properties"].get("name"))
+    if not pid:
+        continue
+    g = f["geometry"]
+    polys = g["coordinates"] if g["type"] == "MultiPolygon" else [g["coordinates"]]
+    for poly in polys:
+        dstr = ring_to_d(poly[0])  # outer ring only
+        if dstr:
+            paths.setdefault(pid, []).append(dstr)
+
+province_svg = "\n".join(
+    f'  <path id="{pid}" class="geo-prov" d="{"".join(ds)}"/>'
+    for pid, ds in [
+        ("balochistan", paths["balochistan"]),
+        ("sindh", paths["sindh"]),
+        ("punjab", paths["punjab"]),
+        ("kp", paths["kp"]),
+        ("gb", paths["gb"]),
+        ("ajk", paths["ajk"]),
+    ]
+)
+
+# ── overlays from real coordinates ──
+CITIES = {
+    "islamabad": (73.06, 33.69), "peshawar": (71.58, 34.01),
+    "lahore": (74.34, 31.55), "multan": (71.47, 30.20),
+    "quetta": (66.98, 30.18), "karachi": (67.01, 24.86),
+    "gwadar": (62.33, 25.13),
+}
+city_svg = "\n".join(
+    f'  <circle id="{cid}" class="geo-city" cx="{proj(*ll)[0]:.1f}" cy="{proj(*ll)[1]:.1f}" r="6"/>'
+    for cid, ll in CITIES.items()
+)
+
+INDUS_WPTS = [(75.6, 35.3), (74.6, 35.5), (73.6, 35.2), (72.9, 34.9), (72.2, 33.9),
+              (71.5, 32.6), (70.9, 31.8), (70.5, 30.5), (70.8, 29.4), (69.7, 28.4),
+              (68.9, 27.7), (68.4, 25.4), (68.3, 24.8), (67.9, 24.4), (67.4, 24.0)]
+ipts = [proj(*p) for p in INDUS_WPTS]
+indus_d = f"M{ipts[0][0]:.1f},{ipts[0][1]:.1f}" + "".join(f"L{x:.1f},{y:.1f}" for x, y in ipts[1:])
+
+k2x, k2y = proj(76.51, 35.88)
+tx, ty = proj(69.9, 25.6)  # Thar center (Pakistani Tharparkar)
+
+COAST = [(61.7, 25.05), (64.6, 25.0), (66.5, 24.7), (66.98, 24.7), (67.3, 24.55), (67.4, 23.9), (68.2, 23.7), (68.8, 23.9)]
+cpts = [proj(lon, lat - 0.12) for lon, lat in COAST]  # nudge just offshore
+VH = H + 2 * PAD
+sea_d = (f"M{cpts[0][0]:.1f},{VH:.0f} " +
+         "".join(f"L{x:.1f},{y:.1f}" for x, y in cpts) +
+         f"L{cpts[-1][0]:.1f},{VH:.0f} Z")
+
+svg = f'''// ─────────────────────────────────────────────────────────────
+// Map of Pakistan for the Naqsha Challenge daily game.
+// Province boundaries: Natural Earth 10m admin-1 (public domain,
+// naturalearthdata.com), lightly simplified; cities, K2, Indus
+// waypoints, and the Thar placed from real coordinates.
+// Regenerate with tools/gen_map.py. Label-free on purpose —
+// labels would give the game away. Ids match GEO_FEATURES in
+// data.js. F.A.T.A. is drawn as part of KP (merged 2018).
+// ─────────────────────────────────────────────────────────────
+
+const PAK_MAP_SVG = `
+<svg id="pakmap" viewBox="0 0 {W + 2 * PAD:.0f} {VH:.0f}" role="img" aria-label="Map of Pakistan">
+  <path id="sea" class="geo-sea" d="{sea_d}"/>
+{province_svg}
+  <ellipse id="thar" class="geo-thar" cx="{tx:.1f}" cy="{ty:.1f}" rx="24" ry="32"/>
+  <path id="indus" class="geo-river" d="{indus_d}"/>
+  <polygon id="k2" class="geo-peak" points="{k2x:.1f},{k2y - 9:.1f} {k2x + 7:.1f},{k2y + 5:.1f} {k2x - 7:.1f},{k2y + 5:.1f}"/>
+{city_svg}
+</svg>`;
+'''
+open(OUT, "w").write(svg)
+size = len(svg)
+print(f"pakmap.js written: {size/1024:.0f} KB, viewBox 0 0 {W+2*PAD:.0f} {VH:.0f}")
+for pid, ds in paths.items():
+    print(" ", pid, "subpaths:", len(ds), "chars:", sum(len(x) for x in ds))

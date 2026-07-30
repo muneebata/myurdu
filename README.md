@@ -14,7 +14,7 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 - **Thora Break track** — "tired of Urdu?" free-roam modules on Pakistan itself: geography (K2, the Indus, provinces), culture (truck art, qawwali, wedding season), and history (Mohenjo-daro to Independence) — each smuggling in a few Urdu words with audio.
 - **Daily Drills** —
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
-  - *Naqsha Challenge*: a stylized SVG map of Pakistan lights up a province, city, river, or peak — name it. Date-seeded daily five.
+  - *Naqsha Challenge*: a real-geometry SVG map of Pakistan (Natural Earth 10m admin boundaries, public domain; cities/K2/Indus placed by true coordinates — regenerate via `tools/gen_map.py`) lights up a province, city, river, or peak — name it. Date-seeded daily five.
   - Both daily games end with a Wordle-style 📤 share card (emoji squares + streak) via the native share sheet or clipboard.
   - *Callback Round*: Leitner-style spaced retrieval — every word has a box (0–4); misses reset to box 0 and resurface first, hits climb boxes and rest. Research-backed spacing, no scheduling UI needed.
 - **Learners & titles** — multiple named profiles on one device, each with its own progress, streak, and title (Talib-e-Ilm → Shagird → … → Ustaadh-e-Azam) earned by completing levels/units.
@@ -59,6 +59,7 @@ Plain HTML/CSS/JS — no build step, no dependencies. Fonts: Noto Nastaliq Urdu 
 - `app.js` — profiles, navigation, lessons, quizzes, daily games
 - `diagrams.js` — animated articulation diagrams for Sound School
 - `tools/gen_audio.py` — audio clip generator (edge-tts)
+- `tools/gen_map.py` — map generator (Natural Earth → SVG)
 - `audio/` — 103 neural-Urdu MP3 clips
 
 ## Run locally
