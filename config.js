@@ -5,4 +5,4 @@
 // and works exactly as before, localStorage only.
 // Example: window.MYURDU_API = "https://myurdu-pb.up.railway.app";
 // ─────────────────────────────────────────────────────────────
-window.MYURDU_API = "";
+window.MYURDU_API = "https://myurdu-backend-production.up.railway.app";
