@@ -40,6 +40,7 @@ function profile() {
 
 function saveRoot() {
   Store.save(root);
+  Cloud.schedulePush();
 }
 
 function addProfile(name) {
@@ -48,7 +49,12 @@ function addProfile(name) {
   if (!root.profiles[name]) root.profiles[name] = blankProfile();
   root.active = name;
   saveRoot();
-  renderHome();
+  Cloud.onChange = () => {
+  if (document.querySelector(".roster")) renderProfiles();
+  else if (document.querySelector(".hero")) renderHome();
+};
+Cloud.init();
+renderHome();
 }
 
 function switchProfile(name) {
@@ -92,9 +98,56 @@ function renderProfiles() {
                onkeydown="if(event.key==='Enter')addProfile(this.value)" />
         <button class="btn primary" onclick="addProfile(document.getElementById('new-profile').value)">Join in →</button>
       </div>
-      <p class="hint">Progress lives in this browser. Cross-device accounts need a small (free) backend — see the README for the wiring plan.</p>
+      ${cloudCard()}
     </div>
   `;
+}
+
+function cloudCard() {
+  if (!Cloud.enabled())
+    return `<p class="hint">Progress lives in this browser.</p>`;
+  if (Cloud.status === "in")
+    return `
+      <div class="cloud-card">
+        <p class="cloud-line">☁️ Syncing as <strong>${esc(Cloud.user.email)}</strong> — every learner on this device is backed up.</p>
+        <button class="btn small" onclick="cloudSignOut()">Sign out</button>
+      </div>`;
+  return `
+    <div class="cloud-card">
+      <p class="cloud-line"><strong>☁️ Cloud sync</strong> — back up this device's learners and continue on any other device.</p>
+      <div class="cloud-form">
+        <input id="cloud-email" class="input" type="email" placeholder="Email" autocomplete="email" />
+        <input id="cloud-pass" class="input" type="password" placeholder="Password (8+ characters)" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter')cloudAuth(false)" />
+      </div>
+      <div class="cloud-actions">
+        <button class="btn primary" onclick="cloudAuth(false)">Sign in</button>
+        <button class="btn" onclick="cloudAuth(true)">Create account</button>
+      </div>
+      <div id="cloud-status"></div>
+    </div>`;
+}
+
+async function cloudAuth(create) {
+  const email = document.getElementById("cloud-email")?.value.trim();
+  const pass = document.getElementById("cloud-pass")?.value;
+  const out = document.getElementById("cloud-status");
+  if (!email || !pass) {
+    out.innerHTML = `<div class="pr warn">Enter an email and password.</div>`;
+    return;
+  }
+  out.innerHTML = `<div class="pr listening">☁️ ${create ? "Creating account" : "Signing in"}…</div>`;
+  try {
+    await (create ? Cloud.signUp(email, pass) : Cloud.signIn(email, pass));
+    renderProfiles();
+  } catch (e) {
+    out.innerHTML = `<div class="pr bad">⚠️ ${esc(e.message)}</div>`;
+  }
+}
+
+function cloudSignOut() {
+  Cloud.signOut();
+  renderProfiles();
 }
 
 // ── Progress & ranks ─────────────────────────────────────────

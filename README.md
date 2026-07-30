@@ -29,9 +29,21 @@ python3 -m venv .ttsenv && .ttsenv/bin/pip install edge-tts
 
 File naming = `Speech.slug()` in [speech.js](speech.js): lowercase transliteration, retroflex letters doubled first (ṭ→tt, ḍ→dd, ṛ→rr), then diacritics simplified (ā→aa, ī→ee, ū→oo, ṉ→n), non-alphanumerics → `-`. E.g. *ṭhīk hūṉ* → `ttheek-hoon.mp3`. The generator in [tools/gen_audio.py](tools/gen_audio.py) mirrors this exactly and maps letter names to their spoken Urdu forms (ṭe → ٹے).
 
-## Accounts / cross-device sync
+## Accounts / cross-device sync (PocketBase on Railway)
 
-Profiles are currently per-device (localStorage) — fine for a shared family iPad, no passwords to leak. For real accounts across devices, wire in a free-tier backend (Supabase or Firebase): email login + one `progress` table/document per user, and replace `Store.load/save` with fetch/persist calls. Free tiers cover tens of thousands of users; no server to run.
+The app ships with a complete sync layer ([sync.js](sync.js)) targeting a [PocketBase](https://pocketbase.io) backend. localStorage remains the source of truth (instant, offline-safe); signing in backs up every learner on the device and merges progress across devices — completions union, best scores/streaks win, Leitner review state takes the most recent.
+
+**Enable it:**
+
+1. On Railway: New Project → Deploy a Template → search **PocketBase** → Deploy. Under the service's Settings → Networking, **Generate Domain**. (Attach a volume if the template didn't add one, so data survives redeploys.)
+2. Visit `https://<your-domain>/_/` and create the PocketBase admin account (yours only — not an app login).
+3. In the admin UI: **Collections → New collection** named `progress` (type Base) with two fields:
+   - `user` — Relation → users, single, required. In the field's index options, mark it **unique**.
+   - `data` — JSON.
+   Then open the collection's **API Rules** and set List, View, Create, and Update to: `user = @request.auth.id` (leave Delete locked/admin-only).
+4. Put the service URL in [config.js](config.js): `window.MYURDU_API = "https://<your-domain>";` and deploy.
+
+With `MYURDU_API` empty the cloud UI is hidden and the app runs fully local, exactly as before. Cost: Railway Hobby $5/mo covers this comfortably; the static site stays free on GitHub Pages.
 
 ## Stack
 
