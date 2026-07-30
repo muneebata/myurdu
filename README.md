@@ -48,6 +48,12 @@ The app ships with a complete sync layer ([sync.js](sync.js)) targeting a [Pocke
 
 With `MYURDU_API` empty the cloud UI is hidden and the app runs fully local, exactly as before. Cost: Railway Hobby $5/mo covers this comfortably; the static site stays free on GitHub Pages.
 
+## Security posture
+
+- **Frontend:** Content-Security-Policy meta (blocks foreign scripts/connections; API allowlisted), strict referrer policy, all user-controlled strings HTML-escaped, profile actions use index-based handlers (no string interpolation into JS), HTTPS via Cloudflare.
+- **Backend (PocketBase):** bcrypt-hashed passwords and token auth out of the box; owner-only API rules (`user = @request.auth.id`) — verified by probe: users cannot list other users, read others' progress, or even confirm records exist; emails hidden (`emailVisibility: false`); progress payload capped at 200 KB by migration (tested: 500 KB rejected, normal saves fine); built-in rate limiting in PocketBase 0.39.
+- **Worth doing in the PocketBase admin:** enable automatic backups (Settings → Backups), and consider OTP for the superuser account.
+
 ## Stack
 
 Plain HTML/CSS/JS — no build step, no dependencies. Fonts: Noto Nastaliq Urdu + Baloo 2 (Google Fonts). Deployable as-is to GitHub Pages.
