@@ -91,7 +91,17 @@ CITIES = {
     "islamabad": (73.06, 33.69), "peshawar": (71.58, 34.01),
     "lahore": (74.34, 31.55), "multan": (71.47, 30.20),
     "quetta": (66.98, 30.18), "karachi": (67.01, 24.86),
-    "gwadar": (62.33, 25.13),
+    "gwadar": (62.33, 25.13), "faisalabad": (73.08, 31.42),
+    "hyderabad": (68.37, 25.40), "sialkot": (74.53, 32.50),
+    "skardu": (75.63, 35.30), "sukkur": (68.87, 27.70),
+    "bahawalpur": (71.68, 29.40), "chitral": (71.79, 35.85),
+}
+
+# historic sites: diamond markers, visually distinct from city dots
+SITES = {
+    "harappa": (72.87, 30.63), "taxila": (72.80, 33.74),
+    "khyberpass": (71.07, 34.08), "rohtas": (73.57, 32.97),
+    "derawar": (71.33, 28.77),
 }
 city_svg = "\n".join(
     f'  <circle id="{cid}" class="geo-city" cx="{proj(*ll)[0]:.1f}" cy="{proj(*ll)[1]:.1f}" r="6"/>'
@@ -104,7 +114,13 @@ INDUS_WPTS = [(75.6, 35.3), (74.6, 35.5), (73.6, 35.2), (72.9, 34.9), (72.2, 33.
 ipts = [proj(*p) for p in INDUS_WPTS]
 indus_d = f"M{ipts[0][0]:.1f},{ipts[0][1]:.1f}" + "".join(f"L{x:.1f},{y:.1f}" for x, y in ipts[1:])
 
+site_svg = "\n".join(
+    f'  <rect id="{sid}" class="geo-site" x="{proj(*ll)[0]-5:.1f}" y="{proj(*ll)[1]-5:.1f}" width="10" height="10" transform="rotate(45 {proj(*ll)[0]:.1f} {proj(*ll)[1]:.1f})"/>'
+    for sid, ll in SITES.items()
+)
+
 k2x, k2y = proj(76.51, 35.88)
+npx, npy = proj(74.59, 35.24)
 tx, ty = proj(69.9, 25.6)  # Thar center (Pakistani Tharparkar)
 
 COAST = [(61.7, 25.05), (64.6, 25.0), (66.5, 24.7), (66.98, 24.7), (67.3, 24.55), (67.4, 23.9), (68.2, 23.7), (68.8, 23.9)]
@@ -131,6 +147,8 @@ const PAK_MAP_SVG = `
   <ellipse id="thar" class="geo-thar" cx="{tx:.1f}" cy="{ty:.1f}" rx="24" ry="32"/>
   <path id="indus" class="geo-river" d="{indus_d}"/>
   <polygon id="k2" class="geo-peak" points="{k2x:.1f},{k2y - 9:.1f} {k2x + 7:.1f},{k2y + 5:.1f} {k2x - 7:.1f},{k2y + 5:.1f}"/>
+  <polygon id="nangaparbat" class="geo-peak" points="{npx:.1f},{npy - 9:.1f} {npx + 7:.1f},{npy + 5:.1f} {npx - 7:.1f},{npy + 5:.1f}"/>
+{site_svg}
 {city_svg}
 </svg>`;
 '''

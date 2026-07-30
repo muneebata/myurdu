@@ -20,6 +20,12 @@ const PAK_MAP_SVG = `
   <ellipse id="thar" class="geo-thar" cx="250.3" cy="362.3" rx="24" ry="32"/>
   <path id="indus" class="geo-river" d="M401.6,64.0L375.0,57.8L348.5,67.0L329.9,76.3L311.3,107.0L292.8,147.0L276.8,171.6L266.2,211.6L274.2,245.4L245.0,276.2L223.8,297.7L210.5,368.5L207.8,386.9L197.2,399.2L184.0,411.5"/>
   <polygon id="k2" class="geo-peak" points="425.7,37.1 432.7,51.1 418.7,51.1"/>
+  <polygon id="nangaparbat" class="geo-peak" points="374.7,56.8 381.7,70.8 367.7,70.8"/>
+  <rect id="harappa" class="geo-site" x="324.1" y="202.6" width="10" height="10" transform="rotate(45 329.1 207.6)"/>
+  <rect id="taxila" class="geo-site" x="322.3" y="106.9" width="10" height="10" transform="rotate(45 327.3 111.9)"/>
+  <rect id="khyberpass" class="geo-site" x="276.3" y="96.5" width="10" height="10" transform="rotate(45 281.3 101.5)"/>
+  <rect id="rohtas" class="geo-site" x="342.7" y="130.6" width="10" height="10" transform="rotate(45 347.7 135.6)"/>
+  <rect id="derawar" class="geo-site" x="283.2" y="259.8" width="10" height="10" transform="rotate(45 288.2 264.8)"/>
   <circle id="islamabad" class="geo-city" cx="334.1" cy="113.5" r="6"/>
   <circle id="peshawar" class="geo-city" cx="294.9" cy="103.6" r="6"/>
   <circle id="lahore" class="geo-city" cx="368.1" cy="179.3" r="6"/>
@@ -27,4 +33,11 @@ const PAK_MAP_SVG = `
   <circle id="quetta" class="geo-city" cx="172.8" cy="221.4" r="6"/>
   <circle id="karachi" class="geo-city" cx="173.6" cy="385.1" r="6"/>
   <circle id="gwadar" class="geo-city" cx="49.4" cy="376.8" r="6"/>
+  <circle id="faisalabad" class="geo-city" cx="334.7" cy="183.3" r="6"/>
+  <circle id="hyderabad" class="geo-city" cx="209.7" cy="368.5" r="6"/>
+  <circle id="sialkot" class="geo-city" cx="373.2" cy="150.1" r="6"/>
+  <circle id="skardu" class="geo-city" cx="402.3" cy="64.0" r="6"/>
+  <circle id="sukkur" class="geo-city" cx="223.0" cy="297.7" r="6"/>
+  <circle id="bahawalpur" class="geo-city" cx="297.5" cy="245.4" r="6"/>
+  <circle id="chitral" class="geo-city" cx="300.4" cy="47.0" r="6"/>
 </svg>`;
