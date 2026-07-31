@@ -422,62 +422,10 @@ function renderHome() {
     </section>
 
     <section>
-      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely</span></h2>
-      <div class="ledger2">
-        ${LEVELS.map((lv, i) => {
-          const done = isCompleted(lv.id);
-          const score = p.scores[lv.id];
-          const st = done ? `<span class="lst done">✅ Passed${score != null ? ` · ${score}%` : ""}</span>` : `<span class="lst">▶ Start</span>`;
-          return ledgerRow(`openLevel(${i})`, urduNum(i + 1), lv.title, lv.urName, lv.subtitle, st);
-        }).join("")}
-      </div>
+      <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane — everything is open, nothing is locked</span></h2>
+      <div class="trackgrid">${TRACK_DEFS.map(trackCard).join("")}</div>
     </section>
 
-    <section>
-      <h2 class="track-title retro">👄 Awaazain · Sound School <span class="track-sub">train your mouth for the sounds English doesn't have</span></h2>
-      <div class="ledger2">
-        ${SOUND_UNITS.map((u, i) => {
-          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
-          return ledgerRow(`openUnit('SOUND_UNITS',${i})`, "ھ", u.title, null, u.subtitle, st);
-        }).join("")}
-      </div>
-    </section>
-
-    <section>
-      <h2 class="track-title retro">📖 Learn to Read <span class="track-sub">the Nastaliq script, from zero</span></h2>
-      <div class="ledger2">
-        ${READING_UNITS.map((u, i) => {
-          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
-          return ledgerRow(`openUnit('READING_UNITS',${i})`, urduNum(i + 1), u.title, null, u.subtitle, st);
-        }).join("")}
-      </div>
-    </section>
-
-    <section>
-      <h2 class="track-title retro">🎵 Virsa · Heritage <span class="track-sub">poems, rhymes, and the songs everyone knows</span></h2>
-      <div class="pages2">
-        ${CULTURE_UNITS.map((u, i) => `
-        <button class="page2" onclick="openUnit('CULTURE_UNITS',${i})">
-          <div class="card-num">Virsa ${String(i + 1).padStart(2, "0")}${isCompleted(u.id) ? " · ✅" : ""}</div>
-          ${u.cover ? `<span class="pu ur">${esc(u.cover)}</span>` : ""}
-          <div class="card-sub">${esc(u.subtitle)}</div>
-        </button>`).join("")}
-      </div>
-    </section>
-
-    <section>
-      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — open in any order</span></h2>
-      <div class="postcards2">
-        ${PAKISTAN_UNITS.map((u, i) => `
-        <button class="postcard2" onclick="openUnit('PAKISTAN_UNITS',${i})">
-          <span class="pstamp ur">پاکستان</span>
-          <div class="card-num">Break ${String(i + 1).padStart(2, "0")}</div>
-          <div class="card-title">${esc(u.title)}</div>
-          <div class="card-sub">${esc(u.subtitle)}</div>
-          <span class="paddr"><span>${esc(u.postfrom || "")}</span><span>${isCompleted(u.id) ? "✅ Done" : "▶ Start"}</span></span>
-        </button>`).join("")}
-      </div>
-    </section>
 
     <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button></footer>
   `;
@@ -1330,6 +1278,270 @@ function showAbout() {
       <button class="btn primary" onclick="this.closest('.modal-overlay').remove()">Chalo, back to learning</button>
     </div>`;
   document.body.appendChild(overlay);
+}
+
+// ── Tracks: home shows buttons; each opens a full track page ──
+
+const TRACK_DEFS = [
+  { id: "speak", emoji: "🗣️", title: "Speak & Listen", ur: "بولیں", cls: "",
+    desc: "13 levels, salaam to full conversations — plus live role-play scenes with your mic",
+    prog: () => [LEVELS.filter((lv) => isCompleted(lv.id)).length, LEVELS.length] },
+  { id: "sounds", emoji: "👄", title: "Sound School", ur: "آوازیں", cls: "sounds",
+    desc: "Train the sounds English doesn't have — rolled Rs, curled Ts, real anatomy",
+    prog: () => [SOUND_UNITS.filter((u) => isCompleted(u.id)).length, SOUND_UNITS.length] },
+  { id: "reading", emoji: "📖", title: "Learn to Read", ur: "پڑھیں", cls: "reading",
+    desc: "The Nastaliq script from zero — letters, vowels, numerals, street signboards",
+    prog: () => [READING_UNITS.filter((u) => isCompleted(u.id)).length, READING_UNITS.length] },
+  { id: "virsa", emoji: "🎵", title: "Virsa · Heritage", ur: "ورثہ", cls: "culture",
+    desc: "Iqbal, Ghalib, proverbs, and how a ghazal actually works",
+    prog: () => [CULTURE_UNITS.filter((u) => isCompleted(u.id)).length, CULTURE_UNITS.length] },
+  { id: "pakistan", emoji: "🇵🇰", title: "Thora Break", ur: "تھوڑا وقفہ", cls: "pakistan",
+    desc: "Tired of Urdu? Postcards from Pakistan — geography, food, history, wildlife",
+    prog: () => [PAKISTAN_UNITS.filter((u) => isCompleted(u.id)).length, PAKISTAN_UNITS.length] },
+];
+
+function trackCard(t) {
+  const [done, total] = t.prog();
+  return `
+    <button class="track-btn ${t.cls}" onclick="renderTrack('${t.id}')">
+      <span class="tb-emoji">${t.emoji}</span>
+      <span class="tb-main">
+        <span class="tb-title">${esc(t.title)} <span class="tb-ur ur">${esc(t.ur)}</span></span>
+        <span class="tb-desc">${esc(t.desc)}</span>
+      </span>
+      <span class="tb-prog">${done}/${total}<br><span>done</span></span>
+    </button>`;
+}
+
+function renderTrack(id) {
+  const t = TRACK_DEFS.find((x) => x.id === id);
+  const p = profile();
+  const bodies = {
+    speak: () => rolePlayCards() + trackSpeakHTML(),
+    sounds: trackSoundsHTML,
+    reading: trackReadingHTML,
+    virsa: trackVirsaHTML,
+    pakistan: trackPakistanHTML,
+  };
+  app().innerHTML = `
+    ${backBar(`${t.emoji} ${esc(t.title)} · <span class="ur">${esc(t.ur)}</span>`)}
+    ${bodies[id]()}
+  `;
+  window.scrollTo(0, 0);
+}
+
+function trackSpeakHTML() {
+  const p = profile();
+  return `
+    <section>
+      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely</span></h2>
+      <div class="ledger2">
+        ${LEVELS.map((lv, i) => {
+          const done = isCompleted(lv.id);
+          const score = p.scores[lv.id];
+          const st = done ? `<span class="lst done">✅ Passed${score != null ? ` · ${score}%` : ""}</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openLevel(${i})`, urduNum(i + 1), lv.title, lv.urName, lv.subtitle, st);
+        }).join("")}
+      </div>
+    </section>`;
+}
+
+function trackSoundsHTML() {
+  const p = profile();
+  return `
+    <section>
+      <h2 class="track-title retro">👄 Awaazain · Sound School <span class="track-sub">train your mouth for the sounds English doesn't have</span></h2>
+      <div class="ledger2">
+        ${SOUND_UNITS.map((u, i) => {
+          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openUnit('SOUND_UNITS',${i})`, "ھ", u.title, null, u.subtitle, st);
+        }).join("")}
+      </div>
+    </section>`;
+}
+
+function trackReadingHTML() {
+  const p = profile();
+  return `
+    <section>
+      <h2 class="track-title retro">📖 Learn to Read <span class="track-sub">the Nastaliq script, from zero</span></h2>
+      <div class="ledger2">
+        ${READING_UNITS.map((u, i) => {
+          const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
+          return ledgerRow(`openUnit('READING_UNITS',${i})`, urduNum(i + 1), u.title, null, u.subtitle, st);
+        }).join("")}
+      </div>
+    </section>`;
+}
+
+function trackVirsaHTML() {
+  const p = profile();
+  return `
+    <section>
+      <h2 class="track-title retro">🎵 Virsa · Heritage <span class="track-sub">poems, rhymes, and the songs everyone knows</span></h2>
+      <div class="pages2">
+        ${CULTURE_UNITS.map((u, i) => `
+        <button class="page2" onclick="openUnit('CULTURE_UNITS',${i})">
+          <div class="card-num">Virsa ${String(i + 1).padStart(2, "0")}${isCompleted(u.id) ? " · ✅" : ""}</div>
+          ${u.cover ? `<span class="pu ur">${esc(u.cover)}</span>` : ""}
+          <div class="card-sub">${esc(u.subtitle)}</div>
+        </button>`).join("")}
+      </div>
+    </section>`;
+}
+
+function trackPakistanHTML() {
+  const p = profile();
+  return `
+    <section>
+      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — open in any order</span></h2>
+      <div class="postcards2">
+        ${PAKISTAN_UNITS.map((u, i) => `
+        <button class="postcard2" onclick="openUnit('PAKISTAN_UNITS',${i})">
+          <span class="pstamp ur">پاکستان</span>
+          <div class="card-num">Break ${String(i + 1).padStart(2, "0")}</div>
+          <div class="card-title">${esc(u.title)}</div>
+          <div class="card-sub">${esc(u.subtitle)}</div>
+          <span class="paddr"><span>${esc(u.postfrom || "")}</span><span>${isCompleted(u.id) ? "✅ Done" : "▶ Start"}</span></span>
+        </button>`).join("")}
+      </div>
+    </section>`;
+}
+
+// ── Role-play: live conversations with the mic ──────────────
+
+function rolePlayCards() {
+  const p = profile();
+  return `
+    <div class="rp-cards">
+      ${ROLEPLAYS.map((sc, i) => `
+      <button class="rp-card" onclick="startRolePlay(${i})">
+        <span class="rp-tag">🎭 Live role-play</span>
+        <span class="rp-title">${esc(sc.title)} <span class="ur">${esc(sc.urName)}</span></span>
+        <span class="rp-desc">${esc(sc.desc)}</span>
+        <span class="rp-best">${p.roleplay?.[sc.id] != null ? `Best: ${p.roleplay[sc.id]}% · play again` : "▶ Play the scene"}</span>
+      </button>`).join("")}
+    </div>`;
+}
+
+let rp = null;
+
+function startRolePlay(i) {
+  const scene = ROLEPLAYS[i];
+  rp = { scene, idx: 0, passed: 0, tried: 0, history: [] };
+  renderRP();
+}
+
+function rpBubbles() {
+  return rp.history.map((h) => `
+    <div class="rp-bubble ${h.who}">
+      <span class="rp-ur ur">${esc(h.ur)}</span>
+      <span class="rp-tr">${esc(h.tr)}${h.mark ? ` <b class="rp-mark">${h.mark}</b>` : ""}</span>
+    </div>`).join("");
+}
+
+function renderRP() {
+  const sc = rp.scene;
+  const turn = sc.turns[rp.idx];
+  let controls;
+  if (!turn) return finishRP();
+  if (turn.who === "them") {
+    controls = `
+      <div class="rp-now them-turn">
+        <p class="rp-who">${esc(sc.themRole)} says:</p>
+        <p class="rp-ur ur">${esc(turn.ur)}</p>
+        <p class="rp-tr">${esc(turn.tr)} — <em>${esc(turn.en)}</em></p>
+        <div class="rp-btns">
+          <button class="btn speak" onclick='Speech.speak(${JSON.stringify(turn.ur)}, ${JSON.stringify(turn.tr)})'>🔊 Hear again</button>
+          <button class="btn primary" onclick="rpAdvance()">Continue →</button>
+        </div>
+      </div>`;
+  } else {
+    const micOK = Speech.recognitionSupported();
+    controls = `
+      <div class="rp-now you-turn">
+        <p class="rp-who">Your line:</p>
+        <p class="rp-ur ur">${esc(turn.ur)}</p>
+        <p class="rp-tr">${esc(turn.tr)} — <em>${esc(turn.en)}</em></p>
+        <div class="rp-btns">
+          <button class="btn speak" onclick='Speech.speak(${JSON.stringify(turn.ur)}, ${JSON.stringify(turn.tr)}, {slow:true})'>🐢 Hear it first</button>
+          ${micOK
+            ? `<button class="btn primary" onclick="rpSay()">🎤 Say your line</button>`
+            : `<button class="btn primary" onclick="rpAdvance('said aloud')">Said it aloud →</button>`}
+          <button class="btn small" onclick="rpAdvance()">Skip</button>
+        </div>
+        ${micOK ? "" : `<p class="hint">No mic support in this browser — say the line out loud, then continue.</p>`}
+        <div id="rp-feedback"></div>
+      </div>`;
+  }
+  app().innerHTML = `
+    ${backBar(`🎭 ${esc(sc.title)}`, "renderTrack('speak')")}
+    <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. Line ${rp.idx + 1} of ${sc.turns.length}.</p>
+    <div class="rp-chat">${rpBubbles()}</div>
+    ${controls}
+  `;
+  if (turn.who === "them") Speech.speak(turn.ur, turn.tr);
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function rpAdvance(mark) {
+  const turn = rp.scene.turns[rp.idx];
+  if (turn.who === "you") rp.tried++;
+  rp.history.push({ ...turn, mark: mark === undefined ? (turn.who === "you" ? "(skipped)" : "") : "✓" });
+  rp.idx++;
+  renderRP();
+}
+
+async function rpSay() {
+  const turn = rp.scene.turns[rp.idx];
+  const out = document.getElementById("rp-feedback");
+  out.innerHTML = `<div class="pr listening">🎙️ Listening… say: <em>${esc(turn.tr)}</em></div>`;
+  try {
+    const alts = await Speech.listen();
+    const score = Speech.score(alts, turn.ur);
+    if (score >= 55) {
+      rp.passed++;
+      rp.tried++;
+      rp.history.push({ ...turn, mark: "✓" });
+      rp.idx++;
+      renderRP();
+    } else {
+      out.innerHTML = `
+        <div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🐢, then try again (or Skip).</div>`;
+    }
+  } catch (e) {
+    const msg = {
+      "not-allowed": "Microphone blocked — allow it and try again.",
+      "no-speech": "Didn't catch anything — a bit louder!",
+      network: "Speech service unreachable — check your connection.",
+    }[e.message] || "Couldn't listen just now — try again.";
+    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>`;
+  }
+}
+
+function finishRP() {
+  const sc = rp.scene;
+  const yourLines = sc.turns.filter((t) => t.who === "you").length;
+  const pct = Math.round((rp.passed / yourLines) * 100);
+  const p = profile();
+  p.roleplay = p.roleplay || {};
+  if (Speech.recognitionSupported()) p.roleplay[sc.id] = Math.max(p.roleplay[sc.id] || 0, pct);
+  saveRoot();
+  app().innerHTML = `
+    ${backBar(`🎭 ${esc(sc.title)} · scene complete`, "renderTrack('speak')")}
+    <div class="result-card ${pct >= 60 ? "pass" : ""}">
+      <div class="result-emoji">${pct >= 90 ? "🏆" : pct >= 60 ? "🎉" : "💪"}</div>
+      <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished — keep practicing!"}</h2>
+      <p class="result-score">${rp.passed} of ${yourLines} lines landed${Speech.recognitionSupported() ? ` — ${pct}%` : " (self-checked)"}</p>
+      <p>${pct >= 60 ? "That was a real exchange, start to finish. Say it again tomorrow and it'll come out faster." : "Every run makes the lines more automatic. Tap 🐢 on the hard ones and go again."}</p>
+      <div class="result-actions">
+        <button class="btn primary big" onclick="startRolePlay(${ROLEPLAYS.indexOf(sc)})">Play again</button>
+        <button class="btn" onclick="renderTrack('speak')">Speak & Listen</button>
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0, 0);
 }
 
 // ── Shared bits ──────────────────────────────────────────────
