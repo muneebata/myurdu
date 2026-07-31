@@ -247,9 +247,37 @@ function cycleDraw(pool, count, seedBase) {
   const daysPerCycle = Math.max(1, Math.floor(pool.length / count));
   const cycle = Math.floor(dayIndex / daysPerCycle);
   const pos = dayIndex % daysPerCycle;
-  const rng = mulberry32(seedBase + cycle * 7919);
-  const deck = seededPick(pool, pool.length, rng);
+  const deck = cycleDeck(pool, count, seedBase, cycle, daysPerCycle);
   return deck.slice(pos * count, pos * count + count);
+}
+
+// Deck for a cycle, with a hard freshness guarantee: the first half
+// of each new cycle is repaired (deterministic swaps) so it contains
+// nothing dealt in the previous cycle's last half. Every item is
+// therefore at least ~half a cycle away from its last appearance
+// (roots ≥16 days, map ≥23, listening ≥33; typically a full cycle).
+// Purely seeded, so every device deals the identical deck.
+function cycleDeck(pool, count, seedBase, cycle, daysPerCycle) {
+  const make = (c) => seededPick(pool, pool.length, mulberry32(seedBase + c * 7919));
+  const guardDays = Math.floor((daysPerCycle - 1) / 2);
+  if (guardDays < 1) return make(cycle);
+  const R = guardDays * count;
+  const dealtEnd = daysPerCycle * count;
+  let deck = make(0);
+  for (let c = 1; c <= cycle; c++) {
+    const rng = mulberry32(seedBase + c * 7919 + 999983);
+    const recent = new Set(deck.slice(dealtEnd - R, dealtEnd));
+    const next = make(c);
+    for (let i = 0; i < R; i++) {
+      if (!recent.has(next[i])) continue;
+      let j = R + Math.floor(rng() * (next.length - R));
+      for (let scan = 0; recent.has(next[j]) && scan < next.length; scan++)
+        j = R + ((j - R + 1) % (next.length - R));
+      [next[i], next[j]] = [next[j], next[i]];
+    }
+    deck = next;
+  }
+  return deck;
 }
 
 function seededPick(arr, count, rng) {
@@ -390,26 +418,12 @@ function renderHome() {
         ${kahawat.ctx ? `<span class="proverb-ctx">${esc(kahawat.ctx)}</span>` : ""}
       </button>` : ""}
       <div class="tickets2">
-        <button class="ticket2" style="--tk:var(--mustard)" onclick="startDaily()">
-          <span class="tstub"><span>AAJ KA KHEL</span></span>
-          <div class="card-num gold">Aaj ka Khel · Today's Game</div>
-          <div class="card-title">Desi Roots <span class="tu ur">جڑیں</span></div>
-          <div class="card-sub">English words that secretly came from Urdu</div>
-          <div class="card-status">${p.dailyBest[todayKey()] != null ? `✅ Done today · best ${p.dailyBest[todayKey()]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
-        </button>
-        <button class="ticket2" style="--tk:var(--teal)" onclick="startGeo()">
-          <span class="tstub"><span>AAJ KA KHEL</span></span>
-          <div class="card-num" style="color:var(--teal)">Naqsha · Map Game</div>
-          <div class="card-title">Naqsha Challenge <span class="tu ur">نقشہ</span></div>
-          <div class="card-sub">A feature lights up on the map of Pakistan — name it</div>
-          <div class="card-status">${p.dailyBest[todayKey() + "#geo"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#geo"]}/${GEO_QUESTIONS} · replay?` : "▶ Play today's map"}</div>
-        </button>
-        <button class="ticket2" style="--tk:var(--rose)" onclick="startSuno()">
-          <span class="tstub"><span>AAJ KA KHEL</span></span>
-          <div class="card-num" style="color:var(--rose)">Suno! · Listen</div>
-          <div class="card-title">Suno! Challenge <span class="tu ur">سنو</span></div>
-          <div class="card-sub">Pure ear training: hear the Urdu, pick the meaning</div>
-          <div class="card-status">${p.dailyBest[todayKey() + "#suno"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#suno"]}/${DAILY_QUESTIONS} · replay?` : "▶ Play today's round"}</div>
+        <button class="ticket2" style="--tk:var(--mustard)" onclick="startDaily5()">
+          <span class="tstub"><span>AAJ KA PAANCH</span></span>
+          <div class="card-num gold">Aaj Ka Paanch · Today's Five</div>
+          <div class="card-title">The Daily Quiz <span class="tu ur">آج کا پانچ</span></div>
+          <div class="card-sub">Five fresh questions — sounds, word roots, and the map — new every midnight</div>
+          <div class="card-status">${p.dailyBest[todayKey() + "#d5"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#d5"]}/5 · replay?` : "▶ Play today's five"}</div>
         </button>
         <button class="ticket2" style="--tk:var(--terracotta)" onclick="startCallback()">
           <span class="tstub"><span>YAADDASHT</span></span>
@@ -419,6 +433,11 @@ function renderHome() {
           <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
         </button>
       </div>
+      <p class="arcade-row">🎮 Practice anytime — endless rounds:
+        <button class="linklike" onclick="startDaily()">🌱 Desi Roots</button> ·
+        <button class="linklike" onclick="startGeo()">🗺️ Naqsha</button> ·
+        <button class="linklike" onclick="startSuno()">🎧 Suno!</button>
+      </p>
     </section>
 
     <section>
@@ -775,28 +794,31 @@ function rankUpNote() {
 
 let daily = null;
 
+// distractors must differ in meaning AND word — several loanwords
+// share a root (pijama/pyjamas, champú/shampoo)
+function rootsQuestion(w, rng) {
+  const candidates = LOANWORDS.filter((x) => x.meaning !== w.meaning && x.en !== w.en);
+  const distractors = seededPick(candidates, 3, rng);
+  return {
+    kind: "roots",
+    word: w,
+    options: seededPick([w, ...distractors], 4, rng).map((x) => ({ label: x.meaning, correct: x === w })),
+  };
+}
+
 function startDaily() {
-  const rng = mulberry32(daySeed());
-  const words = cycleDraw(LOANWORDS, DAILY_QUESTIONS, 1);
-  const questions = words.map((w) => {
-    // distractors must differ in meaning AND word — several loanwords
-    // share a root (pijama/pyjamas, champú/shampoo)
-    const candidates = LOANWORDS.filter((x) => x.meaning !== w.meaning && x.en !== w.en);
-    const distractors = seededPick(candidates, 3, rng);
-    return {
-      word: w,
-      options: seededPick([w, ...distractors], 4, rng).map((x) => ({ label: x.meaning, correct: x === w })),
-    };
-  });
-  daily = { questions, current: 0, correct: 0, results: [] };
+  // practice mode: endless random rounds; the streak lives in Aaj Ka Paanch
+  const rng = mulberry32(Math.floor(Math.random() * 1e9));
+  const words = seededPick(LOANWORDS, DAILY_QUESTIONS, rng);
+  daily = { questions: words.map((w) => rootsQuestion(w, rng)), current: 0, correct: 0, results: [] };
   renderDailyQuestion();
 }
 
 function renderDailyQuestion() {
   const q = daily.questions[daily.current];
   app().innerHTML = `
-    ${backBar("Aaj ka Khel · Desi Roots")}
-    <div class="quiz-progress">Word ${daily.current + 1} of ${daily.questions.length} · ${todayKey()}</div>
+    ${backBar("🌱 Desi Roots · Practice")}
+    <div class="quiz-progress">Word ${daily.current + 1} of ${daily.questions.length}</div>
     <div class="quiz-card">
       <div class="quiz-prompt">
         <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
@@ -850,9 +872,9 @@ function updateDailyStreak() {
 
 // Wordle-style shareable result. `game` is "roots" or "geo".
 function shareDaily(game, btn) {
-  const g = game === "geo" ? geo : game === "suno" ? suno : daily;
+  const g = { geo, suno, roots: daily, d5 }[game];
   if (!g) return;
-  const name = game === "geo" ? "Naqsha Challenge 🗺️" : game === "suno" ? "Suno! Challenge 🎧" : "Desi Roots 🌱";
+  const name = { geo: "Naqsha Challenge 🗺️", suno: "Suno! Challenge 🎧", roots: "Desi Roots 🌱", d5: "Aaj Ka Paanch 🎯" }[game];
   const squares = g.results.map((r) => (r ? "🟩" : "🟥")).join("");
   const text = `Urdu Ustaadh · ${name}\n${todayKey()}  ${squares}  ${g.correct}/${g.questions.length}\n🔥 ${profile().streak}-day streak\nhttps://myurdu.org`;
   const done = () => { if (btn) btn.textContent = "Copied! ✅"; };
@@ -866,22 +888,16 @@ function shareDaily(game, btn) {
 }
 
 function finishDaily() {
-  const p = profile();
-  const today = todayKey();
-  const firstRunToday = updateDailyStreak();
-  p.dailyBest[today] = Math.max(p.dailyBest[today] || 0, daily.correct);
-  saveRoot();
   app().innerHTML = `
-    ${backBar("Aaj ka Khel · results")}
+    ${backBar("🌱 Desi Roots · practice")}
     <div class="result-card pass">
-      <div class="result-emoji">🔥</div>
+      <div class="result-emoji">🌱</div>
       <h2 class="retro">${daily.correct === daily.questions.length ? "Perfect round!" : "Round complete"}</h2>
-      <p class="result-score">${daily.correct} / ${daily.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="result-score">${daily.correct} / ${daily.questions.length}</p>
       <p class="share-squares">${daily.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>${firstRunToday ? "Streak updated. Same time tomorrow — a new five will be waiting." : "Already counted today — replays sharpen, streaks stay honest."}</p>
+      <p>Practice is endless — a fresh five every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
-        <button class="btn primary big" onclick="shareDaily('roots', this)">📤 Share score</button>
-        <button class="btn" onclick="startGeo()">Play the map game →</button>
+        <button class="btn primary big" onclick="startDaily()">Another five →</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>
@@ -892,18 +908,20 @@ function finishDaily() {
 
 let geo = null;
 
+function geoQuestion(f, rng) {
+  const sameType = GEO_FEATURES.filter((x) => x.type === f.type && x !== f);
+  const distractors = seededPick(sameType, 3, rng);
+  return {
+    kind: "geo",
+    feature: f,
+    options: seededPick([f, ...distractors], 4, rng).map((x) => ({ label: x.name, correct: x === f })),
+  };
+}
+
 function startGeo() {
-  const rng = mulberry32(daySeed() + 7);
-  const picks = cycleDraw(GEO_FEATURES, GEO_QUESTIONS, 7001);
-  const questions = picks.map((f) => {
-    const sameType = GEO_FEATURES.filter((x) => x.type === f.type && x !== f);
-    const distractors = seededPick(sameType, 3, rng);
-    return {
-      feature: f,
-      options: seededPick([f, ...distractors], 4, rng).map((x) => ({ label: x.name, correct: x === f })),
-    };
-  });
-  geo = { questions, current: 0, correct: 0, results: [] };
+  const rng = mulberry32(Math.floor(Math.random() * 1e9));
+  const picks = seededPick(GEO_FEATURES, GEO_QUESTIONS, rng);
+  geo = { questions: picks.map((f) => geoQuestion(f, rng)), current: 0, correct: 0, results: [] };
   renderGeoQuestion();
 }
 
@@ -920,8 +938,8 @@ function geoPrompt(type) {
 function renderGeoQuestion() {
   const q = geo.questions[geo.current];
   app().innerHTML = `
-    ${backBar("Naqsha Challenge · Map Game")}
-    <div class="quiz-progress">Round ${geo.current + 1} of ${geo.questions.length} · ${todayKey()}</div>
+    ${backBar("🗺️ Naqsha · Practice")}
+    <div class="quiz-progress">Round ${geo.current + 1} of ${geo.questions.length}</div>
     <div class="quiz-card">
       <div class="map-wrap">${PAK_MAP_SVG}</div>
       <p class="geo-q">${geoPrompt(q.feature.type)}</p>
@@ -962,21 +980,16 @@ function nextGeo() {
 }
 
 function finishGeo() {
-  const p = profile();
-  const key = todayKey() + "#geo";
-  const firstRunToday = updateDailyStreak();
-  p.dailyBest[key] = Math.max(p.dailyBest[key] || 0, geo.correct);
-  saveRoot();
   app().innerHTML = `
-    ${backBar("Naqsha Challenge · results")}
+    ${backBar("🗺️ Naqsha · practice")}
     <div class="result-card pass">
       <div class="result-emoji">🗺️</div>
       <h2 class="retro">${geo.correct === geo.questions.length ? "Perfect — a true naqsha-nawis!" : "Map explored"}</h2>
-      <p class="result-score">${geo.correct} / ${geo.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="result-score">${geo.correct} / ${geo.questions.length}</p>
       <p class="share-squares">${geo.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>${firstRunToday ? "Streak updated. A new map lights up tomorrow." : "Replays welcome — the streak already counted today."}</p>
+      <p>Practice is endless — a fresh map every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
-        <button class="btn primary big" onclick="shareDaily('geo', this)">📤 Share score</button>
+        <button class="btn primary big" onclick="startGeo()">Another map →</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>
@@ -987,35 +1000,28 @@ function finishGeo() {
 
 let suno = null;
 
+function sunoQuestion(item, pool, rng) {
+  const distractors = seededPick(pool.filter((x) => x.tr !== item.tr && x.en !== item.en), 3, rng);
+  return {
+    kind: "suno",
+    item,
+    options: seededPick([item, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === item })),
+  };
+}
+
 function startSuno() {
-  const rng = mulberry32(daySeed() + 13);
-  let pool = LEVELS.flatMap((lv) => lv.items);
-  let picks;
-  if (azadiWindow()) {
-    // Azadi week: two azadi words + three regulars, deterministic per day
-    const rngA = mulberry32(daySeed() + 47);
-    const azadi = seededPick(AZADI_ITEMS, 2, rngA);
-    picks = [...azadi, ...cycleDraw(pool, DAILY_QUESTIONS, 13001).slice(0, DAILY_QUESTIONS - 2)];
-    pool = [...pool, ...AZADI_ITEMS];
-  } else {
-    picks = cycleDraw(pool, DAILY_QUESTIONS, 13001);
-  }
-  const questions = picks.map((item) => {
-    const distractors = seededPick(pool.filter((x) => x.tr !== item.tr && x.en !== item.en), 3, rng);
-    return {
-      item,
-      options: seededPick([item, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === item })),
-    };
-  });
-  suno = { questions, current: 0, correct: 0, results: [] };
+  const rng = mulberry32(Math.floor(Math.random() * 1e9));
+  const pool = LEVELS.flatMap((lv) => lv.items);
+  const picks = seededPick(pool, DAILY_QUESTIONS, rng);
+  suno = { questions: picks.map((it) => sunoQuestion(it, pool, rng)), current: 0, correct: 0, results: [] };
   renderSunoQuestion();
 }
 
 function renderSunoQuestion() {
   const q = suno.questions[suno.current];
   app().innerHTML = `
-    ${backBar("Suno! Challenge · Listen")}
-    <div class="quiz-progress">Sound ${suno.current + 1} of ${suno.questions.length} · ${todayKey()}</div>
+    ${backBar("🎧 Suno! · Practice")}
+    <div class="quiz-progress">Sound ${suno.current + 1} of ${suno.questions.length}</div>
     <div class="quiz-card">
       <div class="quiz-prompt suno-prompt">
         <p>🎧 Listen closely — what does it mean?</p>
@@ -1058,21 +1064,132 @@ function nextSuno() {
 }
 
 function finishSuno() {
-  const p = profile();
-  const key = todayKey() + "#suno";
-  const firstRunToday = updateDailyStreak();
-  p.dailyBest[key] = Math.max(p.dailyBest[key] || 0, suno.correct);
-  saveRoot();
   app().innerHTML = `
-    ${backBar("Suno! Challenge · results")}
+    ${backBar("🎧 Suno! · practice")}
     <div class="result-card pass">
       <div class="result-emoji">🎧</div>
       <h2 class="retro">${suno.correct === suno.questions.length ? "Golden ears!" : "Good listening"}</h2>
-      <p class="result-score">${suno.correct} / ${suno.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="result-score">${suno.correct} / ${suno.questions.length}</p>
       <p class="share-squares">${suno.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>${firstRunToday ? "Streak updated — five new sounds tomorrow." : "Replays sharpen the ear; the streak already counted today."}</p>
+      <p>Practice is endless — five fresh sounds every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
-        <button class="btn primary big" onclick="shareDaily('suno', this)">📤 Share score</button>
+        <button class="btn primary big" onclick="startSuno()">Another five →</button>
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Aaj Ka Paanch: THE daily quiz — one streak, every bank ───
+// 2 listening + 2 word roots + 1 map, drawn from per-bank no-repeat
+// cycles (repeat horizons: ~66 / ~32 / ~45 days).
+
+let d5 = null;
+
+function startDaily5() {
+  const rng = mulberry32(daySeed() + 5);
+  const sunoPool = LEVELS.flatMap((lv) => lv.items);
+  let sunoPicks, fullPool = sunoPool;
+  if (azadiWindow()) {
+    // Azadi week: the two listening slots celebrate azadi words
+    sunoPicks = seededPick(AZADI_ITEMS, 2, mulberry32(daySeed() + 47));
+    fullPool = [...sunoPool, ...AZADI_ITEMS];
+  } else {
+    sunoPicks = cycleDraw(sunoPool, 2, 13001);
+  }
+  const questions = seededPick([
+    ...sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
+    ...cycleDraw(LOANWORDS, 2, 1).map((w) => rootsQuestion(w, rng)),
+    ...cycleDraw(GEO_FEATURES, 1, 7001).map((f) => geoQuestion(f, rng)),
+  ], 5, rng);
+  d5 = { questions, current: 0, correct: 0, results: [] };
+  renderD5();
+}
+
+function renderD5() {
+  const q = d5.questions[d5.current];
+  const kindTag = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha" }[q.kind];
+  let body;
+  if (q.kind === "roots") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
+        <div class="q-ur ur">${esc(q.word.ur)}</div>
+        <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})'>🔊</button></div>
+        <p>What does it literally mean?</p>
+      </div>`;
+  } else if (q.kind === "geo") {
+    body = `
+      <div class="map-wrap">${PAK_MAP_SVG}</div>
+      <p class="geo-q">${geoPrompt(q.feature.type)}</p>`;
+  } else {
+    body = `
+      <div class="quiz-prompt suno-prompt">
+        <p>🎧 Listen closely — what does it mean?</p>
+        <button class="btn primary big" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)})'>▶ Play the sound</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)}, {slow:true})'>🐢 Slow</button>
+      </div>`;
+  }
+  app().innerHTML = `
+    ${backBar("🎯 Aaj Ka Paanch · Today's Five")}
+    <div class="quiz-progress">Question ${d5.current + 1} of ${d5.questions.length} · ${kindTag} · ${todayKey()}</div>
+    <div class="quiz-card">
+      ${body}
+      <div class="quiz-options">
+        ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerD5(${i})">${esc(o.label)}</button>`).join("")}
+      </div>
+      <div id="quiz-feedback"></div>
+    </div>
+  `;
+  if (q.kind === "geo") document.querySelector(`#pakmap #${q.feature.id}`)?.classList.add("geo-hi");
+  if (q.kind === "suno") Speech.speak(q.item.ur, q.item.tr);
+  window.scrollTo(0, 0);
+}
+
+function answerD5(i) {
+  const q = d5.questions[d5.current];
+  const chosen = q.options[i];
+  q.options.forEach((o, j) => {
+    const el = $(`#opt-${j}`);
+    el.disabled = true;
+    if (o.correct) el.classList.add("correct");
+    else if (j === i) el.classList.add("wrong");
+  });
+  if (chosen.correct) d5.correct++;
+  d5.results.push(chosen.correct);
+  const detail = q.kind === "roots"
+    ? `<em>${esc(q.word.story)}</em>`
+    : q.kind === "geo"
+      ? `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}<em>${esc(q.feature.blurb)}</em>
+         <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>`
+      : `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong> — ${esc(q.item.en)}`;
+  $("#quiz-feedback").innerHTML = `
+    <div class="pr ${chosen.correct ? "good" : "bad"}">${chosen.correct ? "✅ Sahī!" : "❌ Not this one."} ${detail}</div>
+    <button class="btn primary" onclick="nextD5()">${d5.current + 1 < d5.questions.length ? "Next →" : "Finish →"}</button>`;
+}
+
+function nextD5() {
+  d5.current++;
+  if (d5.current < d5.questions.length) renderD5();
+  else finishD5();
+}
+
+function finishD5() {
+  const p = profile();
+  const firstRunToday = updateDailyStreak();
+  const key = todayKey() + "#d5";
+  p.dailyBest[key] = Math.max(p.dailyBest[key] || 0, d5.correct);
+  saveRoot();
+  app().innerHTML = `
+    ${backBar("🎯 Aaj Ka Paanch · results")}
+    <div class="result-card pass">
+      <div class="result-emoji">${d5.correct === d5.questions.length ? "🏆" : "🎯"}</div>
+      <h2 class="retro">${d5.correct === d5.questions.length ? "Paanch out of paanch!" : "Round complete"}</h2>
+      <p class="result-score">${d5.correct} / ${d5.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="share-squares">${d5.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
+      <p>${firstRunToday ? "Streak updated. Five fresh questions at midnight — sounds, roots, and the map." : "Already counted today — replays sharpen, streaks stay honest."}</p>
+      <div class="result-actions">
+        <button class="btn primary big" onclick="shareDaily('d5', this)">📤 Share score</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>
