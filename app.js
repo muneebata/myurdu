@@ -482,6 +482,7 @@ function openLevel(i) {
   app().innerHTML = `
     ${backBar(`Level ${i + 1} · ${esc(lv.title)}`)}
     <p class="lesson-intro">${esc(lv.intro)}</p>
+    ${micCompatNote()}
     <div class="phrase-list">${body}</div>
     <div class="lesson-actions">
       <button class="btn primary big" onclick="startQuiz(${i})">Take the Level ${i + 1} quiz →</button>
@@ -519,6 +520,32 @@ function playItem(levelIdx, itemIdx, slow) {
   Speech.speak(item.ur, item.tr, { slow });
 }
 
+// Urdu speech recognition needs an engine that actually speaks Urdu.
+// Safari's (Siri) doesn't — and every iOS browser must use Safari's
+// engine — so warn those users up front instead of letting the mic fail.
+function micCompat() {
+  const force = new URLSearchParams(location.search).get("mic");
+  if (force) return force === "ok" ? { ok: true } : { ok: false, reason: force };
+  if (!Speech.recognitionSupported()) return { ok: false, reason: "none" };
+  const ua = navigator.userAgent;
+  const iOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (iOS) return { ok: false, reason: "ios" };
+  const safari = /Safari/.test(ua) && !/Chrome|Chromium|CriOS|Edg|Android/.test(ua);
+  if (safari) return { ok: false, reason: "safari" };
+  return { ok: true };
+}
+
+function micCompatNote() {
+  const c = micCompat();
+  if (c.ok) return "";
+  const why = {
+    ios: "iPhones and iPads can't do Urdu speech recognition yet — every iOS browser has to use Safari's engine, and it doesn't speak Urdu",
+    safari: "Safari can't do Urdu speech recognition yet",
+    none: "this browser doesn't support speech recognition",
+  }[c.reason];
+  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine — and you can always practice by repeating after the audio.</div>`;
+}
+
 const MIC_ERRORS = {
   "not-allowed": "Microphone access was blocked — allow the mic in your browser's site settings and try again.",
   "no-speech": "Didn't catch anything — try again, a bit louder and closer to the mic.",
@@ -539,8 +566,8 @@ function selfCheckNote() {
 async function practiceItem(cardId, levelIdx, itemIdx) {
   const item = LEVELS[levelIdx].items[itemIdx];
   const out = $(`#${cardId}-result`);
-  if (!Speech.recognitionSupported()) {
-    out.innerHTML = `<div class="pr warn">🎤 Speech recognition isn't available in this browser. Self-check instead: hit 🔊 Listen, say it aloud, and compare. (Chrome and Edge support the mic check.)</div>`;
+  if (!Speech.recognitionSupported() || !micCompat().ok) {
+    out.innerHTML = selfCheckNote();
     return;
   }
   out.innerHTML = `<div class="pr listening">🎙️ Listening… say: <em>${esc(item.tr)}</em></div>`;
@@ -1333,7 +1360,7 @@ function renderTrack(id) {
   const t = TRACK_DEFS.find((x) => x.id === id);
   const p = profile();
   const bodies = {
-    speak: () => rolePlayCards() + placementLine() + trackSpeakHTML(),
+    speak: () => micCompatNote() + rolePlayCards() + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: () => tracingCard() + trackReadingHTML(),
     virsa: trackVirsaHTML,
@@ -1478,7 +1505,7 @@ function renderRP() {
         </div>
       </div>`;
   } else {
-    const micOK = Speech.recognitionSupported();
+    const micOK = Speech.recognitionSupported() && micCompat().ok;
     controls = `
       <div class="rp-now you-turn">
         <p class="rp-who">Your line:</p>
@@ -1491,7 +1518,7 @@ function renderRP() {
             : `<button class="btn primary" onclick="rpAdvance('said aloud')">Said it aloud →</button>`}
           <button class="btn small" onclick="rpAdvance()">Skip</button>
         </div>
-        ${micOK ? "" : `<p class="hint">No mic support in this browser — say the line out loud, then continue.</p>`}
+        ${micOK ? "" : `<p class="hint">${micCompat().reason === "none" ? "No mic support in this browser" : "Mic checking isn't available in this browser (Safari's engine doesn't speak Urdu — Chrome and Edge do)"} — say the line out loud, then continue.</p>`}
         <div id="rp-feedback"></div>
       </div>`;
   }

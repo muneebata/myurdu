@@ -618,3 +618,6 @@ body {
   50% { opacity: 0.5; transform: scale(1.45); }
 }
 .mouth-real text { font-family: "Baloo 2", "Segoe UI", sans-serif; }
+
+/* ── mic compatibility notice ── */
+.mic-note { background: linear-gradient(120deg, #fdf6dd, #fbeec7); border: 1.5px solid #ecd28c; border-radius: 14px; padding: 12px 16px; margin: 12px 0; font-size: 0.93rem; line-height: 1.55; }
