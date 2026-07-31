@@ -1568,3 +1568,28 @@ const ROLEPLAYS = [
     ],
   },
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Letter tracing — stroke data in a 200x200 box, baseline ~145.
+// Qaida order: body stroke(s) first (right-to-left), then dots
+// and marks. p = path stroke, d = dot tap-target.
+// ─────────────────────────────────────────────────────────────
+
+const TRACE_LETTERS = [
+  { ch: "ا", name: "alif", hint: "One stroke: straight down.", strokes: [{ p: "M100,40 L100,152" }] },
+  { ch: "ب", name: "be", hint: "The boat first (right to left), then one dot below.", strokes: [{ p: "M158,85 C160,120 140,140 100,142 C62,144 45,130 42,108" }, { d: [100, 168] }] },
+  { ch: "پ", name: "pe", hint: "Same boat, then three dots below.", strokes: [{ p: "M158,85 C160,120 140,140 100,142 C62,144 45,130 42,108" }, { d: [88, 164] }, { d: [112, 164] }, { d: [100, 180] }] },
+  { ch: "ت", name: "te", hint: "The boat, then two dots above.", strokes: [{ p: "M158,85 C160,120 140,140 100,142 C62,144 45,130 42,108" }, { d: [88, 58] }, { d: [112, 58] }] },
+  { ch: "ٹ", name: "ṭe", hint: "The boat, then the little ta-mark on top.", strokes: [{ p: "M158,85 C160,120 140,140 100,142 C62,144 45,130 42,108" }, { p: "M112,40 L112,56 C112,62 104,64 99,60 C94,56 96,47 103,47 C108,47 111,51 112,54" }] },
+  { ch: "ث", name: "se", hint: "The boat, then three dots above.", strokes: [{ p: "M158,85 C160,120 140,140 100,142 C62,144 45,130 42,108" }, { d: [88, 60] }, { d: [112, 60] }, { d: [100, 44] }] },
+  { ch: "ج", name: "jīm", hint: "The head bar right-to-left, then the big bowl — then the dot inside.", strokes: [{ p: "M126,52 C112,48 100,50 90,58" }, { p: "M122,60 C130,96 104,140 52,122" }, { d: [90, 108] }] },
+  { ch: "چ", name: "che", hint: "Head bar, bowl — then three dots in the bowl.", strokes: [{ p: "M126,52 C112,48 100,50 90,58" }, { p: "M122,60 C130,96 104,140 52,122" }, { d: [80, 102] }, { d: [100, 102] }, { d: [90, 118] }] },
+  { ch: "ح", name: "baṛī he", hint: "Head bar, then the bowl — and no dots at all.", strokes: [{ p: "M126,52 C112,48 100,50 90,58" }, { p: "M122,60 C130,96 104,140 52,122" }] },
+  { ch: "خ", name: "khe", hint: "Head bar, bowl — then one dot on top.", strokes: [{ p: "M126,52 C112,48 100,50 90,58" }, { p: "M122,60 C130,96 104,140 52,122" }, { d: [104, 34] }] },
+  { ch: "و", name: "wā'o", hint: "One stroke: the little loop, then sweep the tail down.", strokes: [{ p: "M102,66 C118,58 126,72 117,83 C111,90 101,88 99,80 C93,102 76,128 54,148" }] },
+  { ch: "ی", name: "choṭī ye", hint: "The deep boat with its curl, then two dots below.", strokes: [{ p: "M150,78 C155,115 130,134 96,136 C66,138 48,122 52,102 C54,90 66,86 74,92" }, { d: [92, 162] }, { d: [114, 162] }] },
+  { ch: "ے", name: "baṛī ye", hint: "One long, flat sweep — right to left, then along the floor.", strokes: [{ p: "M148,60 C146,84 140,110 124,124 C96,138 62,134 46,118" }] },
+  { ch: "ں", name: "nūn ghunna", hint: "One deep bowl — and famously, no dot.", strokes: [{ p: "M142,78 C152,120 120,146 96,146 C70,146 54,126 56,98" }] },
+  { ch: "ھ", name: "do-chashmī he", hint: "Two little eyes: right one, then left one.", strokes: [{ p: "M136,114 a16,16 0 1,1 -32,2 a16,17 0 1,1 32,-2" }, { p: "M102,114 a16,16 0 1,1 -32,2 a16,17 0 1,1 32,-2" }] },
+  { ch: "ء", name: "hamza", hint: "One small hook, like a tiny 2.", strokes: [{ p: "M116,84 C92,78 86,100 96,112 C104,120 116,114 114,102" }] },
+];
