@@ -94,7 +94,7 @@ const Cloud = {
     this.status = "in";
     this.recId = null;
     this.saveSession();
-    await this.pullMergePush();
+    await this.pullMergePush(true);
     this.onChange?.();
   },
 
@@ -122,11 +122,15 @@ const Cloud = {
     return r.items?.[0] || null;
   },
 
-  async pullMergePush() {
+  // selectBest: on an explicit login, land the user in whichever
+  // learner profile has the most progress — usually the one they
+  // came back for — instead of a fresh guest.
+  async pullMergePush(selectBest = false) {
     const rec = await this.fetchRecord();
     if (rec) {
       this.recId = rec.id;
       root = mergeRoots(root, rec.data || {});
+      if (selectBest) root.active = mostProgressedProfile(root) || root.active;
       Store.save(root);
     }
     this.saveSession();
@@ -169,17 +173,27 @@ function mergeRoots(local, remote) {
       continue;
     }
     const p = {
+      ...b,
+      ...a, // unknown/future fields: local side wins, nothing dropped
       completed: { ...b.completed, ...a.completed },
       scores: {},
       streak: Math.max(a.streak || 0, b.streak || 0),
       lastDaily: [a.lastDaily, b.lastDaily].filter(Boolean).sort().pop() || null,
       dailyBest: {},
       leitner: {},
+      roleplay: {},
+      tracing: {},
+      placedAt: a.placedAt == null ? b.placedAt ?? null
+        : b.placedAt == null ? a.placedAt : Math.max(a.placedAt, b.placedAt),
     };
     for (const k of new Set([...Object.keys(a.scores || {}), ...Object.keys(b.scores || {})]))
       p.scores[k] = Math.max(a.scores?.[k] || 0, b.scores?.[k] || 0);
     for (const k of new Set([...Object.keys(a.dailyBest || {}), ...Object.keys(b.dailyBest || {})]))
       p.dailyBest[k] = Math.max(a.dailyBest?.[k] || 0, b.dailyBest?.[k] || 0);
+    for (const k of new Set([...Object.keys(a.roleplay || {}), ...Object.keys(b.roleplay || {})]))
+      p.roleplay[k] = Math.max(a.roleplay?.[k] || 0, b.roleplay?.[k] || 0);
+    for (const k of new Set([...Object.keys(a.tracing || {}), ...Object.keys(b.tracing || {})]))
+      p.tracing[k] = Math.max(a.tracing?.[k] || 0, b.tracing?.[k] || 0);
     for (const k of new Set([...Object.keys(a.leitner || {}), ...Object.keys(b.leitner || {})])) {
       const la = a.leitner?.[k], lb = b.leitner?.[k];
       p.leitner[k] = !la ? lb : !lb ? la : la.t >= lb.t ? la : lb;
@@ -187,4 +201,24 @@ function mergeRoots(local, remote) {
     out.profiles[name] = p;
   }
   return out;
+}
+
+// "Most progress" = levels/units passed dominate, then review depth,
+// daily-game history, tracing/role-play bests, and streak as tiebreak.
+function profileWeight(p) {
+  return Object.keys(p?.completed || {}).length * 100
+    + Object.keys(p?.leitner || {}).length
+    + Object.keys(p?.dailyBest || {}).length
+    + Object.keys(p?.tracing || {}).length
+    + Object.keys(p?.roleplay || {}).length
+    + (p?.streak || 0);
+}
+
+function mostProgressedProfile(r) {
+  let best = null, bestW = -1;
+  for (const [name, prof] of Object.entries(r?.profiles || {})) {
+    const w = profileWeight(prof);
+    if (w > bestW) { bestW = w; best = name; }
+  }
+  return best;
 }
