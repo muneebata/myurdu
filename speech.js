@@ -116,19 +116,39 @@ const Speech = {
       rec.interimResults = false;
       rec.maxAlternatives = 5;
       let settled = false;
-      rec.onresult = (e) => {
+      const finish = (fn, arg) => {
+        if (settled) return;
         settled = true;
+        clearTimeout(guard);
+        fn(arg);
+      };
+      // Some engines never fire result/error/end — don't leave the UI
+      // on "Listening…" forever.
+      const guard = setTimeout(() => {
+        try { rec.abort(); } catch (_) {}
+        finish(reject, new Error("timeout"));
+      }, 12000);
+      rec.onresult = (e) => {
         const alts = [...e.results[0]].map((r) => r.transcript);
-        resolve(alts);
+        const texts = alts.filter((t) => t && t.trim());
+        if (!texts.length) return finish(reject, new Error("no-speech"));
+        // An engine that answers only in Latin script ignored ur-PK —
+        // Safari's recognizer has no Urdu. Surface that honestly instead
+        // of scoring garbage against the Urdu target.
+        if (texts.every((t) => !/[\u0600-\u06FF]/.test(t)))
+          return finish(reject, new Error("language-not-supported"));
+        finish(resolve, alts);
       };
-      rec.onerror = (e) => {
-        if (!settled) reject(new Error(e.error));
-      };
-      rec.onend = () => {
-        if (!settled) reject(new Error("no-speech"));
-      };
+      rec.onnomatch = () => finish(reject, new Error("no-speech"));
+      rec.onerror = (e) => finish(reject, new Error(e.error || "error"));
+      rec.onend = () => finish(reject, new Error("no-speech"));
       rec.start();
     });
+  },
+
+  // Errors that mean "this setup won't ever hear Urdu" (vs. try again)
+  fatalMicError(code) {
+    return ["language-not-supported", "service-not-allowed", "unsupported", "audio-capture"].includes(code);
   },
 
   normalizeUrdu(s) {
