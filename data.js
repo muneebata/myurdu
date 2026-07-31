@@ -1383,3 +1383,19 @@ const SOUND_UNITS = [
     ],
   },
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Jashn-e-Azadi week (Aug 7–14) — special vocabulary for Suno!
+// ─────────────────────────────────────────────────────────────
+
+const AZADI_ITEMS = [
+  { ur: "آزادی", tr: "āzādī", en: "freedom / independence", note: "" },
+  { ur: "پرچم", tr: "parcham", en: "flag", note: "" },
+  { ur: "جشن", tr: "jashn", en: "celebration / festival", note: "" },
+  { ur: "وطن", tr: "watan", en: "homeland", note: "" },
+  { ur: "قوم", tr: "qaum", en: "nation / people", note: "" },
+  { ur: "مبارک", tr: "mubārak", en: "congratulations / blessed", note: "" },
+  { ur: "چودہ اگست", tr: "chaudah agast", en: "the 14th of August", note: "" },
+  { ur: "جشن آزادی مبارک", tr: "jashn-e-āzādī mubārak", en: "Happy Independence Day!", note: "" },
+  { ur: "پاکستان زندہ باد", tr: "Pākistān zindah bād", en: "Long live Pakistan!", note: "" },
+];

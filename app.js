@@ -49,12 +49,7 @@ function addProfile(name) {
   if (!root.profiles[name]) root.profiles[name] = blankProfile();
   root.active = name;
   saveRoot();
-  Cloud.onChange = () => {
-  if (document.querySelector(".roster")) renderProfiles();
-  else if (document.querySelector(".hero")) renderHome();
-};
-Cloud.init();
-renderHome();
+  renderHome();
 }
 
 function switchProfileAt(i) {
@@ -299,6 +294,47 @@ function ledgerRow(onclick, num, title, urName, sub, statusHtml) {
     </button>`;
 }
 
+// ── Jashn-e-Azadi week (Aug 7–14, Chicago time) ─────────────
+
+function azadiWindow() {
+  const t = new URLSearchParams(location.search).get("azadi");
+  if (t === "1" || t === "14") return true;
+  const [, m, d] = todayKey().split("-").map(Number);
+  return m === 8 && d >= 7 && d <= 14;
+}
+
+function isAzadiDay() {
+  if (new URLSearchParams(location.search).get("azadi") === "14") return true;
+  const [, m, d] = todayKey().split("-").map(Number);
+  return m === 8 && d === 14;
+}
+
+// The retro waving flag — a loving tribute to every 90s homepage.
+// Ripple via animated turbulence displacement (the old GIF-flag look).
+const AZADI_FLAG_SVG = `
+<svg class="azadi-flag" viewBox="0 0 150 130" aria-label="Waving flag of Pakistan">
+  <defs>
+    <filter id="flagwave" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="2" seed="7" result="w">
+        <animate attributeName="baseFrequency" dur="4s" values="0.012 0.06;0.016 0.09;0.012 0.06" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <circle cx="14" cy="8" r="5" fill="#d9a413" stroke="#8a6d1c" stroke-width="1.5"/>
+  <rect x="11.5" y="12" width="5" height="118" rx="2" fill="#8a5a2b"/>
+  <rect x="12.6" y="12" width="1.6" height="118" fill="#b07f45"/>
+  <g filter="url(#flagwave)">
+    <g transform="translate(17,16)">
+      <rect width="126" height="76" fill="#01411C"/>
+      <rect width="31.5" height="76" fill="#f7f2e6"/>
+      <circle cx="86" cy="38" r="21" fill="#f7f2e6"/>
+      <circle cx="92.5" cy="32.5" r="17.5" fill="#01411C"/>
+      <path d="M97 21 l3.05 6.7 7.3 0.85 -5.4 5 1.45 7.2 -6.4-3.6 -6.4 3.6 1.45-7.2 -5.4-5 7.3-0.85 Z" fill="#f7f2e6" transform="rotate(20 97 28)"/>
+    </g>
+  </g>
+</svg>`;
+
 // ── Home ─────────────────────────────────────────────────────
 
 function renderHome() {
@@ -325,6 +361,7 @@ function renderHome() {
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
+      ${azadiWindow() ? AZADI_FLAG_SVG : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
@@ -339,6 +376,7 @@ function renderHome() {
         <span class="progress-label">${pct}% complete</span>
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
+      ${azadiWindow() ? azadiBanner() : ""}
       ${due > 0 ? `<button class="review-banner" onclick="startCallback()">📚 ${due} word${due === 1 ? "" : "s"} due for review — two minutes, let's go →</button>` : ""}
     </header>
 
@@ -960,8 +998,17 @@ let suno = null;
 
 function startSuno() {
   const rng = mulberry32(daySeed() + 13);
-  const pool = LEVELS.flatMap((lv) => lv.items);
-  const picks = cycleDraw(pool, DAILY_QUESTIONS, 13001);
+  let pool = LEVELS.flatMap((lv) => lv.items);
+  let picks;
+  if (azadiWindow()) {
+    // Azadi week: two azadi words + three regulars, deterministic per day
+    const rngA = mulberry32(daySeed() + 47);
+    const azadi = seededPick(AZADI_ITEMS, 2, rngA);
+    picks = [...azadi, ...cycleDraw(pool, DAILY_QUESTIONS, 13001).slice(0, DAILY_QUESTIONS - 2)];
+    pool = [...pool, ...AZADI_ITEMS];
+  } else {
+    picks = cycleDraw(pool, DAILY_QUESTIONS, 13001);
+  }
   const questions = picks.map((item) => {
     const distractors = seededPick(pool.filter((x) => x.tr !== item.tr && x.en !== item.en), 3, rng);
     return {
@@ -1193,6 +1240,80 @@ function completeUnit(unitsName, i) {
   else renderHome();
 }
 
+// ── Jashn-e-Azadi UI ─────────────────────────────────────────
+
+function azadiBanner() {
+  const [y, m, d] = todayKey().split("-").map(Number);
+  const daysLeft = m === 8 ? 14 - d : null;
+  const line = isAzadiDay()
+    ? "🇵🇰 Jashn-e-Azadi Mubarak! Happy 14th of August!"
+    : daysLeft && daysLeft > 0
+      ? `🇵🇰 Jashn-e-Azadi week — ${daysLeft} din to the 14th. Suno! is serving azadi words all week.`
+      : "🇵🇰 Jashn-e-Azadi week — Suno! is serving azadi words all week.";
+  return `
+    <div class="azadi-banner">
+      <span>${line}</span>
+      <button class="btn small azadi-share-btn" onclick="showAzadiCard()">📤 Share your Azadi card</button>
+    </div>`;
+}
+
+function launchConfetti() {
+  if (sessionStorage.getItem("azadi-confetti")) return;
+  sessionStorage.setItem("azadi-confetti", "1");
+  const box = document.createElement("div");
+  box.className = "confetti-box";
+  const colors = ["#01411C", "#f7f2e6", "#1a7a3c", "#d9a413"];
+  for (let i = 0; i < 44; i++) {
+    const c = document.createElement("i");
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = colors[i % colors.length];
+    c.style.animationDelay = Math.random() * 2.5 + "s";
+    c.style.animationDuration = 2.8 + Math.random() * 2 + "s";
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+    box.appendChild(c);
+  }
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 8000);
+}
+
+async function showAzadiCard() {
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal-card cert-modal">
+      <canvas id="azadi-canvas" width="1000" height="700"></canvas>
+      <div class="result-actions">
+        <a class="btn primary" id="azadi-dl" download="jashn-e-azadi.png">⬇️ Download</a>
+        <button class="btn" onclick="this.closest('.modal-overlay').remove()">Close</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  try { await document.fonts.load("700 60px 'Baloo 2'"); await document.fonts.load("700 60px 'Noto Nastaliq Urdu'"); } catch {}
+  const cv = document.getElementById("azadi-canvas");
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = "#01411C"; ctx.fillRect(0, 0, 1000, 700);
+  ctx.fillStyle = "#f7f2e6"; ctx.fillRect(0, 0, 250, 700);
+  // crescent + star on the green field
+  ctx.beginPath(); ctx.arc(660, 300, 150, 0, Math.PI * 2); ctx.fillStyle = "#f7f2e6"; ctx.fill();
+  ctx.beginPath(); ctx.arc(705, 262, 128, 0, Math.PI * 2); ctx.fillStyle = "#01411C"; ctx.fill();
+  ctx.save(); ctx.translate(740, 230); ctx.rotate(0.35); ctx.fillStyle = "#f7f2e6";
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const a = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+    ctx[i ? "lineTo" : "moveTo"](Math.cos(a) * 55, Math.sin(a) * 55);
+  }
+  ctx.closePath(); ctx.fill(); ctx.restore();
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#f7f2e6"; ctx.font = "700 64px 'Noto Nastaliq Urdu', serif";
+  ctx.fillText("جشن آزادی مبارک", 620, 520);
+  ctx.font = "700 36px 'Baloo 2', sans-serif";
+  ctx.fillText("Jashn-e-Azadi Mubarak · 14 August", 620, 580);
+  ctx.font = "24px 'Baloo 2', sans-serif"; ctx.fillStyle = "#d9a413";
+  ctx.fillText("I'm learning Urdu at myurdu.org — a free Urdu-learning resource", 620, 640);
+  document.getElementById("azadi-dl").href = cv.toDataURL("image/png");
+}
+
 // ── About ────────────────────────────────────────────────────
 
 function showAbout() {
@@ -1244,4 +1365,10 @@ Speech.onVoiceChange = () => {
   el.hidden = !notice;
   el.innerHTML = notice ? `🔈 ${esc(notice)}` : "";
 };
+Cloud.onChange = () => {
+  if (document.querySelector(".roster")) renderProfiles();
+  else if (document.querySelector(".hero")) renderHome();
+};
+Cloud.init();
 renderHome();
+if (isAzadiDay()) launchConfetti();
