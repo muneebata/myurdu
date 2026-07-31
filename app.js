@@ -1783,7 +1783,7 @@ function renderTraceLetter() {
       </div>
     </div>
     ${doneAll ? twResultHTML() : `
-    <p class="tw-status">${cur.p ? "Start at the green dot ● and follow the dashes" : "Now tap the marked dot"} · step ${tw.step + 1} of ${total}</p>
+    <p class="tw-status">${cur.p ? "Start at the green dot ● and follow the dashes" : "Now draw the dot at the green target ●"} · step ${tw.step + 1} of ${total}</p>
     <div class="tw-board"><div class="tw-svg">${twGuideSVG()}</div><canvas id="tw-canvas" width="480" height="480"></canvas></div>
     <div id="tw-feedback">${tw.msg}</div>
     <div class="rp-btns tw-btns">
@@ -1824,8 +1824,16 @@ function twBind() {
 function twDrawInk(cv) {
   const ctx = cv.getContext("2d");
   ctx.clearRect(0, 0, cv.width, cv.height);
-  if (tw.pts.length < 2) return;
   const k = cv.width / TRACE_BOX;
+  if (tw.pts.length < 2) {
+    if (tw.pts.length === 1) {
+      ctx.fillStyle = "rgba(194,106,58,.8)";
+      ctx.beginPath();
+      ctx.arc(tw.pts[0][0] * k, tw.pts[0][1] * k, 11, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return;
+  }
   ctx.lineWidth = 20;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
@@ -1843,9 +1851,9 @@ function twEvaluate() {
     if (hit) {
       tw.scores.push(100);
       tw.step++;
-      tw.msg = `<div class="pr good">✅ Dot placed!</div>`;
+      tw.msg = `<div class="pr good">✅ Dot — nuqta done!</div>`;
     } else {
-      tw.msg = `<div class="pr bad">The dot goes where the green circle is — tap it.</div>`;
+      tw.msg = `<div class="pr bad">Draw the dot right on the green target ●.</div>`;
     }
   } else {
     const r = traceScore(st.p, tw.pts);
