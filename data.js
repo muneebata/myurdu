@@ -1399,3 +1399,48 @@ const AZADI_ITEMS = [
   { ur: "جشن آزادی مبارک", tr: "jashn-e-āzādī mubārak", en: "Happy Independence Day!", note: "" },
   { ur: "پاکستان زندہ باد", tr: "Pākistān zindah bād", en: "Long live Pakistan!", note: "" },
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Role-play scenes — every line reuses existing audio clips
+// ─────────────────────────────────────────────────────────────
+
+const ROLEPLAYS = [
+  {
+    id: "RP1",
+    title: "At the Chai Dhaba",
+    urName: "چائے خانہ",
+    desc: "Order chai, ask the price, pay, and part warmly — Level 10's scene, live.",
+    youRole: "the customer",
+    themRole: "the chai-wala",
+    turns: [
+      { who: "you", ur: "یہاں چائے اچھی ہے؟", tr: "yahāṉ chāy achhī hai?", en: "Is the tea good here?" },
+      { who: "them", ur: "جی ہاں، بہت مزیدار!", tr: "jī hāṉ, bahut mazedār!", en: "Oh yes — very delicious!" },
+      { who: "you", ur: "دو چائے دیجیے", tr: "do chāy dījiye", en: "Two teas, please" },
+      { who: "you", ur: "کتنے روپے؟", tr: "kitne rupaye?", en: "How many rupees?" },
+      { who: "them", ur: "سو روپے", tr: "sau rupaye", en: "One hundred rupees" },
+      { who: "you", ur: "یہ لیجیے", tr: "yeh lījiye", en: "Here you go" },
+      { who: "them", ur: "بہت شکریہ", tr: "bahut shukriya", en: "Thank you very much" },
+      { who: "you", ur: "کوئی بات نہیں", tr: "koī bāt nahīṉ", en: "Don't mention it" },
+      { who: "them", ur: "پھر ملیں گے", tr: "phir mileṉge", en: "We'll meet again" },
+      { who: "you", ur: "اللہ حافظ", tr: "Allāh hāfiz", en: "Goodbye" },
+    ],
+  },
+  {
+    id: "RP2",
+    title: "Meeting Someone New",
+    urName: "ملاقات",
+    desc: "Greetings and introductions — Levels 1 & 2, live.",
+    youRole: "yourself",
+    themRole: "a new friend",
+    turns: [
+      { who: "them", ur: "السلام علیکم", tr: "assalām-o-alaikum", en: "Hello" },
+      { who: "you", ur: "وعلیکم السلام", tr: "wa-alaikum-us-salām", en: "Hello to you too" },
+      { who: "them", ur: "کیا حال ہے؟", tr: "kyā hāl hai?", en: "How are you?" },
+      { who: "you", ur: "ٹھیک ہوں", tr: "ṭhīk hūṉ", en: "I'm fine" },
+      { who: "them", ur: "آپ کہاں سے ہیں؟", tr: "āp kahāṉ se haiṉ?", en: "Where are you from?" },
+      { who: "you", ur: "میں امریکہ سے ہوں", tr: "maiṉ Amrīkā se hūṉ", en: "I am from America" },
+      { who: "them", ur: "آپ سے مل کر خوشی ہوئی", tr: "āp se mil kar khushī huī", en: "Pleased to meet you" },
+      { who: "you", ur: "شکریہ", tr: "shukriya", en: "Thank you" },
+    ],
+  },
+];
