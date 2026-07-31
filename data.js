@@ -332,6 +332,130 @@ const LEVELS = [
       "Hunger and thirst 'attach' to you in Urdu (<em>bhūk lagī hai</em>), the same grammar as liking things (<em>pasand hai</em>, L9). Feelings in Urdu are things that happen TO you — grammatically, you're never to blame.",
     ],
   },
+  {
+    id: "L14",
+    title: "Mazi · Yesterday's Stories",
+    urName: "ماضی",
+    subtitle: "The past tense — kal finally picks a direction",
+    intro:
+      "Since Level 8 you've known that kal means yesterday AND tomorrow. Today the mystery resolves: the verb decides. Learn a handful of past forms and suddenly you can tell stories — which is most of what conversation is.",
+    items: [
+      { ur: "تھا", tr: "thā", en: "was (male speaker)", note: "Maiṉ wahāṉ thā — I was there." },
+      { ur: "تھی", tr: "thī", en: "was (female speaker)", note: "Same sentence, thī for women — past agrees with gender." },
+      { ur: "تھے", tr: "the", en: "were (plural / respectful)", note: "Āp always gets the — respect is plural in Urdu." },
+      { ur: "کل میں بازار گیا", tr: "kal maiṉ bāzār gayā", en: "Yesterday I went to the bazaar (m)", note: "THE kal payoff: gayā is past, so kal must mean yesterday." },
+      { ur: "کل میں بازار گئی", tr: "kal maiṉ bāzār gaī", en: "Yesterday I went to the bazaar (f)", note: "gayā → gaī. Your verbs introduce you." },
+      { ur: "وہ آیا", tr: "woh āyā", en: "he came", note: "And woh āī — she came." },
+      { ur: "میں نے کھانا کھایا", tr: "maiṉ ne khānā khāyā", en: "I ate food", note: "Meet 'ne' — the little past-tense marker. Learn the phrase whole for now." },
+      { ur: "میں نے فلم دیکھی", tr: "maiṉ ne film dekhī", en: "I watched a film", note: "Another ne chunk — notice dekhī agrees with film (f)." },
+      { ur: "بہت مزہ آیا", tr: "bahut mazā āyā", en: "It was great fun", note: "Literally 'much fun came'. The standard verdict on any good evening." },
+      { ur: "آپ کہاں تھے؟", tr: "āp kahāṉ the?", en: "Where were you?", note: "L6's kahāṉ + today's the. The classic aunty opener." },
+    ],
+    funFacts: [
+      "The <em>kal</em> mystery, solved: “kal maiṉ gayā” (past verb → yesterday) vs “kal maiṉ jāūṉgā” (future verb → tomorrow). Urdu trusts the verb to carry the calendar.",
+      "Past-tense verbs agree with gender — <em>gayā</em> (m) vs <em>gaī</em> (f) — so a single sentence quietly introduces its speaker. Novelists love this; language learners get used to it fast.",
+      "That little <em>ne</em> (میں نے) is Urdu's famous ergative marker — it appears with 'doing' verbs in the past. Every textbook devotes a scary chapter to it; every learner masters it by just using phrases like <em>maiṉ ne khāyā</em> until it feels natural. Do that.",
+    ],
+  },
+  {
+    id: "L15",
+    title: "Mustaqbil · Tomorrow's Plans",
+    urName: "مستقبل",
+    subtitle: "The future tense — and kal pays off twice",
+    intro:
+      "The future is friendly: verb + gā (m) / gī (f) / ge (plural), agreeing just like colors did in Level 9. With it comes the other half of the kal trick — and the most famous protest poem in Urdu.",
+    items: [
+      { ur: "میں جاؤں گا", tr: "maiṉ jāūṉgā", en: "I will go (m)", note: "" },
+      { ur: "میں جاؤں گی", tr: "maiṉ jāūṉgī", en: "I will go (f)", note: "gā → gī, same pattern as the past." },
+      { ur: "میں کل آؤں گا", tr: "maiṉ kal āūṉgā", en: "I'll come tomorrow", note: "Future verb → kal means tomorrow. The trick, mastered." },
+      { ur: "ہم چائے پئیں گے", tr: "ham chāy pīeṉge", en: "We'll drink chai", note: "Ham = we. Arguably Urdu's most inevitable sentence." },
+      { ur: "کیا آپ آئیں گے؟", tr: "kyā āp āeṉge?", en: "Will you come?", note: "L6's kyā question trick, now aimed at the future." },
+      { ur: "میں اردو سیکھوں گا", tr: "maiṉ urdū sīkhūṉgā", en: "I will learn Urdu", note: "A promise you're already keeping." },
+      { ur: "ہم دیکھیں گے", tr: "ham dekheṉge", en: "We shall see", note: "Also the title of Faiz's legendary poem — see the fun fact." },
+      { ur: "انشاءاللہ کل ملیں گے", tr: "inshāAllah kal mileṉge", en: "God willing, we'll meet tomorrow", note: "L13's inshāAllah + today's future = how plans are actually made." },
+    ],
+    funFacts: [
+      "Future endings agree like adjectives: <em>jāūṉgā</em> (m), <em>jāūṉgī</em> (f), <em>jāeṉge</em> (plural/respect). One rule, whole tense.",
+      "“Ham Dekhenge” — 'We shall see' — is Faiz Ahmed Faiz's protest anthem, sung from Lahore stadiums to student marches for forty years. You just conjugated its title.",
+      "Attaching <em>inshāAllah</em> to future plans isn't just piety — it's grammar-adjacent culture. A bare 'I will come' sounds oddly overconfident to desi ears; inshāAllah softens fate itself.",
+    ],
+  },
+  {
+    id: "L16",
+    title: "Mat Karo · No, Don't, Stop",
+    urName: "منع",
+    subtitle: "Negation and commands — with courtesy built in",
+    intro:
+      "Saying no, telling people what (not) to do, and doing both politely. Urdu builds respect directly into command endings — the -iye you met at the chai dhaba runs the whole system.",
+    items: [
+      { ur: "مت", tr: "mat", en: "don't (with commands)", note: "The command-negator: mat jāo — don't go." },
+      { ur: "مت جاؤ", tr: "mat jāo", en: "Don't go!", note: "Every Bollywood/Lollywood climax in one phrase." },
+      { ur: "رکو", tr: "ruko", en: "Stop! / Wait!", note: "" },
+      { ur: "آؤ", tr: "āo", en: "Come!", note: "Casual tum-level command. Āiye for āp-level." },
+      { ur: "بیٹھیے", tr: "baiṭhiye", en: "Please sit", note: "The -iye courtesy ending from Level 10 — every host's first word." },
+      { ur: "سنیے", tr: "suniye", en: "Please listen / excuse me", note: "The universal polite summons — how you call a waiter or begin a request." },
+      { ur: "مجھے نہیں پتہ", tr: "mujhe nahīṉ patā", en: "I don't know", note: "Top-five most useful sentence in the language. Deploy honestly." },
+      { ur: "کوئی مسئلہ نہیں", tr: "koī mas'alah nahīṉ", en: "No problem", note: "Sibling of L10's koī bāt nahīṉ." },
+      { ur: "فکر مت کرو", tr: "fikr mat karo", en: "Don't worry", note: "Fikr = worry. The phrase that ends most desi phone calls." },
+      { ur: "نہیں چاہیے", tr: "nahīṉ chāhiye", en: "(I) don't want/need it", note: "L5's chāhiye, negated — bazaar armor." },
+    ],
+    funFacts: [
+      "Commands come in three courtesies matching the three 'you's: <em>jā</em> (tū — blunt), <em>jāo</em> (tum — casual), <em>jāiye</em> (āp — gracious). The verb ending does your bowing for you.",
+      "<em>Suniye</em> — literally 'please listen' — is the all-purpose polite attention-getter: waiters, shopkeepers, strangers, spouses. Urdu's answer to 'excuse me', but warmer.",
+      "<em>Nahīṉ</em> parks right before the verb: “maiṉ nahīṉ jāūṉgā” — I will NOT go. Negation slots into every tense you now own.",
+    ],
+  },
+  {
+    id: "L17",
+    title: "Bari Ginti · Big Numbers",
+    urName: "بڑی گنتی",
+    subtitle: "11 to 100 — landmarks through the beautiful chaos",
+    intro:
+      "Level 3 warned you: Urdu numbers 1–100 are all irregular. Nobody memorizes all hundred at once — you learn the landmarks and the halves system, and bazaar math takes care of the rest.",
+    items: [
+      { ur: "گیارہ", tr: "gyārah", en: "eleven", note: "" },
+      { ur: "بارہ", tr: "bārah", en: "twelve", note: "" },
+      { ur: "پندرہ", tr: "pandrah", en: "fifteen", note: "" },
+      { ur: "بیس", tr: "bīs", en: "twenty", note: "" },
+      { ur: "پچیس", tr: "pachchīs", en: "twenty-five", note: "The quarter-century landmark — and a common price." },
+      { ur: "تیس", tr: "tīs", en: "thirty", note: "" },
+      { ur: "چالیس", tr: "chālīs", en: "forty", note: "" },
+      { ur: "پچاس", tr: "pachās", en: "fifty", note: "" },
+      { ur: "سو", tr: "sau", en: "one hundred", note: "Your chai bill from Level 10." },
+      { ur: "ڈیڑھ", tr: "ḍeṛh", en: "one and a half", note: "Yes — 1.5 has its own dedicated word. See the fun fact." },
+      { ur: "ساڑھے", tr: "sāṛhe", en: "…and a half", note: "Sāṛhe tīn = 3.5. Also how clocks work: sāṛhe pāṉch = 5:30." },
+    ],
+    funFacts: [
+      "All hundred numbers are genuinely irregular — 87 is <em>satāsī</em>, 88 is <em>aṭṭhāsī</em>, and even native speakers pause at 79. Learn the tens, point at the rest.",
+      "Urdu runs a halves system English lacks: <em>ḍeṛh</em> (1.5) and <em>ḍhāī</em> (2.5) are their own words, and <em>sāṛhe</em> makes any number half-more. 'Ḍeṛh sau' (150) beats saying 'one hundred fifty' every time.",
+      "<em>Sāṛhe</em> is how time works: sāṛhe chhe = 6:30. Master it and you can schedule chai — which is the true purpose of clocks.",
+    ],
+  },
+  {
+    id: "L18",
+    title: "Shaadi Mein · At the Wedding",
+    urName: "شادی",
+    subtitle: "The grand capstone — survive and shine as a wedding guest",
+    intro:
+      "The final exam is a shaadi. Blessings, small talk with rishtedaar, the eternal food question, and a firm refusal to dance — every tense and trick from eighteen levels, deployed where it matters most. Play both sides out loud.",
+    items: [
+      { ur: "شادی مبارک ہو!", tr: "shādī mubārak ho!", en: "Congratulations on the wedding!", note: "Your entrance line. L13's mubārak, upgraded to an occasion." },
+      { ur: "آپ دلہن کی طرف سے ہیں؟", tr: "āp dulhan kī taraf se haiṉ?", en: "Are you from the bride's side?", note: "Dulhan = bride. The shaadi ice-breaker." },
+      { ur: "میں دولہا کا دوست ہوں", tr: "maiṉ dūlhā kā dost hūṉ", en: "I'm the groom's friend", note: "Dūlhā = groom, dost from L4. Now you belong." },
+      { ur: "بہت خوبصورت شادی ہے", tr: "bahut khūbsūrat shādī hai", en: "It's a beautiful wedding", note: "Khūbsūrat from L12's weather exclamation — recycled for maximum aunty-approval." },
+      { ur: "مہندی کل تھی", tr: "mehndī kal thī", en: "The mehndi was yesterday", note: "L14 past + P2's mehndī. Kal = yesterday here — you know why." },
+      { ur: "ولیمہ پرسوں ہوگا", tr: "walīmah parsoṉ hogā", en: "The walima is the day after tomorrow", note: "Future hogā + L8's parsoṉ. The three-event timeline, mastered." },
+      { ur: "کھانا کب ملے گا؟", tr: "khānā kab milegā?", en: "When will the food come?", note: "The true national anthem of wedding guests. L6 kab + future." },
+      { ur: "بریانی مزیدار ہے", tr: "biryānī mazedār hai", en: "The biryani is delicious", note: "Say it whether or not there's aloo. Peace matters." },
+      { ur: "ناچیے!", tr: "nāchiye!", en: "Dance, please!", note: "The -iye courtesy, weaponized by aunties." },
+      { ur: "میں نہیں ناچوں گا", tr: "maiṉ nahīṉ nāchūṉgā", en: "I will NOT dance", note: "L16 negation + L15 future. A complete, doomed sentence." },
+    ],
+    funFacts: [
+      "“Khānā kab milegā?” is whispered at every shaadi on Earth roughly forty minutes after arrival. You now whisper it grammatically.",
+      "The event sequence you can now narrate in three tenses: <em>mehndī kal thī</em> (past), <em>shādī āj hai</em> (present), <em>walīmah parsoṉ hogā</em> (future). Eighteen levels, one sentence family.",
+      "Declaring <em>maiṉ nahīṉ nāchūṉgā</em> has never once prevented the dancing. The aunties always win. Consider it your final listening exercise.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -1250,10 +1374,10 @@ const DAILY_QUESTIONS = 5;
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 5, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 10, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 15, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 22, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 28, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 11, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 17, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 24, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 32, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────

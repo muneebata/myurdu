@@ -1285,7 +1285,7 @@ function showAbout() {
 
 const TRACK_DEFS = [
   { id: "speak", emoji: "🗣️", title: "Speak & Listen", ur: "بولیں", cls: "",
-    desc: "13 levels, salaam to full conversations — plus live role-play scenes with your mic",
+    desc: "18 levels, salaam to shaadi season — plus live role-play scenes with your mic",
     prog: () => [LEVELS.filter((lv) => isCompleted(lv.id)).length, LEVELS.length] },
   { id: "sounds", emoji: "👄", title: "Sound School", ur: "آوازیں", cls: "sounds",
     desc: "Train the sounds English doesn't have — rolled Rs, curled Ts, real anatomy",
@@ -1618,7 +1618,7 @@ function stepPlacement() {
   if (plc.qInBand < 3) return nextPlacementQuestion();
   const passed = plc.bandCorrect >= 2;
   if (!passed || plc.band === PLACEMENT_BANDS.length - 1) {
-    plc.placedIndex = passed ? LEVELS.length - 1 : PLACEMENT_BANDS[plc.band].startLevel;
+    plc.placedIndex = passed ? 13 : PLACEMENT_BANDS[plc.band].startLevel; // cleared ladder -> start of the A2 arc (L14)
     return finishPlacement();
   }
   plc.band++;
@@ -1634,7 +1634,7 @@ function finishPlacement() {
   saveRoot();
   const lv = LEVELS[idx];
   const fresh = idx === 0;
-  const topped = idx === LEVELS.length - 1;
+  const topped = idx === 13 && plc.placedIndex === 13;
   app().innerHTML = `
     ${backBar("🧭 Placement · result")}
     <div class="result-card pass">
@@ -1644,7 +1644,7 @@ function finishPlacement() {
       <p>${fresh
         ? "The very beginning is exactly the right place — everyone's salaam starts somewhere."
         : topped
-          ? "Roam freely — the daily games, Sound School, and role-play scenes will keep you sharp while more advanced levels are on the way."
+          ? "Straight to the A2 arc: past tense, future, and the wedding capstone await."
           : `Earlier levels are marked "placed past" — dip back anytime; they don't count as passed until you take their quizzes.`}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="openLevel(${topped ? idx : idx})">Start Level ${idx + 1} →</button>
