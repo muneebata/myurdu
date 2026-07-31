@@ -428,7 +428,7 @@ function renderHome() {
     </section>
 
 
-    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button></footer>
+    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
 }
 
