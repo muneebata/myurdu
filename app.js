@@ -519,6 +519,23 @@ function playItem(levelIdx, itemIdx, slow) {
   Speech.speak(item.ur, item.tr, { slow });
 }
 
+const MIC_ERRORS = {
+  "not-allowed": "Microphone access was blocked — allow the mic in your browser's site settings and try again.",
+  "no-speech": "Didn't catch anything — try again, a bit louder and closer to the mic.",
+  "audio-capture": "No working microphone found on this device.",
+  "language-not-supported": "This browser can't recognize Urdu speech yet (Safari can't — Chrome and Edge can).",
+  "service-not-allowed": "This browser blocked its speech service — Chrome or Edge handles the mic check best.",
+  network: "The speech service couldn't be reached — check your connection.",
+  timeout: "The mic stayed silent — check the right microphone is selected, then try again.",
+  aborted: "Listening got interrupted — try again.",
+};
+
+let micFailStreak = 0;
+
+function selfCheckNote() {
+  return `<div class="pr warn">🎧 Plan B — self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip. For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
+}
+
 async function practiceItem(cardId, levelIdx, itemIdx) {
   const item = LEVELS[levelIdx].items[itemIdx];
   const out = $(`#${cardId}-result`);
@@ -529,6 +546,7 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
   out.innerHTML = `<div class="pr listening">🎙️ Listening… say: <em>${esc(item.tr)}</em></div>`;
   try {
     const alts = await Speech.listen();
+    micFailStreak = 0;
     const score = Speech.score(alts, item.ur);
     let verdict, cls;
     if (score >= 80) { verdict = "🌟 Shābāsh! (Bravo!) Nailed it."; cls = "good"; }
@@ -540,13 +558,10 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
         <span class="heard">Heard: <span class="ur-inline">${esc(alts[0] || "—")}</span></span>
       </div>`;
   } catch (e) {
-    const msg = {
-      "not-allowed": "Microphone access was blocked — allow the mic and try again.",
-      "no-speech": "Didn't catch anything — try again, a bit louder.",
-      "audio-capture": "No microphone found on this device.",
-      network: "Speech service unreachable — check your connection.",
-    }[e.message] || "Couldn't listen just now — try again.";
-    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>`;
+    if (!["no-speech", "not-allowed"].includes(e.message)) micFailStreak++;
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    const dead = Speech.fatalMicError(e.message) || micFailStreak >= 2;
+    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead ? selfCheckNote() : "");
   }
 }
 
@@ -1434,7 +1449,7 @@ let rp = null;
 
 function startRolePlay(i) {
   const scene = ROLEPLAYS[i];
-  rp = { scene, idx: 0, passed: 0, tried: 0, history: [] };
+  rp = { scene, idx: 0, passed: 0, tried: 0, history: [], micFails: 0, selfChecked: false };
   renderRP();
 }
 
@@ -1493,6 +1508,10 @@ function renderRP() {
 function rpAdvance(mark) {
   const turn = rp.scene.turns[rp.idx];
   if (turn.who === "you") rp.tried++;
+  if (turn.who === "you" && mark === "said aloud") {
+    rp.passed++;
+    rp.selfChecked = true;
+  }
   rp.history.push({ ...turn, mark: mark === undefined ? (turn.who === "you" ? "(skipped)" : "") : "✓" });
   rp.idx++;
   renderRP();
@@ -1504,6 +1523,7 @@ async function rpSay() {
   out.innerHTML = `<div class="pr listening">🎙️ Listening… say: <em>${esc(turn.tr)}</em></div>`;
   try {
     const alts = await Speech.listen();
+    rp.micFails = 0;
     const score = Speech.score(alts, turn.ur);
     if (score >= 55) {
       rp.passed++;
@@ -1516,12 +1536,13 @@ async function rpSay() {
         <div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🐢, then try again (or Skip).</div>`;
     }
   } catch (e) {
-    const msg = {
-      "not-allowed": "Microphone blocked — allow it and try again.",
-      "no-speech": "Didn't catch anything — a bit louder!",
-      network: "Speech service unreachable — check your connection.",
-    }[e.message] || "Couldn't listen just now — try again.";
-    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>`;
+    if (!["no-speech", "not-allowed"].includes(e.message)) rp.micFails++;
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    const dead = Speech.fatalMicError(e.message) || rp.micFails >= 2;
+    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead
+      ? `<div class="pr warn">No mic, no problem — 🐢 hear the line, say it out loud, then:</div>
+         <button class="btn primary" onclick="rpAdvance('said aloud')">I said it aloud →</button>`
+      : "");
   }
 }
 
@@ -1529,16 +1550,17 @@ function finishRP() {
   const sc = rp.scene;
   const yourLines = sc.turns.filter((t) => t.who === "you").length;
   const pct = Math.round((rp.passed / yourLines) * 100);
+  const self = rp.selfChecked || !Speech.recognitionSupported();
   const p = profile();
   p.roleplay = p.roleplay || {};
-  if (Speech.recognitionSupported()) p.roleplay[sc.id] = Math.max(p.roleplay[sc.id] || 0, pct);
+  if (!self) p.roleplay[sc.id] = Math.max(p.roleplay[sc.id] || 0, pct);
   saveRoot();
   app().innerHTML = `
     ${backBar(`🎭 ${esc(sc.title)} · scene complete`, "renderTrack('speak')")}
     <div class="result-card ${pct >= 60 ? "pass" : ""}">
       <div class="result-emoji">${pct >= 90 ? "🏆" : pct >= 60 ? "🎉" : "💪"}</div>
       <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished — keep practicing!"}</h2>
-      <p class="result-score">${rp.passed} of ${yourLines} lines landed${Speech.recognitionSupported() ? ` — ${pct}%` : " (self-checked)"}</p>
+      <p class="result-score">${rp.passed} of ${yourLines} lines ${self ? "said aloud (self-checked)" : `landed — ${pct}%`}</p>
       <p>${pct >= 60 ? "That was a real exchange, start to finish. Say it again tomorrow and it'll come out faster." : "Every run makes the lines more automatic. Tap 🐢 on the hard ones and go again."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startRolePlay(${ROLEPLAYS.indexOf(sc)})">Play again</button>
