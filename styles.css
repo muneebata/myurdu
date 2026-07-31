@@ -610,3 +610,11 @@ body {
 .tw-pick .ur { font-size: 1.9rem; line-height: 1.6; color: var(--teal-dark); }
 .tw-pick b { font-size: 0.78rem; }
 .tw-best { font-size: 0.72rem; color: var(--muted); }
+
+/* ── Friendly Sound School diagrams ── */
+.dia-hl { animation: diaPulse 1.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes diaPulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.45); }
+}
+.mouth-real text { font-family: "Baloo 2", "Segoe UI", sans-serif; }
