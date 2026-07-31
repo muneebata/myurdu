@@ -4,6 +4,7 @@
 # deploys without a version bump cause stale-cache version skew.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+python3 tools/gen_seo.py
 V=$(date +%Y%m%d%H%M)
 sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html
 sed -i '' -E "s/myurdu-v[0-9]+/myurdu-v$V/" sw.js
