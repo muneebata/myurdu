@@ -1519,7 +1519,7 @@ function trackSoundsHTML() {
       <div class="ledger2">
         ${SOUND_UNITS.map((u, i) => {
           const st = isCompleted(u.id) ? `<span class="lst done">✅ Done</span>` : `<span class="lst">▶ Start</span>`;
-          return ledgerRow(`openUnit('SOUND_UNITS',${i})`, "ھ", u.title, null, u.subtitle, st);
+          return ledgerRow(`openUnit('SOUND_UNITS',${i})`, u.glyph, u.title, null, u.subtitle, st);
         }).join("")}
       </div>
     </section>`;
@@ -2104,6 +2104,16 @@ Cloud.onChange = () => {
   if (document.querySelector(".roster")) renderProfiles();
   else if (document.querySelector(".hero")) renderHome();
 };
+// Sound School was one unit (S1) before 2026-07-31; its completion
+// covered all six sounds, so carry that credit into the split modules.
+for (const prof of Object.values(root.profiles || {})) {
+  if (!prof.soundSplit) {
+    if (prof.completed?.S1) for (const id of ["S1", "S2", "S3", "S4", "S5", "S6"]) prof.completed[id] = true;
+    prof.soundSplit = true;
+  }
+}
+saveRoot();
+
 Cloud.init();
 renderHome();
 if (isAzadiDay()) launchConfetti();

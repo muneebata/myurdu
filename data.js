@@ -1373,11 +1373,11 @@ const DAILY_QUESTIONS = 5;
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 5, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 11, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 17, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 24, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 32, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 6, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 13, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 20, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 28, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 37, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -1387,10 +1387,11 @@ const RANKS = [
 const SOUND_UNITS = [
   {
     id: "S1",
-    title: "Awaazain · The Urdu Mouth",
-    subtitle: "Rolled Rs, curled Ts, puffs of air — train the tricky sounds",
+    title: "The Tapped R · ر",
+    glyph: "ر",
+    subtitle: "The flappy R you already say in the middle of 'butter'",
     intro:
-      "Ten minutes here pays off everywhere else. Urdu has a handful of sounds English simply doesn't use — but your mouth already knows most of them from other words. Each section shows you where the sound is made, tells you exactly what to do with your tongue, then gives you words to tap, hear, and echo.",
+      "Urdu's r is a single quick tap of the tongue — and your mouth already knows it from everyday English. Learn where it lives, then say it in real words.",
     sections: [
       {
         heading: "The tapped R — ر",
@@ -1410,6 +1411,19 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: flap consonants (with audio)", url: "https://en.wikipedia.org/wiki/Flap_consonant" },
         ],
       },
+    ],
+    funFacts: [
+      "English speakers make the Urdu tapped r thousands of times a day without knowing it — every fast “butter”, “water”, and “ladder” contains it. The sound isn't new; only its address is.",
+    ],
+  },
+  {
+    id: "S2",
+    title: "The Retroflex Curl · ٹ ڈ ڑ",
+    glyph: "ٹ",
+    subtitle: "Curl the tongue back — the sounds that make Urdu sound like Urdu",
+    intro:
+      "Curl your tongue-tip up and back and touch the roof of your mouth. That one move unlocks ٹ, ڈ, and ڑ — the 'heavy' letters.",
+    sections: [
       {
         heading: "The retroflex curl — ٹ ڈ ڑ",
         diagram: "retroflex",
@@ -1429,6 +1443,19 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: retroflex consonants (with audio)", url: "https://en.wikipedia.org/wiki/Retroflex_consonant" },
         ],
       },
+    ],
+    funFacts: [
+      "The retroflex ٹ ڈ ڑ don't exist in Arabic or Persian — the subcontinent added them, marking the letters with a tiny ط on top. When you nail them, you sound South Asian, not Middle Eastern.",
+    ],
+  },
+  {
+    id: "S3",
+    title: "The Dental Touch · ت د",
+    glyph: "ت",
+    subtitle: "Soft Ts and Ds, right against the teeth",
+    intro:
+      "Urdu's soft ت and د are made further forward than English t and d — the tongue presses flat on the back of the teeth. Small move, big difference.",
+    sections: [
       {
         heading: "The dental touch — ت د",
         diagram: "dental",
@@ -1446,6 +1473,17 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: dental consonants (with audio)", url: "https://en.wikipedia.org/wiki/Dental_consonant" },
         ],
       },
+    ],
+    funFacts: [],
+  },
+  {
+    id: "S4",
+    title: "The Puff of Air · بھ پھ تھ",
+    glyph: "ھ",
+    subtitle: "Aspiration — consonants that ride out on a breath",
+    intro:
+      "Some Urdu consonants come with a built-in puff of breath. Hold your palm at your lips: if it feels the wind, you're doing it right.",
+    sections: [
       {
         heading: "The puff of air — ھ (aspiration)",
         diagram: "aspiration",
@@ -1464,6 +1502,19 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: aspirated consonants (with audio)", url: "https://en.wikipedia.org/wiki/Aspirated_consonant" },
         ],
       },
+    ],
+    funFacts: [
+      "Aspiration is why 'Pakistan' said by a native speaker sounds different from the English version: the P is unaspirated — no puff — while English blasts it.",
+    ],
+  },
+  {
+    id: "S5",
+    title: "From the Throat · خ غ ق",
+    glyph: "خ",
+    subtitle: "The deep sounds English doesn't have",
+    intro:
+      "خ, غ, and ق are made far back in the mouth — deeper than any English sound. Once your tongue finds the spot, they're surprisingly comfortable.",
+    sections: [
       {
         heading: "From the throat — خ غ ق",
         diagram: "throat",
@@ -1482,6 +1533,17 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: the خ sound (with audio)", url: "https://en.wikipedia.org/wiki/Voiceless_velar_fricative" },
         ],
       },
+    ],
+    funFacts: [],
+  },
+  {
+    id: "S6",
+    title: "The Nasal Hum · ں",
+    glyph: "ں",
+    subtitle: "Send the sound through your nose",
+    intro:
+      "For ں the little curtain at the back of your mouth lowers and the sound floats out through your nose — the hum that ends words like nahīṉ.",
+    sections: [
       {
         heading: "The nasal hum — ں",
         diagram: "nasal",
@@ -1505,6 +1567,7 @@ const SOUND_UNITS = [
       "The retroflex ٹ ڈ ڑ don't exist in Arabic or Persian — the subcontinent added them, marking the letters with a tiny ط on top. When you nail them, you sound South Asian, not Middle Eastern.",
       "Aspiration is why 'Pakistan' said by a native speaker sounds different from the English version: the P is unaspirated — no puff — while English blasts it.",
     ],
+    funFacts: [],
   },
 ];
 
