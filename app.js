@@ -1320,7 +1320,7 @@ function renderTrack(id) {
   const bodies = {
     speak: () => rolePlayCards() + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
-    reading: trackReadingHTML,
+    reading: () => tracingCard() + trackReadingHTML(),
     virsa: trackVirsaHTML,
     pakistan: trackPakistanHTML,
   };
@@ -1654,6 +1654,243 @@ function finishPlacement() {
     </div>
   `;
   window.scrollTo(0, 0);
+}
+
+// ── Likhna: letter tracing ──────────────────────────────────
+// Qaida stroke order: the letter body first, in one flowing
+// right-to-left stroke, then dots and marks. Scoring = start at
+// the right place + cover the guide + no wild scribbling.
+
+const TRACE_BOX = 200;
+const TRACE_PASS = 70;
+
+function tracingCard() {
+  const p = profile();
+  const t = p.tracing || {};
+  const done = TRACE_LETTERS.filter((L) => (t[L.name] || 0) >= TRACE_PASS).length;
+  return `
+    <div class="rp-cards">
+      <button class="rp-card" onclick="renderTracing()">
+        <span class="rp-tag">✍️ Likhna · Writing</span>
+        <span class="rp-title">Letter Tracing <span class="ur">لکھنا</span></span>
+        <span class="rp-desc">Draw the letters yourself — body first, dots after, the way the qaida teaches. ${TRACE_LETTERS.length} letters, finger or mouse.</span>
+        <span class="rp-best">${done ? `${done}/${TRACE_LETTERS.length} letters mastered · keep going` : "▶ Start tracing"}</span>
+      </button>
+    </div>`;
+}
+
+function renderTracing() {
+  const p = profile();
+  const t = p.tracing || {};
+  app().innerHTML = `
+    ${backBar("✍️ Likhna · Letter Tracing", "renderTrack('reading')")}
+    <p class="lesson-intro">Write each letter the way the qaida teaches: the body first, in one flowing stroke — Urdu moves <b>right to left</b> — then its dots and marks. Trace with a finger or a mouse.</p>
+    <div class="tw-grid">
+      ${TRACE_LETTERS.map((L, i) => `
+        <button class="tw-pick" onclick="startTracing(${i})">
+          <span class="ur">${L.ch}</span>
+          <b>${esc(L.name)}</b>
+          <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
+        </button>`).join("")}
+    </div>`;
+  window.scrollTo(0, 0);
+}
+
+let tw = null;
+
+function startTracing(i) {
+  const L = TRACE_LETTERS[i];
+  tw = { i, letter: L, step: 0, pts: [], scores: [], msg: "", finalPct: null };
+  renderTraceLetter();
+  Speech.speak(L.ch, L.name);
+}
+
+function samplePath(d, n = 26) {
+  let svg = document.getElementById("trace-measure");
+  if (!svg) {
+    svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.id = "trace-measure";
+    svg.style.cssText = "position:absolute;width:0;height:0;overflow:hidden";
+    document.body.appendChild(svg);
+  }
+  const el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  el.setAttribute("d", d);
+  svg.appendChild(el);
+  const len = el.getTotalLength();
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const pt = el.getPointAtLength((len * i) / n);
+    pts.push([pt.x, pt.y]);
+  }
+  el.remove();
+  return { pts, len };
+}
+
+function traceScore(d, userPts) {
+  const { pts: guide, len } = samplePath(d);
+  const TOL = 18;
+  const covered = guide.filter((g) => userPts.some((u) => Math.hypot(u[0] - g[0], u[1] - g[1]) <= TOL)).length / guide.length;
+  const startOK = userPts.length > 0 && Math.hypot(userPts[0][0] - guide[0][0], userPts[0][1] - guide[0][1]) <= 28;
+  let drawn = 0;
+  for (let i = 1; i < userPts.length; i++) drawn += Math.hypot(userPts[i][0] - userPts[i - 1][0], userPts[i][1] - userPts[i - 1][1]);
+  return { pct: Math.round(covered * 100), startOK, tidy: drawn <= len * 2.5 + 40 };
+}
+
+function twGuideSVG() {
+  const L = tw.letter;
+  const cur = tw.step;
+  const parts = [];
+  L.strokes.forEach((st, i) => {
+    if (i === cur) return;
+    const doneS = i < cur;
+    if (st.p) {
+      parts.push(`<path d="${st.p}" fill="none" stroke="${doneS ? "#12808b" : "#e3d5b3"}" stroke-width="${doneS ? 9 : 8}" stroke-linecap="round" ${doneS ? "" : 'stroke-dasharray="1.5 7"'}/>`);
+    } else {
+      parts.push(`<circle cx="${st.d[0]}" cy="${st.d[1]}" r="7" fill="${doneS ? "#12808b" : "none"}" stroke="${doneS ? "#12808b" : "#e3d5b3"}" stroke-width="2.5"/>`);
+    }
+  });
+  const st = L.strokes[cur];
+  if (st && st.p) {
+    const g = samplePath(st.p, 12).pts;
+    const [sx, sy] = g[0];
+    const a = Math.atan2(g[1][1] - sy, g[1][0] - sx);
+    parts.push(`<path d="${st.p}" fill="none" stroke="#b8a276" stroke-width="8" stroke-linecap="round" stroke-dasharray="1.5 7"/>`);
+    const ax = sx + Math.cos(a) * 17, ay = sy + Math.sin(a) * 17;
+    const wx = Math.cos(a + Math.PI / 2) * 5.5, wy = Math.sin(a + Math.PI / 2) * 5.5;
+    parts.push(`<circle cx="${sx}" cy="${sy}" r="7.5" fill="#6f8f4e"/>`);
+    parts.push(`<path d="M${sx + wx},${sy + wy} L${ax},${ay} L${sx - wx},${sy - wy} Z" fill="#6f8f4e"/>`);
+  } else if (st) {
+    parts.push(`<circle cx="${st.d[0]}" cy="${st.d[1]}" r="10" fill="none" stroke="#6f8f4e" stroke-width="3"/><circle cx="${st.d[0]}" cy="${st.d[1]}" r="3.5" fill="#6f8f4e"/>`);
+  }
+  return `<svg viewBox="0 0 ${TRACE_BOX} ${TRACE_BOX}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="14" y1="145" x2="186" y2="145" stroke="#eee1c2" stroke-width="1.5" stroke-dasharray="4 5"/>
+    ${parts.join("")}</svg>`;
+}
+
+function renderTraceLetter() {
+  const L = tw.letter;
+  const total = L.strokes.length;
+  const doneAll = tw.step >= total;
+  const cur = L.strokes[tw.step];
+  app().innerHTML = `
+    ${backBar(`✍️ Likhna · ${esc(L.name)}`, "renderTracing()")}
+    <div class="tw-head">
+      <span class="tw-glyph ur">${L.ch}</span>
+      <div>
+        <b>${esc(L.name)}</b>
+        <p class="hint">${esc(L.hint)}</p>
+        <button class="btn small speak" onclick='Speech.speak(${JSON.stringify(L.ch)}, ${JSON.stringify(L.name)})'>🔊 Hear its name</button>
+      </div>
+    </div>
+    ${doneAll ? twResultHTML() : `
+    <p class="tw-status">${cur.p ? "Start at the green dot ● and follow the dashes" : "Now tap the marked dot"} · step ${tw.step + 1} of ${total}</p>
+    <div class="tw-board"><div class="tw-svg">${twGuideSVG()}</div><canvas id="tw-canvas" width="480" height="480"></canvas></div>
+    <div id="tw-feedback">${tw.msg}</div>
+    <div class="rp-btns tw-btns">
+      <button class="btn small" onclick="startTracing(${tw.i})">↺ Start letter over</button>
+      <button class="btn small" onclick="renderTracing()">All letters</button>
+    </div>`}
+  `;
+  if (!doneAll) twBind();
+  window.scrollTo(0, 0);
+}
+
+function twBind() {
+  const cv = document.getElementById("tw-canvas");
+  const toBox = (e) => {
+    const r = cv.getBoundingClientRect();
+    return [((e.clientX - r.left) / r.width) * TRACE_BOX, ((e.clientY - r.top) / r.height) * TRACE_BOX];
+  };
+  let drawing = false;
+  cv.onpointerdown = (e) => {
+    e.preventDefault();
+    try { cv.setPointerCapture(e.pointerId); } catch (_) {}
+    drawing = true;
+    tw.pts = [toBox(e)];
+    twDrawInk(cv);
+  };
+  cv.onpointermove = (e) => {
+    if (!drawing) return;
+    tw.pts.push(toBox(e));
+    twDrawInk(cv);
+  };
+  cv.onpointerup = () => {
+    if (!drawing) return;
+    drawing = false;
+    twEvaluate();
+  };
+}
+
+function twDrawInk(cv) {
+  const ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  if (tw.pts.length < 2) return;
+  const k = cv.width / TRACE_BOX;
+  ctx.lineWidth = 20;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "rgba(194,106,58,.8)";
+  ctx.beginPath();
+  ctx.moveTo(tw.pts[0][0] * k, tw.pts[0][1] * k);
+  for (const p of tw.pts.slice(1)) ctx.lineTo(p[0] * k, p[1] * k);
+  ctx.stroke();
+}
+
+function twEvaluate() {
+  const st = tw.letter.strokes[tw.step];
+  if (st.d) {
+    const hit = tw.pts.some((u) => Math.hypot(u[0] - st.d[0], u[1] - st.d[1]) <= 24);
+    if (hit) {
+      tw.scores.push(100);
+      tw.step++;
+      tw.msg = `<div class="pr good">✅ Dot placed!</div>`;
+    } else {
+      tw.msg = `<div class="pr bad">The dot goes where the green circle is — tap it.</div>`;
+    }
+  } else {
+    const r = traceScore(st.p, tw.pts);
+    if (!r.startOK) {
+      tw.msg = `<div class="pr warn">Start at the green dot ● — Urdu strokes flow right to left.</div>`;
+    } else if (!r.tidy) {
+      tw.msg = `<div class="pr warn">Trace just the dashed stroke — one smooth pass, no scribbling.</div>`;
+    } else if (r.pct >= TRACE_PASS) {
+      tw.scores.push(r.pct);
+      tw.step++;
+      tw.msg = `<div class="pr good">✅ ${r.pct}% — shābāsh!</div>`;
+    } else {
+      tw.msg = `<div class="pr bad">${r.pct}% traced — follow the dashed line all the way to its end.</div>`;
+    }
+  }
+  tw.pts = [];
+  if (tw.step >= tw.letter.strokes.length) return twFinish();
+  renderTraceLetter();
+}
+
+function twFinish() {
+  const pct = Math.round(tw.scores.reduce((a, b) => a + b, 0) / tw.scores.length);
+  const p = profile();
+  p.tracing = p.tracing || {};
+  p.tracing[tw.letter.name] = Math.max(p.tracing[tw.letter.name] || 0, pct);
+  saveRoot();
+  tw.finalPct = pct;
+  renderTraceLetter();
+}
+
+function twResultHTML() {
+  const pct = tw.finalPct;
+  const next = tw.i + 1 < TRACE_LETTERS.length ? tw.i + 1 : null;
+  return `
+    <div class="result-card pass">
+      <div class="result-emoji">${pct >= 90 ? "🏆" : "✍️"}</div>
+      <h2 class="retro">You wrote ${esc(tw.letter.name)}!</h2>
+      <p class="result-score">${pct}% · <span class="ur tw-glyph">${tw.letter.ch}</span></p>
+      <p>${pct >= 90 ? "Beautiful hand — a true qaida student." : "Every pass makes the hand surer. Trace it again and watch the score climb."}</p>
+      <div class="result-actions">
+        ${next != null ? `<button class="btn primary big" onclick="startTracing(${next})">Next letter: ${esc(TRACE_LETTERS[next].name)} →</button>` : ""}
+        <button class="btn" onclick="startTracing(${tw.i})">Trace it again</button>
+        <button class="btn" onclick="renderTracing()">All letters</button>
+      </div>
+    </div>`;
 }
 
 // ── Shared bits ──────────────────────────────────────────────
