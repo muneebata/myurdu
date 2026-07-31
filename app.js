@@ -433,7 +433,7 @@ function renderHome() {
           <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
         </button>
       </div>
-      <p class="arcade-row">🎮 Practice anytime — endless rounds:
+      <p class="arcade-row">🎮 Practice anytime — endless rounds drawn from the same question banks as Aaj Ka Paanch:
         <button class="linklike" onclick="startDaily()">🌱 Desi Roots</button> ·
         <button class="linklike" onclick="startGeo()">🗺️ Naqsha</button> ·
         <button class="linklike" onclick="startSuno()">🎧 Suno!</button>
