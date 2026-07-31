@@ -424,6 +424,7 @@ function renderHome() {
     <section>
       <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane — everything is open, nothing is locked</span></h2>
       <div class="trackgrid">${TRACK_DEFS.map(trackCard).join("")}</div>
+      ${p.placedAt == null && completedCount() < 2 ? `<p class="placement-line"><button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button></p>` : ""}
     </section>
 
 
@@ -1317,7 +1318,7 @@ function renderTrack(id) {
   const t = TRACK_DEFS.find((x) => x.id === id);
   const p = profile();
   const bodies = {
-    speak: () => rolePlayCards() + trackSpeakHTML(),
+    speak: () => rolePlayCards() + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: trackReadingHTML,
     virsa: trackVirsaHTML,
@@ -1339,7 +1340,12 @@ function trackSpeakHTML() {
         ${LEVELS.map((lv, i) => {
           const done = isCompleted(lv.id);
           const score = p.scores[lv.id];
-          const st = done ? `<span class="lst done">✅ Passed${score != null ? ` · ${score}%` : ""}</span>` : `<span class="lst">▶ Start</span>`;
+          const placed = !done && p.placedAt != null && i < p.placedAt;
+          const st = done
+            ? `<span class="lst done">✅ Passed${score != null ? ` · ${score}%` : ""}</span>`
+            : placed
+              ? `<span class="lst placed">⏭ Placed past</span>`
+              : `<span class="lst">▶ Start</span>`;
           return ledgerRow(`openLevel(${i})`, urduNum(i + 1), lv.title, lv.urName, lv.subtitle, st);
         }).join("")}
       </div>
@@ -1537,6 +1543,112 @@ function finishRP() {
       <div class="result-actions">
         <button class="btn primary big" onclick="startRolePlay(${ROLEPLAYS.indexOf(sc)})">Play again</button>
         <button class="btn" onclick="renderTrack('speak')">Speak & Listen</button>
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>
+  `;
+  window.scrollTo(0, 0);
+}
+
+// ── Placement quiz: find your starting line ─────────────────
+
+const PLACEMENT_BANDS = [
+  { label: "the basics", levels: [0, 1], startLevel: 0 },
+  { label: "everyday words", levels: [2, 3, 4], startLevel: 2 },
+  { label: "building sentences", levels: [5, 6, 7, 8], startLevel: 5 },
+  { label: "real conversation", levels: [9, 10, 11, 12], startLevel: 9 },
+];
+
+function placementLine() {
+  const p = profile();
+  return `<p class="placement-line">${p.placedAt != null
+    ? `<span class="hint">🧭 Placed at Level ${p.placedAt + 1} · <button class="linklike" onclick="startPlacement()">retake the placement quiz</button></span>`
+    : `<button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button>`}</p>`;
+}
+
+let plc = null;
+
+function startPlacement() {
+  plc = { band: 0, qInBand: 0, bandCorrect: 0, asked: 0, placedIndex: null };
+  nextPlacementQuestion();
+}
+
+function nextPlacementQuestion() {
+  const band = PLACEMENT_BANDS[plc.band];
+  const pool = band.levels.flatMap((i) => LEVELS[i].items);
+  const item = shuffle(pool)[0];
+  plc.q = Object.assign(makeQuestion(item, pool), { item });
+  plc.asked++;
+  const q = plc.q;
+  app().innerHTML = `
+    ${backBar("🧭 Placement · Find your starting line", "renderHome()")}
+    <div class="quiz-progress">Question ${plc.asked} · testing: ${esc(band.label)}</div>
+    <div class="quiz-card">
+      <div class="quiz-prompt">${q.prompt}</div>
+      <div class="quiz-options">
+        ${q.options.map((o, i) => `
+          <button class="btn option" id="opt-${i}" onclick="answerPlacement(${i})">
+            ${esc(o.label)}${o.sub ? `<span class="opt-ur ur">${esc(o.sub)}</span>` : ""}
+          </button>`).join("")}
+      </div>
+      <div id="quiz-feedback"></div>
+    </div>
+  `;
+  if (q.autoplay && q.audio) Speech.speak(q.audio.ur, q.audio.tr);
+  window.scrollTo(0, 0);
+}
+
+function answerPlacement(i) {
+  const q = plc.q;
+  const chosen = q.options[i];
+  q.options.forEach((o, j) => {
+    const el = $(`#opt-${j}`);
+    el.disabled = true;
+    if (o.correct) el.classList.add("correct");
+    else if (j === i) el.classList.add("wrong");
+  });
+  if (chosen.correct) plc.bandCorrect++;
+  plc.qInBand++;
+  $("#quiz-feedback").innerHTML = `
+    <div class="pr ${chosen.correct ? "good" : "bad"}">${chosen.correct ? "✅ Sahī!" : "❌ Not this one."}</div>
+    <button class="btn primary" onclick="stepPlacement()">Next →</button>`;
+}
+
+function stepPlacement() {
+  if (plc.qInBand < 3) return nextPlacementQuestion();
+  const passed = plc.bandCorrect >= 2;
+  if (!passed || plc.band === PLACEMENT_BANDS.length - 1) {
+    plc.placedIndex = passed ? LEVELS.length - 1 : PLACEMENT_BANDS[plc.band].startLevel;
+    return finishPlacement();
+  }
+  plc.band++;
+  plc.qInBand = 0;
+  plc.bandCorrect = 0;
+  nextPlacementQuestion();
+}
+
+function finishPlacement() {
+  const idx = plc.placedIndex;
+  const p = profile();
+  p.placedAt = idx;
+  saveRoot();
+  const lv = LEVELS[idx];
+  const fresh = idx === 0;
+  const topped = idx === LEVELS.length - 1;
+  app().innerHTML = `
+    ${backBar("🧭 Placement · result")}
+    <div class="result-card pass">
+      <div class="result-emoji">${topped ? "🏆" : "🧭"}</div>
+      <h2 class="retro">${topped ? "You cleared the whole ladder!" : `Your starting line: Level ${idx + 1}`}</h2>
+      <p class="result-score">${esc(lv.title)}</p>
+      <p>${fresh
+        ? "The very beginning is exactly the right place — everyone's salaam starts somewhere."
+        : topped
+          ? "Roam freely — the daily games, Sound School, and role-play scenes will keep you sharp while more advanced levels are on the way."
+          : `Earlier levels are marked "placed past" — dip back anytime; they don't count as passed until you take their quizzes.`}</p>
+      <div class="result-actions">
+        <button class="btn primary big" onclick="openLevel(${topped ? idx : idx})">Start Level ${idx + 1} →</button>
+        <button class="btn" onclick="renderTrack('speak')">See all levels</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>
