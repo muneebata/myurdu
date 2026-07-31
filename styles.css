@@ -588,3 +588,7 @@ body {
 .rp-now .rp-ur { font-size: 1.6rem; line-height: 2; color: var(--teal-dark); margin: 2px 0; }
 .rp-now .rp-tr { margin: 0 0 10px; }
 .rp-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── Placement ── */
+.placement-line { text-align: center; margin: 14px 0 0; font-size: 0.9rem; }
+.lst.placed { color: var(--muted); font-weight: 600; }
