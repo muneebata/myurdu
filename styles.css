@@ -644,3 +644,21 @@ body {
 .lughat-ur { font-size: 1.25rem; line-height: 1.9; white-space: nowrap; }
 .lughat-src { font-size: 0.78rem; white-space: nowrap; }
 @media (max-width: 560px) { .lughat-row { flex-wrap: wrap; } .lughat-ur { order: -1; width: 100%; text-align: right; } }
+
+/* ── Taraqqi report card ── */
+.rc-head { text-align: center; margin: 10px 0 4px; }
+.rc-rank { font-size: 1.2rem; font-weight: 700; color: var(--teal-dark); margin: 0; }
+.rc-card { background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 18px; margin: 12px 0; box-shadow: var(--shadow); }
+.rc-card h3 { margin: 0 0 10px; font-size: 1rem; color: var(--teal-dark); }
+.rc-line { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; font-size: 0.93rem; }
+.rc-bar { height: 8px; background: var(--bg); border-radius: 5px; overflow: hidden; margin: 2px 0 8px; }
+.rc-bar span { display: block; height: 100%; background: var(--teal); border-radius: 5px; }
+.rc-heatmap { display: grid; grid-template-columns: repeat(18, 1fr); gap: 3px; margin: 6px 0; }
+.hm-cell { aspect-ratio: 1; border-radius: 3px; background: var(--bg); border: 1px solid var(--line); }
+.hm-cell.on { background: var(--mustard); border-color: #b8890d; }
+.rc-boxes { display: flex; gap: 10px; align-items: flex-end; justify-content: space-around; margin: 8px 0 4px; }
+.rc-box { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.8rem; }
+.rc-box-bar { width: 26px; height: 64px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; display: flex; align-items: flex-end; overflow: hidden; }
+.rc-box-bar span { display: block; width: 100%; background: var(--terracotta); }
+.rc-box-label { color: var(--muted); }
+.streak-tag { cursor: pointer; font: inherit; }

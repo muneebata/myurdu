@@ -396,7 +396,7 @@ function renderHome() {
       <div class="id-row">
         <button class="tag profile-tag" onclick="renderProfiles()" title="Switch learner">👤 ${esc(root.active)} ▾</button>
         <span class="tag rank-tag">★ ${rank.name} · <span class="ur-inline">${rank.ur}</span></span>
-        <span class="tag streak-tag">🔥 ${p.streak}-day streak</span>
+        <button class="tag streak-tag" onclick="renderReport()" title="Report card">🔥 ${p.streak}-day streak · 📊</button>
         ${completedCount() >= RANKS[1].need ? `<button class="tag cert-tag" onclick="showCertificate()" title="Your certificate">🎓 Sanad</button>` : ""}
       </div>
       <div class="progress-wrap" title="${pct}% complete">
@@ -2200,6 +2200,88 @@ function lughatFilter(q) {
   const hits = !needle ? lughatBuild() : lughatBuild().filter((e) =>
     strip(norm(e.tr)).includes(strip(needle)) || norm(e.en).includes(needle) || norm(e.ur).includes(norm(q.trim())));
   document.getElementById("lughat-list").innerHTML = lughatRows(hits);
+}
+
+// ── Taraqqi: the report card ─────────────────────────────────
+
+function renderReport() {
+  const p = profile();
+  const rank = rankFor(p);
+  const nextRank = RANKS.find((r) => r.need > Object.keys(p.completed).length);
+  const done = Object.keys(p.completed).length;
+
+  const tracks = [
+    ["🗣️ Speak & Listen", LEVELS.filter((l) => p.completed[l.id]).length, LEVELS.length],
+    ["👄 Sound School", SOUND_UNITS.filter((u) => p.completed[u.id]).length, SOUND_UNITS.length],
+    ["📖 Learn to Read", READING_UNITS.filter((u) => p.completed[u.id]).length, READING_UNITS.length],
+    ["🎵 Virsa", CULTURE_UNITS.filter((u) => p.completed[u.id]).length, CULTURE_UNITS.length],
+    ["🇵🇰 Thora Break", PAKISTAN_UNITS.filter((u) => p.completed[u.id]).length, PAKISTAN_UNITS.length],
+  ];
+
+  // 90-day heatmap from dailyBest keys (any key that starts with a date)
+  const playedDays = new Set(Object.keys(p.dailyBest || {}).map((k) => k.slice(0, 10)));
+  const today = todayKey();
+  let cells = "";
+  for (let d = 89; d >= 0; d--) {
+    const key = shiftKey(today, -d);
+    const on = playedDays.has(key);
+    cells += `<span class="hm-cell${on ? " on" : ""}" title="${key}${on ? " · played" : ""}"></span>`;
+  }
+
+  const boxes = [0, 0, 0, 0, 0];
+  for (const st of Object.values(p.leitner || {})) boxes[Math.min(st.b || 0, 4)]++;
+  const learned = Object.keys(p.leitner || {}).length;
+  const boxMax = Math.max(...boxes, 1);
+
+  const traced = TRACE_LETTERS.filter((L) => (p.tracing?.[L.name] || 0) >= TRACE_PASS).length;
+  const rpRows = ROLEPLAYS.map((sc) =>
+    `<div class="rc-line"><span>🎭 ${esc(sc.title)}</span><b>${p.roleplay?.[sc.id] != null ? p.roleplay[sc.id] + "%" : "—"}</b></div>`).join("");
+
+  app().innerHTML = `
+    ${backBar("📊 Taraqqi · Report Card")}
+    <div class="rc-head">
+      <p class="rc-rank">★ ${esc(rank.name)} <span class="ur">${esc(rank.ur)}</span></p>
+      <p class="hint">${nextRank
+        ? `${nextRank.need - done} more completion${nextRank.need - done === 1 ? "" : "s"} to ${esc(nextRank.name)}`
+        : "Top of the ladder — Ustaadh-e-Azam!"}</p>
+    </div>
+
+    <div class="rc-card">
+      <h3>🧭 Lessons passed — ${done} of ${LEVELS.length + SOUND_UNITS.length + READING_UNITS.length + CULTURE_UNITS.length + PAKISTAN_UNITS.length}</h3>
+      ${tracks.map(([label, n, total]) => `
+        <div class="rc-line"><span>${label}</span><b>${n}/${total}</b></div>
+        <div class="rc-bar"><span style="width:${Math.round((n / total) * 100)}%"></span></div>`).join("")}
+    </div>
+
+    <div class="rc-card">
+      <h3>🔥 Daily games — ${p.streak}-day streak</h3>
+      <div class="rc-heatmap">${cells}</div>
+      <p class="hint">Last 90 days · ${playedDays.size} day${playedDays.size === 1 ? "" : "s"} played</p>
+    </div>
+
+    <div class="rc-card">
+      <h3>🧠 Word memory — ${learned} words in review</h3>
+      <div class="rc-boxes">
+        ${boxes.map((n, i) => `
+          <div class="rc-box"><div class="rc-box-bar"><span style="height:${Math.round((n / boxMax) * 100)}%"></span></div>
+          <span class="rc-box-label">${["new", "1d", "2d", "4d", "8d"][i]}</span><b>${n}</b></div>`).join("")}
+      </div>
+      <p class="hint">Words climb boxes as you get them right — box 5 words rest 8 days between reviews.</p>
+    </div>
+
+    <div class="rc-card">
+      <h3>✍️ Skills</h3>
+      <div class="rc-line"><span>Letters traced (70%+)</span><b>${traced}/${TRACE_LETTERS.length}</b></div>
+      ${rpRows}
+      ${p.placedAt != null ? `<div class="rc-line"><span>🧭 Placement</span><b>Level ${p.placedAt + 1}</b></div>` : ""}
+    </div>
+
+    <div class="result-actions">
+      <button class="btn primary" onclick="showCertificate()">🎓 View my Sanad</button>
+      <button class="btn" onclick="renderHome()">Home</button>
+    </div>
+  `;
+  window.scrollTo(0, 0);
 }
 
 // ── Shared bits ──────────────────────────────────────────────
