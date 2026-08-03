@@ -703,3 +703,13 @@ html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; co
 .break-desc { font-size: 0.88rem; color: var(--muted); }
 .break-prog { flex: none; text-align: center; font-weight: 700; color: var(--terracotta); z-index: 1; }
 .break-prog span { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+
+/* ── Jor word assembly ── */
+.joiner-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--card); margin: 8px 0; }
+.joiner-parts { direction: rtl; font-size: 1.4rem; line-height: 1.9; color: var(--muted); }
+.joiner-eq { font-weight: 700; color: var(--muted); }
+.joiner-word { font: inherit; cursor: pointer; background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 5px 12px; color: var(--ink); }
+.joiner-word .ur { font-size: 1.6rem; line-height: 1.8; color: var(--teal-dark); }
+.joiner-word:hover { border-color: var(--teal); }
+.joiner-meta { flex: 1; min-width: 180px; font-size: 0.88rem; }
+.joiner-note { color: var(--muted); font-size: 0.82rem; }
