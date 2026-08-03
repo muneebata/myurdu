@@ -2302,38 +2302,17 @@ function slugifyTitle(t) {
 }
 
 // ── PTV night mode ───────────────────────────────────────────
-// Default is AUTO: day theme 6:00–18:59, night theme 19:00–5:59,
-// switching live like a real broadcast day. Tapping the pill
-// cycles auto → night → day → auto.
-const THEME_KEY = "urdu-ustaadh-theme-v2";
-
+// Fully automatic: day look 6:00–18:59, night look 19:00–5:59,
+// by the visitor's local clock — like a broadcast day. No toggle.
 function themeByClock() {
   const h = new Date().getHours();
   return h >= 19 || h < 6 ? "dark" : "light";
 }
 
-function applyThemeMode(mode) {
-  localStorage.setItem(THEME_KEY, mode);
-  document.documentElement.dataset.theme = mode === "auto" ? themeByClock() : mode;
-  const btn = document.getElementById("theme-toggle");
-  if (btn) {
-    btn.textContent = mode === "auto" ? "🌗 auto" : mode === "dark" ? "🌙 night" : "☀️ day";
-    btn.title = mode === "auto"
-      ? "Auto: day look 6am–7pm, night look after. Tap to override."
-      : "Theme: tap to change (auto follows the clock)";
-  }
-}
-
-function toggleTheme() {
-  const cur = localStorage.getItem(THEME_KEY) || "auto";
-  applyThemeMode({ auto: "dark", dark: "light", light: "auto" }[cur] || "auto");
-}
-
 function initTheme() {
-  applyThemeMode(localStorage.getItem(THEME_KEY) || "auto");
-  setInterval(() => {
-    if ((localStorage.getItem(THEME_KEY) || "auto") === "auto") applyThemeMode("auto");
-  }, 60000);
+  const apply = () => (document.documentElement.dataset.theme = themeByClock());
+  apply();
+  setInterval(apply, 60000);
 }
 
 // ── Shared bits ──────────────────────────────────────────────
