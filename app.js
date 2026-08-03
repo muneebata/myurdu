@@ -442,9 +442,21 @@ function renderHome() {
 
     <section>
       <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane — everything is open, nothing is locked</span></h2>
-      <div class="trackgrid">${TRACK_DEFS.map(trackCard).join("")}</div>
+      <div class="trackgrid">${TRACK_DEFS.filter((t) => t.id !== "pakistan").map(trackCard).join("")}</div>
       <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat — look up any word the app teaches</button></p>
       ${p.placedAt == null && completedCount() < 2 ? `<p class="placement-line"><button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button></p>` : ""}
+    </section>
+
+    <section>
+      <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson — a little holiday</span></h2>
+      <button class="break-card" onclick="renderTrack('pakistan')">
+        <span class="break-stamp ur">پاکستان</span>
+        <span class="break-main">
+          <span class="break-title">Tired of Urdu? Take a break in Pakistan.</span>
+          <span class="break-desc">Postcards from home — mountains and mangoes, history and markhors. No quizzes ambushing you here.</span>
+        </span>
+        <span class="break-prog">${PAKISTAN_UNITS.filter((u) => isCompleted(u.id)).length}/${PAKISTAN_UNITS.length}<br><span>postcards</span></span>
+      </button>
     </section>
 
 
