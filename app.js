@@ -1511,7 +1511,7 @@ function renderTrack(id) {
     speak: () => micCompatNote() + rolePlayCards() + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: () => tracingCard() + trackReadingHTML(),
-    virsa: trackVirsaHTML,
+    virsa: () => kutubCard() + trackVirsaHTML(),
     pakistan: trackPakistanHTML,
   };
   app().innerHTML = `
@@ -2452,6 +2452,65 @@ function imlaNext() {
       </div>
     `;
   }
+}
+
+// ── Kutub Khana: the public-domain library ───────────────────
+
+function kutubCard() {
+  return `
+    <div class="rp-cards">
+      <button class="rp-card" onclick="renderKutub()">
+        <span class="rp-tag">📚 Kutub Khana · Library</span>
+        <span class="rp-title">The Poetry Shelf <span class="ur">کتب خانہ</span></span>
+        <span class="rp-desc">Ghalib, Mir, Iqbal, Khusrau — line by line, translated and annotated, with audio. Public domain, browsed freely.</span>
+        <span class="rp-best">▶ Open the shelf</span>
+      </button>
+    </div>`;
+}
+
+function renderKutub() {
+  app().innerHTML = `
+    ${backBar("📚 Kutub Khana · کتب خانہ", "renderTrack('virsa')")}
+    <p class="lesson-intro">Four shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
+    <div class="kutub-shelf">
+      ${KUTUB.map((w, i) => `
+        <button class="kutub-book" onclick="renderKutubWork(${i})">
+          <span class="kutub-ur ur">${esc(w.urName)}</span>
+          <span class="kutub-author">${esc(w.author)}</span>
+          <span class="kutub-title">${esc(w.title)}</span>
+          <span class="kutub-dates">${esc(w.dates)}</span>
+        </button>`).join("")}
+    </div>`;
+  window.scrollTo(0, 0);
+}
+
+function renderKutubWork(i) {
+  const w = KUTUB[i];
+  app().innerHTML = `
+    ${backBar(`📖 ${esc(w.author)}`, "renderKutub()")}
+    <div class="kutub-head">
+      <h2 class="retro">${esc(w.title)}</h2>
+      <p class="hint">${esc(w.form)} · ${esc(w.dates)}</p>
+    </div>
+    <p class="lesson-intro">${esc(w.intro)}</p>
+    <div class="kutub-lines">
+      ${w.lines.map((l) => `
+        <div class="kutub-entry">
+          <button class="verse-line" onclick='Speech.speak(${JSON.stringify(l.ur)}, ${JSON.stringify(l.tr)}, {slow:true})'>
+            <span class="verse-ur ur">${esc(l.ur)}</span>
+            <span class="verse-tr">${esc(l.tr)}</span>
+            <span class="verse-en">${esc(l.en)}</span>
+          </button>
+          <p class="kutub-note">✎ ${esc(l.note)}</p>
+        </div>`).join("")}
+    </div>
+    <p class="credit">${esc(w.source)}</p>
+    <div class="result-actions">
+      ${i + 1 < KUTUB.length ? `<button class="btn primary" onclick="renderKutubWork(${i + 1})">Next shelf: ${esc(KUTUB[i + 1].author)} →</button>` : ""}
+      <button class="btn" onclick="renderKutub()">The shelf</button>
+    </div>
+  `;
+  window.scrollTo(0, 0);
 }
 
 // ── Shared bits ──────────────────────────────────────────────

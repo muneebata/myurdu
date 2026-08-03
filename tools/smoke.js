@@ -19,8 +19,9 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
   LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS,
+  KUTUB,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB })",
   sandbox
 );
 
@@ -61,6 +62,7 @@ LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr)));
 AZADI_ITEMS.forEach((it) => want(it.tr));
 GEO_FEATURES.forEach((f) => want(f.tr));
 LOANWORDS.forEach((w) => want(w.tr));
+(KUTUB || []).forEach((w) => w.lines.forEach((l) => want(l.tr)));
 ROLEPLAYS.forEach((sc) => sc.turns.forEach((t) => {
   if (t.tr) want(t.tr);
   (t.choice || []).forEach((o) => want(o.tr));

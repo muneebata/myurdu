@@ -1638,6 +1638,98 @@ const DAILY_QUESTIONS = 5;
 // Titles — the learner's journey, from student to Ustaadh
 // ─────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────
+// Kutub Khana — the public-domain library. Texts here are out of
+// copyright (authors d. 1325–1938; Iqbal entry from Bang-e-Dra,
+// 1924, pre-1930 so PD in the US too). Wording follows the
+// canonical published texts; attributions are stated honestly
+// (Khusrau's pieces are traditional attributions and say so).
+// Bahadur Shah Zafar's famous ghazals are EXCLUDED on purpose:
+// their authorship is disputed among scholars.
+// ─────────────────────────────────────────────────────────────
+
+const KUTUB = [
+  {
+    id: "K1",
+    author: "Mirza Ghalib",
+    urName: "غالب",
+    dates: "1797–1869 · Delhi",
+    title: "Five Immortal Couplets",
+    form: "ashʼār from the Dīwān-e-Ghālib",
+    intro: "Ghalib is Urdu's wittiest, most quoted poet — half philosopher, half heartbroken uncle at the mushairah. These five couplets are among the most recited lines in the language. Read each misra aloud, then tap to hear it.",
+    source: "Dīwān-e-Ghālib (public domain).",
+    lines: [
+      { ur: "ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے", tr: "hazāroṉ khwāhisheṉ aisī ke har khwāhish pe dam nikle", en: "A thousand longings, each worth dying for —", note: "Khwāhish = desire. Dam nikle = the breath departs; L13's dam, at maximum drama." },
+      { ur: "بہت نکلے مرے ارمان لیکن پھر بھی کم نکلے", tr: "bahut nikle mire armān lekin phir bhī kam nikle", en: "many desires found their moment — and still it was too few.", note: "The most Ghalib move possible: getting what you wanted and finding it insufficient." },
+      { ur: "دل ناداں تجھے ہوا کیا ہے", tr: "dil-e-nādāṉ tujhe huā kyā hai", en: "Foolish heart, what has come over you?", note: "Dil-e-nādāṉ — the naive heart. You know 'tujhe kyā huā?' from the levels; this is its immortal ancestor." },
+      { ur: "آخر اس درد کی دوا کیا ہے", tr: "ākhir is dard kī davā kyā hai", en: "What, in the end, is the cure for this ache?", note: "Dard (pain) and davā (medicine) — the doctor role-play's vocabulary, three centuries early." },
+      { ur: "عشق نے غالب نکما کر دیا", tr: "ishq ne ghālib nikammā kar diyā", en: "Love has made Ghalib good for nothing —", note: "Nikammā = useless — every desi household's favorite scolding word, self-applied." },
+      { ur: "ورنہ ہم بھی آدمی تھے کام کے", tr: "varna ham bhī ādmī the kām ke", en: "once, I too was a useful man.", note: "Varna (otherwise) from the rickshaw scene. Poets sign their pen-name into the final couplet — this is a maqtā." },
+      { ur: "ان کے دیکھے سے جو آ جاتی ہے منہ پر رونق", tr: "un ke dekhe se jo ā jātī hai muṉh par raunaq", en: "Seeing them, such light comes to my face", note: "Raunaq = glow, liveliness — the word for a bazaar in full swing, here lit on a face." },
+      { ur: "وہ سمجھتے ہیں کہ بیمار کا حال اچھا ہے", tr: "vo samajhte haiṉ ke bīmār kā hāl achhā hai", en: "that they conclude the patient must be well.", note: "Bīmār = ill, hāl = condition — kyā hāl hai, weaponised for irony." },
+      { ur: "رگوں میں دوڑتے پھرنے کے ہم نہیں قائل", tr: "ragoṉ meṉ dauṛte phirne ke ham nahīṉ qāyal", en: "Blood merely racing through veins does not impress me —", note: "Rag = vein. Qāyal honā = to be convinced/won over." },
+      { ur: "جب آنکھ ہی سے نہ ٹپکا تو پھر لہو کیا ہے", tr: "jab āṉkh hī se na ṭapkā to phir lahū kyā hai", en: "if it never fell from the eye, what kind of blood is it?", note: "Lahū = blood. For Ghalib, blood that hasn't become tears hasn't done its job." },
+    ],
+  },
+  {
+    id: "K2",
+    author: "Mir Taqi Mir",
+    urName: "میر",
+    dates: "1723–1810 · Agra & Lucknow",
+    title: "The God of Poetry — Four Couplets",
+    form: "ashʼār from the Kulliyāt",
+    intro: "A century before Ghalib, Mir set the standard — even Ghalib admitted it. His Urdu is simpler and hits harder: small words, deep wounds. Poets call him khudā-e-sukhan, the god of poetry.",
+    source: "Kulliyāt-e-Mīr (public domain).",
+    lines: [
+      { ur: "پتا پتا بوٹا بوٹا حال ہمارا جانے ہے", tr: "pattā pattā būṭā būṭā hāl hamārā jāne hai", en: "Every leaf, every bud knows my condition —", note: "Doubling for emphasis — pattā pattā = every single leaf. Urdu loves this trick: thoṛā thoṛā, dhīre dhīre." },
+      { ur: "جانے نہ جانے گل ہی نہ جانے باغ تو سارا جانے ہے", tr: "jāne na jāne gul hī na jāne bāġh to sārā jāne hai", en: "only the rose doesn't know; the whole garden knows.", note: "Gul = rose = the beloved, oblivious while all of creation gossips. Bāgh from your geography words." },
+      { ur: "دیکھ تو دل کہ جاں سے اٹھتا ہے", tr: "dekh to dil ke jāṉ se uṭhtā hai", en: "Look — does it rise from the heart, or from the soul?", note: "Dil (heart) vs jān (life/soul) — two words you know, weighed against each other." },
+      { ur: "یہ دھواں سا کہاں سے اٹھتا ہے", tr: "ye dhuāṉ sā kahāṉ se uṭhtā hai", en: "this smoke-like something — where does it rise from?", note: "Dhuāṉ = smoke; sā = '-ish'. Add sā to anything: chāy sā, dost sā. Softens the whole language." },
+      { ur: "اشک آنکھوں میں کب نہیں آتا", tr: "ashk āṉkhoṉ meṉ kab nahīṉ ātā", en: "When do tears not come to these eyes?", note: "Ashk = tear (Persian register); āṉsū is the everyday word. Poetry keeps both." },
+      { ur: "لوہو آتا ہے جب نہیں آتا", tr: "lohū ātā hai jab nahīṉ ātā", en: "when they don't come — blood comes instead.", note: "Eight tiny words, all of which you know, arranged into a knife. That's Mir." },
+      { ur: "میر کے دین و مذہب کو اب پوچھتے کیا ہو ان نے تو", tr: "mīr ke dīn-o-mazhab ko ab pūchhte kyā ho un ne to", en: "Why ask now about Mir's faith and creed? He has already", note: "Dīn-o-mazhab — faith and creed; the o glues twin nouns, like subah-o-shām." },
+      { ur: "قشقہ کھینچا دیر میں بیٹھا کب کا ترک اسلام کیا", tr: "qashqā kheṉchā dair meṉ baiṭhā kab kā tark islām kiyā", en: "drawn the mark, sat in the temple — love converted him long ago.", note: "Scandalous in 1750, immortal since: love outranks orthodoxy in the ghazal universe." },
+    ],
+  },
+  {
+    id: "K3",
+    author: "Allama Iqbal",
+    urName: "اقبال",
+    dates: "1877–1938 · Sialkot & Lahore",
+    title: "Bachche kī Duā — A Child's Prayer",
+    form: "from Bāng-e-Darā, 1924",
+    intro: "Generations of Pakistani schoolchildren have started their mornings with this prayer-poem — many can still recite it decades later. Its Urdu is gentle and clear: a child asking to become a candle, a flower, a moth drawn to the lamp of knowledge.",
+    source: "Bāng-e-Darā, 1924 (public domain, incl. US pre-1930).",
+    lines: [
+      { ur: "لب پہ آتی ہے دعا بن کے تمنا میری", tr: "lab pe ātī hai duā ban ke tamannā merī", en: "My longing comes to my lips as a prayer:", note: "Lab = lips, duā = prayer, tamannā = yearning. Ban ke = 'having become' — the wish transforms mid-line." },
+      { ur: "زندگی شمع کی صورت ہو خدایا میری", tr: "zindagī shamā kī sūrat ho khudāyā merī", en: "O God, may my life be like a candle's.", note: "Shamā = candle — poetry's favorite image: it gives light by burning itself." },
+      { ur: "دور دنیا کا مرے دم سے اندھیرا ہو جائے", tr: "dūr dunyā kā mire dam se andherā ho jāe", en: "May the world's darkness scatter because of me,", note: "Andherā = darkness — R8's night vocabulary, put to noble work. Ho jāe = L23's jānā, completing the change." },
+      { ur: "ہر جگہ میرے چمکنے سے اجالا ہو جائے", tr: "har jagah mere chamakne se ujālā ho jāe", en: "may every place grow bright with my shining.", note: "Ujālā = light/brightness, andherā's opposite. Har jagah = everywhere." },
+      { ur: "ہو مرے دم سے یونہی میرے وطن کی زینت", tr: "ho mire dam se yūṉhī mere vatan kī zīnat", en: "May my homeland gain grace through me,", note: "Vatan = homeland; zīnat = adornment. The word vatan anchors half the national songbook." },
+      { ur: "جس طرح پھول سے ہوتی ہے چمن کی زینت", tr: "jis tarah phūl se hotī hai chaman kī zīnat", en: "as the garden gains grace through the flower.", note: "Phūl (flower) and chaman (garden) — the ghazal garden again, replanted for children." },
+      { ur: "زندگی ہو مری پروانے کی صورت یا رب", tr: "zindagī ho mirī parvāne kī sūrat yā rab", en: "May my life be a moth's life, my Lord —", note: "Parvāna = moth, the lover that circles the flame. Yā rab = O Lord." },
+      { ur: "علم کی شمع سے ہو مجھ کو محبت یا رب", tr: "ilm kī shamā se ho mujh ko mohabbat yā rab", en: "may I love the lamp of knowledge, my Lord.", note: "Ilm = knowledge, mohabbat = love. The moth-and-flame image, aimed at the schoolbook. This is the whole site's duā too." },
+    ],
+  },
+  {
+    id: "K4",
+    author: "Amir Khusrau",
+    urName: "خسرو",
+    dates: "1253–1325 · Delhi",
+    title: "The Riddle & the Glance",
+    form: "pahelī and qaul — traditionally attributed",
+    intro: "Seven centuries ago, Khusrau — poet, musician, disciple of Nizamuddin Auliya — played with the language that would become Urdu before it had a name. These pieces have been passed voice-to-voice for 700 years; like all oral tradition, they are 'traditionally attributed' — and beloved regardless.",
+    source: "Oral/qawwali tradition, c. 1300 (public domain; attribution traditional).",
+    lines: [
+      { ur: "ایک تھال موتی سے بھرا", tr: "ek thāl motī se bharā", en: "A platter brimming with pearls,", note: "Thāl = big platter, motī = pearl. A pahelī (riddle) begins — guess before the answer below!" },
+      { ur: "سب کے سر پر اوندھا دھرا", tr: "sab ke sar par aundhā dharā", en: "set upside-down over every head;", note: "Aundhā = upside-down. Sab ke sar par = over everyone's head. The clue sharpens." },
+      { ur: "چاروں اور وہ تھالی پھرے", tr: "chāroṉ or vo thālī phire", en: "the platter wanders all four directions,", note: "Chāroṉ or = in all four directions — chār from Level 3, pulling compass duty." },
+      { ur: "موتی اس سے ایک نہ گرے", tr: "motī us se ek na gire", en: "yet not one pearl ever falls.", note: "The answer: the night sky and its stars. Pakistani grandparents still pose this one at bedtime." },
+      { ur: "چھاپ تلک سب چھینی رے موسے نیناں ملائیکے", tr: "chhāp tilak sab chhīnī re mose nainā milāike", en: "You've taken my emblem, my mark — everything — with one meeting of eyes.", note: "The opening of qawwali's most beloved qaul — sung at Nizamuddin's shrine for seven centuries, from Sabri Brothers to NFAK. Nainā = eyes (Braj-flavored, Urdu's older sibling)." },
+    ],
+  },
+];
+
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 7, name: "Shagird · Apprentice", ur: "شاگرد" },
