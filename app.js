@@ -2471,7 +2471,7 @@ function kutubCard() {
 function renderKutub() {
   app().innerHTML = `
     ${backBar("📚 Kutub Khana · کتب خانہ", "renderTrack('virsa')")}
-    <p class="lesson-intro">Four shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
+    <p class="lesson-intro">${KUTUB.length} shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
     <div class="kutub-shelf">
       ${KUTUB.map((w, i) => `
         <button class="kutub-book" onclick="renderKutubWork(${i})">
