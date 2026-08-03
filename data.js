@@ -1644,8 +1644,10 @@ const DAILY_QUESTIONS = 5;
 // 1924, pre-1930 so PD in the US too). Wording follows the
 // canonical published texts; attributions are stated honestly
 // (Khusrau's pieces are traditional attributions and say so).
-// Bahadur Shah Zafar's famous ghazals are EXCLUDED on purpose:
-// their authorship is disputed among scholars.
+// Bahadur Shah Zafar's famous ghazal IS included (user decision) —
+// WITH the authorship dispute presented honestly as part of the
+// teaching. Either claimed author (Zafar d.1862, Muztar Khairabadi
+// d.1927) leaves the text safely in the public domain.
 // ─────────────────────────────────────────────────────────────
 
 const KUTUB = [
@@ -1726,6 +1728,24 @@ const KUTUB = [
       { ur: "چاروں اور وہ تھالی پھرے", tr: "chāroṉ or vo thālī phire", en: "the platter wanders all four directions,", note: "Chāroṉ or = in all four directions — chār from Level 3, pulling compass duty." },
       { ur: "موتی اس سے ایک نہ گرے", tr: "motī us se ek na gire", en: "yet not one pearl ever falls.", note: "The answer: the night sky and its stars. Pakistani grandparents still pose this one at bedtime." },
       { ur: "چھاپ تلک سب چھینی رے موسے نیناں ملائیکے", tr: "chhāp tilak sab chhīnī re mose nainā milāike", en: "You've taken my emblem, my mark — everything — with one meeting of eyes.", note: "The opening of qawwali's most beloved qaul — sung at Nizamuddin's shrine for seven centuries, from Sabri Brothers to NFAK. Nainā = eyes (Braj-flavored, Urdu's older sibling)." },
+    ],
+  },
+  {
+    id: "K5",
+    author: "Bahadur Shah Zafar",
+    urName: "ظفر",
+    dates: "1775–1862 · Delhi & Rangoon",
+    title: "The Emperor's Lament — and a Mystery",
+    form: "ghazal — attribution disputed (and that's part of the story)",
+    intro: "The last Mughal emperor was a poet before he was anything else — Zauq and then Ghalib served as his ustaads. Exiled to Rangoon after 1857, he became history's image of loss, and this ghazal became his voice. But here is the scholarly twist, told honestly: many researchers argue it was actually written decades later by Muztar Khairabadi (1865–1927) — his grandson, the lyricist Javed Akhtar, has pressed the family's claim publicly. Tradition answers that it has sung Zafar's grief for a century regardless. Read it knowing both stories; either way, it belongs to everyone now.",
+    source: "Attributed to the Dīwān-e-Zafar; scholarly attribution contested in favor of Muztar Khairabadi. Public domain under either author.",
+    lines: [
+      { ur: "لگتا نہیں ہے جی مرا اجڑے دیار میں", tr: "lagtā nahīṉ hai jī mirā ujṛe dayār meṉ", en: "My heart finds no home in this ruined land —", note: "Ujṛā dayār = a homeland in ruins — Delhi after 1857, sacked and emptied. Jī lagnā = for the heart to settle; you know jī from jī hāṉ." },
+      { ur: "کس کی بنی ہے عالم ناپائیدار میں", tr: "kis kī banī hai ālam-e-nā-pāyedār meṉ", en: "whose luck has ever held in this impermanent world?", note: "Nā-pāyedār = without foundation, fleeting. The dispute lives here too: is this an emperor's hindsight, or a later poet imagining it? Scholars lean to Muztar Khairabadi; the singing tradition answers: Zafar." },
+      { ur: "عمر دراز مانگ کے لائے تھے چار دن", tr: "umr-e-darāz māṉg ke lāe the chār din", en: "I begged a long life and was granted four days —", note: "Chār din — 'four days' is Urdu's idiom for life's brevity: chār din kī zindagī. Level 3's chār, carrying a whole philosophy." },
+      { ur: "دو آرزو میں کٹ گئے دو انتظار میں", tr: "do ārzū meṉ kaṭ gae do intizār meṉ", en: "two were spent in longing, two in waiting.", note: "Ārzū = longing; intizār = waiting — two of Urdu's most beloved words, splitting a life between them. Kaṭ gae = got cut away, L23's compound completion." },
+      { ur: "کتنا ہے بدنصیب ظفر دفن کے لیے", tr: "kitnā hai bad-nasīb zafar dafn ke liye", en: "How unlucky is Zafar — for his burial", note: "Bad-nasīb = ill-fated. The maqtā signs Zafar's name into the poem — which is exactly why the attribution question fascinates scholars: a maqtā names the persona, not necessarily the pen." },
+      { ur: "دو گز زمین بھی نہ ملی کوئے یار میں", tr: "do gaz zamīn bhī na milī kū-e-yār meṉ", en: "not even two yards of earth in the street of the beloved.", note: "Historically true and devastating: Zafar died in exile in Rangoon in 1862 and was buried there — never in his Delhi, the kū-e-yār. Whoever wrote the line, history made it his." },
     ],
   },
 ];
