@@ -5,7 +5,7 @@ Parses data.js (machine-generated, regular format) and emits one SEO page
 per level/unit with real audio buttons, cross-links, and a hub page.
 Run by tools/deploy.sh on every deploy.
 """
-import os, re, html
+import os, re, html, json
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 DATA = open(os.path.join(ROOT, "data.js"), encoding="utf-8").read()
@@ -117,6 +117,22 @@ for idx, l in enumerate(lessons):
     page_title = f"{l['title']} — free Urdu lesson | Urdu Ustaadh"
     desc = (l["subtitle"] + ". " + l["intro"])[:158]
     body = [HEAD.format(title=e(page_title), desc=e(desc), canon=canon, css=CSS)]
+    ld = {
+        "@context": "https://schema.org", "@type": "LearningResource",
+        "name": l["title"], "description": desc, "url": canon,
+        "inLanguage": "en", "teaches": "Urdu language", "learningResourceType": "Lesson",
+        "isAccessibleForFree": True,
+        "provider": {"@type": "Organization", "name": "Urdu Ustaadh", "url": "https://myurdu.org"},
+    }
+    crumbs = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "All lessons", "item": f"{SITE}/learn/"},
+            {"@type": "ListItem", "position": 2, "name": l["title"], "item": canon},
+        ],
+    }
+    body.append(f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
+    body.append(f'<script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>')
     body.append(f'<p class="crumbs"><a href="index.html">All lessons</a> › {e(l["kind"])}</p>')
     body.append(f'<h1>{e(l["title"])}</h1><p class="sub">{e(l["subtitle"])}</p>')
     body.append(f'<p>{e(l["intro"])}</p>')

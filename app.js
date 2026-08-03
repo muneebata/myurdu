@@ -1593,8 +1593,59 @@ let rp = null;
 
 function startRolePlay(i) {
   const scene = ROLEPLAYS[i];
-  rp = { scene, idx: 0, passed: 0, tried: 0, history: [], micFails: 0, selfChecked: false };
+  rp = { scene, idx: 0, passed: 0, tried: 0, history: [], micFails: 0, selfChecked: false, choices: [], forceTap: false };
   renderRP();
+}
+
+function rpGoto(next) {
+  rp.idx = next === "end" ? rp.scene.turns.length : next != null ? next : rp.idx + 1;
+  renderRP();
+}
+
+function rpChoiceTurn() {
+  return rp.scene.turns[rp.idx];
+}
+
+function rpHearOption(k) {
+  const o = rpChoiceTurn().choice[k];
+  Speech.speak(o.ur, o.tr, { slow: true });
+}
+
+function rpPickChoice(k, mark) {
+  const turn = rpChoiceTurn();
+  const o = turn.choice[k];
+  rp.tried++;
+  if (mark === "mic") rp.passed++;
+  if (mark === "said aloud") {
+    rp.passed++;
+    rp.selfChecked = true;
+  }
+  rp.choices.push({ options: turn.choice, chosen: k });
+  rp.history.push({ who: "you", ur: o.ur, tr: o.tr, mark: mark ? "✓" : "(skipped)" });
+  rpGoto(o.next);
+}
+
+async function rpSayChoice() {
+  const turn = rpChoiceTurn();
+  const out = document.getElementById("rp-feedback");
+  out.innerHTML = `<div class="pr listening">🎙️ Listening… say the line of the road you choose</div>`;
+  try {
+    const alts = await Speech.listen();
+    rp.micFails = 0;
+    const scores = turn.choice.map((o) => Speech.score(alts, o.ur));
+    const best = scores.indexOf(Math.max(...scores));
+    if (scores[best] >= 55) return rpPickChoice(best, "mic");
+    out.innerHTML = `<div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🔊 on a card to hear it, then try again.</div>`;
+  } catch (e) {
+    if (!["no-speech", "not-allowed"].includes(e.message)) rp.micFails++;
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    if (Speech.fatalMicError(e.message) || rp.micFails >= 2) {
+      rp.forceTap = true;
+      renderRP();
+      return;
+    }
+    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>`;
+  }
 }
 
 function rpBubbles() {
@@ -1610,7 +1661,25 @@ function renderRP() {
   const turn = sc.turns[rp.idx];
   let controls;
   if (!turn) return finishRP();
-  if (turn.who === "them") {
+  if (turn.choice) {
+    const micOK = Speech.recognitionSupported() && micCompat().ok && !rp.forceTap;
+    controls = `
+      <div class="rp-now you-turn">
+        <p class="rp-who">A fork in the conversation — choose your road:</p>
+        ${turn.choice.map((o, k) => `
+          <button class="rp-opt" onclick="${micOK ? `rpHearOption(${k})` : `rpPickChoice(${k}, 'said aloud')`}">
+            <span class="rp-ur ur">${esc(o.ur)}</span>
+            <span class="rp-tr">${esc(o.tr)} — <em>${esc(o.en)}</em></span>
+            <span class="rp-opt-hint">${micOK ? "🔊 tap to hear" : "say it aloud, then tap to choose"}</span>
+          </button>`).join("")}
+        <div class="rp-btns">
+          ${micOK ? `<button class="btn primary" onclick="rpSayChoice()">🎤 Say the line you choose</button>` : ""}
+          <button class="btn small" onclick="rpPickChoice(0)">Skip</button>
+        </div>
+        ${micOK ? "" : `<p class="hint">Say your pick out loud, then tap its card — the scene follows your choice.</p>`}
+        <div id="rp-feedback"></div>
+      </div>`;
+  } else if (turn.who === "them") {
     controls = `
       <div class="rp-now them-turn">
         <p class="rp-who">${esc(sc.themRole)} says:</p>
@@ -1641,7 +1710,7 @@ function renderRP() {
   }
   app().innerHTML = `
     ${backBar(`🎭 ${esc(sc.title)}`, "renderTrack('speak')")}
-    <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. Line ${rp.idx + 1} of ${sc.turns.length}.</p>
+    <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. ${sc.turns.some((t) => t.choice) ? `Line ${rp.history.length + 1} — your choices steer the scene.` : `Line ${rp.idx + 1} of ${sc.turns.length}.`}</p>
     <div class="rp-chat">${rpBubbles()}</div>
     ${controls}
   `;
@@ -1657,8 +1726,7 @@ function rpAdvance(mark) {
     rp.selfChecked = true;
   }
   rp.history.push({ ...turn, mark: mark === undefined ? (turn.who === "you" ? "(skipped)" : "") : "✓" });
-  rp.idx++;
-  renderRP();
+  rpGoto(turn.next);
 }
 
 async function rpSay() {
@@ -1673,8 +1741,7 @@ async function rpSay() {
       rp.passed++;
       rp.tried++;
       rp.history.push({ ...turn, mark: "✓" });
-      rp.idx++;
-      renderRP();
+      rpGoto(turn.next);
     } else {
       out.innerHTML = `
         <div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🐢, then try again (or Skip).</div>`;
@@ -1692,7 +1759,7 @@ async function rpSay() {
 
 function finishRP() {
   const sc = rp.scene;
-  const yourLines = sc.turns.filter((t) => t.who === "you").length;
+  const yourLines = Math.max(rp.tried, 1);
   const pct = Math.round((rp.passed / yourLines) * 100);
   const self = rp.selfChecked || !Speech.recognitionSupported();
   const p = profile();
@@ -1705,6 +1772,16 @@ function finishRP() {
       <div class="result-emoji">${pct >= 90 ? "🏆" : pct >= 60 ? "🎉" : "💪"}</div>
       <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished — keep practicing!"}</h2>
       <p class="result-score">${rp.passed} of ${yourLines} lines ${self ? "said aloud (self-checked)" : `landed — ${pct}%`}</p>
+      ${rp.choices.length ? `
+      <div class="rp-reveal">
+        <p class="rp-reveal-title">🛤️ Your road through the scene</p>
+        ${rp.choices.map((c) => {
+          const ch = c.options[c.chosen];
+          const alt = c.options[(c.chosen + 1) % c.options.length];
+          return `<div class="rp-fx">✓ <b>“${esc(ch.en)}”</b> — ${esc(ch.fx)}
+            <span class="rp-alt">↪ the road not taken: “${esc(alt.en)}” — ${esc(alt.fx)}</span></div>`;
+        }).join("")}
+      </div>` : ""}
       <p>${pct >= 60 ? "That was a real exchange, start to finish. Say it again tomorrow and it'll come out faster." : "Every run makes the lines more automatic. Tap 🐢 on the hard ones and go again."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startRolePlay(${ROLEPLAYS.indexOf(sc)})">Play again</button>
