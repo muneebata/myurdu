@@ -449,6 +449,20 @@ function renderHome() {
     </section>
 
     <section>
+      <h2 class="track-title retro">📚 Kutub Khana · <span class="ur">کتب خانہ</span> <span class="track-sub">the Urdu library — open to all</span></h2>
+      <button class="library-card" onclick="renderKutub()">
+        <span class="library-spines" aria-hidden="true">
+          <span class="ur" style="--sp:var(--rose)">غالب</span><span class="ur" style="--sp:var(--teal)">میر</span><span class="ur" style="--sp:var(--mustard)">اقبال</span><span class="ur" style="--sp:var(--terracotta)">خسرو</span>
+        </span>
+        <span class="library-main">
+          <span class="library-title">The legendary works of Urdu literature</span>
+          <span class="library-desc">${KUTUB.length} shelves, from Khusrau to the Qaumī Tarānah — every line in Urdu with transliteration, English translation, annotation, and audio.</span>
+        </span>
+        <span class="library-count">${KUTUB.length}<br><span>shelves</span></span>
+      </button>
+    </section>
+
+    <section>
       <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson — a little holiday</span></h2>
       <button class="break-card" onclick="renderTrack('pakistan')">
         <span class="break-stamp ur">پاکستان</span>
