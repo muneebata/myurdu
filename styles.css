@@ -635,3 +635,12 @@ body {
 .rp-reveal-title { font-weight: 700; margin: 0 0 8px; }
 .rp-fx { margin: 8px 0; font-size: 0.93rem; }
 .rp-alt { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+
+/* ── Lughat glossary ── */
+.lughat-search { width: 100%; font: inherit; font-size: 1.05rem; padding: 12px 16px; border: 2px solid var(--line); border-radius: 14px; background: var(--card); color: var(--ink); margin: 6px 0 14px; }
+.lughat-search:focus { outline: none; border-color: var(--teal); }
+.lughat-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-bottom: 1.5px solid var(--line); }
+.lughat-main { flex: 1; font-size: 0.95rem; }
+.lughat-ur { font-size: 1.25rem; line-height: 1.9; white-space: nowrap; }
+.lughat-src { font-size: 0.78rem; white-space: nowrap; }
+@media (max-width: 560px) { .lughat-row { flex-wrap: wrap; } .lughat-ur { order: -1; width: 100%; text-align: right; } }

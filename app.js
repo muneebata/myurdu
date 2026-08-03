@@ -443,11 +443,12 @@ function renderHome() {
     <section>
       <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane — everything is open, nothing is locked</span></h2>
       <div class="trackgrid">${TRACK_DEFS.map(trackCard).join("")}</div>
+      <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat — look up any word the app teaches</button></p>
       ${p.placedAt == null && completedCount() < 2 ? `<p class="placement-line"><button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button></p>` : ""}
     </section>
 
 
-    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
+    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
 }
 
@@ -2143,6 +2144,62 @@ function twResultHTML() {
         <button class="btn" onclick="renderTracing()">All letters</button>
       </div>
     </div>`;
+}
+
+// ── Lughat: the glossary — every word the app teaches ────────
+
+let lughatEntries = null;
+
+function lughatBuild() {
+  if (lughatEntries) return lughatEntries;
+  const seen = new Set();
+  const out = [];
+  const add = (ur, tr, en, src, onclick) => {
+    const k = tr.toLowerCase();
+    if (seen.has(k)) return;
+    seen.add(k);
+    out.push({ ur, tr, en, src, onclick });
+  };
+  LEVELS.forEach((lv, i) => lv.items.forEach((it) =>
+    add(it.ur, it.tr, it.en, `Level ${i + 1}`, `openLevel(${i})`)));
+  AZADI_ITEMS.forEach((it) => add(it.ur, it.tr, it.en, "Azadi special", "renderHome()"));
+  LOANWORDS.forEach((w) =>
+    add(w.ur, w.tr, `${w.meaning} → ${w.borrower || "English"} “${w.en}”`, "🌱 Desi Roots", "startDaily()"));
+  out.sort((x, y) => x.tr.localeCompare(y.tr));
+  lughatEntries = out;
+  return out;
+}
+
+function renderLughat() {
+  const entries = lughatBuild();
+  app().innerHTML = `
+    ${backBar("📖 Lughat · Glossary")}
+    <p class="lesson-intro">Every word and phrase on Urdu Ustaadh — ${entries.length} entries, each with native audio and the lesson it lives in. Type to search in English, transliteration, or Urdu.</p>
+    <input id="lughat-q" class="lughat-search" type="search" placeholder="Search… (e.g. water, pānī, پانی)" oninput="lughatFilter(this.value)" autocomplete="off">
+    <div id="lughat-list">${lughatRows(entries)}</div>
+  `;
+  window.scrollTo(0, 0);
+  document.getElementById("lughat-q").focus();
+}
+
+function lughatRows(entries) {
+  if (!entries.length) return `<p class="hint" style="text-align:center">Nothing matches — try fewer letters.</p>`;
+  return entries.slice(0, 400).map((e, i) => `
+    <div class="lughat-row">
+      <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(e.ur)}, ${JSON.stringify(e.tr)})'>🔊</button>
+      <span class="lughat-main"><b>${esc(e.tr)}</b> — ${esc(e.en)}</span>
+      <span class="lughat-ur ur">${esc(e.ur)}</span>
+      <button class="linklike lughat-src" onclick="${e.onclick}">${esc(e.src)}</button>
+    </div>`).join("");
+}
+
+function lughatFilter(q) {
+  const needle = q.trim().toLowerCase();
+  const norm = (s) => s.toLowerCase().normalize("NFC");
+  const strip = (s) => s.replace(/[āáà]/g, "a").replace(/[īí]/g, "i").replace(/[ūú]/g, "u").replace(/[ṉñ]/g, "n").replace(/[ṭ]/g, "t").replace(/[ḍ]/g, "d").replace(/[ṛ]/g, "r");
+  const hits = !needle ? lughatBuild() : lughatBuild().filter((e) =>
+    strip(norm(e.tr)).includes(strip(needle)) || norm(e.en).includes(needle) || norm(e.ur).includes(norm(q.trim())));
+  document.getElementById("lughat-list").innerHTML = lughatRows(hits);
 }
 
 // ── Shared bits ──────────────────────────────────────────────
