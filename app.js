@@ -716,7 +716,7 @@ function renderQuizQuestion() {
           )
           .join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   if (q.autoplay && q.audio) Speech.speak(q.audio.ur, q.audio.tr);
@@ -838,13 +838,13 @@ function renderDailyQuestion() {
       <div class="quiz-prompt">
         <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
         <div class="q-ur ur">${esc(q.word.ur)}</div>
-        <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})'>🔊</button></div>
+        <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})' aria-label="Play audio">🔊</button></div>
         <p>What does it literally mean?</p>
       </div>
       <div class="quiz-options">
         ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerDaily(${i})">${esc(o.label)}</button>`).join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   window.scrollTo(0, 0);
@@ -961,7 +961,7 @@ function renderGeoQuestion() {
       <div class="quiz-options">
         ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerGeo(${i})">${esc(o.label)}</button>`).join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   document.querySelector(`#pakmap #${q.feature.id}`)?.classList.add("geo-hi");
@@ -1046,7 +1046,7 @@ function renderSunoQuestion() {
       <div class="quiz-options">
         ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerSuno(${i})">${esc(o.label)}</button>`).join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   Speech.speak(q.item.ur, q.item.tr);
@@ -1130,7 +1130,7 @@ function renderD5() {
       <div class="quiz-prompt">
         <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
         <div class="q-ur ur">${esc(q.word.ur)}</div>
-        <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})'>🔊</button></div>
+        <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})' aria-label="Play audio">🔊</button></div>
         <p>What does it literally mean?</p>
       </div>`;
   } else if (q.kind === "geo") {
@@ -1153,7 +1153,7 @@ function renderD5() {
       <div class="quiz-options">
         ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerD5(${i})">${esc(o.label)}</button>`).join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   if (q.kind === "geo") document.querySelector(`#pakmap #${q.feature.id}`)?.classList.add("geo-hi");
@@ -1396,6 +1396,7 @@ function azadiBanner() {
 }
 
 function launchConfetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (sessionStorage.getItem("azadi-confetti")) return;
   sessionStorage.setItem("azadi-confetti", "1");
   const box = document.createElement("div");
@@ -1707,7 +1708,7 @@ function renderRP() {
           <button class="btn small" onclick="rpPickChoice(0)">Skip</button>
         </div>
         ${micOK ? "" : `<p class="hint">Say your pick out loud, then tap its card — the scene follows your choice.</p>`}
-        <div id="rp-feedback"></div>
+        <div id="rp-feedback" aria-live="polite"></div>
       </div>`;
   } else if (turn.who === "them") {
     controls = `
@@ -1735,7 +1736,7 @@ function renderRP() {
           <button class="btn small" onclick="rpAdvance()">Skip</button>
         </div>
         ${micOK ? "" : `<p class="hint">${micCompat().reason === "none" ? "No mic support in this browser" : "Mic checking isn't available in this browser (Safari's engine doesn't speak Urdu — Chrome and Edge do)"} — say the line out loud, then continue.</p>`}
-        <div id="rp-feedback"></div>
+        <div id="rp-feedback" aria-live="polite"></div>
       </div>`;
   }
   app().innerHTML = `
@@ -1865,7 +1866,7 @@ function nextPlacementQuestion() {
             ${esc(o.label)}${o.sub ? `<span class="opt-ur ur">${esc(o.sub)}</span>` : ""}
           </button>`).join("")}
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   if (q.autoplay && q.audio) Speech.speak(q.audio.ur, q.audio.tr);
@@ -2059,7 +2060,7 @@ function renderTraceLetter() {
     ${doneAll ? twResultHTML() : `
     <p class="tw-status">${cur.p ? "Start at the green dot ● and follow the dashes" : "Now draw the dot at the green target ●"} · step ${tw.step + 1} of ${total}</p>
     <div class="tw-board"><div class="tw-svg">${twGuideSVG()}</div><canvas id="tw-canvas" width="480" height="480"></canvas></div>
-    <div id="tw-feedback">${tw.msg}</div>
+    <div id="tw-feedback" aria-live="polite">${tw.msg}</div>
     <div class="rp-btns tw-btns">
       <button class="btn small" onclick="startTracing(${tw.i})">↺ Start letter over</button>
       <button class="btn small" onclick="renderTracing()">All letters</button>
@@ -2215,7 +2216,7 @@ function lughatRows(entries) {
   if (!entries.length) return `<p class="hint" style="text-align:center">Nothing matches — try fewer letters.</p>`;
   return entries.slice(0, 400).map((e, i) => `
     <div class="lughat-row">
-      <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(e.ur)}, ${JSON.stringify(e.tr)})'>🔊</button>
+      <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(e.ur)}, ${JSON.stringify(e.tr)})' aria-label="Play audio">🔊</button>
       <span class="lughat-main"><b>${esc(e.tr)}</b> — ${esc(e.en)}</span>
       <span class="lughat-ur ur">${esc(e.ur)}</span>
       <button class="linklike lughat-src" onclick="${e.onclick}">${esc(e.src)}</button>
@@ -2389,7 +2390,7 @@ function renderImla() {
         <button class="btn small" onclick="imlaBack()" aria-label="Remove last letter">⌫ Undo</button>
         <button class="btn primary" onclick="imlaCheck()">Check ✓</button>
       </div>
-      <div id="quiz-feedback"></div>
+      <div id="quiz-feedback" aria-live="polite"></div>
     </div>
   `;
   window.scrollTo(0, 0);

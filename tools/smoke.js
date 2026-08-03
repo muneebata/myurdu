@@ -1,0 +1,132 @@
+#!/usr/bin/env node
+// Pre-deploy smoke tests: static invariants over data.js, audio coverage,
+// role-play graph integrity, and GEO/pakmap id parity. deploy.sh aborts
+// if any check fails. Run directly: node tools/smoke.js
+"use strict";
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
+
+const ROOT = path.join(__dirname, "..");
+const fail = [];
+const check = (ok, msg) => { if (!ok) fail.push(msg); };
+
+// ── load data.js in a bare sandbox ──
+const sandbox = { window: {}, console };
+vm.createContext(sandbox);
+vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
+// top-level const bindings stay lexical — read them out with a second script
+const {
+  LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
+  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS,
+} = vm.runInContext(
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS })",
+  sandbox
+);
+
+// ── Speech.slug twin — MUST stay in lockstep with speech.js + gen_audio.py ──
+function slug(s) {
+  s = s.toLowerCase()
+    .replace(/ṭ/g, "tt").replace(/ḍ/g, "dd").replace(/ṛ/g, "rr")
+    .replace(/ṉ/g, "n").replace(/ā/g, "aa").replace(/ī/g, "ee").replace(/ū/g, "oo")
+    .replace(/[?!.,·'’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return s;
+}
+
+// ── 1. curriculum shape ──
+check(LEVELS.length >= 24, `LEVELS shrank to ${LEVELS.length}`);
+for (const lv of LEVELS) {
+  check(lv.id && lv.title && lv.intro, `level missing basics: ${lv.id || "?"}`);
+  check(Array.isArray(lv.items) && lv.items.length >= 5, `${lv.id}: too few items`);
+  for (const it of lv.items) check(it.ur && it.tr && it.en, `${lv.id}: item missing ur/tr/en (${it.tr || it.en || "?"})`);
+  check(Array.isArray(lv.funFacts), `${lv.id}: funFacts missing`);
+}
+for (const [name, arr] of [["READING_UNITS", READING_UNITS], ["CULTURE_UNITS", CULTURE_UNITS], ["SOUND_UNITS", SOUND_UNITS], ["PAKISTAN_UNITS", PAKISTAN_UNITS]]) {
+  for (const u of arr) check(u.id && u.title && Array.isArray(u.sections), `${name}: bad unit ${u.id || "?"}`);
+}
+
+// ── 2. ranks match completable count ──
+const completables = LEVELS.length + READING_UNITS.length + CULTURE_UNITS.length + SOUND_UNITS.length + PAKISTAN_UNITS.length;
+check(RANKS[0].need === 0, "first rank must need 0");
+check(RANKS[RANKS.length - 1].need <= completables, `top rank needs ${RANKS[RANKS.length - 1].need} > ${completables} completables`);
+check(RANKS[RANKS.length - 1].need >= completables - 4, `top rank ${RANKS[RANKS.length - 1].need} lags far behind ${completables} completables — rescale RANKS`);
+
+// ── 3. audio coverage: every speakable tr has a clip ──
+const audio = new Set(fs.readdirSync(path.join(ROOT, "audio")).map((f) => f.replace(/\.mp3$/, "")));
+const wanted = new Map(); // slug -> example tr
+const want = (tr) => { if (tr) { const k = slug(tr); if (k && !wanted.has(k)) wanted.set(k, tr); } };
+LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr)));
+AZADI_ITEMS.forEach((it) => want(it.tr));
+GEO_FEATURES.forEach((f) => want(f.tr));
+LOANWORDS.forEach((w) => want(w.tr));
+ROLEPLAYS.forEach((sc) => sc.turns.forEach((t) => {
+  if (t.tr) want(t.tr);
+  (t.choice || []).forEach((o) => want(o.tr));
+}));
+for (const arr of [READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS]) {
+  arr.forEach((u) => u.sections.forEach((sec) => {
+    (sec.words || []).forEach((w) => want(w.tr));
+    (sec.joiner || []).forEach((w) => want(w.tr));
+    (sec.verse || []).forEach((w) => want(w.tr));
+  }));
+}
+let missingAudio = 0;
+for (const [k, tr] of wanted) {
+  if (!audio.has(k)) { missingAudio++; if (missingAudio <= 5) fail.push(`missing audio: ${k}.mp3 (for "${tr}") — run tools/gen_audio.py`); }
+}
+if (missingAudio > 5) fail.push(`…and ${missingAudio - 5} more missing clips`);
+
+// ── 4. role-play graph integrity ──
+for (const sc of ROLEPLAYS) {
+  const n = sc.turns.length;
+  const validNext = (nx, where) =>
+    check(nx === undefined || nx === "end" || (Number.isInteger(nx) && nx >= 0 && nx < n), `${sc.id}: bad next ${nx} at ${where}`);
+  sc.turns.forEach((t, i) => {
+    validNext(t.next, `turn ${i}`);
+    check(!!t.choice || (t.ur && t.tr && t.en), `${sc.id}: turn ${i} missing line`);
+    (t.choice || []).forEach((o, k) => {
+      validNext(o.next, `turn ${i} choice ${k}`);
+      check(o.ur && o.tr && o.en && o.fx, `${sc.id}: choice ${i}/${k} missing fields`);
+    });
+  });
+  // every path from 0 must terminate
+  const walk = (idx, depth) => {
+    if (depth > 100) return false;
+    if (idx === "end" || idx === undefined && false) return true;
+    const t = sc.turns[idx];
+    if (!t) return idx >= n; // ran off the end = finish
+    const nexts = t.choice ? t.choice.map((o) => o.next) : [t.next === undefined ? idx + 1 : t.next];
+    return nexts.every((nx) => walk(nx === "end" ? n : nx, depth + 1));
+  };
+  check(walk(0, 0), `${sc.id}: a dialogue path fails to terminate`);
+}
+
+// ── 5. GEO ids exist in pakmap.js ──
+const pakmap = fs.readFileSync(path.join(ROOT, "pakmap.js"), "utf8");
+for (const f of GEO_FEATURES) check(pakmap.includes(`id="${f.id}"`), `GEO id "${f.id}" missing from pakmap.js`);
+
+// ── 6. tracing letters well-formed ──
+check(TRACE_LETTERS.length === 39, `TRACE_LETTERS = ${TRACE_LETTERS.length}, expected 39`);
+for (const L of TRACE_LETTERS) {
+  check(L.ch && L.name && Array.isArray(L.strokes) && L.strokes.length >= 1, `tracing: bad ${L.name || "?"}`);
+  for (const st of L.strokes) check(!!st.p || (Array.isArray(st.d) && st.d.length === 2), `tracing ${L.name}: bad stroke`);
+}
+
+// ── 7. loanword bank sanity ──
+const meanings = LOANWORDS.map((w) => w.meaning);
+for (const w of LOANWORDS) check(w.en && w.ur && w.tr && w.meaning && w.story, `loanword ${w.en || "?"}: missing fields`);
+// root-sharing pairs (pyjamas/pijama, chai/char…) intentionally share a
+// meaning string so the distractor filter excludes them — allow those,
+// but the pool of distinct meanings must stay deep enough for options.
+check(new Set(meanings).size >= 40 && new Set(meanings).size >= LOANWORDS.length - 16,
+  "too many duplicate meanings in LOANWORDS — distractors will starve");
+
+// ── verdict ──
+if (fail.length) {
+  console.error(`SMOKE FAIL (${fail.length}):`);
+  fail.forEach((m) => console.error("  ✗ " + m));
+  process.exit(1);
+}
+console.log(`smoke OK — ${completables} completables, ${wanted.size} clips required & present, ${ROLEPLAYS.length} scenes, ${GEO_FEATURES.length} map features`);
