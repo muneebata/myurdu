@@ -728,3 +728,15 @@ html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; co
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .dia-hl { animation: none; }
 }
+
+/* ── Kutub Khana ── */
+.kutub-shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 16px 0; }
+.kutub-book { display: flex; flex-direction: column; align-items: center; gap: 4px; font: inherit; color: var(--ink); cursor: pointer; background: var(--card); border: 1.5px solid var(--line); border-left: 7px solid var(--rose); border-radius: 12px; padding: 18px 14px 14px; box-shadow: var(--shadow); text-align: center; }
+.kutub-book:hover { border-color: var(--rose); transform: translateY(-2px); }
+.kutub-ur { font-size: 2.1rem; line-height: 1.7; color: var(--rose); }
+.kutub-author { font-weight: 700; color: var(--teal-dark); }
+.kutub-title { font-size: 0.88rem; }
+.kutub-dates { font-size: 0.75rem; color: var(--muted); }
+.kutub-head { text-align: center; margin: 8px 0 0; }
+.kutub-entry { margin: 0 0 14px; }
+.kutub-note { margin: 4px 8px 0; font-size: 0.85rem; color: var(--muted); }
