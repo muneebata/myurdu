@@ -451,9 +451,7 @@ function renderHome() {
     <section>
       <h2 class="track-title retro">📚 Kutub Khana · <span class="ur">کتب خانہ</span> <span class="track-sub">the Urdu library — open to all</span></h2>
       <button class="library-card" onclick="renderKutub()">
-        <span class="library-spines" aria-hidden="true">
-          <span class="ur" style="--sp:var(--rose)">غالب</span><span class="ur" style="--sp:var(--teal)">میر</span><span class="ur" style="--sp:var(--mustard)">اقبال</span><span class="ur" style="--sp:var(--terracotta)">خسرو</span>
-        </span>
+        <span class="library-spines" aria-hidden="true">${KUTUB_EMBLEM}</span>
         <span class="library-main">
           <span class="library-title">The legendary works of Urdu literature</span>
           <span class="library-desc">${KUTUB.length} shelves, from Khusrau to the Qaumī Tarānah — every line in Urdu with transliteration, English translation, annotation, and audio.</span>
@@ -2470,6 +2468,28 @@ function imlaNext() {
 
 // ── Kutub Khana: the public-domain library ───────────────────
 
+// ── Kutub Khana emblem: a taaq (arched alcove) of books with a
+// hanging diya — drawn in the site palette, truck-art dotted frame.
+const KUTUB_EMBLEM = `<svg class="kutub-emblem" viewBox="0 0 120 132" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="4" y="4" width="112" height="124" rx="14" fill="#fffdf3" stroke="#3b2e1f" stroke-width="3"/>
+  <rect x="11" y="11" width="98" height="110" rx="10" fill="none" stroke="#d9a413" stroke-width="2.5" stroke-dasharray="0.5 7" stroke-linecap="round"/>
+  <path d="M25,106 L25,56 Q25,33 45,25 Q57,20 60,10 Q63,20 75,25 Q95,33 95,56 L95,106 Z" fill="#f6ecd4" stroke="#0c5f66" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="60" y1="16" x2="60" y2="27" stroke="#3b2e1f" stroke-width="1.8"/>
+  <path d="M54,33 Q54,28 60,28 Q66,28 66,33 Q66,38 60,38 Q54,38 54,33 Z" fill="#c26a3a" stroke="#3b2e1f" stroke-width="1.6"/>
+  <path d="M60,20 Q63,24 60,27 Q57,24 60,20 Z" fill="#d9a413"/>
+  <rect x="30" y="68" width="10" height="38" rx="2" fill="#b05464" stroke="#3b2e1f" stroke-width="1.8"/>
+  <rect x="41" y="62" width="9" height="44" rx="2" fill="#12808b" stroke="#3b2e1f" stroke-width="1.8"/>
+  <rect x="51" y="66" width="11" height="40" rx="2" fill="#d9a413" stroke="#3b2e1f" stroke-width="1.8"/>
+  <rect x="63" y="60" width="9" height="46" rx="2" fill="#c26a3a" stroke="#3b2e1f" stroke-width="1.8"/>
+  <g transform="rotate(9 87 106)"><rect x="74" y="70" width="10" height="36" rx="2" fill="#6f8f4e" stroke="#3b2e1f" stroke-width="1.8"/></g>
+  <line x1="30" y1="76" x2="40" y2="76" stroke="#f6ecd4" stroke-width="1.6"/>
+  <line x1="41" y1="70" x2="50" y2="70" stroke="#f6ecd4" stroke-width="1.6"/>
+  <line x1="51" y1="74" x2="62" y2="74" stroke="#f6ecd4" stroke-width="1.6"/>
+  <line x1="63" y1="68" x2="72" y2="68" stroke="#f6ecd4" stroke-width="1.6"/>
+  <line x1="18" y1="106" x2="102" y2="106" stroke="#3b2e1f" stroke-width="3" stroke-linecap="round"/>
+  <line x1="24" y1="113" x2="96" y2="113" stroke="#c9b98a" stroke-width="2" stroke-linecap="round"/>
+</svg>`;
+
 function kutubCard() {
   return `
     <div class="rp-cards">
@@ -2484,7 +2504,8 @@ function kutubCard() {
 
 function renderKutub() {
   app().innerHTML = `
-    ${backBar("📚 Kutub Khana · کتب خانہ", "renderTrack('virsa')")}
+    ${backBar("📚 Kutub Khana · کتب خانہ", "renderHome()")}
+    <div class="kutub-hero">${KUTUB_EMBLEM}</div>
     <p class="lesson-intro">${KUTUB.length} shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
     <div class="kutub-shelf">
       ${KUTUB.map((w, i) => `
