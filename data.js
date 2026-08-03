@@ -1804,6 +1804,33 @@ const KUTUB = [
       { ur: "مذہب کا ریاست کے کام سے کوئی تعلق نہیں", tr: "mazhab kā riyāsat ke kām se koī taʼalluq nahīṉ", en: "Religion has nothing to do with the business of the State.", note: "Taʼalluq = connection. Mazhab you met in Mir's scandalous couplet — here, in the founding promise." },
     ],
   },
+  {
+    id: "K9",
+    author: "Hafeez Jalandhari",
+    urName: "قومی ترانہ",
+    dates: "words approved 1954 · music: Ahmed G. Chagla, 1950",
+    title: "Qaumī Tarānah — The National Anthem",
+    form: "the state anthem of Pakistan, adopted 13 August 1954",
+    intro: "The rare anthem where the tune came first: Ahmed G. Chagla's melody was chosen in 1950, and Hafeez Jalandhari's words were fitted to it and approved in August 1954. The language is deliberately elevated — so Persianized that almost every word is shared with Persian; the humble kā in the second stanza is routinely cited as its only purely Urdu word. Commissioned and published by the Government of Pakistan as the state symbol, it is reproduced here the way every schoolbook reproduces it.",
+    source: "Adopted and published by the Government of Pakistan, 1954 — reproduced as the state symbol it is.",
+    lines: [
+      { ur: "پاک سرزمین شاد باد", tr: "pāk sarzamīn shād bād", en: "Blessed be the pure land,", note: "Shād bād = 'may it be joyous' — a pure Persian blessing form. Sarzamīn = land, soil." },
+      { ur: "کشورِ حسین شاد باد", tr: "kishwar-e-hasīn shād bād", en: "blessed be the beautiful realm,", note: "Kishwar = realm, country; hasīn = beautiful — the izāfat (-e-) chains them, Persian-style." },
+      { ur: "تو نشانِ عزمِ عالی شان", tr: "tū nishān-e-azm-e-ālī shān", en: "you, emblem of high resolve —", note: "Azm = resolve, determination. Two izāfats stacked — the anthem's grammar is a Persian staircase." },
+      { ur: "ارضِ پاکستان", tr: "arz-e-pākistān", en: "land of Pakistan,", note: "Arz = land (Arabic register). The one proper noun everything else orbits." },
+      { ur: "مرکزِ یقین شاد باد", tr: "markaz-e-yaqīn shād bād", en: "blessed be the center of faith.", note: "Markaz = center (you may know markazī = central); yaqīn = certainty, conviction." },
+      { ur: "پاک سرزمین کا نظام", tr: "pāk sarzamīn kā nizām", en: "The order of this pure land,", note: "There it is — kā, the anthem's famously solitary pure-Urdu word. One tiny possessive holding the whole line together." },
+      { ur: "قوتِ اخوتِ عوام", tr: "quwwat-e-ukhuwwat-e-awām", en: "the strength of the people's brotherhood —", note: "Ukhuwwat = brotherhood; awām = the people, the public — a word you'll hear in every news bulletin." },
+      { ur: "قوم، ملک، سلطنت", tr: "qaum, mulk, saltanat", en: "nation, country, state:", note: "Three nouns, no verb, maximum weight. Mulk = country — everyday Urdu at last." },
+      { ur: "پائندہ تابندہ باد", tr: "pāinda tābinda bād", en: "may they endure, may they shine,", note: "Pāinda = lasting; tābinda = radiant — the rhyme every Pakistani child can finish." },
+      { ur: "شاد باد منزلِ مراد", tr: "shād bād manzil-e-murād", en: "blessed be the destination of desire.", note: "Manzil = destination — the same word travelers use for a journey's stage; murād = wish, aim." },
+      { ur: "پرچمِ ستارہ و ہلال", tr: "parcham-e-sitāra-o-hilāl", en: "Flag of the star and crescent,", note: "Parcham = flag; sitāra = star; hilāl = crescent — the flag described in three words you now own." },
+      { ur: "رہبرِ ترقی و کمال", tr: "rahbar-e-taraqqī-o-kamāl", en: "guide of progress and perfection,", note: "Taraqqī = progress — yes, the same word as your report card. Rahbar = guide, leader." },
+      { ur: "ترجمانِ ماضی، شانِ حال", tr: "tarjumān-e-māzī, shān-e-hāl", en: "interpreter of the past, glory of the present,", note: "Māzī = the past — Level 14's tense gets its formal name. Hāl = the present, as in kyā hāl hai." },
+      { ur: "جانِ استقبال", tr: "jān-e-istiqbāl", en: "soul of the future!", note: "Istiqbāl = the future in this Persian sense — in everyday Urdu it now means 'welcome', which is its own little poem." },
+      { ur: "سایۂ خدائے ذوالجلال", tr: "sāya-e-khudā-e-zū-l-jalāl", en: "Shadow of God, the Lord of Majesty.", note: "Sāya = shadow, shade — protection. The anthem ends under it; so does every rendition at every school assembly." },
+    ],
+  },
 ];
 
 const RANKS = [
