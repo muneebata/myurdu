@@ -1308,6 +1308,21 @@ function openUnit(unitsName, i) {
         .map((f) => `<div class="form-cell"><span class="form-ur ur">${f.ur}</span><span class="form-label">${esc(f.label)}</span></div>`)
         .join("")}</div>`;
     }
+    if (sec.joiner) {
+      body += `<div class="joiner-list">${sec.joiner
+        .map(
+          (jw) => `
+        <div class="joiner-row">
+          <span class="joiner-parts ur">${jw.letters.join(" + ")}</span>
+          <span class="joiner-eq">=</span>
+          <button class="joiner-word" onclick='Speech.speak(${JSON.stringify(jw.ur)}, ${JSON.stringify(jw.tr)})'>
+            <span class="ur">${jw.ur}</span> 🔊
+          </button>
+          <span class="joiner-meta"><b>${esc(jw.tr)}</b> · ${esc(jw.en)}<br><span class="joiner-note">${esc(jw.note)}</span></span>
+        </div>`
+        )
+        .join("")}</div>`;
+    }
     if (sec.words) {
       body += `<div class="word-list">${sec.words
         .map(

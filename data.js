@@ -831,6 +831,100 @@ const READING_UNITS = [
       "Hand-painted signage survived in Pakistan long after vinyl printing arrived — master khattāt (calligraphers) still paint Nastaliq by brush, and you can spot the human hand in every stroke.",
     ],
   },
+  {
+    id: "R7",
+    title: "Joṛ · Letters That Hold Hands",
+    subtitle: "How letters change shape when they join — the key to real reading",
+    intro:
+      "Urdu is always cursive — letters hold hands, and each one changes costume depending on where it stands: alone, at the start, in the middle, or at the end. Learn the costumes and the nine letters that refuse to hold hands forward, and written words suddenly snap into focus.",
+    sections: [
+      {
+        heading: "One letter, four costumes",
+        facts: [
+          "Every connecting letter has up to four shapes. The <strong>body stays the same</strong> — what changes is the tail: start and middle forms trade their tail for a handshake with the next letter.",
+          "Read right to left, a word is just letters shaking hands: the first letter wears its <em>start</em> costume, everyone inside wears <em>middle</em>, and the last one gets its full tail back.",
+        ],
+        forms: [
+          { label: "Alone", ur: "ن" },
+          { label: "Start", ur: "نـ" },
+          { label: "Middle", ur: "ـنـ" },
+          { label: "End", ur: "ـن" },
+        ],
+        note: "Nūn's four costumes. The dot rides along in every one — dots never change, only tails.",
+      },
+      {
+        heading: "The nine letters that don't hold hands forward",
+        facts: [
+          "Nine letters connect to the letter <em>before</em> them but never to the letter <em>after</em>: <span class='ur-inline'>ا د ڈ ذ ر ڑ ز ژ و</span>. After any of them, the next letter starts fresh in its full form.",
+          "This is why <span class='ur-inline'>اردو</span> (urdū) looks like four separate letters — alif, re, dāl, and wāʼo are ALL non-connectors. The language's own name is spelled entirely by the letters that refuse to hold hands!",
+        ],
+        forms: [
+          { label: "Alone", ur: "د" },
+          { label: "Start — none!", ur: "د" },
+          { label: "Middle — none!", ur: "ـد" },
+          { label: "End", ur: "ـد" },
+        ],
+        note: "Dāl only ever receives a handshake — never gives one. The 'start' and 'middle' costumes simply don't exist.",
+      },
+      {
+        heading: "Watch words assemble",
+        note: "Letters on the right, finished word on the left — read the ingredients right to left, then tap 🔊 to hear the result.",
+        joiner: [
+          { letters: ["د", "ن"], ur: "دن", tr: "din", en: "day", note: "Dāl won't connect forward, so nūn stands complete beside it." },
+          { letters: ["ب", "س"], ur: "بس", tr: "bas", en: "bus / enough", note: "Be shakes hands with sīn — watch be shrink to its start form." },
+          { letters: ["ن", "ا", "ن"], ur: "نان", tr: "nān", en: "naan bread", note: "First nūn starts, alif receives then blocks, last nūn stands whole." },
+          { letters: ["پ", "ا", "ن", "ی"], ur: "پانی", tr: "pānī", en: "water", note: "Two handshakes, one block — pā joined, then nī joined fresh after alif." },
+          { letters: ["ک", "ت", "ا", "ب"], ur: "کتاب", tr: "kitāb", en: "book", note: "Kāf, te, and alif chain up; be starts again after alif blocks." },
+          { letters: ["ا", "ر", "د", "و"], ur: "اردو", tr: "urdū", en: "Urdu", note: "Four non-connectors in a row — the word never joins at all." },
+        ],
+      },
+    ],
+    funFacts: [
+      "The nine non-connectors are exactly the letters whose tracing strokes sweep down and away — their shape leaves nowhere for the next letter to attach. The calligraphy explains the rule.",
+      "Nastaliq's slanted, cascading look comes from these joins stacking diagonally — each handshake steps a little down and to the left, which is why lines of Urdu seem to flow like water.",
+    ],
+  },
+  {
+    id: "R8",
+    title: "Paṛho! · Real Reading",
+    subtitle: "Menus, signs, and invitations — connected text in the wild",
+    intro:
+      "Everything so far, deployed. These are real kinds of text you'd meet in Pakistan — a dhaba menu, street signs, a shaadi card. Read each line out loud before tapping the audio; the joins from Joṛ are everywhere now.",
+    sections: [
+      {
+        heading: "The dhaba menu",
+        note: "Prices use the Urdu numerals from R5 — and here's a secret: numbers are written left-to-right, even inside right-to-left Urdu!",
+        words: [
+          { ur: "چائے ۵۰ روپے", tr: "chāy pachās rupaye", en: "tea — 50 rupees", spell: "the anchor of every menu" },
+          { ur: "دودھ پتی ۸۰ روپے", tr: "dūdh pattī assī rupaye", en: "milk tea — 80 rupees", spell: "the rich uncle of chai" },
+          { ur: "سموسہ ۴۰ روپے", tr: "samosa chālīs rupaye", en: "samosa — 40 rupees", spell: "read it, then crave it" },
+          { ur: "پانی ۳۰ روپے", tr: "pānī tīs rupaye", en: "water — 30 rupees", spell: "R7's assembly word, now on a menu" },
+        ],
+      },
+      {
+        heading: "Signs with full sentences",
+        words: [
+          { ur: "خوش آمدید", tr: "khush āmdīd", en: "Welcome", spell: "over every gate and airport arch" },
+          { ur: "آہستہ چلیں", tr: "āhista chaleṉ", en: "Go slow", spell: "painted near every school" },
+          { ur: "یہاں پارکنگ منع ہے", tr: "yahāṉ pārking manā hai", en: "No parking here", spell: "manā = forbidden; pārking = exactly what it sounds like" },
+          { ur: "دھیان سے", tr: "dhyān se", en: "With care / attention!", spell: "the aspirated دھ from Sound School" },
+        ],
+      },
+      {
+        heading: "The shaadi card",
+        note: "Wedding invitations are Urdu calligraphy's home turf — these words anchor almost every card.",
+        words: [
+          { ur: "دعوت", tr: "dāwat", en: "invitation / feast", spell: "dāl blocks, ain receives — two joins to spot" },
+          { ur: "ولیمہ", tr: "valīma", en: "the wedding banquet", spell: "the groom's-side feast, L18's world in one word" },
+          { ur: "شادی مبارک", tr: "shādī mubārak", en: "congratulations on the wedding", spell: "you can now READ your entrance line from L18" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Numbers inside Urdu text flip direction: the words flow right-to-left, but ۵۰ reads left-to-right — your eyes learn to zigzag without noticing.",
+      "Hand-painted signboards are a living art in Pakistan — bus and truck calligraphers letter freehand in styles no font can match, which is why two 'khatrah' signs never look quite the same.",
+    ],
+  },
 ];
 
 const QUIZ_PASS_PERCENT = 70;
@@ -1547,10 +1641,10 @@ const DAILY_QUESTIONS = 5;
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 7, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 15, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 23, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 32, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 43, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 16, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 24, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 33, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 45, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
