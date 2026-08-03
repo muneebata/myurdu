@@ -690,7 +690,7 @@ html[data-theme="dark"] .tw-board { background: #f9f2e2; }    /* tracing paper s
 html[data-theme="dark"] img { filter: brightness(0.92); }
 html[data-theme="dark"] .btn.option.correct { background: #1d4a33; }
 html[data-theme="dark"] .btn.option.wrong { background: #4a2626; }
-.theme-toggle { position: fixed; bottom: 16px; right: 16px; font-size: 1.15rem; background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 12px; cursor: pointer; z-index: 50; box-shadow: var(--shadow); }
+.theme-toggle { position: fixed; bottom: 16px; right: 16px; font: inherit; font-size: 0.85rem; font-weight: 700; color: var(--teal-dark); background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 14px; cursor: pointer; z-index: 50; box-shadow: var(--shadow); white-space: nowrap; }
 .theme-toggle:hover { border-color: var(--teal); }
 html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; color: var(--ink); }
 
