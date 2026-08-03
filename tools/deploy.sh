@@ -4,6 +4,7 @@
 # deploys without a version bump cause stale-cache version skew.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+node tools/smoke.js || { echo "DEPLOY ABORTED: smoke tests failed"; exit 1; }
 python3 tools/gen_seo.py
 V=$(date +%Y%m%d%H%M)
 sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html
