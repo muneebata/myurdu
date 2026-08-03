@@ -662,3 +662,34 @@ body {
 .rc-box-bar span { display: block; width: 100%; background: var(--terracotta); }
 .rc-box-label { color: var(--muted); }
 .streak-tag { cursor: pointer; font: inherit; }
+
+/* ── PTV night mode: deep teal night, warm lamplight cards ── */
+html[data-theme="dark"] {
+  --bg: #0f2429;            /* deep teal night */
+  --ink: #f0e6cf;           /* lamplight cream */
+  --muted: #b8a888;
+  --card: #17333a;          /* lamplit card */
+  --teal: #3fb2bd;
+  --teal-dark: #7fd4dc;
+  --mustard: #e3b02f;
+  --terracotta: #d98757;
+  --rose: #cf7a89;
+  --line: #2c4d55;
+  --shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
+}
+html[data-theme="dark"] body { background: var(--bg); }
+html[data-theme="dark"] .fact,
+html[data-theme="dark"] .mic-note,
+html[data-theme="dark"] .rp-reveal,
+html[data-theme="dark"] .proverb-card {
+  background: linear-gradient(120deg, #1d3a41, #234449);
+  border-color: #3a5f66;
+}
+html[data-theme="dark"] .mouth-real { background: #f9f2e2; }  /* diagrams stay daylight */
+html[data-theme="dark"] .tw-board { background: #f9f2e2; }    /* tracing paper stays paper */
+html[data-theme="dark"] img { filter: brightness(0.92); }
+html[data-theme="dark"] .btn.option.correct { background: #1d4a33; }
+html[data-theme="dark"] .btn.option.wrong { background: #4a2626; }
+.theme-toggle { position: absolute; top: 14px; right: 108px; font-size: 1.05rem; background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 11px; cursor: pointer; z-index: 5; }
+@media (max-width: 640px) { .theme-toggle { right: 96px; } }
+html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; color: var(--ink); }
