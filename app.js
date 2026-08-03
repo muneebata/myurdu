@@ -1444,7 +1444,7 @@ function showAbout() {
 
 const TRACK_DEFS = [
   { id: "speak", emoji: "🗣️", title: "Speak & Listen", ur: "بولیں", cls: "",
-    desc: "18 levels, salaam to shaadi season — plus live role-play scenes with your mic",
+    desc: "24 levels, salaam to the B1 train journey — plus live role-play scenes with your mic",
     prog: () => [LEVELS.filter((lv) => isCompleted(lv.id)).length, LEVELS.length] },
   { id: "sounds", emoji: "👄", title: "Sound School", ur: "آوازیں", cls: "sounds",
     desc: "Train the sounds English doesn't have — rolled Rs, curled Ts, real anatomy",
@@ -1800,6 +1800,7 @@ const PLACEMENT_BANDS = [
   { label: "everyday words", levels: [2, 3, 4], startLevel: 2 },
   { label: "building sentences", levels: [5, 6, 7, 8], startLevel: 5 },
   { label: "real conversation", levels: [9, 10, 11, 12], startLevel: 9 },
+  { label: "past & future tenses", levels: [13, 14, 15, 16, 17], startLevel: 13 },
 ];
 
 function placementLine() {

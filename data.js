@@ -456,6 +456,144 @@ const LEVELS = [
       "Declaring <em>maiṉ nahīṉ nāchūṉgā</em> has never once prevented the dancing. The aunties always win. Consider it your final listening exercise.",
     ],
   },
+  {
+    id: "L19",
+    title: "Main Kar Saktā Hūṉ · I Can",
+    urName: "صلاحیت",
+    subtitle: "The power word saknā — say what you can (and can't) do",
+    intro:
+      "One little verb unlocks a hundred sentences. Saknā (to be able) rides on the stem of any verb you already know: bol saktā hūṉ, ā saktī hūṉ, kar sakte haiṉ. Learn the pattern once, apply it to everything.",
+    items: [
+      { ur: "میں اردو بول سکتا ہوں", tr: "maiṉ urdū bol saktā hūṉ", en: "I can speak Urdu", note: "The proudest sentence on this site. Women say bol saktī hūṉ." },
+      { ur: "کیا آپ مدد کر سکتے ہیں؟", tr: "kyā āp madad kar sakte haiṉ?", en: "Can you help?", note: "Madad = help. The polite āp always takes sakte haiṉ." },
+      { ur: "میں کل نہیں آ سکتا", tr: "maiṉ kal nahīṉ ā saktā", en: "I can't come tomorrow", note: "Nahīṉ slots in before the verb pair — L8's kal doing tomorrow-duty." },
+      { ur: "ہم کل مل سکتے ہیں", tr: "hum kal mil sakte haiṉ", en: "We can meet tomorrow", note: "Milnā = to meet, from L2's khushī huī family." },
+      { ur: "آپ یہاں بیٹھ سکتے ہیں", tr: "āp yahāṉ baiṭh sakte haiṉ", en: "You can sit here", note: "Offer a seat like a host. Baiṭhnā = to sit." },
+      { ur: "کیا میں اندر آ سکتا ہوں؟", tr: "kyā maiṉ andar ā saktā hūṉ?", en: "May I come in?", note: "Andar = inside. L6's kyā turns ability into permission." },
+      { ur: "وہ اچھا گا سکتی ہے", tr: "woh achhā gā saktī hai", en: "She can sing well", note: "Gānā = to sing; saktī agrees with her, not you." },
+      { ur: "آپ یہ کر سکتے ہیں", tr: "āp yeh kar sakte haiṉ", en: "You can do this", note: "The pep-talk sentence. Say it to the mirror before role-play." },
+    ],
+    funFacts: [
+      "Saknā never stands alone — it always leans on another verb's bare stem: <strong>bol</strong> saktā, <strong>ā</strong> saktī, <strong>kar</strong> sakte. Steal the stem, add your power word.",
+      "The ending carries the person: saktā (he/I-male), saktī (she/I-female), sakte (we/you-polite). The verb stem itself never changes.",
+      "In fast speech 'nahīṉ ā saktā' often shrinks to 'nahīṉ ā saktā yār' — the yār at the end softens the refusal between friends.",
+    ],
+  },
+  {
+    id: "L20",
+    title: "Chāhiye! · Wants & Needs",
+    urName: "خواہش",
+    subtitle: "Need it, want it, should do it — the chāhiye family",
+    intro:
+      "Urdu doesn't say 'I want tea' — it says 'to-me tea is-wanted': mujhe chāy chāhiye. Flip your English head around once and the whole family opens up: needs, wants, and gentle shoulds.",
+    items: [
+      { ur: "مجھے چائے چاہیے", tr: "mujhe chāy chāhiye", en: "I need tea", note: "The national sentence. Mujhe = to me — the wanting flows toward you." },
+      { ur: "آپ کو کیا چاہیے؟", tr: "āp ko kyā chāhiye?", en: "What do you need?", note: "Āp ko = to you. Shopkeepers say this all day." },
+      { ur: "مجھے پانی چاہیے", tr: "mujhe pānī chāhiye", en: "I need water", note: "L3's pānī. Chāhiye never changes — it's frozen forever." },
+      { ur: "میں اردو سیکھنا چاہتا ہوں", tr: "maiṉ urdū sīkhnā chāhtā hūṉ", en: "I want to learn Urdu", note: "Chāhnā = to want (an action). Women say chāhtī hūṉ." },
+      { ur: "وہ گھر جانا چاہتی ہے", tr: "woh ghar jānā chāhtī hai", en: "She wants to go home", note: "Full infinitive jānā + chāhnā — want-to-do sentences." },
+      { ur: "کیا آپ کچھ کھانا چاہتے ہیں؟", tr: "kyā āp kuchh khānā chāhte haiṉ?", en: "Would you like to eat something?", note: "Kuchh = something. The host's eternal question — expect nahīṉ, phir haan." },
+      { ur: "مجھے آرام کرنا چاہیے", tr: "mujhe ārām karnā chāhiye", en: "I should rest", note: "Infinitive + chāhiye = should. Ārām = rest, as in ārām se (easy does it)." },
+      { ur: "ہمیں جلدی کرنی چاہیے", tr: "hameṉ jaldī karnī chāhiye", en: "We should hurry", note: "Hameṉ = to us. Jaldī from the bazaar — now with a deadline." },
+    ],
+    funFacts: [
+      "Chāhiye is grammatically frozen — one form for everyone, everything, always. It's the easiest 'verb' in the language because it refuses to change.",
+      "The mujhe/āp ko pattern (dative subjects) runs deep in Urdu: hunger, thirst, liking, needing — all of them happen <em>to</em> you rather than <em>by</em> you.",
+      "Chāhnā (to want) and chāhiye (is wanted/needed) are cousins from the same root — as is chāhat, the word for longing that fills half of Urdu poetry.",
+    ],
+  },
+  {
+    id: "L21",
+    title: "Sab Se Behtar · Comparisons",
+    urName: "موازنہ",
+    subtitle: "Bigger than, best of all — compare anything with one little se",
+    intro:
+      "You already know se as 'from' (L11). Urdu recycles it for comparisons: X se baṛā = bigger than X. And 'the most'? Sab se — 'than all'. Two words, and suddenly you can rank the whole world.",
+    items: [
+      { ur: "یہ اس سے بڑا ہے", tr: "yeh us se baṛā hai", en: "This is bigger than that", note: "The template. Us se = than that; swap in anything." },
+      { ur: "آم سیب سے میٹھا ہے", tr: "ām seb se mīṭhā hai", en: "Mango is sweeter than apple", note: "Seb = apple, mīṭhā = sweet. The bazaar agrees." },
+      { ur: "یہ سب سے سستا ہے", tr: "yeh sab se sastā hai", en: "This is the cheapest", note: "Sab se = than all → the superlative. Sastā from your bargaining kit." },
+      { ur: "کے ٹو سب سے اونچا پہاڑ ہے", tr: "K2 sab se ūṉchā pahāṛ hai", en: "K2 is the highest mountain", note: "True in Pakistan (8,611 m). Ūṉchā = high, pahāṛ = mountain — Naqsha vocabulary, live." },
+      { ur: "لاہور کراچی سے پرانا ہے", tr: "lāhaur karāchī se purānā hai", en: "Lahore is older than Karachi", note: "Historically true — Lahore is ancient; Karachi boomed in the 1800s. Purānā = old." },
+      { ur: "یہ بہتر ہے", tr: "yeh behtar hai", en: "This is better", note: "Behtar = better, no se needed. Behtarīn = the very best." },
+      { ur: "تھوڑا سستا کریں", tr: "thoṛā sastā kareṉ", en: "Make it a bit cheaper", note: "Thoṛā from thoṛā-thoṛā. Deploy at the bazaar with RP3's confidence." },
+      { ur: "آج کل سے گرم ہے", tr: "āj kal se garam hai", en: "Today is hotter than yesterday", note: "L8's āj/kal + L12's garam — comparison unlocks small talk." },
+    ],
+    funFacts: [
+      "Se is Urdu's hardest-working little word: from (Lahore se), than (us se), with (chamach se), since (kal se). Context does the sorting.",
+      "Sab se literally means 'than all' — Urdu builds 'the best' as 'better than everything', which is honestly more logical than English's good/better/best.",
+      "K2's name is a surveyor's label that stuck — locally it's also called Chhogori. At 8,611 m it's Earth's second-highest peak, and entirely in Pakistan's Karakoram.",
+    ],
+  },
+  {
+    id: "L22",
+    title: "Agar Aur Jab · If & When",
+    urName: "اگر اور جب",
+    subtitle: "Conditions and timing — the hinge words of real conversation",
+    intro:
+      "Agar (if) and jab (when) let you build two-part thoughts: if it rains, we stay home. Urdu loves to close the first half with to (then) — agar…to, jab…tab. Master the hinges and your sentences double in length.",
+    items: [
+      { ur: "اگر وقت ہو تو آ جائیں", tr: "agar waqt ho to ā jāeṉ", en: "If you have time, come over", note: "The classic desi invitation — agar…to holding it together. Waqt = time." },
+      { ur: "اگر بارش ہوئی تو ہم گھر رہیں گے", tr: "agar bārish huī to hum ghar raheṉ ge", en: "If it rains, we'll stay home", note: "L12's bārish + L15's future. Two levels shaking hands." },
+      { ur: "جب آپ آئیں گے، ہم کھائیں گے", tr: "jab āp āeṉ ge, hum khāeṉ ge", en: "When you come, we'll eat", note: "Urdu puts BOTH halves in the future — English only manages one." },
+      { ur: "جب میں چھوٹا تھا", tr: "jab maiṉ chhoṭā thā", en: "When I was little", note: "Every dada-abu story starts here. Chhoṭī thī for women." },
+      { ur: "جب بھی آپ چاہیں", tr: "jab bhī āp chāheṉ", en: "Whenever you like", note: "Jab + bhī = whenever. Pure hospitality — L20's chāhnā returns." },
+      { ur: "اگر آپ چاہیں", tr: "agar āp chāheṉ", en: "If you like", note: "The polite hedge before any suggestion. Soft power." },
+      { ur: "پھر ملیں گے", tr: "phir mileṉ ge", en: "We'll meet again", note: "Phir = then/again. The standard see-you-later." },
+      { ur: "تو ٹھیک ہے", tr: "to ṭhīk hai", en: "Then it's settled", note: "That little to again — Urdu's 'well then'. Deal-closing word." },
+    ],
+    funFacts: [
+      "English says 'when you COME, we'll eat' — present tense first. Urdu keeps both halves honest: jab āp āeṉ <strong>ge</strong>, ham khāeṉ <strong>ge</strong> — future on both sides.",
+      "The agar…to pairing is so natural that dropping the to sounds slightly abrupt — it's the breath between condition and consequence.",
+      "Jab bhī (whenever), jo bhī (whatever), jahāṉ bhī (wherever) — bolt bhī onto a question word and it becomes an 'any-' word. One trick, a whole word family.",
+    ],
+  },
+  {
+    id: "L23",
+    title: "Kar Lo, De Do · Compound Verbs",
+    urName: "مرکب فعل",
+    subtitle: "The flavor system — lena, dena, jana change a verb's direction",
+    intro:
+      "Urdu verbs travel in pairs: khā liyā (ate — for yourself), khol diyā (opened — for someone else), so gayā (fell asleep — fully). The second verb adds flavor: lenā points inward, denā points outward, jānā means all the way. This is what makes speech sound native.",
+    items: [
+      { ur: "میں نے کھانا کھا لیا", tr: "maiṉ ne khānā khā liyā", en: "I've eaten (all done)", note: "Khā liyā = ate, benefit landing on yourself. The answer to every ammi's call." },
+      { ur: "دروازہ کھول دیں", tr: "darwāza khol deṉ", en: "Please open the door", note: "Khol deṉ = open (for someone else) — denā pointing outward. Darwāza = door." },
+      { ur: "مجھے بتا دیں", tr: "mujhe batā deṉ", en: "Let me know", note: "Batānā = to tell + denā. The universal 'keep me posted'." },
+      { ur: "لکھ لیں", tr: "likh leṉ", en: "Write it down", note: "Likhnā + lenā — noting it for your own use. Teachers say this constantly." },
+      { ur: "بیٹھ جائیں", tr: "baiṭh jāeṉ", en: "Please sit down", note: "Jānā as finisher = complete the action. L19's baiṭhnā, completed." },
+      { ur: "سو جاؤ", tr: "so jāo", en: "Go to sleep", note: "So jāo — what every parent says. Sonā = to sleep, jānā = all the way." },
+      { ur: "ہم یہ کام کر لیں گے", tr: "hum yeh kām kar leṉ ge", en: "We'll get this done", note: "Kām = work/task. Kar lenā = handle it ourselves — quiet confidence." },
+      { ur: "میں بھول گیا", tr: "maiṉ bhūl gayā", en: "I forgot", note: "Bhūlnā + jānā = forgot completely. Women say bhūl gaī. Honest and useful." },
+    ],
+    funFacts: [
+      "The rule of thumb: <strong>lenā</strong> = the action's benefit comes toward the doer (likh lo — write it for yourself); <strong>denā</strong> = it flows outward to someone else (likh do — write it for them).",
+      "Native speakers pick these automatically and can't always explain why — compound verbs are the deepest 'feel' layer of Urdu. Getting even a few right makes you sound years ahead.",
+      "So jāo, ā jāo, baiṭh jāo — jānā as the second verb means the action completes fully. It's the difference between 'sit' and 'settle in'.",
+    ],
+  },
+  {
+    id: "L24",
+    title: "Safar Bakhair · The Train Journey",
+    urName: "سفر",
+    subtitle: "The B1 capstone — buy the ticket, find the seat, ride the rails",
+    intro:
+      "Pakistan runs on its railways, and this capstone runs on everything you've learned: can-do saknā, polite chāhiye, comparisons at the ticket window, compound verbs in the carriage. One journey, Karachi to Lahore, entirely in Urdu.",
+    items: [
+      { ur: "ایک ٹکٹ لاہور کا", tr: "ek ṭikaṭ lāhaur kā", en: "One ticket to Lahore", note: "Ṭikaṭ — another loanword travelling both directions. Point, say, pay." },
+      { ur: "ٹرین کب آئے گی؟", tr: "ṭren kab āe gī?", en: "When will the train come?", note: "L15's future + L6's kab. Ṭren is feminine — āe gī." },
+      { ur: "کتنا وقت لگے گا؟", tr: "kitnā waqt lage gā?", en: "How long will it take?", note: "Lagnā = to take (time). The traveler's most-used verb." },
+      { ur: "کیا یہ سیٹ خالی ہے؟", tr: "kyā yeh sīṭ khālī hai?", en: "Is this seat free?", note: "Khālī = empty. Ask before you settle — carriage etiquette." },
+      { ur: "میں کھڑکی کے پاس بیٹھنا چاہتا ہوں", tr: "maiṉ khiṛkī ke pās baiṭhnā chāhtā hūṉ", en: "I want to sit by the window", note: "L20's chāhnā + ke pās (near, from RP4). Khiṛkī = window." },
+      { ur: "اگلا اسٹیشن کون سا ہے؟", tr: "aglā isṭeshan kaun sā hai?", en: "What's the next station?", note: "Aglā = next. Kaun sā = which one — L6's kaun, upgraded." },
+      { ur: "ہم وقت پر پہنچ جائیں گے", tr: "hum waqt par pahuṉch jāeṉ ge", en: "We'll arrive on time", note: "Pahuṉchnā + jānā — L23's completion flavor, applied to arrival. Inshāallah understood." },
+      { ur: "سفر بخیر!", tr: "safar bakhair!", en: "Safe travels!", note: "The blessing for every departure. Say it to fellow passengers and mean it." },
+    ],
+    funFacts: [
+      "Pakistan's railways began with the Scinde Railway's Karachi–Kotri line, opened in 1861 — among the oldest in South Asia. The Karachi-to-Peshawar main line still spans the whole country.",
+      "Safar means journey — and yes, English 'safari' comes from the same Arabic root, having traveled through Swahili on the way. A journey word that journeyed.",
+      "Train, ticket, station, seat — Urdu absorbed the railway's English vocabulary and stamped it with its own pronunciation: ṭren, ṭikaṭ, isṭeshan, sīṭ. Say them the Urdu way and you're instantly more local.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -1373,11 +1511,11 @@ const DAILY_QUESTIONS = 5;
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 6, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 13, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 20, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 28, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 37, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 7, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 15, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 23, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 32, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 43, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
