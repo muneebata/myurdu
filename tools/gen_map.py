@@ -95,6 +95,8 @@ CITIES = {
     "hyderabad": (68.37, 25.40), "sialkot": (74.53, 32.50),
     "skardu": (75.63, 35.30), "sukkur": (68.87, 27.70),
     "bahawalpur": (71.68, 29.40), "chitral": (71.79, 35.85),
+    "gilgit": (74.31, 35.92), "muzaffarabad": (73.47, 34.37),
+    "abbottabad": (73.22, 34.15),
 }
 
 # historic sites: diamond markers, visually distinct from city dots
@@ -106,6 +108,12 @@ SITES = {
     "hingol": (65.30, 25.55), "mehrgarh": (67.62, 29.39),
     "makli": (67.90, 24.77), "kartarpur": (74.93, 32.09),
     "takhtibahi": (71.95, 34.32),
+    "mohenjodaro": (68.14, 27.32), "shalimar": (74.38, 31.59),
+    "faisalmosque": (73.04, 33.73), "katasraj": (72.95, 32.72),
+    "ranikot": (67.90, 25.90), "shandur": (72.52, 36.08),
+    "ziarat": (67.73, 30.38), "deosai": (75.40, 34.97),
+    "hunza": (74.66, 36.32), "swat": (72.36, 34.77),
+    "kalash": (71.69, 35.70),
 }
 
 LAKES = {
@@ -164,6 +172,7 @@ site_svg = "\n".join(
 )
 
 k2x, k2y = proj(76.51, 35.88)
+rkx, rky = proj(74.49, 36.14)
 npx, npy = proj(74.59, 35.24)
 tmx, tmy = proj(71.84, 36.26)
 tx, ty = proj(69.9, 25.6)  # Thar center (Pakistani Tharparkar)
@@ -198,6 +207,7 @@ const PAK_MAP_SVG = `
   <polygon id="k2" class="geo-peak" points="{k2x:.1f},{k2y - 9:.1f} {k2x + 7:.1f},{k2y + 5:.1f} {k2x - 7:.1f},{k2y + 5:.1f}"/>
   <polygon id="nangaparbat" class="geo-peak" points="{npx:.1f},{npy - 9:.1f} {npx + 7:.1f},{npy + 5:.1f} {npx - 7:.1f},{npy + 5:.1f}"/>
   <polygon id="tirichmir" class="geo-peak" points="{tmx:.1f},{tmy - 9:.1f} {tmx + 7:.1f},{tmy + 5:.1f} {tmx - 7:.1f},{tmy + 5:.1f}"/>
+  <polygon id="rakaposhi" class="geo-peak" points="{rkx:.1f},{rky - 9:.1f} {rkx + 7:.1f},{rky + 5:.1f} {rkx - 7:.1f},{rky + 5:.1f}"/>
 {site_svg}
 {city_svg}
 {lake_svg}
