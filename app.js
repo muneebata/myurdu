@@ -507,6 +507,7 @@ function openLevel(i) {
     <div class="lesson-actions">
       <button class="btn primary big" onclick="startQuiz(${i})">Take the Level ${i + 1} quiz →</button>
       <p class="hint">Score ${QUIZ_PASS_PERCENT}%+ to mark this level passed.</p>
+      <p class="hint"><a class="linklike" href="learn/${slugifyTitle(lv.title)}.html" target="_blank" rel="noopener">🖨 Printable cheat sheet</a></p>
     </div>
   `;
   window.scrollTo(0, 0);
@@ -2284,6 +2285,30 @@ function renderReport() {
   window.scrollTo(0, 0);
 }
 
+function slugifyTitle(t) {
+  return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+}
+
+// ── PTV night mode ───────────────────────────────────────────
+const THEME_KEY = "urdu-ustaadh-theme";
+
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem(THEME_KEY, t);
+  const btn = document.getElementById("theme-toggle");
+  if (btn) btn.textContent = t === "dark" ? "☀️" : "🌙";
+}
+
+function toggleTheme() {
+  applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  const preferred = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  applyTheme(preferred);
+}
+
 // ── Shared bits ──────────────────────────────────────────────
 
 function backBar(title, backFn = "renderHome()") {
@@ -2331,6 +2356,7 @@ for (const prof of Object.values(root.profiles || {})) {
 }
 saveRoot();
 
+initTheme();
 Cloud.init();
 renderHome();
 if (isAzadiDay()) launchConfetti();
