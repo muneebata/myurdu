@@ -690,6 +690,17 @@ html[data-theme="dark"] .tw-board { background: #f9f2e2; }    /* tracing paper s
 html[data-theme="dark"] img { filter: brightness(0.92); }
 html[data-theme="dark"] .btn.option.correct { background: #1d4a33; }
 html[data-theme="dark"] .btn.option.wrong { background: #4a2626; }
-.theme-toggle { position: absolute; top: 14px; right: 108px; font-size: 1.05rem; background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 11px; cursor: pointer; z-index: 5; }
-@media (max-width: 640px) { .theme-toggle { right: 96px; } }
+.theme-toggle { position: fixed; bottom: 16px; right: 16px; font-size: 1.15rem; background: var(--card); border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 12px; cursor: pointer; z-index: 50; box-shadow: var(--shadow); }
+.theme-toggle:hover { border-color: var(--teal); }
 html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; color: var(--ink); }
+
+/* ── Thora Break: its own postcard section ── */
+.break-card { display: flex; align-items: center; gap: 16px; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); position: relative; }
+.break-card::before { content: ""; position: absolute; inset: 6px; border: 1.5px dashed var(--line); border-radius: 11px; pointer-events: none; }
+.break-card:hover { border-color: var(--terracotta); }
+.break-stamp { flex: none; border: 2px solid var(--terracotta); color: var(--terracotta); border-radius: 6px; padding: 8px 10px; font-size: 1.1rem; line-height: 1.7; transform: rotate(-4deg); background: var(--bg); z-index: 1; }
+.break-main { flex: 1; display: flex; flex-direction: column; gap: 3px; z-index: 1; }
+.break-title { font-weight: 700; color: var(--teal-dark); }
+.break-desc { font-size: 0.88rem; color: var(--muted); }
+.break-prog { flex: none; text-align: center; font-weight: 700; color: var(--terracotta); z-index: 1; }
+.break-prog span { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
