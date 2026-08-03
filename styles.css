@@ -754,3 +754,10 @@ html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; co
 .library-count { flex: none; text-align: center; font-weight: 700; color: var(--rose); }
 .library-count span { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
 @media (max-width: 560px) { .library-spines { display: none; } }
+
+/* ── Kutub emblem ── */
+.kutub-emblem { width: 76px; height: auto; display: block; }
+.kutub-hero { display: flex; justify-content: center; margin: 10px 0 2px; }
+.kutub-hero .kutub-emblem { width: 96px; }
+html[data-theme="dark"] .kutub-emblem rect:first-of-type { fill: #17333a; }
+html[data-theme="dark"] .kutub-emblem path[fill="#f6ecd4"] { fill: #1d3a41; }
