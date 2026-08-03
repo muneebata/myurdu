@@ -713,3 +713,11 @@ html[data-theme="dark"] .notice { background: #2a3f2f; border-color: #46614a; co
 .joiner-word:hover { border-color: var(--teal); }
 .joiner-meta { flex: 1; min-width: 180px; font-size: 0.88rem; }
 .joiner-note { color: var(--muted); font-size: 0.82rem; }
+
+/* ── Imla dictation ── */
+.imla-built { min-height: 64px; display: flex; align-items: center; justify-content: center; font-size: 2rem; line-height: 2; background: var(--bg); border: 2px dashed var(--line); border-radius: 14px; margin: 12px auto; max-width: 420px; direction: rtl; padding: 4px 16px; }
+.imla-bank { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; direction: rtl; margin: 10px 0; }
+.imla-tile { font-size: 1.7rem; line-height: 1.7; width: 62px; height: 62px; background: var(--card); border: 2px solid var(--line); border-radius: 12px; cursor: pointer; color: var(--teal-dark); }
+.imla-tile:hover:not(:disabled) { border-color: var(--teal); }
+.imla-tile:disabled { opacity: 0.25; cursor: default; }
+.imla-btns { justify-content: center; }

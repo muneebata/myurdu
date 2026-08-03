@@ -436,7 +436,8 @@ function renderHome() {
       <p class="arcade-row">🎮 Practice anytime — endless rounds drawn from the same question banks as Aaj Ka Paanch:
         <button class="linklike" onclick="startDaily()">🌱 Desi Roots</button> ·
         <button class="linklike" onclick="startGeo()">🗺️ Naqsha</button> ·
-        <button class="linklike" onclick="startSuno()">🎧 Suno!</button>
+        <button class="linklike" onclick="startSuno()">🎧 Suno!</button> ·
+        <button class="linklike" onclick="startImla()">✍️ Imlā!</button>
       </p>
     </section>
 
@@ -2328,6 +2329,128 @@ function initTheme() {
   const apply = () => (document.documentElement.dataset.theme = themeByClock());
   apply();
   setInterval(apply, 60000);
+}
+
+// ── Imla: dictation — hear it, spell it from tiles ──────────
+
+let imla = null;
+
+function imlaPool() {
+  const all = [...LEVELS.flatMap((lv) => lv.items), ...AZADI_ITEMS];
+  const seen = new Set();
+  return all.filter((it) => {
+    const w = it.ur;
+    if (w.includes(" ") || w.includes("!") || w.includes("؟")) return false;
+    const n = [...w].length;
+    if (n < 2 || n > 6) return false;
+    if (seen.has(w)) return false;
+    seen.add(w);
+    return true;
+  });
+}
+
+const IMLA_EXTRA = [..."بتنکملسدرہوجی"];
+
+function startImla() {
+  const pool = imlaPool();
+  const rng = mulberry32(Math.floor(Math.random() * 1e9));
+  const picks = seededPick(pool, Math.min(5, pool.length), rng);
+  imla = { rounds: picks, current: 0, correct: 0, results: [], built: [], bank: [] };
+  imlaDeal();
+}
+
+function imlaDeal() {
+  const item = imla.rounds[imla.current];
+  const letters = [...item.ur];
+  const extras = seededPick(IMLA_EXTRA.filter((x) => !letters.includes(x)), 3, mulberry32(Math.floor(Math.random() * 1e9)));
+  imla.bank = shuffle([...letters, ...extras]).map((ch, i) => ({ ch, i, used: false }));
+  imla.built = [];
+  renderImla();
+  Speech.speak(item.ur, item.tr);
+}
+
+function renderImla() {
+  const item = imla.rounds[imla.current];
+  app().innerHTML = `
+    ${backBar("✍️ Imlā! · Spell It")}
+    <div class="quiz-progress">Word ${imla.current + 1} of ${imla.rounds.length}</div>
+    <div class="quiz-card">
+      <div class="quiz-prompt suno-prompt">
+        <p>🎧 Listen, then build the word — <b>${esc(item.en)}</b></p>
+        <button class="btn primary" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)})' aria-label="Play the word">▶ Hear it again</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)}, {slow:true})' aria-label="Play slowly">🐢 Slow</button>
+      </div>
+      <div class="imla-built ur" aria-live="polite">${imla.built.map((b) => b.ch).join("") || "&nbsp;"}</div>
+      <div class="imla-bank">
+        ${imla.bank.map((t, k) => `
+          <button class="imla-tile ur" id="tile-${k}" ${t.used ? "disabled" : ""} onclick="imlaTap(${k})">${t.ch}</button>`).join("")}
+      </div>
+      <div class="rp-btns imla-btns">
+        <button class="btn small" onclick="imlaBack()" aria-label="Remove last letter">⌫ Undo</button>
+        <button class="btn primary" onclick="imlaCheck()">Check ✓</button>
+      </div>
+      <div id="quiz-feedback"></div>
+    </div>
+  `;
+  window.scrollTo(0, 0);
+}
+
+function imlaTap(k) {
+  const t = imla.bank[k];
+  if (t.used) return;
+  t.used = true;
+  imla.built.push(t);
+  imlaPaint();
+}
+
+function imlaBack() {
+  const t = imla.built.pop();
+  if (t) t.used = false;
+  imlaPaint();
+}
+
+function imlaPaint() {
+  document.querySelector(".imla-built").innerHTML = imla.built.map((b) => b.ch).join("") || "&nbsp;";
+  imla.bank.forEach((t, k) => {
+    const el = document.getElementById("tile-" + k);
+    if (el) el.disabled = t.used;
+  });
+}
+
+function imlaCheck() {
+  const item = imla.rounds[imla.current];
+  const guess = imla.built.map((b) => b.ch).join("");
+  const right = guess === item.ur;
+  if (right) imla.correct++;
+  imla.results.push(right);
+  $("#quiz-feedback").innerHTML = `
+    <div class="pr ${right ? "good" : "bad"}">
+      ${right ? "✅ Sahī! Perfect imlā." : `❌ It's spelled: <span class="ur-inline">${esc(item.ur)}</span>`}
+      <strong>${esc(item.tr)}</strong> — ${esc(item.en)}
+      <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)})' aria-label="Hear the word">🔊</button>
+    </div>
+    <button class="btn primary" onclick="imlaNext()">${imla.current + 1 < imla.rounds.length ? "Next word →" : "Finish →"}</button>`;
+}
+
+function imlaNext() {
+  imla.current++;
+  if (imla.current < imla.rounds.length) imlaDeal();
+  else {
+    app().innerHTML = `
+      ${backBar("✍️ Imlā! · results")}
+      <div class="result-card pass">
+        <div class="result-emoji">✍️</div>
+        <h2 class="retro">${imla.correct === imla.rounds.length ? "Flawless imlā!" : "Dictation done"}</h2>
+        <p class="result-score">${imla.correct} / ${imla.rounds.length}</p>
+        <p class="share-squares">${imla.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
+        <p>Practice is endless — five fresh words every round, spelled letter by letter.</p>
+        <div class="result-actions">
+          <button class="btn primary big" onclick="startImla()">Another five →</button>
+          <button class="btn" onclick="renderHome()">Home</button>
+        </div>
+      </div>
+    `;
+  }
 }
 
 // ── Shared bits ──────────────────────────────────────────────
