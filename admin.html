@@ -34,7 +34,7 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
 <body>
 <div class="wrap">
   <h1>Urdu Ustaadh · Admin</h1>
-  <p class="sub">Anonymous usage overview — no names or emails are shown anywhere on this page.</p>
+  <p class="sub">Usage overview and account roster — visible only to the superuser (you).</p>
 
   <div class="card" id="login-card">
     <p style="margin-top:0">Sign in with your PocketBase <b>superuser</b> account (the one you use for the admin panel).</p>
@@ -45,7 +45,7 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
   </div>
 
   <div id="dash" hidden>
-    <div class="priv">🔒 Privacy view: everything below is aggregated. Individual accounts, names, and emails are never displayed.</div>
+    <div class="priv">🔒 Superuser-only view. Aggregates first; the account roster at the bottom shows emails and learner names to you alone — nothing here is ever public.</div>
     <h2 style="margin-top:0">Daily visitors</h2>
     <div class="tiles" id="visit-tiles"></div>
     <div id="visit-chart" style="margin-top:10px"></div>
@@ -56,6 +56,10 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
     <div id="signups"></div>
     <h2>Most-completed levels &amp; units</h2>
     <div id="units"></div>
+    <h2>Account roster</h2>
+    <div class="card" style="padding:8px 12px; overflow-x:auto">
+      <table id="roster" style="width:100%; border-collapse:collapse; font-size:0.85rem"></table>
+    </div>
     <p class="note" style="margin-top:20px">These numbers cover people who created accounts. Most visitors play without an account — for raw visitor counts, enable <b>Cloudflare Web Analytics</b> (free, cookieless) in your Cloudflare dashboard: Analytics &amp; Logs → Web Analytics.</p>
   </div>
 </div>
@@ -127,9 +131,8 @@ async function loadStats() {
   await loadVisits().catch(() => {
     document.getElementById("visit-tiles").innerHTML = '<p class="note">Visitor counter not reachable yet.</p>';
   });
-  // users: only 'created' is fetched — emails never leave the server
-  const users = await fetchAll("users", "created");
-  const progress = await fetchAll("progress", "data,updated");
+  const users = await fetchAll("users", "id,email,name,created");
+  const progress = await fetchAll("progress", "user,data,updated");
 
   let learners = 0, completions = 0, streaks = 0, certLevel = 0;
   const unitCounts = {};
@@ -163,6 +166,31 @@ async function loadStats() {
   document.getElementById("signups").innerHTML = months.map((m) =>
     `<div class="bar-row"><span>${m}</span><div class="bar"><i style="width:${(byMonth[m] / maxM) * 100}%"></i></div><span>${byMonth[m]}</span></div>`
   ).join("") || '<p class="note">No signups yet.</p>';
+
+  // account roster: email, learners, progress, last active
+  const byUser = {};
+  progress.forEach((r) => { if (r.user) byUser[r.user] = r; });
+  const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const rosterRows = users
+    .slice()
+    .sort((a, b) => (b.created || "").localeCompare(a.created || ""))
+    .map((u) => {
+      const rec = byUser[u.id];
+      const profiles = rec?.data?.profiles || {};
+      const names = Object.keys(profiles).join(", ") || "—";
+      const done = Object.values(profiles).reduce((n, p) => n + Object.keys(p.completed || {}).length, 0);
+      const last = rec?.updated ? rec.updated.slice(0, 10) : "—";
+      return `<tr>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line)"><b>${esc(u.email)}</b>${u.name ? `<br><span style="color:var(--muted)">${esc(u.name)}</span>` : ""}</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line)">${esc(names)}</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); text-align:center">${done}</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); white-space:nowrap">${esc((u.created || "").slice(0, 10))}</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); white-space:nowrap">${esc(last)}</td>
+      </tr>`;
+    }).join("");
+  document.getElementById("roster").innerHTML = `
+    <tr style="text-align:left; color:var(--muted)"><th style="padding:6px 8px">Account</th><th style="padding:6px 8px">Learner profiles</th><th style="padding:6px 8px">Done</th><th style="padding:6px 8px">Joined</th><th style="padding:6px 8px">Last active</th></tr>
+    ${rosterRows || '<tr><td style="padding:8px" class="note">No accounts yet.</td></tr>'}`;
 
   const top = Object.entries(unitCounts).sort((a, b) => b[1] - a[1]).slice(0, 12);
   const maxU = top[0]?.[1] || 1;
