@@ -7,6 +7,7 @@
   --bg: #faf3e1;            /* warm evening cream */
   --ink: #3b2e1f;
   --muted: #8a7458;
+  --muted-strong: #66502f;  /* on-background text — pattern-proof */
   --card: #fffdf3;
   --teal: #12808b;          /* PTV teal */
   --teal-dark: #0c5f66;
@@ -56,7 +57,7 @@ body {
 }
 .hero-urdu { font-size: 2.9rem; color: var(--teal-dark); line-height: 2; }
 .hero h1 { margin: 2px 0 2px; font-size: 2.2rem; color: var(--teal-dark); }
-.tagline { color: var(--muted); margin: 0 0 14px; }
+.tagline { color: var(--muted-strong); margin: 0 0 14px; }
 
 .id-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
 .tag {
@@ -77,7 +78,7 @@ body {
   border: 1px solid var(--line); border-radius: 999px; overflow: hidden;
 }
 .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--mustard)); border-radius: 999px; transition: width 0.4s; }
-.progress-label { font-size: 0.85rem; color: var(--muted); }
+.progress-label { font-size: 0.85rem; color: var(--muted-strong); }
 
 .notice {
   margin: 16px auto 0; max-width: 620px; font-size: 0.85rem;
@@ -89,7 +90,7 @@ body {
 .track-title { margin: 38px 0 14px; font-size: 1.35rem; color: var(--teal-dark); }
 .track-sub {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 0.8rem; font-weight: 400; color: var(--muted); margin-left: 8px;
+  font-size: 0.8rem; font-weight: 400; color: var(--muted-strong); margin-left: 8px;
 }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
@@ -120,7 +121,7 @@ body {
 .card-sub { font-size: 0.85rem; color: var(--muted); }
 .card-status { margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: var(--teal-dark); }
 
-.foot { margin-top: 48px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+.foot { margin-top: 48px; text-align: center; color: var(--muted-strong); font-size: 0.85rem; }
 .linklike { background: none; border: none; color: var(--teal); cursor: pointer; font: inherit; text-decoration: underline; padding: 0; }
 
 /* ── Topbar / lessons ── */
@@ -624,7 +625,7 @@ body {
 .mic-note { background: linear-gradient(120deg, #fdf6dd, #fbeec7); border: 1.5px solid #ecd28c; border-radius: 14px; padding: 12px 16px; margin: 12px 0; font-size: 0.93rem; line-height: 1.55; }
 
 /* ── practice arcade row ── */
-.arcade-row { margin: 10px 2px 0; font-size: 0.93rem; color: var(--muted); }
+.arcade-row { margin: 10px 2px 0; font-size: 0.93rem; color: var(--muted-strong); }
 .arcade-row .linklike { font-weight: 700; }
 
 /* ── branching role-play: choice cards + reveal ── */
@@ -669,6 +670,7 @@ html[data-theme="dark"] {
   --bg: #0f2429;            /* deep teal night */
   --ink: #f0e6cf;           /* lamplight cream */
   --muted: #b8a888;
+  --muted-strong: #d8cbab;
   --card: #17333a;          /* lamplit card */
   --teal: #3fb2bd;
   --teal-dark: #7fd4dc;
