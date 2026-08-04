@@ -2618,6 +2618,7 @@ const AZADI_ITEMS = [
 const ROLEPLAYS = [
   {
     id: "RP1",
+    img: { src: "images/chai.jpg", alt: "Chai and paratha on a dhaba tray", credit: "Photo: MIANBASH \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
     title: "At the Chai Dhaba",
     urName: "چائے خانہ",
     desc: "Order chai and pay — or charm the wala into a discount. Level 10's scene, your way.",
@@ -2684,6 +2685,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP3",
+    img: { src: "images/sair-bazaar.jpg", alt: "A dry-fruit vendor at his stall in Peshawar", credit: "Photo: Umair Mohsin \u00b7 CC BY 2.0 \u00b7 via Wikimedia Commons" },
     title: "Bargaining at the Bazaar",
     urName: "مول تول",
     desc: "Ask the price, then choose your road — pay up or haggle hard. The ending changes.",
@@ -2716,6 +2718,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP4",
+    img: { src: "images/sair-station.jpg", alt: "Faisalabad railway station building", credit: "Photo: Usman Nadeem \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
     title: "Asking the Way",
     urName: "راستہ پوچھنا",
     desc: "Lost near the station — your questions pick the route: on foot or by rickshaw, bus stop or chai.",
@@ -2746,6 +2749,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP5",
+    img: { src: "images/sair-doctor.jpg", alt: "A doctor examines a child at a mobile clinic in Sindh", credit: "Photo: DFID (UK) \u00b7 CC BY 2.0 \u00b7 via Wikimedia Commons" },
     title: "At the Doctor's",
     urName: "ڈاکٹر کے پاس",
     desc: "Describe what hurts and ask the right questions — Level 13's feelings, under pressure.",
@@ -2778,6 +2782,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP6",
+    img: { src: "images/sair-rickshaw.jpg", alt: "A truck-art decorated rickshaw in a Lahore bazaar", credit: "Photo: Tahir mq \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
     title: "The Rickshaw Ride",
     urName: "رکشہ والا",
     desc: "Fix the fare before the wheels move — counter, hold firm, or walk away.",
