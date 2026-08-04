@@ -784,7 +784,6 @@ html[data-theme="dark"] .kutub-emblem path[fill="#f6ecd4"] { fill: #1d3a41; }
    Naqsha map — those stay paper-white by design.) */
 html[data-theme="dark"] .btn,
 html[data-theme="dark"] .input,
-html[data-theme="dark"] .pstamp,
 html[data-theme="dark"] .letter,
 html[data-theme="dark"] .word,
 html[data-theme="dark"] .verse-line,
@@ -818,3 +817,13 @@ html[data-theme="dark"] .pr.bad { background: #4a2626; color: #f0c2b8; border-co
 html[data-theme="dark"] .azadi-banner { background: #14332a; color: var(--ink); }
 html[data-theme="dark"] .azadi-share-btn { background: #17333a; color: var(--ink); }
 html[data-theme="dark"] .kutub-scope.complete { color: #8fce9a; border-color: #46614a; }
+
+/* dark: card numbering that used deep/dark accent inks */
+html[data-theme="dark"] .postcard2 .card-num,
+html[data-theme="dark"] .card.pakistan .card-num { color: #6fcf8f; }
+html[data-theme="dark"] .card-num.gold { color: var(--mustard); }
+html[data-theme="dark"] .card.sounds .card-num { color: #9ec27a; }
+/* kutub read-marks */
+.kutub-readmark { position: absolute; top: 8px; right: 10px; font-size: 0.72rem; font-weight: 700; color: #3c6e47; }
+html[data-theme="dark"] .kutub-readmark { color: #8fce9a; }
+.kutub-book { position: relative; }

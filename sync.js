@@ -194,6 +194,7 @@ function mergeRoots(local, remote) {
       p.roleplay[k] = Math.max(a.roleplay?.[k] || 0, b.roleplay?.[k] || 0);
     for (const k of new Set([...Object.keys(a.tracing || {}), ...Object.keys(b.tracing || {})]))
       p.tracing[k] = Math.max(a.tracing?.[k] || 0, b.tracing?.[k] || 0);
+    p.kutub = { ...(b.kutub || {}), ...(a.kutub || {}) };
     for (const k of new Set([...Object.keys(a.leitner || {}), ...Object.keys(b.leitner || {})])) {
       const la = a.leitner?.[k], lb = b.leitner?.[k];
       p.leitner[k] = !la ? lb : !lb ? la : la.t >= lb.t ? la : lb;

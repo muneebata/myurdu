@@ -456,7 +456,7 @@ function renderHome() {
           <span class="library-title">The legendary works of Urdu literature</span>
           <span class="library-desc">${KUTUB.length} shelves, from Khusrau to the Qaumī Tarānah — every line in Urdu with transliteration, English translation, annotation, and audio.</span>
         </span>
-        <span class="library-count">${KUTUB.length}<br><span>shelves</span></span>
+        <span class="library-count">${Object.keys(profile().kutub || {}).length ? `${Object.keys(profile().kutub || {}).length}/${KUTUB.length}<br><span>read</span>` : `${KUTUB.length}<br><span>shelves</span>`}</span>
       </button>
     </section>
 
@@ -2314,6 +2314,7 @@ function renderReport() {
     <div class="rc-card">
       <h3>✍️ Skills</h3>
       <div class="rc-line"><span>Letters traced (70%+)</span><b>${traced}/${TRACE_LETTERS.length}</b></div>
+      <div class="rc-line"><span>📚 Library shelves read</span><b>${Object.keys(p.kutub || {}).length}/${KUTUB.length}</b></div>
       ${rpRows}
       ${p.placedAt != null ? `<div class="rc-line"><span>🧭 Placement</span><b>Level ${p.placedAt + 1}</b></div>` : ""}
     </div>
@@ -2524,6 +2525,7 @@ function renderKutub() {
           const w = KUTUB[i];
           return `
           <button class="kutub-book" onclick="renderKutubWork(${i})">
+            ${profile().kutub?.[w.id] ? `<span class="kutub-readmark">✓ read</span>` : ""}
             <span class="kutub-ur ur">${esc(w.urName)}</span>
             <span class="kutub-author">${esc(w.author)}</span>
             <span class="kutub-title">${esc(w.title)}</span>
@@ -2533,6 +2535,15 @@ function renderKutub() {
         }).join("")}
       </div>`).join("")}`;
   window.scrollTo(0, 0);
+}
+
+function kutubToggleRead(id, i) {
+  const p = profile();
+  p.kutub = p.kutub || {};
+  if (p.kutub[id]) delete p.kutub[id];
+  else p.kutub[id] = true;
+  saveRoot();
+  renderKutubWork(i);
 }
 
 function renderKutubWork(i) {
@@ -2561,6 +2572,7 @@ function renderKutubWork(i) {
     ${w.links ? `<div class="link-row kutub-links">${w.links.map((l) => `<a class="btn link" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>` : ""}
     <p class="credit">${esc(w.source)}</p>
     <div class="result-actions">
+      <button class="btn ${profile().kutub?.[w.id] ? "" : "primary"}" onclick="kutubToggleRead('${w.id}', ${i})">${profile().kutub?.[w.id] ? "✓ Read — tap to unmark" : "Mark as read ✓"}</button>
       ${i + 1 < KUTUB.length ? `<button class="btn primary" onclick="renderKutubWork(${i + 1})">Next shelf: ${esc(KUTUB[i + 1].author)} →</button>` : ""}
       <button class="btn" onclick="renderKutub()">The shelf</button>
     </div>
