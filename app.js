@@ -461,6 +461,18 @@ function renderHome() {
     </section>
 
     <section>
+      <h2 class="track-title retro">🚶 Sair · <span class="ur">سیر</span> <span class="track-sub">take a walk — have a conversation</span></h2>
+      <button class="sair-card" onclick="renderSair()">
+        <span class="sair-route" aria-hidden="true">${ROLEPLAYS.map((sc) => `<span>${SAIR_STOPS[sc.id] || "🎭"}</span>`).join("")}</span>
+        <span class="sair-main">
+          <span class="sair-title">Seven stops through town — live, with your mic</span>
+          <span class="sair-desc">Order chai, haggle for mangoes, fix a rickshaw fare, see the doctor — the app talks back, and your choices change every ending.</span>
+        </span>
+        <span class="sair-prog">${Object.keys(p.roleplay || {}).length}/${ROLEPLAYS.length}<br><span>scenes</span></span>
+      </button>
+    </section>
+
+    <section>
       <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson — a little holiday</span></h2>
       <button class="break-card" onclick="renderTrack('pakistan')">
         <span class="break-stamp ur">پاکستان</span>
@@ -1520,7 +1532,7 @@ function renderTrack(id) {
   const t = TRACK_DEFS.find((x) => x.id === id);
   const p = profile();
   const bodies = {
-    speak: () => micCompatNote() + rolePlayCards() + placementLine() + trackSpeakHTML(),
+    speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair — seven live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: () => tracingCard() + trackReadingHTML(),
     virsa: () => kutubCard() + trackVirsaHTML(),
@@ -1618,13 +1630,25 @@ function trackPakistanHTML() {
 
 // ── Role-play: live conversations with the mic ──────────────
 
+const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "🩺", RP6: "🛺", RP7: "📞" };
+
+function renderSair() {
+  app().innerHTML = `
+    ${backBar("🚶 Sair · سیر — Take a Walk")}
+    <p class="lesson-intro">A stroll through town, entirely in Urdu. Seven stops — the dhaba, a new friend, the bazaar, the way to the station, the clinic, a rickshaw, and a phone call home. At every stop the app talks back, your mic answers, and your choices steer the scene.</p>
+    ${micCompatNote()}
+    ${rolePlayCards()}
+  `;
+  window.scrollTo(0, 0);
+}
+
 function rolePlayCards() {
   const p = profile();
   return `
     <div class="rp-cards">
       ${ROLEPLAYS.map((sc, i) => `
       <button class="rp-card" onclick="startRolePlay(${i})">
-        <span class="rp-tag">🎭 Live role-play</span>
+        <span class="rp-tag">${SAIR_STOPS[sc.id] || "🎭"} Stop ${i + 1} · Live role-play</span>
         <span class="rp-title">${esc(sc.title)} <span class="ur">${esc(sc.urName)}</span></span>
         <span class="rp-desc">${esc(sc.desc)}</span>
         <span class="rp-best">${p.roleplay?.[sc.id] != null ? `Best: ${p.roleplay[sc.id]}% · play again` : "▶ Play the scene"}</span>
@@ -1752,7 +1776,7 @@ function renderRP() {
       </div>`;
   }
   app().innerHTML = `
-    ${backBar(`🎭 ${esc(sc.title)}`, "renderTrack('speak')")}
+    ${backBar(`${SAIR_STOPS[sc.id] || "🎭"} ${esc(sc.title)}`, "renderSair()")}
     <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. ${sc.turns.some((t) => t.choice) ? `Line ${rp.history.length + 1} — your choices steer the scene.` : `Line ${rp.idx + 1} of ${sc.turns.length}.`}</p>
     <div class="rp-chat">${rpBubbles()}</div>
     ${controls}
@@ -1810,7 +1834,7 @@ function finishRP() {
   if (!self) p.roleplay[sc.id] = Math.max(p.roleplay[sc.id] || 0, pct);
   saveRoot();
   app().innerHTML = `
-    ${backBar(`🎭 ${esc(sc.title)} · scene complete`, "renderTrack('speak')")}
+    ${backBar(`${SAIR_STOPS[sc.id] || "🎭"} ${esc(sc.title)} · scene complete`, "renderSair()")}
     <div class="result-card ${pct >= 60 ? "pass" : ""}">
       <div class="result-emoji">${pct >= 90 ? "🏆" : pct >= 60 ? "🎉" : "💪"}</div>
       <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished — keep practicing!"}</h2>
@@ -1828,7 +1852,7 @@ function finishRP() {
       <p>${pct >= 60 ? "That was a real exchange, start to finish. Say it again tomorrow and it'll come out faster." : "Every run makes the lines more automatic. Tap 🐢 on the hard ones and go again."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startRolePlay(${ROLEPLAYS.indexOf(sc)})">Play again</button>
-        <button class="btn" onclick="renderTrack('speak')">Speak & Listen</button>
+        <button class="btn" onclick="renderSair()">Back to the Sair</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
     </div>
