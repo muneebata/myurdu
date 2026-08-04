@@ -776,3 +776,45 @@ html[data-theme="dark"] .kutub-emblem path[fill="#f6ecd4"] { fill: #1d3a41; }
 .kutub-scope.complete { color: #3c6e47; border-color: #9dbd9a; }
 .kutub-band { text-align: center; color: var(--muted); font-size: 0.8rem; margin: 16px 0 6px; letter-spacing: 0.1em; }
 .kutub-wing-sub { unicode-bidi: isolate; direction: ltr; }
+
+/* ── dark theme: components with hardcoded light backgrounds ──
+   In dark mode --ink flips to cream; anything keeping a light
+   hardcoded background goes cream-on-cream. Reset them all here.
+   (Deliberately excluded: tracing board, mouth diagrams, and the
+   Naqsha map — those stay paper-white by design.) */
+html[data-theme="dark"] .btn,
+html[data-theme="dark"] .input,
+html[data-theme="dark"] .pstamp,
+html[data-theme="dark"] .letter,
+html[data-theme="dark"] .word,
+html[data-theme="dark"] .verse-line,
+html[data-theme="dark"] .form-cell,
+html[data-theme="dark"] .m-head { background: #17333a; color: var(--ink); border-color: var(--line); }
+html[data-theme="dark"] .btn.primary { background: var(--teal); color: #0f2429; }
+html[data-theme="dark"] .btn:hover:not(:disabled),
+html[data-theme="dark"] .letter:hover,
+html[data-theme="dark"] .word:hover,
+html[data-theme="dark"] .verse-line:hover,
+html[data-theme="dark"] .profile-tag:hover,
+html[data-theme="dark"] .about-btn:hover,
+html[data-theme="dark"] .save-btn:hover,
+html[data-theme="dark"] .cert-tag:hover,
+html[data-theme="dark"] .proverb-card:hover,
+html[data-theme="dark"] .lrow:hover,
+html[data-theme="dark"] .roster-row.active .roster-name { background: #234449; }
+html[data-theme="dark"] .funfact { background: linear-gradient(120deg, #1d3a41, #234449); border-color: #3a5f66; }
+html[data-theme="dark"] .funfact .ff-tag { color: var(--mustard); }
+html[data-theme="dark"] .rp-card { background: linear-gradient(120deg, #1d3a41, #234449); border-color: #3a5f66; }
+html[data-theme="dark"] .review-banner { background: #2a3f2f; border-color: #46614a; }
+html[data-theme="dark"] .review-banner:hover { background: #33503b; }
+html[data-theme="dark"] .no-spam { background: #22382a; color: var(--ink); }
+html[data-theme="dark"] .btn.link { background: #22382a; }
+html[data-theme="dark"] .btn.link:hover { background: #2c4735; }
+html[data-theme="dark"] .progress-bar { background: #234449; }
+html[data-theme="dark"] .pr.listening { background: #1d3a41; color: var(--ink); }
+html[data-theme="dark"] .pr.good { background: #1d4a33; color: #c9e8c9; }
+html[data-theme="dark"] .pr.ok, html[data-theme="dark"] .pr.warn { background: #4a3d1d; color: #f0dfae; border-color: #6e5c2e; }
+html[data-theme="dark"] .pr.bad { background: #4a2626; color: #f0c2b8; border-color: #6e3a3a; }
+html[data-theme="dark"] .azadi-banner { background: #14332a; color: var(--ink); }
+html[data-theme="dark"] .azadi-share-btn { background: #17333a; color: var(--ink); }
+html[data-theme="dark"] .kutub-scope.complete { color: #8fce9a; border-color: #46614a; }
