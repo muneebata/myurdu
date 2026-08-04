@@ -1128,19 +1128,35 @@ let d5 = null;
 
 function startDaily5() {
   const rng = mulberry32(daySeed() + 5);
+  const p = profile();
+  const today = todayKey();
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
-  let sunoPicks, fullPool = sunoPool;
-  if (azadiWindow()) {
-    // Azadi week: the two listening slots celebrate azadi words
-    sunoPicks = seededPick(AZADI_ITEMS, 2, mulberry32(daySeed() + 47));
-    fullPool = [...sunoPool, ...AZADI_ITEMS];
-  } else {
-    sunoPicks = cycleDraw(sunoPool, 2, 13001);
+  let fullPool = azadiWindow() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
+
+  // The seeded deal is deterministic — but growing a question bank
+  // reshuffles the cycles, which once changed a user's five mid-day
+  // after a content deploy. So: pin the first deal of each day in
+  // the profile; replays that day always use the pinned five.
+  let sunoPicks, rootsPicks, geoPicks;
+  const pin = p.d5Deal && p.d5Deal.date === today ? p.d5Deal : null;
+  if (pin) {
+    sunoPicks = pin.suno.map((tr) => fullPool.find((x) => x.tr === tr)).filter(Boolean);
+    rootsPicks = pin.roots.map((en) => LOANWORDS.find((x) => x.en === en)).filter(Boolean);
+    geoPicks = pin.geo.map((id) => GEO_FEATURES.find((x) => x.id === id)).filter(Boolean);
+  }
+  if (!pin || sunoPicks.length !== 2 || rootsPicks.length !== 2 || geoPicks.length !== 1) {
+    sunoPicks = azadiWindow()
+      ? seededPick(AZADI_ITEMS, 2, mulberry32(daySeed() + 47))
+      : cycleDraw(sunoPool, 2, 13001);
+    rootsPicks = cycleDraw(LOANWORDS, 2, 1);
+    geoPicks = cycleDraw(GEO_FEATURES, 1, 7001);
+    p.d5Deal = { date: today, suno: sunoPicks.map((x) => x.tr), roots: rootsPicks.map((x) => x.en), geo: geoPicks.map((x) => x.id) };
+    saveRoot();
   }
   const questions = seededPick([
     ...sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
-    ...cycleDraw(LOANWORDS, 2, 1).map((w) => rootsQuestion(w, rng)),
-    ...cycleDraw(GEO_FEATURES, 1, 7001).map((f) => geoQuestion(f, rng)),
+    ...rootsPicks.map((w) => rootsQuestion(w, rng)),
+    ...geoPicks.map((f) => geoQuestion(f, rng)),
   ], 5, rng);
   d5 = { questions, current: 0, correct: 0, results: [] };
   renderD5();
@@ -1648,7 +1664,8 @@ function rolePlayCards() {
   return `
     <div class="rp-cards">
       ${ROLEPLAYS.map((sc, i) => `
-      <button class="rp-card" onclick="startRolePlay(${i})">
+      <button class="rp-card ${sc.img ? "has-thumb" : ""}" onclick="startRolePlay(${i})">
+        ${sc.img ? `<span class="rp-thumb"><img src="${sc.img.src}" alt="${esc(sc.img.alt)}" loading="lazy"><span class="rp-thumb-credit">${esc(sc.img.credit)}</span></span>` : ""}
         <span class="rp-tag">${SAIR_STOPS[sc.id] || "🎭"} Stop ${i + 1} · Live role-play</span>
         <span class="rp-title">${esc(sc.title)} <span class="ur">${esc(sc.urName)}</span></span>
         <span class="rp-desc">${esc(sc.desc)}</span>
