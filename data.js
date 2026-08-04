@@ -1654,6 +1654,7 @@ const DAILY_QUESTIONS = 5;
 const KUTUB = [
   {
     id: "K1",
+    links: [{ label: "📚 Ghalib\u2019s complete dīwān at Rekhta →", url: "https://www.rekhta.org/poets/mirza-ghalib" }],
     scope: "curated",
     img: { src: "images/ghalib.jpg", alt: "Photograph of Mirza Ghalib", caption: "Ghalib, photographed in the 1860s — one of the first great poets ever caught on camera.", credit: "Photo: unknown (1860s) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Mirza Ghalib",
@@ -1678,6 +1679,7 @@ const KUTUB = [
   },
   {
     id: "K2",
+    links: [{ label: "📚 Mir\u2019s complete kulliyāt at Rekhta →", url: "https://www.rekhta.org/poets/meer-taqi-meer" }],
     scope: "curated",
     author: "Mir Taqi Mir",
     urName: "میر",
@@ -1725,6 +1727,7 @@ const KUTUB = [
   },
   {
     id: "K4",
+    links: [{ label: "📚 More Khusrau — riddles and qauls at Rekhta →", url: "https://www.rekhta.org/poets/amir-khusro" }],
     scope: "traditional",
     author: "Amir Khusrau",
     urName: "خسرو",
@@ -1818,6 +1821,7 @@ const KUTUB = [
   },
   {
     id: "K8",
+    links: [{ label: "📜 Read the complete address (LUMS \u00b7 Mahbub ul Haq Research Centre) →", url: "https://mhrc.lums.edu.pk/muhammad-ali-jinnahs-presidential-address-to-the-1st-constituent-assembly-of-pakistan-august-11-1947" }],
     scope: "excerpt",
     img: { src: "images/jinnah.jpg", alt: "Photograph of Muhammad Ali Jinnah", caption: "Jinnah in 1910, as a young barrister \u2014 thirty-seven years before this address.", credit: "Photo: unknown (1910) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Quaid-e-Azam Muhammad Ali Jinnah",
@@ -1904,6 +1908,7 @@ const KUTUB = [
   },
   {
     id: "K12",
+    links: [{ label: "📚 The complete Ādmī Nāma and more Nazir at Rekhta →", url: "https://www.rekhta.org/poets/nazeer-akbarabadi" }],
     scope: "excerpt",
     author: "Nazir Akbarabadi",
     urName: "نظیر",
@@ -1937,6 +1942,7 @@ const KUTUB = [
   },
   {
     id: "K14",
+    links: [{ label: "📚 More Akbar Allahabadi at Rekhta →", url: "https://www.rekhta.org/poets/akbar-allahabadi" }],
     scope: "curated",
     author: "Akbar Allahabadi",
     urName: "اکبر",

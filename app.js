@@ -2558,6 +2558,7 @@ function renderKutubWork(i) {
           ${l.note ? `<p class="kutub-note">✎ ${esc(l.note)}</p>` : ""}
         </div>`).join("")}
     </div>
+    ${w.links ? `<div class="link-row kutub-links">${w.links.map((l) => `<a class="btn link" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>` : ""}
     <p class="credit">${esc(w.source)}</p>
     <div class="result-actions">
       ${i + 1 < KUTUB.length ? `<button class="btn primary" onclick="renderKutubWork(${i + 1})">Next shelf: ${esc(KUTUB[i + 1].author)} →</button>` : ""}
