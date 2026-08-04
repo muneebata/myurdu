@@ -211,11 +211,12 @@ function overallPercent() {
 
 // ── Daily-game helpers (date-seeded so everyone gets the same drill) ──
 
-// Daily games flip at midnight US Central time (America/Chicago), so
-// the whole world gets the same puzzle on the same "day".
+// Daily games flip at each learner's OWN local midnight (like Wordle).
+// The calendar date drives every seed, so the whole world still gets
+// the same puzzle on the same date — the day just begins when yours does.
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit",
+    year: "numeric", month: "2-digit", day: "2-digit",
   }).format(new Date());
 }
 
