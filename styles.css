@@ -24,7 +24,7 @@ body {
   /* jali overlay — day: honeycomb-and-diamond net traced from the screens
      of Jahangir's Tomb (Lahore); night: rosette-and-star web from the Salim
      Chishti tomb screens (Fatehpur Sikri). Original seamless tiles. */
-  background: url("jali/jahangir-light.svg?v=2"), var(--bg);
+  background: url("jali/jahangir-light.svg?v=3"), var(--bg);
   background-size: 26px 45px;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -678,7 +678,7 @@ html[data-theme="dark"] {
   --line: #2c4d55;
   --shadow: 0 3px 12px rgba(0, 0, 0, 0.35);
 }
-html[data-theme="dark"] body { background: url("jali/chishti-dark.svg?v=2"), var(--bg); background-size: 72px 124.7px; }
+html[data-theme="dark"] body { background: url("jali/chishti-dark.svg?v=3"), var(--bg); background-size: 72px 124.7px; }
 html[data-theme="dark"] .fact,
 html[data-theme="dark"] .mic-note,
 html[data-theme="dark"] .rp-reveal,
