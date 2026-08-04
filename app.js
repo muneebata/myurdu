@@ -2527,6 +2527,8 @@ function renderKutubWork(i) {
       <h2 class="retro">${esc(w.title)}</h2>
       <p class="hint">${esc(w.form)} · ${esc(w.dates)}</p>
     </div>
+    ${w.flagArt ? `<div class="kutub-flag">${AZADI_FLAG_SVG}</div>` : ""}
+    ${w.img ? `<figure class="photo kutub-photo"><img src="${w.img.src}" alt="${esc(w.img.alt)}" loading="lazy"><figcaption>${esc(w.img.caption)}<span class="photo-credit">${esc(w.img.credit)}</span></figcaption></figure>` : ""}
     <p class="lesson-intro">${esc(w.intro)}</p>
     <div class="kutub-lines">
       ${w.lines.map((l) => `
