@@ -2673,4 +2673,19 @@ saveRoot();
 initTheme();
 Cloud.init();
 renderHome();
+
+// Anonymous visitor tick: one tiny { day } record per device per day.
+// Nothing personal is sent or stored — see admin.html for the tally.
+(() => {
+  try {
+    const k = "urdu-ustaadh-visit";
+    const today = todayKey();
+    if (localStorage.getItem(k) === today || !window.MYURDU_API) return;
+    fetch(window.MYURDU_API.replace(/\/+$/, "") + "/api/collections/visits/records", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ day: today }),
+    }).then((r) => { if (r.ok) localStorage.setItem(k, today); }).catch(() => {});
+  } catch (_) {}
+})();
 if (isAzadiDay()) launchConfetti();

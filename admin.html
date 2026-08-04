@@ -46,6 +46,11 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
 
   <div id="dash" hidden>
     <div class="priv">🔒 Privacy view: everything below is aggregated. Individual accounts, names, and emails are never displayed.</div>
+    <h2 style="margin-top:0">Daily visitors</h2>
+    <div class="tiles" id="visit-tiles"></div>
+    <div id="visit-chart" style="margin-top:10px"></div>
+    <p class="note">Counted as one tick per device per day (stored: the date only — no IPs, no cookies, no personal data). Counting began 4 Aug 2026.</p>
+    <h2>Accounts &amp; learning</h2>
     <div class="tiles" id="tiles"></div>
     <h2>Signups by month</h2>
     <div id="signups"></div>
@@ -96,7 +101,32 @@ async function fetchAll(collection, fields) {
   return items;
 }
 
+async function loadVisits() {
+  const rows = await fetchAll("visits", "day");
+  const byDay = {};
+  rows.forEach((r) => { if (r.day) byDay[r.day] = (byDay[r.day] || 0) + 1; });
+  const dayKey = (offset) => {
+    const d = new Date(Date.now() - offset * 86400000);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  };
+  const today = byDay[dayKey(0)] || 0;
+  const sum = (n) => Array.from({ length: n }, (_, i) => byDay[dayKey(i)] || 0).reduce((a, b) => a + b, 0);
+  document.getElementById("visit-tiles").innerHTML = [
+    [today, "visitors today"],
+    [sum(7), "last 7 days"],
+    [sum(30), "last 30 days"],
+  ].map(([n, l]) => `<div class="tile"><b>${n}</b><span>${l}</span></div>`).join("");
+  const days = Array.from({ length: 14 }, (_, i) => dayKey(13 - i));
+  const maxV = Math.max(...days.map((d) => byDay[d] || 0), 1);
+  document.getElementById("visit-chart").innerHTML = days.map((d) =>
+    `<div class="bar-row"><span>${d.slice(5)}</span><div class="bar"><i style="width:${((byDay[d] || 0) / maxV) * 100}%"></i></div><span>${byDay[d] || 0}</span></div>`
+  ).join("");
+}
+
 async function loadStats() {
+  await loadVisits().catch(() => {
+    document.getElementById("visit-tiles").innerHTML = '<p class="note">Visitor counter not reachable yet.</p>';
+  });
   // users: only 'created' is fetched — emails never leave the server
   const users = await fetchAll("users", "created");
   const progress = await fetchAll("progress", "data,updated");
