@@ -767,3 +767,12 @@ html[data-theme="dark"] .kutub-emblem path[fill="#f6ecd4"] { fill: #1d3a41; }
 .kutub-photo img { width: 100%; border-radius: 12px; border: 1.5px solid var(--line); }
 .kutub-flag { display: flex; justify-content: center; margin: 10px 0; }
 .kutub-flag svg { width: min(230px, 60vw); height: auto; }
+
+/* ── kutub organization ── */
+.kutub-wing { margin: 22px 0 8px; color: var(--teal-dark); font-size: 1.02rem; }
+.kutub-wing .ur { font-size: 1.2rem; }
+.kutub-wing-sub { font-weight: 400; font-size: 0.8rem; color: var(--muted); }
+.kutub-scope { font-size: 0.68rem; border-radius: 999px; padding: 2px 8px; margin-top: 3px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.kutub-scope.complete { color: #3c6e47; border-color: #9dbd9a; }
+.kutub-band { text-align: center; color: var(--muted); font-size: 0.8rem; margin: 16px 0 6px; letter-spacing: 0.1em; }
+.kutub-wing-sub { unicode-bidi: isolate; direction: ltr; }

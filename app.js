@@ -2490,6 +2490,15 @@ const KUTUB_EMBLEM = `<svg class="kutub-emblem" viewBox="0 0 120 132" xmlns="htt
   <line x1="24" y1="113" x2="96" y2="113" stroke="#c9b98a" stroke-width="2" stroke-linecap="round"/>
 </svg>`;
 
+// Chronological wings for the library shelf
+const KUTUB_WINGS = [
+  { title: "The Founding Voices", ur: "ابتدا", sub: "1300–1810 — where the language found its music", ids: ["K4", "K2"] },
+  { title: "The Delhi Court", ur: "دلی", sub: "the 1800s — the last emperors and their poets", ids: ["K1", "K7", "K5"] },
+  { title: "The People's Poets", ur: "عوام", sub: "bazaar, schoolroom, and satire", ids: ["K12", "K13", "K14"] },
+  { title: "Iqbal", ur: "اقبال", sub: "1877–1938 — the poet of the awakening", ids: ["K3", "K6", "K15", "K16"] },
+  { title: "The Nation", ur: "قوم", sub: "1947–1954 — the words of the founding", ids: ["K8", "K11", "K10", "K9"] },
+];
+
 function kutubCard() {
   return `
     <div class="rp-cards">
@@ -2507,15 +2516,22 @@ function renderKutub() {
     ${backBar("📚 Kutub Khana · کتب خانہ", "renderHome()")}
     <div class="kutub-hero">${KUTUB_EMBLEM}</div>
     <p class="lesson-intro">${KUTUB.length} shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
-    <div class="kutub-shelf">
-      ${KUTUB.map((w, i) => `
-        <button class="kutub-book" onclick="renderKutubWork(${i})">
-          <span class="kutub-ur ur">${esc(w.urName)}</span>
-          <span class="kutub-author">${esc(w.author)}</span>
-          <span class="kutub-title">${esc(w.title)}</span>
-          <span class="kutub-dates">${esc(w.dates)}</span>
-        </button>`).join("")}
-    </div>`;
+    ${KUTUB_WINGS.map((wing) => `
+      <h3 class="kutub-wing">${esc(wing.title)} <span class="ur">${esc(wing.ur)}</span> <span class="kutub-wing-sub">${esc(wing.sub)}</span></h3>
+      <div class="kutub-shelf">
+        ${wing.ids.map((id) => {
+          const i = KUTUB.findIndex((x) => x.id === id);
+          const w = KUTUB[i];
+          return `
+          <button class="kutub-book" onclick="renderKutubWork(${i})">
+            <span class="kutub-ur ur">${esc(w.urName)}</span>
+            <span class="kutub-author">${esc(w.author)}</span>
+            <span class="kutub-title">${esc(w.title)}</span>
+            <span class="kutub-dates">${esc(w.dates)}</span>
+            <span class="kutub-scope ${w.scope || "curated"}">${{ complete: "✓ complete text", excerpt: "excerpt", traditional: "oral tradition", curated: "curated selection" }[w.scope || "curated"]}</span>
+          </button>`;
+        }).join("")}
+      </div>`).join("")}`;
   window.scrollTo(0, 0);
 }
 
@@ -2531,14 +2547,15 @@ function renderKutubWork(i) {
     ${w.img ? `<figure class="photo kutub-photo"><img src="${w.img.src}" alt="${esc(w.img.alt)}" loading="lazy"><figcaption>${esc(w.img.caption)}<span class="photo-credit">${esc(w.img.credit)}</span></figcaption></figure>` : ""}
     <p class="lesson-intro">${esc(w.intro)}</p>
     <div class="kutub-lines">
-      ${w.lines.map((l) => `
+      ${w.lines.map((l, li) => `
+        ${l.band ? `<p class="kutub-band">· بند ${l.band} ·</p>` : ""}
         <div class="kutub-entry">
           <button class="verse-line" onclick='Speech.speak(${JSON.stringify(l.ur)}, ${JSON.stringify(l.tr)}, {slow:true})'>
             <span class="verse-ur ur">${esc(l.ur)}</span>
             <span class="verse-tr">${esc(l.tr)}</span>
             <span class="verse-en">${esc(l.en)}</span>
           </button>
-          <p class="kutub-note">✎ ${esc(l.note)}</p>
+          ${l.note ? `<p class="kutub-note">✎ ${esc(l.note)}</p>` : ""}
         </div>`).join("")}
     </div>
     <p class="credit">${esc(w.source)}</p>
