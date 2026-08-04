@@ -233,6 +233,7 @@ const LEVELS = [
   },
   {
     id: "L10",
+    img: { src: "images/chai.jpg", alt: "Doodh-patti chai and namak paratha on a dhaba tray", caption: "Doodh-pattī and namak parāthā on the dhaba tray — the exact scene this level trains you for.", credit: "Photo: MIANBASH \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
     title: "Guftagu · At the Chai Dhaba",
     urName: "گفتگو",
     subtitle: "The capstone: a real conversation, start to finish",
@@ -573,6 +574,7 @@ const LEVELS = [
   },
   {
     id: "L24",
+    img: { src: "images/bolan.jpg", alt: "British-era railway bridge in the Bolan Pass", caption: "A British-era railway bridge threading the Bolan Pass, Balochistan \u2014 the line to Quetta still runs these cliffs.", credit: "Photo: ShahbanoBaloch \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
     title: "Safar Bakhair · The Train Journey",
     urName: "سفر",
     subtitle: "The B1 capstone — buy the ticket, find the seat, ride the rails",
@@ -1944,6 +1946,7 @@ const KUTUB = [
     id: "K14",
     links: [{ label: "📚 More Akbar Allahabadi at Rekhta →", url: "https://www.rekhta.org/poets/akbar-allahabadi" }],
     scope: "curated",
+    img: { src: "images/akbarallahabadi.jpg", alt: "Portrait of Akbar Allahabadi", caption: "Akbar Allahabadi \u2014 the sessions judge who moonlighted as the subcontinent\u2019s sharpest satirist.", credit: "Photo: unknown (print reproduction) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Akbar Allahabadi",
     urName: "اکبر",
     dates: "1846–1921 · Allahabad",

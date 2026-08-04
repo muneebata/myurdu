@@ -539,6 +539,7 @@ function openLevel(i) {
   app().innerHTML = `
     ${backBar(`Level ${i + 1} · ${esc(lv.title)}`)}
     <p class="lesson-intro">${esc(lv.intro)}</p>
+    ${lv.img ? `<figure class="photo kutub-photo"><img src="${lv.img.src}" alt="${esc(lv.img.alt)}" loading="lazy"><figcaption>${esc(lv.img.caption)}<span class="photo-credit">${esc(lv.img.credit)}</span></figcaption></figure>` : ""}
     ${micCompatNote()}
     <div class="phrase-list">${body}</div>
     <div class="lesson-actions">
