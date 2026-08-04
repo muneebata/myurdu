@@ -827,3 +827,16 @@ html[data-theme="dark"] .card.sounds .card-num { color: #9ec27a; }
 .kutub-readmark { position: absolute; top: 8px; right: 10px; font-size: 0.72rem; font-weight: 700; color: #3c6e47; }
 html[data-theme="dark"] .kutub-readmark { color: #8fce9a; }
 .kutub-book { position: relative; }
+
+/* ── Sair: the conversation walk ── */
+.sair-card { display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
+.sair-card:hover { border-color: var(--teal); }
+.sair-route { flex: none; display: flex; flex-direction: column; gap: 2px; font-size: 0.95rem; position: relative; padding-left: 14px; }
+.sair-route::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; border-left: 2px dashed var(--line); }
+.sair-route span { line-height: 1.25; }
+.sair-main { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.sair-title { font-weight: 700; color: var(--teal-dark); }
+.sair-desc { font-size: 0.88rem; color: var(--muted); }
+.sair-prog { flex: none; text-align: center; font-weight: 700; color: var(--teal); }
+.sair-prog span { font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+@media (max-width: 560px) { .sair-route { display: none; } }
