@@ -1654,6 +1654,7 @@ const DAILY_QUESTIONS = 5;
 const KUTUB = [
   {
     id: "K1",
+    img: { src: "images/ghalib.jpg", alt: "Photograph of Mirza Ghalib", caption: "Ghalib, photographed in the 1860s — one of the first great poets ever caught on camera.", credit: "Photo: unknown (1860s) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Mirza Ghalib",
     urName: "غالب",
     dates: "1797–1869 · Delhi",
@@ -1696,6 +1697,7 @@ const KUTUB = [
   },
   {
     id: "K3",
+    img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Allama Iqbal — the poem\u2019s author, whose duā still opens school mornings.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
     urName: "اقبال",
     dates: "1877–1938 · Sialkot & Lahore",
@@ -1737,6 +1739,7 @@ const KUTUB = [
   },
   {
     id: "K5",
+    img: { src: "images/zafar.jpg", alt: "Photograph of Bahadur Shah Zafar reclining in 1858", caption: "Zafar in 1858, awaiting trial after the fall of Delhi \u2014 the only Mughal emperor ever photographed.", credit: "Photo: 1858, British Library collection \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Bahadur Shah Zafar",
     urName: "ظفر",
     dates: "1775–1862 · Delhi & Rangoon",
@@ -1759,6 +1762,7 @@ const KUTUB = [
   },
   {
     id: "K6",
+    img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Iqbal wrote the tarānah in 1904, at twenty-six.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
     urName: "اقبال",
     dates: "1877–1938 · written 1904",
@@ -1807,6 +1811,7 @@ const KUTUB = [
   },
   {
     id: "K8",
+    img: { src: "images/jinnah.jpg", alt: "Photograph of Muhammad Ali Jinnah", caption: "Jinnah in 1910, as a young barrister \u2014 thirty-seven years before this address.", credit: "Photo: unknown (1910) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Quaid-e-Azam Muhammad Ali Jinnah",
     urName: "قائد",
     dates: "1876–1948 · 11 August 1947",
@@ -1824,6 +1829,7 @@ const KUTUB = [
   },
   {
     id: "K9",
+    flagArt: true,
     author: "Hafeez Jalandhari",
     urName: "قومی ترانہ",
     dates: "words approved 1954 · music: Ahmed G. Chagla, 1950",
@@ -1851,6 +1857,7 @@ const KUTUB = [
   },
   {
     id: "K10",
+    flagArt: true,
     author: "The State of Pakistan",
     urName: "نشان",
     dates: "flag 1947 · emblem & motto 1954",
@@ -1870,6 +1877,7 @@ const KUTUB = [
   },
   {
     id: "K11",
+    img: { src: "images/jinnah.jpg", alt: "Photograph of Muhammad Ali Jinnah", caption: "The Quaid-e-Azam \u2014 counsel from the founder\u2019s last two years.", credit: "Photo: unknown (1910) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Quaid-e-Azam Muhammad Ali Jinnah",
     urName: "اقوال",
     dates: "1876–1948 · addresses of 1947–48",
@@ -1934,6 +1942,7 @@ const KUTUB = [
   },
   {
     id: "K15",
+    img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Iqbal \u2014 who dared to file a complaint with God, then wrote the reply.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
     urName: "شکوہ",
     dates: "Shikwa 1909 · Jawāb 1913",
