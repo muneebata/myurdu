@@ -31,7 +31,7 @@ function esc(s) {
 // ── Profiles ─────────────────────────────────────────────────
 
 function blankProfile() {
-  return { completed: {}, scores: {}, streak: 0, lastDaily: null, dailyBest: {}, leitner: {} };
+  return { completed: {}, scores: {}, streak: 0, lastDaily: null, dailyBest: {}, leitner: {}, nishaan: {} };
 }
 
 function profile() {
@@ -308,6 +308,161 @@ function dueReviewCount() {
   return due;
 }
 
+// ── Nishaan (🔖): learner-flagged words + Anki-style flashcards ──
+// Bookmarking stores the item itself (works across lessons, lughat,
+// kutub) and seeds it into the Leitner ladder at box 0.
+
+function nishaanHas(tr) {
+  return !!profile()?.nishaan?.[Speech.slug(tr)];
+}
+
+function nishaanToggle(btn, ur, tr, en, src) {
+  const p = profile();
+  const nn = (p.nishaan ||= {});
+  const key = Speech.slug(tr);
+  if (nn[key]) {
+    delete nn[key];
+  } else {
+    nn[key] = { ur, tr, en, src, t: Date.now() };
+    const lt = (p.leitner ||= {});
+    if (!lt[key]) lt[key] = { b: 0, t: 0 };
+  }
+  saveRoot();
+  if (btn) {
+    btn.classList.toggle("on", !!nn[key]);
+    btn.textContent = nn[key] ? "🔖 Saved" : "🔖 Save";
+    btn.setAttribute("aria-pressed", nn[key] ? "true" : "false");
+  }
+}
+
+function nishaanBtn(ur, tr, en, src, small) {
+  const on = nishaanHas(tr);
+  return `<button class="btn nishaan-btn${small ? " small" : ""}${on ? " on" : ""}" aria-pressed="${on}"
+    title="Flag this as one to work on"
+    onclick='nishaanToggle(this, ${JSON.stringify(ur)}, ${JSON.stringify(tr)}, ${JSON.stringify(en)}, ${JSON.stringify(src)})'>🔖 ${on ? "Saved" : "Save"}</button>`;
+}
+
+function flashDeck() {
+  const p = profile();
+  const lt = p.leitner || {};
+  const now = Date.now();
+  const seen = new Set();
+  const cards = [];
+  for (const [k, v] of Object.entries(p.nishaan || {})) {
+    cards.push({ key: k, ur: v.ur, tr: v.tr, en: v.en, src: v.src || "Saved with 🔖", saved: true });
+    seen.add(k);
+  }
+  for (const lv of LEVELS.filter((l) => isCompleted(l.id)))
+    for (const item of lv.items) {
+      const k = Speech.slug(item.tr);
+      if (seen.has(k)) continue;
+      const e = lt[k];
+      if (e && now - e.t >= BOX_REST_DAYS[Math.min(e.b, 4)] * 86400000) {
+        cards.push({ key: k, ur: item.ur, tr: item.tr, en: item.en, src: lv.title, saved: false });
+        seen.add(k);
+      }
+    }
+  const rank = (c) => { const e = lt[c.key]; return e ? e.b * 1e13 + e.t : -1; };
+  cards.sort((a, b) => (b.saved ? 1 : 0) - (a.saved ? 1 : 0) || rank(a) - rank(b));
+  return cards.slice(0, 15);
+}
+
+let fc = null;
+
+function startFlashcards() {
+  const deck = flashDeck();
+  if (!deck.length) {
+    app().innerHTML = `
+      ${backBar("🃏 Flashcards")}
+      <div class="fc-empty">
+        <p class="fc-empty-art">🔖</p>
+        <p><b>Your deck is empty — for now.</b></p>
+        <p class="hint">Tap <b>🔖 Save</b> on any phrase in a lesson, any word in the Lughat, or any couplet
+        in the Kutub Khana to flag it as one you want to work on. Words you miss in quizzes also
+        land here automatically once their review day comes around.</p>
+        <div class="result-actions">
+          <button class="btn primary" onclick="renderLughat()">Browse the Lughat →</button>
+          <button class="btn" onclick="renderHome()">Home</button>
+        </div>
+      </div>`;
+    window.scrollTo(0, 0);
+    return;
+  }
+  fc = { deck, i: 0, again: 0, good: 0, easy: 0 };
+  renderFlashcard(false);
+}
+
+function renderFlashcard(revealed) {
+  const c = fc.deck[fc.i];
+  app().innerHTML = `
+    ${backBar("🃏 Flashcards", "renderHome()")}
+    <div class="quiz-progress">Card ${fc.i + 1} of ${fc.deck.length}${c.saved ? " · 🔖 saved by you" : ""}</div>
+    <div class="fc-card">
+      <div class="fc-src">${esc(c.src)}</div>
+      <div class="fc-prompt">How do you say…</div>
+      <div class="fc-en">${esc(c.en)}</div>
+      ${revealed ? `
+        <div class="fc-answer">
+          <div class="fc-ur ur">${esc(c.ur)}</div>
+          <div class="fc-tr">${esc(c.tr)}</div>
+          <div class="fc-audio">
+            <button class="btn speak" onclick='Speech.speak(${JSON.stringify(c.ur)}, ${JSON.stringify(c.tr)})'>🔊 Listen</button>
+            <button class="btn speak" onclick='Speech.speak(${JSON.stringify(c.ur)}, ${JSON.stringify(c.tr)}, {slow:true})'>🐢 Slow</button>
+          </div>
+        </div>
+        <p class="fc-ask">Say it out loud first — then be honest:</p>
+        <div class="fc-grades">
+          <button class="btn fc-again" onclick="fcGrade(0)">❌ Phir se<span>again soon</span></button>
+          <button class="btn fc-good" onclick="fcGrade(1)">🙂 Thīk hai<span>got it</span></button>
+          <button class="btn fc-easy" onclick="fcGrade(2)">⚡ Āsān<span>too easy</span></button>
+        </div>`
+      : `<button class="btn primary big fc-flip" onclick="fcReveal()">Show answer →</button>`}
+    </div>
+  `;
+  window.scrollTo(0, 0);
+}
+
+function fcReveal() {
+  const c = fc.deck[fc.i];
+  renderFlashcard(true);
+  Speech.speak(c.ur, c.tr);
+}
+
+function fcGrade(g) {
+  const c = fc.deck[fc.i];
+  const lt = (profile().leitner ||= {});
+  const cur = lt[c.key] || { b: 0, t: 0 };
+  lt[c.key] = { b: g === 0 ? 0 : Math.min(cur.b + g, 4), t: Date.now() };
+  saveRoot();
+  fc[["again", "good", "easy"][g]]++;
+  fc.i++;
+  if (fc.i < fc.deck.length) renderFlashcard(false);
+  else finishFlashcards();
+}
+
+function finishFlashcards() {
+  const more = flashDeck().length;
+  app().innerHTML = `
+    ${backBar("🃏 Flashcards")}
+    <div class="fc-card fc-done">
+      <p class="fc-empty-art">${fc.again === 0 ? "🌟" : "📚"}</p>
+      <p><b>${fc.deck.length} card${fc.deck.length === 1 ? "" : "s"} flipped.</b></p>
+      <div class="fc-tally">
+        <span>❌ Phir se · ${fc.again}</span>
+        <span>🙂 Thīk hai · ${fc.good}</span>
+        <span>⚡ Āsān · ${fc.easy}</span>
+      </div>
+      <p class="hint">${fc.again > 0
+        ? "The ❌ ones dropped to box 1 — they'll keep coming back until they stick. That's the whole trick."
+        : "Everything climbed a box — these words rest longer before their next visit."}</p>
+      <div class="result-actions">
+        ${more ? `<button class="btn primary" onclick="startFlashcards()">Another round (${more} waiting) →</button>` : ""}
+        <button class="btn" onclick="renderHome()">Home</button>
+      </div>
+    </div>`;
+  window.scrollTo(0, 0);
+}
+
 
 const URDU_DIGITS = { "0": "۰", "1": "۱", "2": "۲", "3": "۳", "4": "۴", "5": "۵", "6": "۶", "7": "۷", "8": "۸", "9": "۹" };
 function urduNum(n) {
@@ -406,7 +561,7 @@ function renderHome() {
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
       ${azadiWindow() ? azadiBanner() : ""}
-      ${due > 0 ? `<button class="review-banner" onclick="startCallback()">📚 ${due} word${due === 1 ? "" : "s"} due for review — two minutes, let's go →</button>` : ""}
+      ${due > 0 ? `<button class="review-banner" onclick="startFlashcards()">🃏 ${due} word${due === 1 ? "" : "s"} due — flip through your flashcards →</button>` : ""}
     </header>
 
     <section>
@@ -440,6 +595,7 @@ function renderHome() {
         <button class="linklike" onclick="startSuno()">🎧 Suno!</button> ·
         <button class="linklike" onclick="startImla()">✍️ Imlā!</button>
       </p>
+      <p class="arcade-row">🔖 See a word you want to keep? Save it anywhere it appears — then drill your own deck: <button class="linklike" onclick="startFlashcards()">🃏 Flashcards</button></p>
     </section>
 
     <section>
@@ -570,6 +726,7 @@ function phraseCard(levelIdx, itemIdx, item) {
         <button class="btn speak" title="Hear it" onclick="playItem(${levelIdx},${itemIdx},false)">🔊 Listen</button>
         <button class="btn speak" title="Hear it extra slowly" onclick="playItem(${levelIdx},${itemIdx},true)">🐢 Slow</button>
         <button class="btn mic" title="Say it and get checked" onclick="practiceItem('${id}',${levelIdx},${itemIdx})">🎤 Say it</button>
+        ${nishaanBtn(item.ur, item.tr, item.en, `Level ${levelIdx + 1}`, false)}
       </div>
       <div class="practice-result" id="${id}-result"></div>
     </div>`;
@@ -1552,7 +1709,7 @@ function renderTrack(id) {
   const bodies = {
     speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair — seven live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
-    reading: () => tracingCard() + trackReadingHTML(),
+    reading: () => tracingCard() + typingCard() + trackReadingHTML(),
     virsa: () => kutubCard() + trackVirsaHTML(),
     pakistan: trackPakistanHTML,
   };
@@ -1986,12 +2143,115 @@ function finishPlacement() {
   window.scrollTo(0, 0);
 }
 
+// ── Ṭāip: Urdu typing — set up the keyboard, text your family ──
+// Not a rank completable (like tracing): a practical tool. Drill words
+// are typed with the learner's own system Urdu keyboard.
+
+const TYPE_DRILLS = [
+  { ur: "اب", tr: "ab", en: "now" },
+  { ur: "دل", tr: "dil", en: "heart" },
+  { ur: "سب", tr: "sab", en: "all" },
+  { ur: "پانی", tr: "pānī", en: "water" },
+  { ur: "چائے", tr: "chāy", en: "chai" },
+  { ur: "شکریہ", tr: "shukriya", en: "thank you" },
+  { ur: "سلام", tr: "salām", en: "salaam" },
+  { ur: "کل ملیں گے", tr: "kal mileṉ ge", en: "see you tomorrow" },
+];
+
+const TYPE_SETUP = [
+  { os: "📱 iPhone / iPad", steps: ["Settings → General → Keyboard → Keyboards", "Add New Keyboard…", "Choose <b>Urdu</b>", "While typing, hold the 🌐 globe key to switch"] },
+  { os: "🤖 Android (Gboard)", steps: ["Open Gboard settings (long-press the comma, or Settings → System → Keyboard)", "Languages → Add keyboard", "Search <b>Urdu (اردو)</b> and add it", "Swipe the space bar to switch languages"] },
+  { os: "💻 Mac", steps: ["System Settings → Keyboard → Text Input → Input Sources → Edit", "Press + and choose <b>Urdu</b>", "Switch with the input menu (or 🌐/fn key)"] },
+  { os: "🖥 Windows", steps: ["Settings → Time &amp; Language → Language &amp; region", "Add a language → <b>اردو (Urdu)</b>", "Switch with Win + Space"] },
+];
+
+function typingCard() {
+  const done = Object.keys(profile().typing || {}).length;
+  return `
+    <div class="rp-cards">
+      <button class="rp-card" onclick="renderTyping()">
+        <span class="rp-tag">⌨️ Ṭāip · Typing</span>
+        <span class="rp-title">Type in Urdu <span class="ur">ٹائپ</span></span>
+        <span class="rp-desc">Set up the Urdu keyboard on your own phone or computer — then type your first words and text your family in real Urdu script.</span>
+        <span class="rp-best">${done ? `${done}/${TYPE_DRILLS.length} words typed · keep going` : "▶ Set up & start typing"}</span>
+      </button>
+    </div>`;
+}
+
+function renderTyping() {
+  const t = profile().typing || {};
+  app().innerHTML = `
+    ${backBar("⌨️ Ṭāip · Type in Urdu", "renderTrack('reading')")}
+    <p class="lesson-intro">The fastest way to make Urdu part of your day: put the keyboard on the phone already in your pocket, and text somebody a real سلام. Pick your device, follow the steps once, then drill below — with your own keyboard, not ours.</p>
+    <div class="type-setups">
+      ${TYPE_SETUP.map((g) => `
+        <details class="type-setup">
+          <summary>${g.os}</summary>
+          <ol>${g.steps.map((st) => `<li>${st}</li>`).join("")}</ol>
+        </details>`).join("")}
+    </div>
+    <p class="hint">Menu names can shift a little between versions — look for “Keyboard” and “Urdu” and you'll land there. No Urdu keyboard yet? The <button class="linklike" onclick="startImla()">Imlā tiles</button> are your training wheels.</p>
+    <h3 class="track-title" style="font-size:1.1rem">🖊 Your first words <span class="track-sub">listen, then type what you hear — dots and all</span></h3>
+    <div class="type-list">
+      ${TYPE_DRILLS.map((d, i) => `
+        <div class="type-row${t[Speech.slug(d.tr)] ? " done" : ""}" id="type-row-${i}">
+          <div class="type-target">
+            <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(d.ur)}, ${JSON.stringify(d.tr)})' aria-label="Play audio">🔊</button>
+            <span><b>${esc(d.tr)}</b> · ${esc(d.en)}</span>
+            <span class="type-check">${t[Speech.slug(d.tr)] ? "✅" : ""}</span>
+          </div>
+          <div class="type-input-row">
+            <input class="input type-input ur" dir="rtl" lang="ur" placeholder="یہاں لکھیے" autocomplete="off" autocapitalize="off"
+              onkeydown="if(event.key==='Enter')typeCheck(${i}, this)">
+            <button class="btn small primary" onclick="typeCheck(${i}, this.previousElementSibling)">Check</button>
+          </div>
+          <div class="type-feedback" aria-live="polite"></div>
+        </div>`).join("")}
+    </div>`;
+  window.scrollTo(0, 0);
+}
+
+function typeNorm(s) {
+  return (s || "")
+    .normalize("NFC")
+    .replace(/[\u064B-\u0652\u0670\u200c-\u200f]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/ھ/g, "ه").replace(/ہ/g, "ه").replace(/ة/g, "ه")
+    .replace(/ي/g, "ی").replace(/ك/g, "ک")
+    .trim();
+}
+
+function typeCheck(i, input) {
+  const d = TYPE_DRILLS[i];
+  const row = document.getElementById(`type-row-${i}`);
+  const fb = row.querySelector(".type-feedback");
+  const got = typeNorm(input.value);
+  const want = typeNorm(d.ur);
+  if (!got) { fb.innerHTML = `<div class="pr warn">Type it first — switch to your Urdu keyboard (🌐) and listen again.</div>`; return; }
+  if (got === want) {
+    const t = (profile().typing ||= {});
+    t[Speech.slug(d.tr)] = true;
+    saveRoot();
+    row.classList.add("done");
+    row.querySelector(".type-check").textContent = "✅";
+    fb.innerHTML = `<div class="pr good">✅ ${esc(d.ur)} — typed by YOU. Shābāsh!</div>`;
+    Speech.speak(d.ur, d.tr);
+  } else {
+    let k = 0;
+    while (k < Math.min(got.length, want.length) && got[k] === want[k]) k++;
+    const hintCh = want[k] || "";
+    fb.innerHTML = `<div class="pr bad">Not quite — compare: <span class="ur-inline">${esc(input.value)}</span> vs <span class="ur-inline">${esc(d.ur)}</span>${hintCh ? ` · check the letter <span class="ur-inline">${esc(hintCh)}</span>` : ""}</div>`;
+  }
+}
+
 // ── Likhna: letter tracing ──────────────────────────────────
 // Qaida stroke order: the letter body first, in one flowing
 // right-to-left stroke, then dots and marks. Scoring = start at
 // the right place + cover the guide + no wild scribbling.
 
 const TRACE_BOX = 200;
+const TRACE_ALL = [...TRACE_LETTERS, ...TRACE_WORDS];
+function twDims(L) { return [L.w || TRACE_BOX, L.h || TRACE_BOX]; }
 const TRACE_PASS = 70;
 
 function tracingCard() {
@@ -2022,6 +2282,15 @@ function renderTracing() {
           <b>${esc(L.name)}</b>
           <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
         </button>`).join("")}
+    </div>
+    <h3 class="track-title" style="font-size:1.1rem">🔗 Whole words <span class="track-sub">letters holding hands — the bridge to Imlā</span></h3>
+    <div class="tw-grid">
+      ${TRACE_WORDS.map((L, i) => `
+        <button class="tw-pick" onclick="startTracing(${TRACE_LETTERS.length + i})">
+          <span class="ur">${L.ch}</span>
+          <b>${esc(L.tr)} · ${esc(L.en)}</b>
+          <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
+        </button>`).join("")}
     </div>`;
   window.scrollTo(0, 0);
 }
@@ -2029,10 +2298,10 @@ function renderTracing() {
 let tw = null;
 
 function startTracing(i) {
-  const L = TRACE_LETTERS[i];
+  const L = TRACE_ALL[i];
   tw = { i, letter: L, step: 0, pts: [], scores: [], msg: "", finalPct: null };
   renderTraceLetter();
-  Speech.speak(L.ch, L.name);
+  Speech.speak(L.ch, L.tr || L.name);
 }
 
 function samplePath(d, n = 26) {
@@ -2092,8 +2361,9 @@ function twGuideSVG() {
   } else if (st) {
     parts.push(`<circle cx="${st.d[0]}" cy="${st.d[1]}" r="10" fill="none" stroke="#6f8f4e" stroke-width="3"/><circle cx="${st.d[0]}" cy="${st.d[1]}" r="3.5" fill="#6f8f4e"/>`);
   }
-  return `<svg viewBox="0 0 ${TRACE_BOX} ${TRACE_BOX}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <line x1="14" y1="145" x2="186" y2="145" stroke="#eee1c2" stroke-width="1.5" stroke-dasharray="4 5"/>
+  const [bw, bh] = twDims(tw.letter);
+  return `<svg viewBox="0 0 ${bw} ${bh}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="14" y1="145" x2="${bw - 14}" y2="145" stroke="#eee1c2" stroke-width="1.5" stroke-dasharray="4 5"/>
     ${parts.join("")}</svg>`;
 }
 
@@ -2103,18 +2373,18 @@ function renderTraceLetter() {
   const doneAll = tw.step >= total;
   const cur = L.strokes[tw.step];
   app().innerHTML = `
-    ${backBar(`✍️ Likhna · ${esc(L.name)}`, "renderTracing()")}
+    ${backBar(`✍️ Likhna · ${esc(L.tr || L.name)}`, "renderTracing()")}
     <div class="tw-head">
       <span class="tw-glyph ur">${L.ch}</span>
       <div>
-        <b>${esc(L.name)}</b>
+        <b>${esc(L.tr ? `${L.tr} · ${L.en}` : L.name)}</b>
         <p class="hint">${esc(L.hint)}</p>
         <button class="btn small speak" onclick='Speech.speak(${JSON.stringify(L.ch)}, ${JSON.stringify(L.name)})'>🔊 Hear its name</button>
       </div>
     </div>
     ${doneAll ? twResultHTML() : `
     <p class="tw-status">${cur.p ? "Start at the green dot ● and follow the dashes" : "Now draw the dot at the green target ●"} · step ${tw.step + 1} of ${total}</p>
-    <div class="tw-board"><div class="tw-svg">${twGuideSVG()}</div><canvas id="tw-canvas" width="480" height="480"></canvas></div>
+    <div class="tw-board" style="aspect-ratio:${twDims(L)[0]}/${twDims(L)[1]};${L.w ? "width:min(560px,94vw);" : ""}"><div class="tw-svg">${twGuideSVG()}</div><canvas id="tw-canvas" width="${twDims(L)[0] * 2.4}" height="${twDims(L)[1] * 2.4}"></canvas></div>
     <div id="tw-feedback" aria-live="polite">${tw.msg}</div>
     <div class="rp-btns tw-btns">
       <button class="btn small" onclick="startTracing(${tw.i})">↺ Start letter over</button>
@@ -2129,7 +2399,8 @@ function twBind() {
   const cv = document.getElementById("tw-canvas");
   const toBox = (e) => {
     const r = cv.getBoundingClientRect();
-    return [((e.clientX - r.left) / r.width) * TRACE_BOX, ((e.clientY - r.top) / r.height) * TRACE_BOX];
+    const [bw, bh] = twDims(tw.letter);
+    return [((e.clientX - r.left) / r.width) * bw, ((e.clientY - r.top) / r.height) * bh];
   };
   let drawing = false;
   cv.onpointerdown = (e) => {
@@ -2154,7 +2425,7 @@ function twBind() {
 function twDrawInk(cv) {
   const ctx = cv.getContext("2d");
   ctx.clearRect(0, 0, cv.width, cv.height);
-  const k = cv.width / TRACE_BOX;
+  const k = cv.width / twDims(tw.letter)[0];
   if (tw.pts.length < 2) {
     if (tw.pts.length === 1) {
       ctx.fillStyle = "rgba(194,106,58,.8)";
@@ -2275,6 +2546,7 @@ function lughatRows(entries) {
       <span class="lughat-main"><b>${esc(e.tr)}</b> — ${esc(e.en)}</span>
       <span class="lughat-ur ur">${esc(e.ur)}</span>
       <button class="linklike lughat-src" onclick="${e.onclick}">${esc(e.src)}</button>
+      ${nishaanBtn(e.ur, e.tr, e.en, e.src, true)}
     </div>`).join("");
 }
 
@@ -2352,6 +2624,8 @@ function renderReport() {
           <span class="rc-box-label">${["new", "1d", "2d", "4d", "8d"][i]}</span><b>${n}</b></div>`).join("")}
       </div>
       <p class="hint">Words climb boxes as you get them right — box 5 words rest 8 days between reviews.</p>
+      <div class="rc-line"><span>🔖 Saved with nishaan</span><b>${Object.keys(p.nishaan || {}).length}</b></div>
+      <button class="btn small" onclick="startFlashcards()">🃏 Flip the flashcards</button>
     </div>
 
     <div class="rc-card">
@@ -2610,6 +2884,7 @@ function renderKutubWork(i) {
             <span class="verse-en">${esc(l.en)}</span>
           </button>
           ${l.note ? `<p class="kutub-note">✎ ${esc(l.note)}</p>` : ""}
+          <div class="kutub-nishaan">${nishaanBtn(l.ur, l.tr, l.en, w.author, true)}</div>
         </div>`).join("")}
     </div>
     ${w.links ? `<div class="link-row kutub-links">${w.links.map((l) => `<a class="btn link" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>` : ""}

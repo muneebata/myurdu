@@ -927,7 +927,56 @@ const READING_UNITS = [
       "Hand-painted signboards are a living art in Pakistan — bus and truck calligraphers letter freehand in styles no font can match, which is why two 'khatrah' signs never look quite the same.",
     ],
   },
-];
+  {
+    id: "R9",
+    title: "Kahānī · Little Stories",
+    subtitle: "Your first connected Urdu prose — three tiny tales from words you know",
+    intro:
+      "Three tiny stories built almost entirely from words you've already met — the handful of new ones are flagged as you go. Read each line out loud BEFORE tapping the audio; that moment of working it out yourself is where reading happens. This is where the tracks join up: script from Paṛho, grammar from the levels, all in one flowing page.",
+    sections: [
+      {
+        heading: "Chāy kā din · A chai kind of day",
+        note: "Our first narrator is a man — you'll hear it in his verbs (gayā, āyā). Six lines: present, past, and future all shake hands.",
+        words: [
+          { ur: "آج موسم اچھا ہے۔", tr: "āj mausam achhā hai", en: "Today the weather is nice.", spell: "every kahānī starts somewhere — this one with L12's weather" },
+          { ur: "کل میں بازار گیا۔", tr: "kal maiṉ bāzār gayā", en: "Yesterday I went to the bazaar.", spell: "kal = yesterday here — past-tense gayā is what tells you which kal (L8's famous trick)" },
+          { ur: "میں نے چائے پی۔", tr: "maiṉ ne chāy pī", en: "I drank chai.", spell: "NEW WORD: pī = drank. The L14 ne-pattern — chāy is feminine, so the verb is pī, not piyā" },
+          { ur: "چائے بہت اچھی تھی۔", tr: "chāy bahut achhī thī", en: "The chai was very good.", spell: "achhī thī agrees with her too" },
+          { ur: "پھر میں گھر آیا۔", tr: "phir maiṉ ghar āyā", en: "Then I came home.", spell: "phir = then; āyā from L14" },
+          { ur: "کل میں پھر جاؤں گا۔", tr: "kal maiṉ phir jāūṉgā", en: "Tomorrow I'll go again.", spell: "same kal, opposite direction — future jāūṉgā flips it to tomorrow. L8 + L15 in one sentence" },
+        ],
+      },
+      {
+        heading: "Rikshā wālā · The rickshaw driver",
+        note: "A tiny bargaining scene — and a new narrator. Watch her verbs.",
+        words: [
+          { ur: "مجھے رکشہ چاہیے۔", tr: "mujhe rikshā chāhiye", en: "I need a rickshaw.", spell: "L20's dative chāhiye doing its job" },
+          { ur: "رکشہ والے نے کہا: پچاس روپے۔", tr: "rikshā wāle ne kahā: pachās rupaye", en: "The rickshaw driver said: fifty rupees.", spell: "NEW: ne kahā = said. And wālā bends to wāle before ne — the L14 pattern with a new verb" },
+          { ur: "میں نے کہا: بہت زیادہ ہے!", tr: "maiṉ ne kahā: bahut zyāda hai!", en: "I said: that's too much!", spell: "your bazaar bargaining line from the role-plays, now in a story" },
+          { ur: "کیا تیس ٹھیک ہے؟", tr: "kyā tīs ṭhīk hai?", en: "Is thirty okay?", spell: "kyā turns anything into a question — L6" },
+          { ur: "ٹھیک ہے، بیٹھیے۔", tr: "ṭhīk hai, baiṭhiye", en: "Okay — have a seat.", spell: "baiṭhiye, the courteous -iye command from L16. She won" },
+          { ur: "میں خوش تھی۔", tr: "maiṉ khush thī", en: "I was happy.", spell: "thī, not thā — our narrator is a woman, and Urdu's past tense always tells you" },
+        ],
+      },
+      {
+        heading: "Ṭren kā safar · The train journey",
+        note: "The L24 capstone, retold as a story — ham (we) this time.",
+        words: [
+          { ur: "ہم نے کہا: ایک ٹکٹ لاہور کا۔", tr: "ham ne kahā: ek ṭikaṭ lāhaur kā", en: "We said: one ticket for Lahore.", spell: "L24's ticket line, live at the counter" },
+          { ur: "ٹرین صبح آئی۔", tr: "ṭren subah āī", en: "The train came in the morning.", spell: "NEW: āī = came (feminine — ṭren is a she)" },
+          { ur: "سفر اچھا تھا۔", tr: "safar achhā thā", en: "The journey was good.", spell: "safar bakhair paid off" },
+          { ur: "ہم نے بہت چائے پی۔", tr: "ham ne bahut chāy pī", en: "We drank a lot of chai.", spell: "pī again — it sticks faster inside a story" },
+          { ur: "لاہور میں موسم ٹھنڈا تھا۔", tr: "lāhaur meṉ mausam ṭhanḍā thā", en: "In Lahore the weather was cold.", spell: "ṭhanḍā from your dhaba days, promoted to weather" },
+          { ur: "اگر آپ جا سکتے ہیں، تو ضرور جائیں۔", tr: "agar āp jā sakte haiṉ, to zarūr jāeṉ", en: "If you can go, then definitely go.", spell: "NEW: zarūr = definitely. agar…to (L22) + saknā (L19) — your whole toolkit in one goodbye" },
+        ],
+      },
+    ],
+    funFacts: [
+      "The Urdu full stop is ۔ — a small circle-and-tail called <b>khatma</b>, not a dot. These stories are your first taste of it in the wild.",
+      "Stories written only from words a learner already knows are how qāida primers have taught children across South Asia for generations — the confidence of reading a WHOLE page is the point.",
+      "Urdu past tense always whispers who's talking: gayā is a man who went, gaī a woman, gaye a group. Three of these lines only make sense because of that one vowel.",
+    ],
+  },];
 
 const QUIZ_PASS_PERCENT = 70;
 
@@ -2850,6 +2899,69 @@ const ROLEPLAYS = [
 // Qaida order: body stroke(s) first (right-to-left), then dots
 // and marks. p = path stroke, d = dot tap-target.
 // ─────────────────────────────────────────────────────────────
+
+// Word boards: short joined words on a wide 360×200 canvas — the bridge
+// between single letters and Imlā. Strokes flow right to left, body
+// first, dots after, exactly like the letter boards.
+const TRACE_WORDS = [
+  {
+    ch: "اب", ur: "اب", tr: "ab", en: "now", name: "word-ab", w: 360, h: 200,
+    hint: "Alif never holds hands — so it's alif, then the be boat beside it, then the dot.",
+    strokes: [
+      { p: "M320,45 L320,150" },
+      { p: "M272,85 C274,120 254,140 202,145 C162,148 140,132 137,108" },
+      { d: [205, 172] },
+    ],
+  },
+  {
+    ch: "دل", ur: "دل", tr: "dil", en: "heart", name: "word-dil", w: 360, h: 200,
+    hint: "Dāl curls down from its top — another non-connector — then lām: tall stick into a bowl.",
+    strokes: [
+      { p: "M298,58 C316,72 322,108 304,134 C293,148 272,150 258,144" },
+      { p: "M182,48 L182,116 C182,142 158,154 122,146 C97,140 87,124 90,108" },
+    ],
+  },
+  {
+    ch: "آم", ur: "آم", tr: "ām", en: "mango", name: "word-aam", w: 360, h: 200,
+    hint: "Alif wears its madda wave on top — draw the wave, the stick, then mīm's round head and its tail.",
+    strokes: [
+      { p: "M330,40 C322,30 310,34 304,41 C298,47 288,49 282,42" },
+      { p: "M306,58 L306,150" },
+      { p: "M256,106 C274,104 282,126 266,138 C250,148 230,140 231,122 C232,110 243,107 256,106" },
+      { p: "M233,130 L233,182" },
+    ],
+  },
+  {
+    ch: "جب", ur: "جب", tr: "jab", en: "when", name: "word-jab", w: 360, h: 200,
+    hint: "Your first real join! Jīm's head bar, then one long body that flows straight into be's boat.",
+    strokes: [
+      { p: "M322,58 C306,52 292,54 282,62" },
+      { p: "M316,64 C320,90 300,112 278,120 C250,130 210,138 180,140 C150,142 132,128 130,106" },
+      { d: [298, 92] },
+      { d: [210, 168] },
+    ],
+  },
+  {
+    ch: "سب", ur: "سب", tr: "sab", en: "all / everyone", name: "word-sab", w: 360, h: 200,
+    hint: "Sīn's three little teeth, then the same run melts into be's boat — one body, one breath.",
+    strokes: [
+      { p: "M332,120 C327,108 317,108 313,120 C310,130 300,130 296,120 C293,110 283,110 279,120" },
+      { p: "M279,120 C268,140 226,148 186,145 C154,143 136,127 134,105" },
+      { d: [208, 172] },
+    ],
+  },
+  {
+    ch: "پانی", ur: "پانی", tr: "pānī", en: "water", name: "word-pani", w: 360, h: 200,
+    hint: "R7's assembly word, by hand: pe's little seat joins alif; then nūn melts into ye's deep bowl. Dots last.",
+    strokes: [
+      { p: "M334,106 C336,126 314,138 290,132 L282,130" },
+      { p: "M268,50 L268,148" },
+      { p: "M238,110 C235,135 212,144 190,141 C158,137 138,120 143,100 C147,86 160,84 167,94" },
+      { d: [312, 158] }, { d: [296, 158] }, { d: [304, 174] },
+      { d: [214, 100] },
+    ],
+  },
+];
 
 const TRACE_LETTERS = [
   { ch: "ا", name: "alif", hint: "One stroke: straight down.", strokes: [{ p: "M100,40 L100,152" }] },
