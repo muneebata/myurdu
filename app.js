@@ -1165,9 +1165,9 @@ function answerGeo(i) {
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">
       ${chosen.correct ? "✅ Sahī!" : `❌ It's ${esc(q.feature.name)}.`}
-      <em>${esc(q.feature.blurb)}</em>
       <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>
     </div>
+    <aside class="funfact geo-fact"><span class="ff-tag">✨ Fun fact · ${esc(q.feature.name)}</span><p>${esc(q.feature.blurb)}</p></aside>
     <button class="btn primary" onclick="nextGeo()">${geo.current + 1 < geo.questions.length ? "Next →" : "Finish →"}</button>`;
 }
 
@@ -1374,11 +1374,12 @@ function answerD5(i) {
   const detail = q.kind === "roots"
     ? `<em>${esc(q.word.story)}</em>`
     : q.kind === "geo"
-      ? `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}<em>${esc(q.feature.blurb)}</em>
+      ? `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}
          <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>`
       : `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong> — ${esc(q.item.en)}`;
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">${chosen.correct ? "✅ Sahī!" : "❌ Not this one."} ${detail}</div>
+    ${q.kind === "geo" ? `<aside class="funfact geo-fact"><span class="ff-tag">✨ Fun fact · ${esc(q.feature.name)}</span><p>${esc(q.feature.blurb)}</p></aside>` : ""}
     <button class="btn primary" onclick="nextD5()">${d5.current + 1 < d5.questions.length ? "Next →" : "Finish →"}</button>`;
 }
 
