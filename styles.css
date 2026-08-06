@@ -899,3 +899,6 @@ html[data-theme="dark"] .fc-easy { color: var(--mustard); }
 .type-input-row { display: flex; gap: 8px; margin-top: 10px; }
 .type-input { flex: 1; min-width: 0; font-size: 1.25rem; line-height: 1.9; }
 html[data-theme="dark"] .type-setup summary { color: var(--ink); }
+
+/* Naqsha answer fun-fact card */
+.geo-fact { margin: 12px 0 10px; font-size: 0.92rem; }
