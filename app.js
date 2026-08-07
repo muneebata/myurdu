@@ -1141,6 +1141,7 @@ function renderGeoQuestion() {
     <div class="quiz-card">
       <div class="map-wrap">${PAK_MAP_SVG}</div>
       <p class="geo-q">${geoPrompt(q.feature.type)}</p>
+      <aside class="funfact geo-clue"><span class="ff-tag">🔎 Surāgh · Clue</span><p>${esc(q.feature.clue)}</p></aside>
       <div class="quiz-options">
         ${q.options.map((o, i) => `<button class="btn option" id="opt-${i}" onclick="answerGeo(${i})">${esc(o.label)}</button>`).join("")}
       </div>
@@ -1335,7 +1336,8 @@ function renderD5() {
   } else if (q.kind === "geo") {
     body = `
       <div class="map-wrap">${PAK_MAP_SVG}</div>
-      <p class="geo-q">${geoPrompt(q.feature.type)}</p>`;
+      <p class="geo-q">${geoPrompt(q.feature.type)}</p>
+      <aside class="funfact geo-clue"><span class="ff-tag">🔎 Surāgh · Clue</span><p>${esc(q.feature.clue)}</p></aside>`;
   } else {
     body = `
       <div class="quiz-prompt suno-prompt">

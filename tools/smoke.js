@@ -108,6 +108,8 @@ for (const sc of ROLEPLAYS) {
 // ── 5. GEO ids exist in pakmap.js ──
 const pakmap = fs.readFileSync(path.join(ROOT, "pakmap.js"), "utf8");
 for (const f of GEO_FEATURES) check(pakmap.includes(`id="${f.id}"`), `GEO id "${f.id}" missing from pakmap.js`);
+for (const f of GEO_FEATURES) check(typeof f.blurb === "string" && f.blurb.length > 20, `GEO "${f.id}" missing blurb`);
+for (const f of GEO_FEATURES) check(typeof f.clue === "string" && f.clue.length > 20, `GEO "${f.id}" missing clue (question-side fact)`);
 
 // ── 6. tracing letters well-formed ──
 check(TRACE_LETTERS.length === 39, `TRACE_LETTERS = ${TRACE_LETTERS.length}, expected 39`);
