@@ -1458,7 +1458,7 @@ const PAKISTAN_UNITS = [
         words: [
           { ur: "مٹھائی", tr: "miṭhāī", en: "sweets", spell: "good news comes in boxes of it" },
           { ur: "آم", tr: "ām", en: "mango", spell: "the king of fruits — and of arguments" },
-          { ur: "دودھ", tr: "doodh", en: "milk", spell: "as in doodh patti chai" },
+          { ur: "دودھ", tr: "dūdh", en: "milk", spell: "as in dūdh pattī chai" },
           { ur: "گرم", tr: "garam", en: "hot (temperature)", spell: "as in garam chai, garam samosay" },
           { ur: "میٹھا", tr: "mīṭhā", en: "sweet (taste)", spell: "the national flavor" },
           { ur: "نمک", tr: "namak", en: "salt", spell: "namkeen = the salty snack family" },
