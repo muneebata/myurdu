@@ -31,7 +31,7 @@ CLIP_OVERRIDES = {
     "seen": (V, "सीन"), "sheen": (V, "शीन"),
     "swaad": (V, "स्वाद"), "zwaad": (V, "ज़्वाद"),
     "toe": (V, "तोए"), "zoe": (V, "ज़ोए"),
-    "ain": (V, "ऐन"), "ghain": (V, "ग़ैन"),
+    "ain": (V, "ऐन"),
     "fe": (V, "फ़े"), "qaaf": (V, "क़ाफ़"), "kaaf": (V, "काफ़"), "gaaf": (V, "गाफ़"),
     "laam": (V, "लाम"), "meem": (V, "मीम"), "noon": (V, "नून"),
     "noon-ghunna": (V, "नून ग़ुन्ना"), "waao": (V, "वाओ"),
@@ -46,6 +46,7 @@ CLIP_OVERRIDES = {
     "bees": (V, "बीस"), "tees": (V, "तीस"), "chaalees": (V, "चालीस"),
     "pachaas": (V, "पचास"), "sau": (V, "सौ"),
     "dderrh": (V, "डेढ़"), "saarrhe": (V, "साढ़े"),
+    "duudh": (V, "दूध"), "laakh": (V, "लाख"),
 }
 
 # Diacritized so the neural voice reads the letter NAMES cleanly
