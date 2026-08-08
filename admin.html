@@ -231,6 +231,30 @@ async function loadStats() {
     document.getElementById("qa-list").textContent = "Could not build clip list: " + e.message;
     return;
   }
+  // Sound School: the clips that TEACH articulation — check each against
+  // its target sound (the hint says what to listen for)
+  const ssRows = [];
+  for (const u of (typeof SOUND_UNITS !== "undefined" ? SOUND_UNITS : []))
+    for (const sec of (u.sections || []))
+      for (const w of (sec.words || []))
+        ssRows.push({ label: w.tr, ur: w.ur, slug: Speech.slug(w.tr), kind: w.spell || u.title, unit: u.title });
+  let ssHtml = "";
+  let lastUnit = "";
+  for (const r of ssRows) {
+    if (r.unit !== lastUnit) {
+      lastUnit = r.unit;
+      ssHtml += `<div style="margin:14px 0 4px; font-weight:700; color:var(--teal, #12808b)">${r.unit}</div>`;
+    }
+    ssHtml += `
+    <div style="display:flex; align-items:center; gap:10px; padding:5px 2px; border-bottom:1px solid var(--line)">
+      <button onclick="new Audio('audio/${r.slug}.mp3').play()" style="font:inherit; cursor:pointer; border:1.5px solid var(--line); background:var(--card); border-radius:8px; padding:2px 10px">▶</button>
+      <b style="min-width:110px">${r.label}</b>
+      <span class="ur" style="font-family:'Noto Nastaliq Urdu',serif; direction:rtl">${r.ur}</span>
+      <span class="note" style="margin-left:auto">👂 ${r.kind}</span>
+    </div>`;
+  }
+  document.getElementById("qa-list").insertAdjacentHTML("beforebegin",
+    `<div style="margin:6px 0 12px"><b>🗣 Sound School — listen for the target sound in each:</b>${ssHtml}</div><div style="margin:14px 0 4px; font-weight:700">Shortest clips (general sweep):</div>`);
   document.getElementById("qa-list").outerHTML = rows.map((r) => `
     <div style="display:flex; align-items:center; gap:10px; padding:5px 2px; border-bottom:1px solid var(--line)">
       <button onclick="new Audio('audio/${r.slug}.mp3').play()" style="font:inherit; cursor:pointer; border:1.5px solid var(--line); background:var(--card); border-radius:8px; padding:2px 10px">▶</button>
