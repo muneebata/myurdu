@@ -2968,6 +2968,51 @@ const TRACE_WORDS = [
 // busts the CDN edge and service-worker caches (bump on every re-record).
 const AUDIO_REFRESH = { "alif": 2, "be": 2, "pe": 2, "te": 2, "tte": 2, "se": 2, "jeem": 2, "che": 2, "barree-he": 2, "khe": 2, "daal": 2, "ddaal": 2, "zaal": 2, "re": 2, "rre": 2, "ze": 2, "zhe": 2, "seen": 2, "sheen": 2, "swaad": 2, "zwaad": 2, "toe": 2, "zoe": 2, "ain": 2, "ghain": 3, "fe": 2, "qaaf": 2, "kaaf": 2, "gaaf": 2, "laam": 2, "meem": 2, "noon": 2, "noon-ghunna": 2, "waao": 2, "gol-he": 2, "do-chashmee-he": 2, "hamza": 2, "chottee-ye": 2, "barree-ye": 2, "ek": 2, "do": 2, "paanch": 2, "chhe": 2, "saat": 2, "nau": 2, "das": 2, "gyaarah": 2, "baarah": 2, "pandrah": 2, "bees": 2, "tees": 2, "chaalees": 2, "pachaas": 2, "sau": 2, "dderrh": 2, "saarrhe": 2, "chaar": 2, "aatth": 2, "teen": 2, "duudh": 2, "laakh": 2 };
 
+
+// ── Aaj ki Kahawat banks ─────────────────────────────────────
+// Daily proverbs, dealt via the games' no-repeat cycle system.
+// All are classic, widely-attested kahawatein; ctx lines stay honest
+// about origin (folk sayings, no invented attributions).
+const KAHAWATEIN = [
+  { ur: "نیکی کر دریا میں ڈال", tr: "nekī kar, daryā meṉ ḍāl", en: "Do a good deed and throw it in the river — do good expecting nothing back", ctx: "A centuries-old folk saying, beloved of elders — offered when you help someone who may never repay you, and that's exactly the point." },
+  { ur: "ڈوبتے کو تنکے کا سہارا", tr: "ḍūbte ko tinke kā sahārā", en: "To the drowning, even a straw is support — any hope helps in desperation", ctx: "Traditional Urdu-Persian wisdom, quoted for centuries whenever someone in a desperate spot clutches at the thinnest of hopes." },
+  { ur: "بندر کیا جانے ادرک کا سواد", tr: "bandar kyā jāne adrak kā swād", en: "What does a monkey know of ginger's taste — pearls before swine", ctx: "The classic bazaar retort, passed down through generations — deployed when something fine is wasted on someone who can't appreciate it." },
+  { ur: "جس کی لاٹھی اس کی بھینس", tr: "jis kī lāṭhī, us kī bhaiṉs", en: "Whoever holds the stick owns the buffalo — might makes right", ctx: "An old saying from rural Punjab's cattle disputes — now quoted about politics, cricket umpires, and anyone who wins by strength alone." },
+  { ur: "اونٹ کے منہ میں زیرہ", tr: "ūṉṭ ke muṉh meṉ zīrā", en: "Cumin in a camel's mouth — a laughably small portion", ctx: "A traditional favorite of aunties at dinner tables everywhere — said when a serving is comically too small for the appetite it faces." },
+  { ur: "دور کے ڈھول سہانے", tr: "dūr ke ḍhol suhāne", en: "Distant drums sound sweet — things far away always seem better", ctx: "The subcontinent's answer to 'the grass is greener' — village drums are enchanting until you live next to the drummer." },
+  { ur: "چور کی داڑھی میں تنکا", tr: "chor kī dāṛhī meṉ tinkā", en: "A straw in the thief's beard — a guilty conscience gives itself away", ctx: "From the old tale of a qazi who announced the thief's beard held a straw — only one man in the crowd reached up to check." },
+  { ur: "گھر کی مرغی دال برابر", tr: "ghar kī murghī dāl barābar", en: "The household hen counts as mere lentils — what's yours is undervalued", ctx: "Every family's lament: talent from your own house is priced like dal, while the same thing from outside is a delicacy." },
+  { ur: "آم کے آم گٹھلیوں کے دام", tr: "ām ke ām, guṭhliyoṉ ke dām", en: "Mangoes to eat AND a price for the pits — double benefit", ctx: "The dream deal of every bazaar — enjoy the fruit, then sell the seeds too. Said of any arrangement that pays twice." },
+  { ur: "اندھوں میں کانا راجہ", tr: "andhoṉ meṉ kānā rājā", en: "Among the blind, the one-eyed man is king", ctx: "Old folk realism: modest skill looks like mastery wherever no one else has any." },
+  { ur: "ایک ہاتھ سے تالی نہیں بجتی", tr: "ek hāth se tālī nahīṉ bajtī", en: "One hand cannot clap — it takes two to make a quarrel", ctx: "The peacemaker's proverb, produced by every elder mediating a dispute — blame is rarely a solo performance." },
+  { ur: "ناچ نہ جانے آنگن ٹیڑھا", tr: "nāch na jāne āṉgan ṭeṛhā", en: "Can't dance, blames the crooked courtyard — a bad workman blames his tools", ctx: "Centuries old and still undefeated whenever someone blames the pitch, the pen, or the WiFi instead of practicing." },
+  { ur: "اونچی دکان پھیکا پکوان", tr: "ūṉchī dukān phīkā pakwān", en: "A grand shop, a bland dish — big signboard, small substance", ctx: "The food-street verdict on style over substance — fancy decor has never once improved a plate of biryani." },
+  { ur: "جہاں چاہ وہاں راہ", tr: "jahāṉ chāh wahāṉ rāh", en: "Where there is will, there is a way", ctx: "Short, rhymed, and carried in a million pep talks — chāh (desire) finds rāh (road)." },
+  { ur: "پانچوں انگلیاں برابر نہیں ہوتیں", tr: "pāṉchoṉ uṉgliyāṉ barābar nahīṉ hotīṉ", en: "The five fingers are not equal — people differ, and that's nature", ctx: "The gentle classic for accepting difference — no hand works if every finger insists on being the same." },
+  { ur: "کھودا پہاڑ نکلا چوہا", tr: "khodā pahāṛ, niklā chūhā", en: "Dug up a mountain, out came a mouse — great effort, tiny result", ctx: "For every grand promise that ends in an anticlimax — beloved of newspaper headline writers for a century." },
+  { ur: "آسمان سے گرا کھجور میں اٹکا", tr: "āsmān se girā, khajūr meṉ aṭkā", en: "Fell from the sky, got stuck in a date palm — out of one trouble, into another", ctx: "The desi 'frying pan into the fire' — escape is rarely the end of the story." },
+  { ur: "جتنی چادر ہو اتنے پاؤں پھیلاؤ", tr: "jitnī chādar ho utne pāoṉ phailāo", en: "Stretch your legs only as far as your sheet — live within your means", ctx: "Budgeting advice older than banks, issued by generations of parents at the first mention of borrowed money." },
+  { ur: "بھینس کے آگے بین بجانا", tr: "bhaiṉs ke āge bīn bajānā", en: "Playing the flute before a buffalo — wisdom wasted on the unwilling", ctx: "The teacher's sigh in proverb form — some audiences simply will not hear the music." },
+  { ur: "نیم حکیم خطرہ جان", tr: "nīm hakīm khatra-e-jān", en: "A half-trained healer is a danger to life — beware little knowledge", ctx: "Traditionally paired with 'nīm mullā khatra-e-īmān' — the half-doctor threatens your life, the half-scholar your faith." },
+  { ur: "ہاتھی کے دانت کھانے کے اور دکھانے کے اور", tr: "hāthī ke dāṉt khāne ke aur, dikhāne ke aur", en: "An elephant's teeth: some for show, others for chewing — appearances deceive", ctx: "The old observation that tusks and molars are different equipment — said of people whose public face and private conduct differ." },
+  { ur: "سو سنار کی ایک لوہار کی", tr: "sau sunār kī, ek lohār kī", en: "A hundred goldsmith taps — one blacksmith blow", ctx: "Patient little efforts versus one decisive strike; the proverb honors the blacksmith, but the goldsmith's jewelry usually costs more." },
+  { ur: "قطرہ قطرہ مل کر دریا بنتا ہے", tr: "qatrah qatrah mil kar daryā bantā hai", en: "Drop by drop, a river is made — small efforts add up", ctx: "The kindest proverb in the language for slow progress — every thora thora, har roz learner is living proof." },
+  { ur: "نو نقد نہ تیرہ ادھار", tr: "nau naqd na terah udhār", en: "Nine in cash over thirteen on credit — a bird in hand", ctx: "Bazaar arithmetic as life philosophy: the certain smaller thing beats the promised bigger one." },
+  { ur: "لوہا لوہے کو کاٹتا ہے", tr: "lohā lohe ko kāṭtā hai", en: "Iron cuts iron — like defeats like", ctx: "Send a thorn after a thorn, a wrestler after a wrestler — the cure is made of the same metal as the problem." },
+  { ur: "اب پچھتائے کیا ہوت جب چڑیاں چگ گئیں کھیت", tr: "ab pachhtāe kyā hot, jab chiṛiyāṉ chug gaīṉ khet", en: "What use regretting now, when the birds have eaten the field?", ctx: "From a doha long credited to Kabir and fully absorbed into Urdu — the timeless verdict on lessons learned too late." },
+  { ur: "عقل بڑی یا بھینس", tr: "aql baṛī yā bhaiṉs", en: "Which is greater — brains or the buffalo? Wit beats size", ctx: "The playground classic: asked with a grin whenever brute size squares off against a clever plan." },
+];
+
+// Friday pool — religious-natured sayings for Jummah.
+const JUMMAH_KAHAWATEIN = [
+  { ur: "اللہ کے گھر میں دیر ہے اندھیر نہیں", tr: "allāh ke ghar meṉ der hai, andher nahīṉ", en: "In God's house there may be delay, but never injustice", ctx: "The consolation offered across generations when justice feels slow — patience, the ledger is kept." },
+  { ur: "نیت صاف منزل آسان", tr: "nīyat sāf, manzil āsān", en: "A clean intention makes the destination easy", ctx: "Short and rhymed — the belief that sincerity itself smooths the road." },
+  { ur: "صبر کا پھل میٹھا ہوتا ہے", tr: "sabr kā phal mīṭhā hotā hai", en: "The fruit of patience is sweet", ctx: "Quoted at every long wait — sabr (patience) is one of the most beloved virtues in the tradition." },
+  { ur: "جلدی کا کام شیطان کا", tr: "jaldī kā kām shaitān kā", en: "Hasty work is the devil's work — haste leads astray", ctx: "The classic counsel to slow down; deliberateness is careful, rushing is the shaitān's shortcut." },
+  { ur: "جیسی کرنی ویسی بھرنی", tr: "jaisī karnī waisī bharnī", en: "As you do, so shall you repay — you reap what you sow", ctx: "The moral bookkeeping of the universe, in four rhyming words." },
+  { ur: "اللہ دیتا ہے تو چھپر پھاڑ کے دیتا ہے", tr: "allāh detā hai to chhappar phāṛ ke detā hai", en: "When God gives, He tears open the roof to give — blessings beyond expectation", ctx: "Said with wonder at sudden good fortune — when providence arrives, it doesn't knock politely." },
+];
+
 const TRACE_LETTERS = [
   { ch: "ا", name: "alif", hint: "One stroke: straight down.", strokes: [{ p: "M101,52 L101,146" }] },
   { ch: "ب", name: "be", hint: "The boat first (right to left), then one dot below.", strokes: [{ p: "M148,90 C154,118 132,136 100,137 C66,139 50,124 54,104" }, { d: [100, 170] }] },
