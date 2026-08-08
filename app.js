@@ -510,11 +510,11 @@ const AZADI_FLAG_SVG = `
   <rect x="12.6" y="12" width="1.6" height="118" fill="#b07f45"/>
   <g filter="url(#flagwave)">
     <g transform="translate(17,16)">
-      <rect width="126" height="76" fill="#01411C"/>
-      <rect width="31.5" height="76" fill="#f7f2e6"/>
-      <circle cx="86" cy="38" r="21" fill="#f7f2e6"/>
-      <circle cx="92.5" cy="32.5" r="17.5" fill="#01411C"/>
-      <path d="M97 21 l3.05 6.7 7.3 0.85 -5.4 5 1.45 7.2 -6.4-3.6 -6.4 3.6 1.45-7.2 -5.4-5 7.3-0.85 Z" fill="#f7f2e6" transform="rotate(20 97 28)"/>
+      <rect width="126" height="84" fill="#01411C"/>
+      <rect width="31.5" height="84" fill="#f7f2e6"/>
+      <circle cx="86" cy="42" r="21" fill="#f7f2e6"/>
+      <circle cx="92.5" cy="36.5" r="17.5" fill="#01411C"/>
+      <path d="M97 25 l3.05 6.7 7.3 0.85 -5.4 5 1.45 7.2 -6.4-3.6 -6.4 3.6 1.45-7.2 -5.4-5 7.3-0.85 Z" fill="#f7f2e6" transform="rotate(20 97 32)"/>
     </g>
   </g>
 </svg>`;

@@ -199,5 +199,47 @@ async function loadStats() {
   ).join("") || '<p class="note">No completions yet.</p>';
 }
 </script>
+
+<div class="card" id="qa-card">
+  <h2>🎧 Audio spot-check <span class="note">— the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
+  <div id="qa-list" class="note">Loading clip list…</div>
+</div>
+<script src="data.js"></script>
+<script src="speech.js"></script>
+<script>
+(function () {
+  // Risk-ranked ear-check: letter names first (proven risk class), then
+  // every clip sorted by Urdu length ascending. Plays the shipped mp3s.
+  const rows = [];
+  try {
+    for (const L of (typeof TRACE_LETTERS !== "undefined" ? TRACE_LETTERS : []))
+      rows.push({ label: L.name, ur: L.ch, slug: Speech.slug(L.name), kind: "letter name" });
+    const seen = new Set(rows.map(r => r.slug));
+    const pairs = [];
+    const push = (items) => { for (const it of (items || [])) if (it && it.ur && it.tr) pairs.push(it); };
+    for (const lv of (typeof LEVELS !== "undefined" ? LEVELS : [])) push(lv.items);
+    if (typeof LOANWORDS !== "undefined") push(LOANWORDS);
+    pairs.sort((a, b) => a.ur.replace(/\s/g, "").length - b.ur.replace(/\s/g, "").length);
+    for (const it of pairs) {
+      const sl = Speech.slug(it.tr);
+      if (seen.has(sl)) continue;
+      seen.add(sl);
+      rows.push({ label: it.tr, ur: it.ur, slug: sl, kind: it.en || "" });
+      if (rows.length >= 140) break;
+    }
+  } catch (e) {
+    document.getElementById("qa-list").textContent = "Could not build clip list: " + e.message;
+    return;
+  }
+  document.getElementById("qa-list").outerHTML = rows.map((r) => `
+    <div style="display:flex; align-items:center; gap:10px; padding:5px 2px; border-bottom:1px solid var(--line)">
+      <button onclick="new Audio('audio/${r.slug}.mp3').play()" style="font:inherit; cursor:pointer; border:1.5px solid var(--line); background:var(--card); border-radius:8px; padding:2px 10px">▶</button>
+      <b style="min-width:130px">${r.label}</b>
+      <span class="ur" style="font-family:'Noto Nastaliq Urdu',serif; direction:rtl">${r.ur}</span>
+      <span class="note" style="margin-left:auto">${r.kind}</span>
+    </div>`).join("");
+})();
+</script>
+
 </body>
 </html>
