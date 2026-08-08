@@ -14,17 +14,19 @@ RATE = "-10%"
 PROJECT = Path("/Users/muneebata/Desktop/urdu-ustaadh")
 OUT = PROJECT / "audio"
 
+# Diacritized so the neural voice reads the letter NAMES cleanly
+# (bare "جیم" was getting mangled; جِیم forces jīm, etc.)
 LETTER_NAMES_UR = {
-    "alif": "الف", "be": "بے", "pe": "پے", "te": "تے", "ṭe": "ٹے", "se": "ثے",
-    "jīm": "جیم", "che": "چے", "baṛī he": "بڑی حے", "khe": "خے",
-    "wā'o": "واؤ", "choṭī ye": "چھوٹی یے", "baṛī ye": "بڑی یے",
-    "nūn ghunna": "نون غنہ", "do-chashmī he": "دو چشمی ہے", "hamza": "ہمزہ",
+    "alif": "اَلِف", "be": "بے", "pe": "پے", "te": "تے", "ṭe": "ٹے", "se": "ثے",
+    "jīm": "جِیم", "che": "چے", "baṛī he": "بَڑی حے", "khe": "خے",
+    "wā'o": "واؤ", "choṭī ye": "چھوٹی یے", "baṛī ye": "بَڑی یے",
+    "nūn ghunna": "نُونِ غُنَّہ", "do-chashmī he": "دو چَشمی ہے", "hamza": "ہَمزَہ",
     "dāl": "دال", "ḍāl": "ڈال", "zāl": "ذال", "re": "رے", "ṛe": "ڑے",
-    "ze": "زے", "zhe": "ژے", "sīn": "سین", "shīn": "شین",
-    "swād": "صاد", "zwād": "ضاد", "to'e": "طوئے", "zo'e": "ظوئے",
-    "ain": "عین", "ghain": "غین", "fe": "فے", "qāf": "قاف",
-    "kāf": "کاف", "gāf": "گاف", "lām": "لام", "mīm": "میم",
-    "nūn": "نون", "gol he": "گول ہے",
+    "ze": "زے", "zhe": "ژے", "sīn": "سِین", "shīn": "شِین",
+    "swād": "صواد", "zwād": "ضواد", "to'e": "طوئے", "zo'e": "ظوئے",
+    "ain": "عَین", "ghain": "غَین", "fe": "فے", "qāf": "قاف",
+    "kāf": "کاف", "gāf": "گاف", "lām": "لام", "mīm": "مِیم",
+    "nūn": "نُون", "gol he": "گول ہے",
 }
 
 def slug(s: str) -> str:

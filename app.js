@@ -2281,7 +2281,7 @@ function renderTracing() {
     <div class="tw-grid">
       ${TRACE_LETTERS.map((L, i) => `
         <button class="tw-pick" onclick="startTracing(${i})">
-          <span class="ur">${L.ch}</span>
+          <span class="ur-naskh">${L.ch}</span>
           <b>${esc(L.name)}</b>
           <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
         </button>`).join("")}
@@ -2290,7 +2290,7 @@ function renderTracing() {
     <div class="tw-grid">
       ${TRACE_WORDS.map((L, i) => `
         <button class="tw-pick" onclick="startTracing(${TRACE_LETTERS.length + i})">
-          <span class="ur">${L.ch}</span>
+          <span class="ur-naskh">${L.ch}</span>
           <b>${esc(L.tr)} · ${esc(L.en)}</b>
           <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
         </button>`).join("")}
@@ -2378,7 +2378,7 @@ function renderTraceLetter() {
   app().innerHTML = `
     ${backBar(`✍️ Likhna · ${esc(L.tr || L.name)}`, "renderTracing()")}
     <div class="tw-head">
-      <span class="tw-glyph ur">${L.ch}</span>
+      <span class="tw-glyph ur-naskh">${L.ch}</span>
       <div>
         <b>${esc(L.tr ? `${L.tr} · ${L.en}` : L.name)}</b>
         <p class="hint">${esc(L.hint)}</p>
