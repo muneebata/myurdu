@@ -500,16 +500,16 @@ const AZADI_FLAG_SVG = `
   <defs>
     <filter id="flagwave" x="-20%" y="-20%" width="145%" height="140%">
       <feTurbulence type="fractalNoise" baseFrequency="0.014 0.07" numOctaves="2" seed="7" result="w">
-        <animate attributeName="baseFrequency" dur="2.8s" values="0.014 0.07;0.021 0.115;0.014 0.07" repeatCount="indefinite"/>
+        <animate attributeName="baseFrequency" dur="4.6s" values="0.014 0.07;0.018 0.095;0.014 0.07" repeatCount="indefinite"/>
       </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="w" scale="13" xChannelSelector="R" yChannelSelector="G"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="9" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
     <linearGradient id="poleGold" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#8a6d1c"/><stop offset="0.35" stop-color="#f3cf5e"/>
       <stop offset="0.6" stop-color="#d9a413"/><stop offset="1" stop-color="#a37b10"/>
     </linearGradient>
   </defs>
-  <g transform="rotate(-7 22 152)">
+  <g transform="rotate(-13 22 152)">
     <circle cx="20" cy="10" r="7" fill="url(#poleGold)" stroke="#8a6d1c" stroke-width="1.5"/>
     <circle cx="17.5" cy="7.5" r="2" fill="#fff3c4" opacity="0.9"/>
     <rect x="16" y="16" width="8" height="136" rx="3" fill="url(#poleGold)"/>
