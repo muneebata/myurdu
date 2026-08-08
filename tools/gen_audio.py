@@ -31,7 +31,7 @@ CLIP_OVERRIDES = {
     "seen": (V, "सीन"), "sheen": (V, "शीन"),
     "swaad": (V, "स्वाद"), "zwaad": (V, "ज़्वाद"),
     "toe": (V, "तोए"), "zoe": (V, "ज़ोए"),
-    "ain": (V, "ऐन"),
+    "ain": (V, "ऐन"), "ghain": ("ar-SA-ZariyahNeural", "غَيْن"),
     "fe": (V, "फ़े"), "qaaf": (V, "क़ाफ़"), "kaaf": (V, "काफ़"), "gaaf": (V, "गाफ़"),
     "laam": (V, "लाम"), "meem": (V, "मीम"), "noon": (V, "नून"),
     "noon-ghunna": (V, "नून ग़ुन्ना"), "waao": (V, "वाओ"),
