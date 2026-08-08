@@ -1778,7 +1778,7 @@ const KUTUB = [
   },
   {
     id: "K4",
-    links: [{ label: "📚 More Khusrau — riddles and qauls at Rekhta →", url: "https://www.rekhta.org/poets/amir-khusro" }],
+    links: [{ label: "📚 More on Khusrau — his life and legacy (Wikipedia) →", url: "https://en.wikipedia.org/wiki/Amir_Khusrau" }],
     scope: "traditional",
     author: "Amir Khusrau",
     urName: "خسرو",
@@ -3001,6 +3001,6 @@ const TRACE_LETTERS = [
   { ch: "ہ", name: "gol he", hint: "One round loop — the 'round' he.", strokes: [{ p: "M116,96 C104,86 88,92 84,106 C80,124 90,142 104,146 C116,148 122,136 118,122 C116,112 110,106 102,104" }] },
   { ch: "ھ", name: "do-chashmī he", hint: "Two little eyes: right one, then left one.", strokes: [{ p: "M124,98 C124,88 110,86 104,94 C100,101 105,109 114,108" }, { p: "M104,94 C98,84 82,86 78,96 C75,105 83,112 93,111" }, { p: "M130,104 C132,126 116,144 94,146 C76,148 62,140 60,126" }] },
   { ch: "ء", name: "hamza", hint: "One small hook, like a tiny 2.", strokes: [{ p: "M124,116 C112,106 96,110 94,122 C92,132 102,138 112,136" }, { p: "M112,134 C102,142 90,149 78,152" }] },
-  { ch: "ی", name: "choṭī ye", hint: "The deep boat with its curl, then two dots below.", strokes: [{ p: "M134,102 C142,132 126,168 94,176 C74,180 62,168 66,152" }] },
+  { ch: "ی", name: "choṭī ye", hint: "The deep boat with its curl — Urdu's choṭī ye wears no dots.", strokes: [{ p: "M134,102 C142,132 126,168 94,176 C74,180 62,168 66,152" }] },
   { ch: "ے", name: "baṛī ye", hint: "One long, flat sweep — right to left, then along the floor.", strokes: [{ p: "M150,110 C146,128 122,142 96,142 C74,142 58,132 56,116" }] },
 ];
