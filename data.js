@@ -642,7 +642,7 @@ const READING_UNITS = [
       },
     ],
     funFacts: [
-      "Nastaliq is so calligraphically complex that Urdu newspapers were handwritten by master scribes (kātibs) until the 1980s — computers simply couldn't typeset it. Digital Nastaliq fonts only became good in the 2000s.",
+      "Nastaliq is so calligraphically complex that Urdu newspapers were handwritten by master scribes (kātibs) into the 1980s — computers couldn't typeset it until the Noori Nastaliq font (1981) tamed it with over 20,000 ligatures. Everyday digital Nastaliq only got good in the 2000s.",
       "Arabic is usually printed in the more upright Naskh style; Urdu insists on flowing Nastaliq. Urdu readers can spot the difference instantly — Naskh Urdu 'feels foreign'.",
     ],
   },
@@ -1160,7 +1160,7 @@ const PAKISTAN_UNITS = [
           "<strong>Hunza Valley</strong> — apricot orchards under 7,000-meter walls, ancient forts at Baltit and Altit, and legendary longevity lore. The valley floor sits at 2,400 m; the view goes up another five kilometers.",
           "<strong>Nanga Parbat (8,126 m)</strong> — the 'Killer Mountain' anchoring the western Himalaya, with the planet's biggest single vertical rise: the Rupal Face, a 4,600 m wall. Fairy Meadows sits at its feet, named exactly right.",
           "<strong>Deosai Plains</strong> — the world's second-highest plateau (~4,100 m): a summer carpet of wildflowers, home to Himalayan brown bears, snowbound eight months a year.",
-          "<strong>The Khunjerab Pass (4,693 m)</strong> — the highest paved international border crossing on Earth, where the Karakoram Highway hands you to China. Border guards play cricket up there in summer.",
+          "<strong>The Khunjerab Pass (4,693 m)</strong> — the highest paved international border crossing on Earth, where the Karakoram Highway hands you to China.",
         ],
       },
       {
@@ -1175,7 +1175,7 @@ const PAKISTAN_UNITS = [
       {
         heading: "Extremes worth bragging about",
         facts: [
-          "<strong>Heat:</strong> Mohenjo-daro recorded 53.7°C (128.7°F) in 2010 — among the highest reliably measured temperatures anywhere, ever.",
+          "<strong>Heat:</strong> Mohenjo-daro recorded 53.5°C (128.3°F) in 2010 — among the highest reliably measured temperatures anywhere, ever.",
           "<strong>Cold:</strong> the Karakoram holds the largest glaciers outside the polar regions — Baltoro and Biafo are rivers of ice over 60 km long.",
           "<strong>Strange and wonderful:</strong> Hingol National Park in Balochistan has active mud volcanoes and the 'Princess of Hope' rock spire (named by Angelina Jolie on a UN visit); Ziarat's juniper forest is among the oldest living forests on Earth — some trees pre-date Islam.",
         ],
@@ -1242,7 +1242,7 @@ const PAKISTAN_UNITS = [
         facts: [
           "<strong>Ramzan</strong> reshapes the whole month: pre-dawn sehri meals, sunset iftars where the entire country stops at once, and TV schedules built around it.",
           "<strong>Both Eids</strong> — Eid-ul-Fitr (sweets, eidi cash for kids, new clothes) and Eid-ul-Azha (sacrifice and meat distribution) — are multi-day national reunions.",
-          "<strong>Basant</strong> — Lahore's legendary spring kite festival: rooftops, yellow clothes, and the sky full of paper. <strong>14 August</strong> turns every street green and white with flags, badges, and bunting.",
+          "<strong>Basant</strong> — Lahore's legendary spring kite festival: rooftops, yellow clothes, and the sky full of paper. Banned in 2007 over kite-string injuries, it returned in February 2026 after a 19-year wait — a whole generation's first Basant. <strong>14 August</strong> turns every street green and white with flags, badges, and bunting.",
           "<strong>Shaadi season</strong> (winter) is its own festival: mehndi night (music + henna), baraat (groom's procession), walima (reception) — each with its own outfit, playlist, and biryani.",
         ],
       },
