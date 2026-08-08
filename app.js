@@ -577,9 +577,10 @@ const AZADI_FLAG_SVG = `
     </g></g>
 </svg>`;
 
-// Gentle page-wide confetti rain for Jashn-e-Azadi week — sparse, slow,
-// click-through, and removed entirely for reduced-motion users (CSS).
-(function azadiRain() {
+// Gentle page-wide confetti rain for Jashn-e-Azadi week — home page only:
+// renderHome() turns it on, backBar() (built by every other view) turns it
+// off. Sparse, click-through, and hidden for reduced-motion users (CSS).
+function ensureAzadiRain() {
   if (!azadiWindow() || document.querySelector(".confetti-rain")) return;
   const colors = ["#01411C", "#f7f2e6", "#d9a413", "#12808b", "#c26a3a", "#b05464"];
   const box = document.createElement("div");
@@ -595,7 +596,11 @@ const AZADI_FLAG_SVG = `
   }
   box.innerHTML = bits;
   document.body.appendChild(box);
-})();
+}
+
+function removeAzadiRain() {
+  document.querySelector(".confetti-rain")?.remove();
+}
 
 // ── Home ─────────────────────────────────────────────────────
 
@@ -728,6 +733,7 @@ function renderHome() {
 
     <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
+  ensureAzadiRain();
 }
 
 function levelCard(lv, i) {
@@ -2988,6 +2994,7 @@ function renderKutubWork(i) {
 // ── Shared bits ──────────────────────────────────────────────
 
 function backBar(title, backFn = "renderHome()") {
+  removeAzadiRain(); // confetti is a home-page greeting only
   return `
     <div class="topbar">
       ${backFn ? `<button class="btn back" onclick="${backFn}">← Back</button>` : ""}
