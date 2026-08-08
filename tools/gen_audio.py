@@ -14,6 +14,13 @@ RATE = "-10%"
 PROJECT = Path("/Users/muneebata/Desktop/urdu-ustaadh")
 OUT = PROJECT / "audio"
 
+# Per-slug overrides for clips the Urdu voice cannot pronounce.
+# jeem: ur voices read جیم as the English loanword "gym" → "jim"; the Hindi
+# voice reading Devanagari जीम forces the long ee (user ear-verified 2026-08-08).
+CLIP_OVERRIDES = {
+    "jeem": ("hi-IN-SwaraNeural", "जीम"),
+}
+
 # Diacritized so the neural voice reads the letter NAMES cleanly
 # (bare "جیم" was getting mangled; جِیم forces jīm, etc.)
 LETTER_NAMES_UR = {
@@ -59,7 +66,8 @@ async def synth(sem, key, text):
     async with sem:
         for attempt in range(3):
             try:
-                await edge_tts.Communicate(text, VOICE, rate=RATE).save(str(dest))
+                o_voice, o_text = CLIP_OVERRIDES.get(key, (VOICE, text))
+                await edge_tts.Communicate(o_text, o_voice, rate=RATE).save(str(dest))
                 if dest.stat().st_size > 800:
                     return "ok"
             except Exception as e:
