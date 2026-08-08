@@ -480,7 +480,17 @@ function ledgerRow(onclick, num, title, urName, sub, statusHtml) {
 
 // ── Jashn-e-Azadi week (Aug 7–14, Chicago time) ─────────────
 
-function azadiWindow() {
+// Azadi is tiered: the whole of August is celebration month (flags,
+// banner, share card); Aug 7–14 is the peak week (fireworks, confetti,
+// and the Suno azadi-words swap — kept short so the pool stays fresh).
+function azadiMonth() {
+  const t = new URLSearchParams(location.search).get("azadi");
+  if (t === "1" || t === "14") return true;
+  const [, m] = todayKey().split("-").map(Number);
+  return m === 8;
+}
+
+function azadiPeak() {
   const t = new URLSearchParams(location.search).get("azadi");
   if (t === "1" || t === "14") return true;
   const [, m, d] = todayKey().split("-").map(Number);
@@ -1068,7 +1078,7 @@ const AZADI_FLAG_SVG = `
 // renderHome() turns it on, backBar() (built by every other view) turns it
 // off. Sparse, click-through, and hidden for reduced-motion users (CSS).
 function ensureAzadiRain() {
-  if (!azadiWindow() || document.querySelector(".confetti-rain")) return;
+  if (!azadiPeak() || document.querySelector(".confetti-rain")) return;
   const colors = ["#01411C", "#f7f2e6", "#d9a413", "#12808b", "#c26a3a", "#b05464"];
   const box = document.createElement("div");
   box.className = "confetti-rain";
@@ -1127,7 +1137,7 @@ function renderHome() {
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${azadiWindow() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R + AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
+      ${azadiPeak() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R : ""}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
@@ -1142,7 +1152,7 @@ function renderHome() {
         <span class="progress-label">${pct}% complete</span>
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
-      ${azadiWindow() ? azadiBanner() : ""}
+      ${azadiMonth() ? azadiBanner() : ""}
       ${due > 0 ? `<button class="review-banner" onclick="startFlashcards()">🃏 ${due} word${due === 1 ? "" : "s"} due — flip through your flashcards →</button>` : ""}
     </header>
 
@@ -1874,7 +1884,7 @@ function startDaily5() {
   const p = profile();
   const today = todayKey();
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
-  let fullPool = azadiWindow() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
+  let fullPool = azadiPeak() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
 
   // The seeded deal is deterministic — but growing a question bank
   // reshuffles the cycles, which once changed a user's five mid-day
@@ -1888,7 +1898,7 @@ function startDaily5() {
     geoPicks = pin.geo.map((id) => GEO_FEATURES.find((x) => x.id === id)).filter(Boolean);
   }
   if (!pin || sunoPicks.length !== 2 || rootsPicks.length !== 2 || geoPicks.length !== 1) {
-    sunoPicks = azadiWindow()
+    sunoPicks = azadiPeak()
       ? seededPick(AZADI_ITEMS, 2, mulberry32(daySeed() + 47))
       : cycleDraw(sunoPool, 2, 13001);
     rootsPicks = cycleDraw(LOANWORDS, 2, 1);
@@ -2169,11 +2179,14 @@ function completeUnit(unitsName, i) {
 function azadiBanner() {
   const [y, m, d] = todayKey().split("-").map(Number);
   const daysLeft = m === 8 ? 14 - d : null;
+  const years = y - 1947;
   const line = isAzadiDay()
-    ? "🇵🇰 Jashn-e-Azadi Mubarak! Happy 14th of August!"
-    : daysLeft && daysLeft > 0
+    ? `🇵🇰 Jashn-e-Azadi Mubarak! ${years} years of azadi — Happy 14th of August!`
+    : azadiPeak()
       ? `🇵🇰 Jashn-e-Azadi week — ${daysLeft} din to the 14th. Suno! is serving azadi words all week.`
-      : "🇵🇰 Jashn-e-Azadi week — Suno! is serving azadi words all week.";
+      : daysLeft && daysLeft > 0
+        ? `🇵🇰 Azadi month is here — the big day lands on the 14th (${daysLeft} din). Jashn shurū!`
+        : `🇵🇰 ${years} saal of azadi — celebrating all month. Azadi Mubarak!`;
   return `
     <div class="azadi-banner">
       <span>${line}</span>
