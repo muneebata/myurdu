@@ -594,9 +594,14 @@ function renderHome() {
   const playedToday = p.lastDaily === todayKey();
   const due = dueReviewCount();
   const kahawat = (() => {
-    const c2 = CULTURE_UNITS.find((u) => u.id === "C2");
-    const verse = c2?.sections.find((sec) => sec.verse)?.verse || [];
-    return verse.length ? verse[daySeed() % verse.length] : null;
+    // Fridays get the Jummah pool + a mubarak chip; other days draw from
+    // the big bank via the games' no-repeat cycle (min gap ~half a cycle).
+    const [ky, km, kd] = todayKey().split("-").map(Number);
+    const jummah = new Date(ky, km - 1, kd).getDay() === 5 ||
+      new URLSearchParams(location.search).get("jummah") === "1";
+    const pool = jummah ? JUMMAH_KAHAWATEIN : KAHAWATEIN;
+    const pick = cycleDraw(pool, 1, jummah ? 4241 : 3137)[0];
+    return pick ? { ...pick, jummah } : null;
   })();
   app().innerHTML = `
     <header class="hero">
@@ -627,6 +632,7 @@ function renderHome() {
       ${kahawat ? `
       <button class="proverb-card" onclick='Speech.speak(${JSON.stringify(kahawat.ur)}, ${JSON.stringify(kahawat.tr)}, {slow:true})'>
         <span class="proverb-tag">🗣️ Aaj ki Kahawat · Proverb of the day — tap to hear</span>
+        ${kahawat.jummah ? `<span class="jummah-chip">🕌 جمعہ مبارک · Jummah Mubārak!</span>` : ""}
         <span class="proverb-ur ur">${esc(kahawat.ur)}</span>
         <span class="proverb-en">${esc(kahawat.en)}</span>
         ${kahawat.ctx ? `<span class="proverb-ctx">${esc(kahawat.ctx)}</span>` : ""}
