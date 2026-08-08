@@ -47,6 +47,8 @@ CLIP_OVERRIDES = {
     "pachaas": (V, "पचास"), "sau": (V, "सौ"),
     "dderrh": (V, "डेढ़"), "saarrhe": (V, "साढ़े"),
     "duudh": (V, "दूध"), "laakh": (V, "लाख"),
+    # khodā (dug) was being read as khudā (God) — Devanagari pins the o
+    "khodaa-pahaarr-niklaa-choohaa": (V, "खोदा पहाड़, निकला चूहा"),
 }
 
 # Diacritized so the neural voice reads the letter NAMES cleanly
