@@ -496,27 +496,85 @@ function isAzadiDay() {
 // The retro waving flag — a loving tribute to every 90s homepage.
 // Ripple via animated turbulence displacement (the old GIF-flag look).
 const AZADI_FLAG_SVG = `
-<svg class="azadi-flag" viewBox="0 0 150 130" aria-label="Waving flag of Pakistan">
+<svg class="azadi-flag" viewBox="0 0 184 158" aria-label="Waving flag of Pakistan with confetti">
   <defs>
-    <filter id="flagwave" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.06" numOctaves="2" seed="7" result="w">
-        <animate attributeName="baseFrequency" dur="4s" values="0.012 0.06;0.016 0.09;0.012 0.06" repeatCount="indefinite"/>
+    <filter id="flagwave" x="-20%" y="-20%" width="145%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.014 0.07" numOctaves="2" seed="7" result="w">
+        <animate attributeName="baseFrequency" dur="2.8s" values="0.014 0.07;0.021 0.115;0.014 0.07" repeatCount="indefinite"/>
       </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="w" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="13" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
+    <linearGradient id="poleGold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a6d1c"/><stop offset="0.35" stop-color="#f3cf5e"/>
+      <stop offset="0.6" stop-color="#d9a413"/><stop offset="1" stop-color="#a37b10"/>
+    </linearGradient>
   </defs>
-  <circle cx="14" cy="8" r="5" fill="#d9a413" stroke="#8a6d1c" stroke-width="1.5"/>
-  <rect x="11.5" y="12" width="5" height="118" rx="2" fill="#8a5a2b"/>
-  <rect x="12.6" y="12" width="1.6" height="118" fill="#b07f45"/>
-  <g filter="url(#flagwave)">
-    <g transform="translate(17,16)">
-      <rect width="126" height="84" fill="#01411C"/>
-      <rect width="31.5" height="84" fill="#f7f2e6"/>
-      <circle cx="86" cy="42" r="21" fill="#f7f2e6"/>
-      <circle cx="92.5" cy="36.5" r="17.5" fill="#01411C"/>
-      <path d="M97 25 l3.05 6.7 7.3 0.85 -5.4 5 1.45 7.2 -6.4-3.6 -6.4 3.6 1.45-7.2 -5.4-5 7.3-0.85 Z" fill="#f7f2e6" transform="rotate(20 97 32)"/>
+  <g transform="rotate(-7 22 152)">
+    <circle cx="20" cy="10" r="7" fill="url(#poleGold)" stroke="#8a6d1c" stroke-width="1.5"/>
+    <circle cx="17.5" cy="7.5" r="2" fill="#fff3c4" opacity="0.9"/>
+    <rect x="16" y="16" width="8" height="136" rx="3" fill="url(#poleGold)"/>
+    <rect x="18.3" y="16" width="2" height="136" fill="#ffe9a8" opacity="0.85"/>
+    <g stroke="#12808b" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.55">
+      <path d="M154,44 q11,-5 24,1" stroke-dasharray="7 9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-32" dur="1.15s" repeatCount="indefinite"/>
+      </path>
+      <path d="M150,74 q13,-3 27,3" stroke-dasharray="6 8">
+        <animate attributeName="stroke-dashoffset" from="0" to="-28" dur="0.95s" repeatCount="indefinite"/>
+      </path>
+      <path d="M152,102 q11,4 23,-1" stroke-dasharray="7 9">
+        <animate attributeName="stroke-dashoffset" from="0" to="-32" dur="1.3s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    <g filter="url(#flagwave)">
+      <g transform="translate(24,20)">
+        <rect width="126" height="84" fill="#01411C"/>
+        <rect width="31.5" height="84" fill="#f7f2e6"/>
+        <circle cx="86" cy="42" r="21" fill="#f7f2e6"/>
+        <circle cx="92.5" cy="36.5" r="17.5" fill="#01411C"/>
+        <path d="M97 25 l3.05 6.7 7.3 0.85 -5.4 5 1.45 7.2 -6.4-3.6 -6.4 3.6 1.45-7.2 -5.4-5 7.3-0.85 Z" fill="#f7f2e6" transform="rotate(20 97 32)"/>
+      </g>
     </g>
   </g>
+    <g transform="translate(23,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 14 162" dur="2.6s" begin="-0.0s" repeatCount="indefinite"/>
+      <g><circle r="3.2" fill="#d9a413"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1.1s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(40,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 6 162" dur="3.0500000000000003s" begin="-0.53s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#c26a3a"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="1.27s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(51,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 10 162" dur="3.5s" begin="-1.06s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#b05464"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="1.44s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(71,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 10 162" dur="3.95s" begin="-1.59s" repeatCount="indefinite"/>
+      <g><circle r="3.2" fill="#12808b"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="1.61s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(79,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 6 162" dur="4.4s" begin="-2.12s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#6f8f4e"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1.78s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(97,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 6 162" dur="2.6s" begin="-2.65s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#f7f2e6"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="1.95s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(111,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 14 162" dur="3.0500000000000003s" begin="-3.18s" repeatCount="indefinite"/>
+      <g><circle r="3.2" fill="#d9a413"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="2.12s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(122,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 14 162" dur="3.5s" begin="-3.71s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#b05464"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="2.29s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(136,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; -10 162" dur="3.95s" begin="-4.24s" repeatCount="indefinite"/>
+      <g><rect x="-2.5" y="-4.5" width="5" height="9" rx="1.5" fill="#12808b"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="2.46s" repeatCount="indefinite"/></g>
+    </g></g>
+    <g transform="translate(149,0)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 -12; 14 162" dur="4.4s" begin="-4.77s" repeatCount="indefinite"/>
+      <g><circle r="3.2" fill="#c26a3a"/><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="2.63s" repeatCount="indefinite"/></g>
+    </g></g>
 </svg>`;
 
 // ── Home ─────────────────────────────────────────────────────
