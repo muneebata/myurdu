@@ -1083,6 +1083,13 @@ function ensureAzadiRain() {
   }
   box.innerHTML = bits;
   document.body.appendChild(box);
+  // confine the rain to the hero: stop right where Roz ka Khel begins
+  const firstSection = document.querySelector(".track-title");
+  if (firstSection) {
+    const h = Math.max(200, firstSection.getBoundingClientRect().top + window.scrollY - 30);
+    box.style.height = h + "px";
+    box.style.setProperty("--rain-h", h + "px");
+  }
 }
 
 function removeAzadiRain() {

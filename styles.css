@@ -929,14 +929,14 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
 @media (max-width: 700px) { .azadi-flag-right { display: none; } }
 
 /* Jashn-e-Azadi confetti rain — sparse, slow, never blocks anything */
-.confetti-rain { position: fixed; inset: 0; pointer-events: none; z-index: 99; overflow: hidden; }
+.confetti-rain { position: absolute; top: 0; left: 0; right: 0; height: 100vh; pointer-events: none; z-index: 99; overflow: hidden; }
 .confetti-rain i {
   position: absolute; top: 0; border-radius: 2px; opacity: 0.75;
   animation: confetti-rain-fall linear infinite;
 }
 @keyframes confetti-rain-fall {
-  from { transform: translateY(-6vh) rotate(0deg); }
-  to { transform: translateY(108vh) rotate(560deg); }
+  from { transform: translateY(-30px) rotate(0deg); }
+  to { transform: translateY(calc(var(--rain-h, 100vh) + 30px)) rotate(560deg); }
 }
 @media (prefers-reduced-motion: reduce) { .confetti-rain { display: none; } }
 
