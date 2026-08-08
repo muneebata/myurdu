@@ -495,6 +495,49 @@ function isAzadiDay() {
 
 // The retro waving flag — a loving tribute to every 90s homepage.
 // Ripple via animated turbulence displacement (the old GIF-flag look).
+// Firework bursts flanking the hero during Azadi week — SMIL pops in the
+// flag-and-PTV palette, hidden for reduced-motion users via CSS.
+const AZADI_FIREWORKS_L = `<svg class="azadi-fireworks azadi-fw-left" viewBox="0 0 160 120" aria-hidden="true">
+  <g transform="translate(45,55)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.4s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.4s" begin="0s" repeatCount="indefinite"/>
+      <g stroke="#d9a413" stroke-width="2.4" stroke-linecap="round"><line x1="8.5" y1="0.0" x2="34.0" y2="0.0"/><line x1="7.4" y1="4.2" x2="29.4" y2="17.0"/><line x1="4.3" y1="7.4" x2="17.0" y2="29.4"/><line x1="0.0" y1="8.5" x2="0.0" y2="34.0"/><line x1="-4.2" y1="7.4" x2="-17.0" y2="29.4"/><line x1="-7.4" y1="4.2" x2="-29.4" y2="17.0"/><line x1="-8.5" y1="0.0" x2="-34.0" y2="0.0"/><line x1="-7.4" y1="-4.2" x2="-29.4" y2="-17.0"/><line x1="-4.3" y1="-7.4" x2="-17.0" y2="-29.4"/><line x1="-0.0" y1="-8.5" x2="-0.0" y2="-34.0"/><line x1="4.3" y1="-7.4" x2="17.0" y2="-29.4"/><line x1="7.4" y1="-4.3" x2="29.4" y2="-17.0"/></g>
+      <circle r="2.6" fill="#d9a413"/>
+    </g></g>
+  <g transform="translate(115,38)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.9s" begin="-1.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.9s" begin="-1.3s" repeatCount="indefinite"/>
+      <g stroke="#b05464" stroke-width="2.4" stroke-linecap="round"><line x1="6.0" y1="0.0" x2="24.0" y2="0.0"/><line x1="5.2" y1="3.0" x2="20.8" y2="12.0"/><line x1="3.0" y1="5.2" x2="12.0" y2="20.8"/><line x1="0.0" y1="6.0" x2="0.0" y2="24.0"/><line x1="-3.0" y1="5.2" x2="-12.0" y2="20.8"/><line x1="-5.2" y1="3.0" x2="-20.8" y2="12.0"/><line x1="-6.0" y1="0.0" x2="-24.0" y2="0.0"/><line x1="-5.2" y1="-3.0" x2="-20.8" y2="-12.0"/><line x1="-3.0" y1="-5.2" x2="-12.0" y2="-20.8"/><line x1="-0.0" y1="-6.0" x2="-0.0" y2="-24.0"/><line x1="3.0" y1="-5.2" x2="12.0" y2="-20.8"/><line x1="5.2" y1="-3.0" x2="20.8" y2="-12.0"/></g>
+      <circle r="2.6" fill="#b05464"/>
+    </g></g>
+  <g transform="translate(95,88)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <g stroke="#12808b" stroke-width="2.4" stroke-linecap="round"><line x1="4.5" y1="0.0" x2="18.0" y2="0.0"/><line x1="3.9" y1="2.2" x2="15.6" y2="9.0"/><line x1="2.3" y1="3.9" x2="9.0" y2="15.6"/><line x1="0.0" y1="4.5" x2="0.0" y2="18.0"/><line x1="-2.2" y1="3.9" x2="-9.0" y2="15.6"/><line x1="-3.9" y1="2.2" x2="-15.6" y2="9.0"/><line x1="-4.5" y1="0.0" x2="-18.0" y2="0.0"/><line x1="-3.9" y1="-2.2" x2="-15.6" y2="-9.0"/><line x1="-2.3" y1="-3.9" x2="-9.0" y2="-15.6"/><line x1="-0.0" y1="-4.5" x2="-0.0" y2="-18.0"/><line x1="2.3" y1="-3.9" x2="9.0" y2="-15.6"/><line x1="3.9" y1="-2.3" x2="15.6" y2="-9.0"/></g>
+      <circle r="2.6" fill="#12808b"/>
+    </g></g>
+</svg>`;
+const AZADI_FIREWORKS_R = `<svg class="azadi-fireworks azadi-fw-right" viewBox="0 0 160 120" aria-hidden="true">
+  <g transform="translate(45,55)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.6s" begin="-0.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.6s" begin="-0.4s" repeatCount="indefinite"/>
+      <g stroke="#12808b" stroke-width="2.4" stroke-linecap="round"><line x1="8.5" y1="0.0" x2="34.0" y2="0.0"/><line x1="7.4" y1="4.2" x2="29.4" y2="17.0"/><line x1="4.3" y1="7.4" x2="17.0" y2="29.4"/><line x1="0.0" y1="8.5" x2="0.0" y2="34.0"/><line x1="-4.2" y1="7.4" x2="-17.0" y2="29.4"/><line x1="-7.4" y1="4.2" x2="-29.4" y2="17.0"/><line x1="-8.5" y1="0.0" x2="-34.0" y2="0.0"/><line x1="-7.4" y1="-4.2" x2="-29.4" y2="-17.0"/><line x1="-4.3" y1="-7.4" x2="-17.0" y2="-29.4"/><line x1="-0.0" y1="-8.5" x2="-0.0" y2="-34.0"/><line x1="4.3" y1="-7.4" x2="17.0" y2="-29.4"/><line x1="7.4" y1="-4.3" x2="29.4" y2="-17.0"/></g>
+      <circle r="2.6" fill="#12808b"/>
+    </g></g>
+  <g transform="translate(115,38)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.2s" begin="-1.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.2s" begin="-1.6s" repeatCount="indefinite"/>
+      <g stroke="#d9a413" stroke-width="2.4" stroke-linecap="round"><line x1="6.0" y1="0.0" x2="24.0" y2="0.0"/><line x1="5.2" y1="3.0" x2="20.8" y2="12.0"/><line x1="3.0" y1="5.2" x2="12.0" y2="20.8"/><line x1="0.0" y1="6.0" x2="0.0" y2="24.0"/><line x1="-3.0" y1="5.2" x2="-12.0" y2="20.8"/><line x1="-5.2" y1="3.0" x2="-20.8" y2="12.0"/><line x1="-6.0" y1="0.0" x2="-24.0" y2="0.0"/><line x1="-5.2" y1="-3.0" x2="-20.8" y2="-12.0"/><line x1="-3.0" y1="-5.2" x2="-12.0" y2="-20.8"/><line x1="-0.0" y1="-6.0" x2="-0.0" y2="-24.0"/><line x1="3.0" y1="-5.2" x2="12.0" y2="-20.8"/><line x1="5.2" y1="-3.0" x2="20.8" y2="-12.0"/></g>
+      <circle r="2.6" fill="#d9a413"/>
+    </g></g>
+  <g transform="translate(95,88)"><g opacity="0">
+      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.8s" begin="-1.0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.8s" begin="-1.0s" repeatCount="indefinite"/>
+      <g stroke="#c26a3a" stroke-width="2.4" stroke-linecap="round"><line x1="4.5" y1="0.0" x2="18.0" y2="0.0"/><line x1="3.9" y1="2.2" x2="15.6" y2="9.0"/><line x1="2.3" y1="3.9" x2="9.0" y2="15.6"/><line x1="0.0" y1="4.5" x2="0.0" y2="18.0"/><line x1="-2.2" y1="3.9" x2="-9.0" y2="15.6"/><line x1="-3.9" y1="2.2" x2="-15.6" y2="9.0"/><line x1="-4.5" y1="0.0" x2="-18.0" y2="0.0"/><line x1="-3.9" y1="-2.2" x2="-15.6" y2="-9.0"/><line x1="-2.3" y1="-3.9" x2="-9.0" y2="-15.6"/><line x1="-0.0" y1="-4.5" x2="-0.0" y2="-18.0"/><line x1="2.3" y1="-3.9" x2="9.0" y2="-15.6"/><line x1="3.9" y1="-2.3" x2="15.6" y2="-9.0"/></g>
+      <circle r="2.6" fill="#c26a3a"/>
+    </g></g>
+</svg>`;
+
 const AZADI_FLAG_SVG = `
 <svg class="azadi-flag" viewBox="0 0 184 158" aria-label="Waving flag of Pakistan with confetti">
   <defs>
@@ -633,7 +676,7 @@ function renderHome() {
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${azadiWindow() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
+      ${azadiWindow() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R + AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
