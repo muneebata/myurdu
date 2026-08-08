@@ -17,8 +17,28 @@ OUT = PROJECT / "audio"
 # Per-slug overrides for clips the Urdu voice cannot pronounce.
 # jeem: ur voices read جیم as the English loanword "gym" → "jim"; the Hindi
 # voice reading Devanagari जीम forces the long ee (user ear-verified 2026-08-08).
+# All letter names use the Hindi voice reading Devanagari — vowel length is
+# orthographically explicit there, so /ɑː/ vs /ə/ and /eː/ vs /iː/ cannot be
+# misread. Names follow the canonical table (Wikipedia "Urdu alphabet" IPA):
+# alif = /ʔɑːlɪf/ (AA-lif), tē = /teː/ (tay), s̱ē = /seː/ (say), etc.
+V = "hi-IN-SwaraNeural"
 CLIP_OVERRIDES = {
-    "jeem": ("hi-IN-SwaraNeural", "जीम"),
+    "alif": (V, "आलिफ़"), "be": (V, "बे"), "pe": (V, "पे"), "te": (V, "ते"),
+    "tte": (V, "टे"), "se": (V, "से"), "jeem": (V, "जीम"), "che": (V, "चे"),
+    "barree-he": (V, "बड़ी हे"), "khe": (V, "ख़े"),
+    "daal": (V, "दाल"), "ddaal": (V, "डाल"), "zaal": (V, "ज़ाल"),
+    "re": (V, "रे"), "rre": (V, "ड़े"), "ze": (V, "ज़े"), "zhe": (V, "झ़े"),
+    "seen": (V, "सीन"), "sheen": (V, "शीन"),
+    "swaad": (V, "स्वाद"), "zwaad": (V, "ज़्वाद"),
+    "toe": (V, "तोए"), "zoe": (V, "ज़ोए"),
+    "ain": (V, "ऐन"), "ghain": (V, "ग़ैन"),
+    "fe": (V, "फ़े"), "qaaf": (V, "क़ाफ़"), "kaaf": (V, "काफ़"), "gaaf": (V, "गाफ़"),
+    "laam": (V, "लाम"), "meem": (V, "मीम"), "noon": (V, "नून"),
+    "noon-ghunna": (V, "नून ग़ुन्ना"), "waao": (V, "वाओ"),
+    "gol-he": (V, "गोल हे"), "do-chashmee-he": (V, "दो चश्मी हे"),
+    "hamza": (V, "हमज़ा"), "chottee-ye": (V, "छोटी ये"), "barree-ye": (V, "बड़ी ये"),
+    # Sound School words the ur voice blurred (user ear-flagged 2026-08-08)
+    "chaar": (V, "चार"), "aatth": (V, "आठ"), "teen": (V, "तीन"),
 }
 
 # Diacritized so the neural voice reads the letter NAMES cleanly
