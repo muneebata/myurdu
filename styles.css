@@ -944,5 +944,5 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
 .azadi-fireworks { position: absolute; top: 18px; width: 150px; height: auto; z-index: 3; pointer-events: none; }
 .azadi-fw-left { left: 140px; }
 .azadi-fw-right { right: 140px; }
-@media (max-width: 900px) { .azadi-fireworks { display: none; } }
+@media (max-width: 700px) { .azadi-fireworks { display: none; } }
 @media (prefers-reduced-motion: reduce) { .azadi-fireworks { display: none; } }
