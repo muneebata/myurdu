@@ -923,3 +923,19 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
   .word .word-ur { min-width: 0; text-align: right; }
   .word .word-play { align-self: flex-end; }
 }
+
+/* Second azadi flag, opposite lean, right side of the hero */
+.azadi-flag-right { left: auto; right: 8px; }
+@media (max-width: 700px) { .azadi-flag-right { display: none; } }
+
+/* Jashn-e-Azadi confetti rain — sparse, slow, never blocks anything */
+.confetti-rain { position: fixed; inset: 0; pointer-events: none; z-index: 99; overflow: hidden; }
+.confetti-rain i {
+  position: absolute; top: 0; border-radius: 2px; opacity: 0.75;
+  animation: confetti-rain-fall linear infinite;
+}
+@keyframes confetti-rain-fall {
+  from { transform: translateY(-6vh) rotate(0deg); }
+  to { transform: translateY(108vh) rotate(560deg); }
+}
+@media (prefers-reduced-motion: reduce) { .confetti-rain { display: none; } }

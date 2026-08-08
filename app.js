@@ -577,6 +577,26 @@ const AZADI_FLAG_SVG = `
     </g></g>
 </svg>`;
 
+// Gentle page-wide confetti rain for Jashn-e-Azadi week — sparse, slow,
+// click-through, and removed entirely for reduced-motion users (CSS).
+(function azadiRain() {
+  if (!azadiWindow() || document.querySelector(".confetti-rain")) return;
+  const colors = ["#01411C", "#f7f2e6", "#d9a413", "#12808b", "#c26a3a", "#b05464"];
+  const box = document.createElement("div");
+  box.className = "confetti-rain";
+  box.setAttribute("aria-hidden", "true");
+  let bits = "";
+  for (let i = 0; i < 16; i++) {
+    const left = (i * 6.4 + (i % 3) * 2.2) % 100;
+    const dur = 7 + (i % 5) * 1.6;
+    const delay = -(i * 0.9);
+    const size = 6 + (i % 3) * 3;
+    bits += `<i style="left:${left}%; width:${size}px; height:${size * 1.5}px; background:${colors[i % colors.length]}; animation-duration:${dur}s; animation-delay:${delay}s"></i>`;
+  }
+  box.innerHTML = bits;
+  document.body.appendChild(box);
+})();
+
 // ── Home ─────────────────────────────────────────────────────
 
 function renderHome() {
@@ -608,7 +628,7 @@ function renderHome() {
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${azadiWindow() ? AZADI_FLAG_SVG : ""}
+      ${azadiWindow() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
