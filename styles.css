@@ -916,3 +916,10 @@ html[data-theme="dark"] .type-setup summary { color: var(--ink); }
   border-radius: 999px; font-weight: 700; font-size: 0.85rem;
 }
 html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
+
+/* Reading rows stack on narrow screens — no one-word-per-line columns */
+@media (max-width: 560px) {
+  .word { flex-direction: column; align-items: stretch; gap: 6px; }
+  .word .word-ur { min-width: 0; text-align: right; }
+  .word .word-play { align-self: flex-end; }
+}
