@@ -497,45 +497,489 @@ function isAzadiDay() {
 // Ripple via animated turbulence displacement (the old GIF-flag look).
 // Firework bursts flanking the hero during Azadi week — SMIL pops in the
 // flag-and-PTV palette, hidden for reduced-motion users via CSS.
-const AZADI_FIREWORKS_L = `<svg class="azadi-fireworks azadi-fw-left" viewBox="0 0 160 120" aria-hidden="true">
-  <g transform="translate(45,55)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.4s" begin="0s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.4s" begin="0s" repeatCount="indefinite"/>
-      <g stroke="#d9a413" stroke-width="2.4" stroke-linecap="round"><line x1="8.5" y1="0.0" x2="34.0" y2="0.0"/><line x1="7.4" y1="4.2" x2="29.4" y2="17.0"/><line x1="4.3" y1="7.4" x2="17.0" y2="29.4"/><line x1="0.0" y1="8.5" x2="0.0" y2="34.0"/><line x1="-4.2" y1="7.4" x2="-17.0" y2="29.4"/><line x1="-7.4" y1="4.2" x2="-29.4" y2="17.0"/><line x1="-8.5" y1="0.0" x2="-34.0" y2="0.0"/><line x1="-7.4" y1="-4.2" x2="-29.4" y2="-17.0"/><line x1="-4.3" y1="-7.4" x2="-17.0" y2="-29.4"/><line x1="-0.0" y1="-8.5" x2="-0.0" y2="-34.0"/><line x1="4.3" y1="-7.4" x2="17.0" y2="-29.4"/><line x1="7.4" y1="-4.3" x2="29.4" y2="-17.0"/></g>
-      <circle r="2.6" fill="#d9a413"/>
-    </g></g>
-  <g transform="translate(115,38)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.9s" begin="-1.3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.9s" begin="-1.3s" repeatCount="indefinite"/>
-      <g stroke="#b05464" stroke-width="2.4" stroke-linecap="round"><line x1="6.0" y1="0.0" x2="24.0" y2="0.0"/><line x1="5.2" y1="3.0" x2="20.8" y2="12.0"/><line x1="3.0" y1="5.2" x2="12.0" y2="20.8"/><line x1="0.0" y1="6.0" x2="0.0" y2="24.0"/><line x1="-3.0" y1="5.2" x2="-12.0" y2="20.8"/><line x1="-5.2" y1="3.0" x2="-20.8" y2="12.0"/><line x1="-6.0" y1="0.0" x2="-24.0" y2="0.0"/><line x1="-5.2" y1="-3.0" x2="-20.8" y2="-12.0"/><line x1="-3.0" y1="-5.2" x2="-12.0" y2="-20.8"/><line x1="-0.0" y1="-6.0" x2="-0.0" y2="-24.0"/><line x1="3.0" y1="-5.2" x2="12.0" y2="-20.8"/><line x1="5.2" y1="-3.0" x2="20.8" y2="-12.0"/></g>
-      <circle r="2.6" fill="#b05464"/>
-    </g></g>
-  <g transform="translate(95,88)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.1s" begin="-0.7s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.1s" begin="-0.7s" repeatCount="indefinite"/>
-      <g stroke="#12808b" stroke-width="2.4" stroke-linecap="round"><line x1="4.5" y1="0.0" x2="18.0" y2="0.0"/><line x1="3.9" y1="2.2" x2="15.6" y2="9.0"/><line x1="2.3" y1="3.9" x2="9.0" y2="15.6"/><line x1="0.0" y1="4.5" x2="0.0" y2="18.0"/><line x1="-2.2" y1="3.9" x2="-9.0" y2="15.6"/><line x1="-3.9" y1="2.2" x2="-15.6" y2="9.0"/><line x1="-4.5" y1="0.0" x2="-18.0" y2="0.0"/><line x1="-3.9" y1="-2.2" x2="-15.6" y2="-9.0"/><line x1="-2.3" y1="-3.9" x2="-9.0" y2="-15.6"/><line x1="-0.0" y1="-4.5" x2="-0.0" y2="-18.0"/><line x1="2.3" y1="-3.9" x2="9.0" y2="-15.6"/><line x1="3.9" y1="-2.3" x2="15.6" y2="-9.0"/></g>
-      <circle r="2.6" fill="#12808b"/>
-    </g></g>
+const AZADI_FIREWORKS_L = `<svg class="azadi-fireworks azadi-fw-left" viewBox="0 0 160 140" aria-hidden="true">
+  <g transform="translate(48,54)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,64 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="3.8s" begin="0s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;14;1" keyTimes="0;0.21;0.3" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q20.9,0.4 33.7,16.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q17.6,8.3 28.5,29.7" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q10.9,14.2 17.6,39.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q2.0,16.8 3.2,43.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-7.3,15.8 -11.8,41.6" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-15.2,11.1 -24.5,34.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-20.0,3.9 -32.3,22.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-20.9,-4.5 -33.7,9.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-17.6,-12.4 -28.5,-3.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-10.9,-18.3 -17.6,-13.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-2.0,-20.9 -3.2,-17.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q7.3,-19.8 11.8,-15.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q15.2,-15.2 24.5,-8.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q20.0,-8.0 32.3,3.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+    </g>
+  <g transform="translate(118,36)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,56 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;10;1" keyTimes="0;0.21;0.3" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q16.0,0.3 25.8,12.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q13.5,6.4 21.8,22.7" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q8.3,10.9 13.4,29.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q1.5,12.9 2.5,33.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-5.6,12.0 -9.0,31.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-11.6,8.5 -18.7,26.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-15.3,3.0 -24.7,17.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-16.0,-3.4 -25.8,6.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-13.5,-9.5 -21.8,-2.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-8.3,-14.0 -13.4,-10.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-1.5,-16.0 -2.5,-13.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q5.6,-15.2 9.0,-12.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q11.6,-11.6 18.7,-6.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q15.3,-6.1 24.7,2.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.4s" begin="-1.9s" repeatCount="indefinite"/>
+    </circle>
+    </g>
+  <g transform="translate(96,92)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,50 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;8;1" keyTimes="0;0.21;0.3" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q12.3,0.2 19.8,9.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q10.4,4.9 16.7,17.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q6.4,8.4 10.3,23.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q1.2,9.9 1.9,25.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-4.3,9.3 -6.9,24.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-8.9,6.5 -14.4,20.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-11.8,2.3 -19.0,13.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-12.3,-2.6 -19.8,5.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-10.4,-7.3 -16.7,-2.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-6.4,-10.8 -10.3,-7.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-1.2,-12.3 -1.9,-10.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q4.3,-11.7 6.9,-9.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q8.9,-8.9 14.4,-4.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q11.8,-4.7 19.0,2.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.4s" begin="-1.1s" repeatCount="indefinite"/>
+    </circle>
+    </g>
 </svg>`;
-const AZADI_FIREWORKS_R = `<svg class="azadi-fireworks azadi-fw-right" viewBox="0 0 160 120" aria-hidden="true">
-  <g transform="translate(45,55)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.6s" begin="-0.4s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.6s" begin="-0.4s" repeatCount="indefinite"/>
-      <g stroke="#12808b" stroke-width="2.4" stroke-linecap="round"><line x1="8.5" y1="0.0" x2="34.0" y2="0.0"/><line x1="7.4" y1="4.2" x2="29.4" y2="17.0"/><line x1="4.3" y1="7.4" x2="17.0" y2="29.4"/><line x1="0.0" y1="8.5" x2="0.0" y2="34.0"/><line x1="-4.2" y1="7.4" x2="-17.0" y2="29.4"/><line x1="-7.4" y1="4.2" x2="-29.4" y2="17.0"/><line x1="-8.5" y1="0.0" x2="-34.0" y2="0.0"/><line x1="-7.4" y1="-4.2" x2="-29.4" y2="-17.0"/><line x1="-4.3" y1="-7.4" x2="-17.0" y2="-29.4"/><line x1="-0.0" y1="-8.5" x2="-0.0" y2="-34.0"/><line x1="4.3" y1="-7.4" x2="17.0" y2="-29.4"/><line x1="7.4" y1="-4.3" x2="29.4" y2="-17.0"/></g>
-      <circle r="2.6" fill="#12808b"/>
-    </g></g>
-  <g transform="translate(115,38)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.2s" begin="-1.6s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.2s" begin="-1.6s" repeatCount="indefinite"/>
-      <g stroke="#d9a413" stroke-width="2.4" stroke-linecap="round"><line x1="6.0" y1="0.0" x2="24.0" y2="0.0"/><line x1="5.2" y1="3.0" x2="20.8" y2="12.0"/><line x1="3.0" y1="5.2" x2="12.0" y2="20.8"/><line x1="0.0" y1="6.0" x2="0.0" y2="24.0"/><line x1="-3.0" y1="5.2" x2="-12.0" y2="20.8"/><line x1="-5.2" y1="3.0" x2="-20.8" y2="12.0"/><line x1="-6.0" y1="0.0" x2="-24.0" y2="0.0"/><line x1="-5.2" y1="-3.0" x2="-20.8" y2="-12.0"/><line x1="-3.0" y1="-5.2" x2="-12.0" y2="-20.8"/><line x1="-0.0" y1="-6.0" x2="-0.0" y2="-24.0"/><line x1="3.0" y1="-5.2" x2="12.0" y2="-20.8"/><line x1="5.2" y1="-3.0" x2="20.8" y2="-12.0"/></g>
-      <circle r="2.6" fill="#d9a413"/>
-    </g></g>
-  <g transform="translate(95,88)"><g opacity="0">
-      <animateTransform attributeName="transform" type="scale" values="0.15;1;1.18" keyTimes="0;0.55;1" dur="2.8s" begin="-1.0s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.55;1" dur="2.8s" begin="-1.0s" repeatCount="indefinite"/>
-      <g stroke="#c26a3a" stroke-width="2.4" stroke-linecap="round"><line x1="4.5" y1="0.0" x2="18.0" y2="0.0"/><line x1="3.9" y1="2.2" x2="15.6" y2="9.0"/><line x1="2.3" y1="3.9" x2="9.0" y2="15.6"/><line x1="0.0" y1="4.5" x2="0.0" y2="18.0"/><line x1="-2.2" y1="3.9" x2="-9.0" y2="15.6"/><line x1="-3.9" y1="2.2" x2="-15.6" y2="9.0"/><line x1="-4.5" y1="0.0" x2="-18.0" y2="0.0"/><line x1="-3.9" y1="-2.2" x2="-15.6" y2="-9.0"/><line x1="-2.3" y1="-3.9" x2="-9.0" y2="-15.6"/><line x1="-0.0" y1="-4.5" x2="-0.0" y2="-18.0"/><line x1="2.3" y1="-3.9" x2="9.0" y2="-15.6"/><line x1="3.9" y1="-2.3" x2="15.6" y2="-9.0"/></g>
-      <circle r="2.6" fill="#c26a3a"/>
-    </g></g>
+const AZADI_FIREWORKS_R = `<svg class="azadi-fireworks azadi-fw-right" viewBox="0 0 160 140" aria-hidden="true">
+  <g transform="translate(48,54)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,64 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;14;1" keyTimes="0;0.21;0.3" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q20.9,0.4 33.7,16.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q17.6,8.3 28.5,29.7" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q10.9,14.2 17.6,39.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q2.0,16.8 3.2,43.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-7.3,15.8 -11.8,41.6" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-15.2,11.1 -24.5,34.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-20.0,3.9 -32.3,22.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-20.9,-4.5 -33.7,9.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-17.6,-12.4 -28.5,-3.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-10.9,-18.3 -17.6,-13.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-2.0,-20.9 -3.2,-17.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q7.3,-19.8 11.8,-15.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q15.2,-15.2 24.5,-8.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q20.0,-8.0 32.3,3.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.1s" begin="-0.7s" repeatCount="indefinite"/>
+    </circle>
+    </g>
+  <g transform="translate(118,36)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,56 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;10;1" keyTimes="0;0.21;0.3" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q16.0,0.3 25.8,12.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q13.5,6.4 21.8,22.7" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q8.3,10.9 13.4,29.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q1.5,12.9 2.5,33.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-5.6,12.0 -9.0,31.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-11.6,8.5 -18.7,26.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-15.3,3.0 -24.7,17.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-16.0,-3.4 -25.8,6.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-13.5,-9.5 -21.8,-2.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q-8.3,-14.0 -13.4,-10.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q-1.5,-16.0 -2.5,-13.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q5.6,-15.2 9.0,-12.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#b05464" opacity="0">
+      <animateMotion path="M0,0 Q11.6,-11.6 18.7,-6.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#d9a413" opacity="0">
+      <animateMotion path="M0,0 Q15.3,-6.1 24.7,2.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="3.5s" begin="-2.4s" repeatCount="indefinite"/>
+    </circle>
+    </g>
+  <g transform="translate(96,92)">
+      <circle r="2" fill="#c98f1a" opacity="0">
+      <animateMotion path="M0,50 L0,0" keyPoints="0;1;1" keyTimes="0;0.15;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite" calcMode="linear"/>
+      <animate attributeName="opacity" values="0;0.95;0.95;0;0" keyTimes="0;0.03;0.12;0.16;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="1" fill="#d9a413" opacity="0">
+      <animate attributeName="r" values="1;8;1" keyTimes="0;0.21;0.3" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.155;0.18;0.28;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q12.3,0.2 19.8,9.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q10.4,4.9 16.7,17.4" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q6.4,8.4 10.3,23.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q1.2,9.9 1.9,25.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-4.3,9.3 -6.9,24.5" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-8.9,6.5 -14.4,20.1" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-11.8,2.3 -19.0,13.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-12.3,-2.6 -19.8,5.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-10.4,-7.3 -16.7,-2.2" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q-6.4,-10.8 -10.3,-7.8" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q-1.2,-12.3 -1.9,-10.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q4.3,-11.7 6.9,-9.3" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#12808b" opacity="0">
+      <animateMotion path="M0,0 Q8.9,-8.9 14.4,-4.9" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+      <circle r="3" fill="#c26a3a" opacity="0">
+      <animateMotion path="M0,0 Q11.8,-4.7 19.0,2.0" keyPoints="0;0;1;1" keyTimes="0;0.16;0.72;1" calcMode="spline" keySplines="0 0 1 1;0.15 0.75 0.35 0.98;0 0 1 1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;3;2;0.7" keyTimes="0;0.16;0.5;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;1;0.55;1;0.4;0.75;0;0" keyTimes="0;0.16;0.2;0.38;0.5;0.62;0.7;0.82;1" dur="4.6s" begin="-1.5s" repeatCount="indefinite"/>
+    </circle>
+    </g>
 </svg>`;
 
 const AZADI_FLAG_SVG = `
