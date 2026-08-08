@@ -53,7 +53,8 @@ const Speech = {
     const slow = !!opts.slow;
     const key = this.slug(translit || urduText);
     if (this.clipCache[key] === false) return this.tts(urduText, translit, slow);
-    const audio = new Audio(`audio/${key}.mp3`);
+    const rev = (typeof AUDIO_REFRESH !== "undefined" && AUDIO_REFRESH[key]) ? `?r=${AUDIO_REFRESH[key]}` : "";
+    const audio = new Audio(`audio/${key}.mp3${rev}`);
     audio.playbackRate = slow ? 0.65 : 0.9;
     speechSynthesis.cancel();
     audio.play().then(

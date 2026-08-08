@@ -78,6 +78,9 @@ lessons.sort(key=lambda x: x["order"])
 for l in lessons:
     l["slug"] = slugify(l["title"])
 
+_ar = re.search(r"const AUDIO_REFRESH = \{ ([^}]*) \}", DATA)
+AUDIO_REFRESH_JSON = "{" + (_ar.group(1) if _ar else "") + "}"
+
 CSS = """html[data-theme=dark] body{background:url("../jali/chishti-dark.svg?v=3"), #0f2429;background-size:72px 124.7px;color:#f0e6cf}
 html[data-theme=dark] .phrase,html[data-theme=dark] .gl-row{background:#17333a;border-color:#2c4d55}
 html[data-theme=dark] .phrase .u,html[data-theme=dark] h1,html[data-theme=dark] ul.hub a{color:#7fd4dc}
@@ -122,9 +125,11 @@ HEAD = """<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <style>{css}</style></head><body><div class="strap"></div><div class="wrap">"""
 
-FOOT = """<div class="foot">Urdu Ustaadh is a free Urdu-learning resource — native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
-<script>function play(s){new Audio('../audio/'+s+'.mp3').play()}</script>
+FOOT_T = """<div class="foot">Urdu Ustaadh is a free Urdu-learning resource — native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
+<script>var AR=__AUDIO_REFRESH__;function play(s){new Audio('../audio/'+s+'.mp3'+(AR[s]?('?r='+AR[s]):'')).play()}</script>
 </div></body></html>"""
+FOOT = FOOT_T.replace("__AUDIO_REFRESH__", AUDIO_REFRESH_JSON)
+
 
 e = html.escape
 for idx, l in enumerate(lessons):
