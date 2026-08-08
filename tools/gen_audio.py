@@ -39,6 +39,13 @@ CLIP_OVERRIDES = {
     "hamza": (V, "हमज़ा"), "chottee-ye": (V, "छोटी ये"), "barree-ye": (V, "बड़ी ये"),
     # Sound School words the ur voice blurred (user ear-flagged 2026-08-08)
     "chaar": (V, "चार"), "aatth": (V, "आठ"), "teen": (V, "तीन"),
+    # Numbers: same vowel-length risk class as tīn/chār — canonical Devanagari
+    "ek": (V, "एक"), "do": (V, "दो"), "paanch": (V, "पाँच"), "chhe": (V, "छे"),
+    "saat": (V, "सात"), "nau": (V, "नौ"), "das": (V, "दस"),
+    "gyaarah": (V, "ग्यारह"), "baarah": (V, "बारह"), "pandrah": (V, "पंद्रह"),
+    "bees": (V, "बीस"), "tees": (V, "तीस"), "chaalees": (V, "चालीस"),
+    "pachaas": (V, "पचास"), "sau": (V, "सौ"),
+    "dderrh": (V, "डेढ़"), "saarrhe": (V, "साढ़े"),
 }
 
 # Diacritized so the neural voice reads the letter NAMES cleanly
