@@ -1321,8 +1321,7 @@ function phraseCard(levelIdx, itemIdx, item) {
       <div class="phrase-btns">
         <button class="btn speak" title="Hear it" onclick="playItem(${levelIdx},${itemIdx},false)">🔊 Listen</button>
         <button class="btn speak" title="Hear it extra slowly" onclick="playItem(${levelIdx},${itemIdx},true)">🐢 Slow</button>
-        <button class="btn mic" title="Say it and get checked" onclick="practiceItem('${id}',${levelIdx},${itemIdx})">🎤 Say it</button>
-        ${goonjBtn(`${id}-result`, item.ur, item.tr)}
+        <button class="btn mic" title="Say it: get checked and hear your take next to the native clip" onclick="practiceItem('${id}',${levelIdx},${itemIdx})">🎤 Say it</button>
         ${nishaanBtn(item.ur, item.tr, item.en, `Level ${levelIdx + 1}`, false)}
       </div>
       <div class="practice-result" id="${id}-result"></div>
@@ -1351,16 +1350,16 @@ function micCompat() {
 
 function micCompatNote() {
   const c = micCompat();
-  if (c.ok) return `<div class="mic-note subtle">🎤 Live mic checks work best in <b>Chrome or Edge</b> (computer or Android). iPhone/Safari can't hear Urdu yet. Apple's speech engine doesn't support it, so there, use <b>🪞 Goonj</b>: record yourself and compare by ear.</div>`;
+  if (c.ok) return `<div class="mic-note subtle">🎤 Say it checks your pronunciation live and records your take, so you can also hear yourself next to the native clip. Works best in <b>Chrome or Edge</b> (computer or Android).</div>`;
   const why = {
     ios: "iPhones and iPads can't do Urdu speech recognition yet, every iOS browser has to use Safari's engine, and it doesn't speak Urdu",
     safari: "Safari can't do Urdu speech recognition yet",
     none: "this browser doesn't support speech recognition",
   }[c.reason];
   const goonjTip = Speech.recordingSupported()
-    ? " And <b>🪞 Goonj</b> works here: record yourself, then hear your take next to the native clip, your ear does the checking."
+    ? " Here, <b>🎤 Say it</b> records you instead: listen to your take next to the native clip and let your ear do the checking."
     : "";
-  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine, and you can always practice by repeating after the audio.${goonjTip}</div>`;
+  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so live pronunciation scoring won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly.${goonjTip}</div>`;
 }
 
 const MIC_ERRORS = {
@@ -1381,16 +1380,48 @@ function selfCheckNote() {
   return `<div class="pr warn">🎧 Plan B, self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip.${goonjTip} For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
 }
 
+// One mic button, two feedback loops: the recognizer scores you WHILE
+// MediaRecorder captures your take, so every attempt ends with a score
+// (where recognition works) plus a listen-back row. Where recognition
+// can't hear Urdu (iOS/Safari), the same button becomes pure
+// record-and-compare via Goonj.
+function echoRow(outId, ur, tr, retry) {
+  return `
+      <span class="goonj-btns">
+        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)})'>▶️ Your take</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 Native</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)}, {slow:true})'>🐢</button>
+        <button class="btn" onclick="${retry}">🔁 Again</button>
+      </span>
+      <span class="goonj-hint">Compare by ear too: match the long vowels and the tricky sounds. Your recording stays on this device.</span>`;
+}
+
 async function practiceItem(cardId, levelIdx, itemIdx) {
   const item = LEVELS[levelIdx].items[itemIdx];
   const out = $(`#${cardId}-result`);
+  const outId = `${cardId}-result`;
+  const retry = `practiceItem('${cardId}',${levelIdx},${itemIdx})`;
   if (!Speech.recognitionSupported() || !micCompat().ok) {
+    // No Urdu recognition here (iOS/Safari): record and compare by ear.
+    if (Speech.recordingSupported()) return goonjStart(outId, item.ur, item.tr);
     out.innerHTML = selfCheckNote();
     return;
   }
   out.innerHTML = `<div class="pr listening">🎙️ Listening… say: <em>${esc(item.tr)}</em></div>`;
+  let recording = false;
+  if (Speech.recordingSupported()) {
+    try { await Speech.recordStart(); recording = true; } catch (_) {}
+  }
+  const keepTake = async () => {
+    if (!recording) return null;
+    const blob = await Speech.recordStop().catch(() => null);
+    if (!blob || !blob.size) return null;
+    if (goonjUrls[outId]) URL.revokeObjectURL(goonjUrls[outId]);
+    return (goonjUrls[outId] = URL.createObjectURL(blob));
+  };
   try {
     const alts = await Speech.listen();
+    const take = await keepTake();
     micFailStreak = 0;
     const score = Speech.score(alts, item.ur);
     let verdict, cls;
@@ -1401,12 +1432,16 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
       <div class="pr ${cls}">
         <strong>${verdict}</strong> <span class="score">match: ${score}%</span><br>
         <span class="heard">Heard: <span class="ur-inline">${esc(alts[0] || "—")}</span></span>
+        ${take ? echoRow(outId, item.ur, item.tr, retry) : ""}
       </div>`;
   } catch (e) {
+    const take = await keepTake();
     if (!["no-speech", "not-allowed"].includes(e.message)) micFailStreak++;
     const msg = MIC_ERRORS[e.message] || "Couldn't listen just now, try again.";
     const dead = Speech.fatalMicError(e.message) || micFailStreak >= 2;
-    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead ? selfCheckNote() : "");
+    out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>`
+      + (take ? `<div class="pr goonj"><b>Your take still got recorded:</b>${echoRow(outId, item.ur, item.tr, retry)}</div>` : "")
+      + (dead && !take ? selfCheckNote() : "");
   }
 }
 
