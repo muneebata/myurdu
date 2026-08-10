@@ -1217,7 +1217,7 @@ function renderHome() {
       <button class="sair-card" onclick="renderSair()">
         <span class="sair-route" aria-hidden="true">${ROLEPLAYS.map((sc) => `<span>${SAIR_STOPS[sc.id] || "🎭"}</span>`).join("")}</span>
         <span class="sair-main">
-          <span class="sair-title">Seven stops through town — live, with your mic</span>
+          <span class="sair-title">Eight stops through town — live, with your mic</span>
           <span class="sair-desc">Order chai, haggle for mangoes, fix a rickshaw fare, see the doctor — the app talks back, and your choices change every ending.</span>
         </span>
         <span class="sair-prog">${Object.keys(p.roleplay || {}).length}/${ROLEPLAYS.length}<br><span>scenes</span></span>
@@ -2383,7 +2383,7 @@ function renderTrack(id) {
   const t = TRACK_DEFS.find((x) => x.id === id);
   const p = profile();
   const bodies = {
-    speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair — seven live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
+    speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair — eight live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: () => tracingCard() + typingCard() + trackReadingHTML(),
     virsa: () => kutubCard() + trackVirsaHTML(),
@@ -2481,12 +2481,12 @@ function trackPakistanHTML() {
 
 // ── Role-play: live conversations with the mic ──────────────
 
-const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "🩺", RP6: "🛺", RP7: "📞" };
+const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "🩺", RP6: "🛺", RP7: "📞", RP8: "🧵" };
 
 function renderSair() {
   app().innerHTML = `
     ${backBar("🚶 Sair · سیر — Take a Walk")}
-    <p class="lesson-intro">A stroll through town, entirely in Urdu. Seven stops — the dhaba, a new friend, the bazaar, the way to the station, the clinic, a rickshaw, and a phone call home. At every stop the app talks back, your mic answers, and your choices steer the scene.</p>
+    <p class="lesson-intro">A stroll through town, entirely in Urdu. Eight stops — the dhaba, a new friend, the bazaar, the way to the station, the clinic, a rickshaw, a phone call home, and the darzi's shop. At every stop the app talks back, your mic answers, and your choices steer the scene.</p>
     ${micCompatNote()}
     ${rolePlayCards()}
   `;

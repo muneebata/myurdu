@@ -10,7 +10,7 @@ V=$(date +%Y%m%d%H%M)
 sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html
 sed -i '' -E "s/myurdu-v[0-9]+/myurdu-v$V/" sw.js
 git add -A
-git -c user.name="Muneeb Ata" -c user.email="ata.muneeb@gmail.com" commit -m "${1:-Deploy} (assets v$V)
+git -c user.name="Muneeb Ata" -c user.email="194409090+muneebata@users.noreply.github.com" commit -m "${1:-Deploy} (assets v$V)
 
 Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 git push

@@ -2930,6 +2930,40 @@ const ROLEPLAYS = [
       { who: "them", ur: "اللہ حافظ", tr: "Allāh hāfiz", en: "Goodbye", next: "end" },
     ],
   },
+  {
+    id: "RP8",
+    title: "The Tailor",
+    urName: "درزی کے پاس",
+    desc: "A new qamīz needs stitching. Bring your fabric — or buy his — and talk nāp, timing, and trust.",
+    youRole: "yourself",
+    themRole: "the darzi (tailor)",
+    turns: [
+      { who: "them", ur: "السلام علیکم! آئیے جناب", tr: "assalām-o-alaikum! āiye janāb", en: "Salaam! Come in, sahib" },
+      { who: "you", ur: "وعلیکم السلام، مجھے قمیض چاہیے", tr: "wa-alaikum-us-salām, mujhe qamīz chāhiye", en: "Salaam — I need a shirt made", next: 2 },
+      { who: "them", ur: "بہت اچھا۔ کپڑا لائے ہیں؟", tr: "bahut achhā. kapṛā lāe haiṉ?", en: "Very good. Have you brought fabric?", next: 3 },
+      { who: "you", choice: [
+        { ur: "جی ہاں، یہ کپڑا ہے", tr: "jī hāṉ, yeh kapṛā hai", en: "Yes — here's the fabric", next: 4,
+          fx: "Fabric in hand — the darzi's favorite kind of customer." },
+        { ur: "نہیں، آپ کے پاس کپڑا ہے؟", tr: "nahīṉ, āp ke pās kapṛā hai?", en: "No — do you have fabric?", next: 5,
+          fx: "Buying from the shop — a little pricier, but no bazaar trip." },
+      ] },
+      { who: "them", ur: "واہ، بہت اچھا کپڑا ہے", tr: "wāh, bahut achhā kapṛā hai", en: "Wah — this is lovely fabric", next: 6 },
+      { who: "them", ur: "جی ہاں، یہ دیکھیں — اچھا کپڑا ہے", tr: "jī hāṉ, yeh dekheṉ — achhā kapṛā hai", en: "Yes — look at this, good cloth", next: 6 },
+      { who: "them", ur: "اب ناپ لیتے ہیں", tr: "ab nāp lete haiṉ", en: "Now let's take your measurements", next: 7 },
+      { who: "you", ur: "جی، ضرور", tr: "jī, zarūr", en: "Yes, of course", next: 8 },
+      { who: "them", ur: "قمیض کب چاہیے؟", tr: "qamīz kab chāhiye?", en: "When do you need it?", next: 9 },
+      { who: "you", choice: [
+        { ur: "شادی ہے، جلدی چاہیے", tr: "shādī hai, jaldī chāhiye", en: "There's a wedding — I need it fast", next: 10,
+          fx: "Rush order! The darzi's week just got harder." },
+        { ur: "کوئی جلدی نہیں، اگلے ہفتے", tr: "koī jaldī nahīṉ, agle hafte", en: "No rush — next week is fine", next: 11,
+          fx: "An easy timeline — you may have made a friend for life." },
+      ] },
+      { who: "them", ur: "ٹھیک ہے، پرسوں تیار ہوگی", tr: "ṭhīk hai, parsoṉ tayyār hogī", en: "Alright — ready the day after tomorrow", next: 12 },
+      { who: "them", ur: "بہت اچھا، اگلے ہفتے تیار ہوگی", tr: "bahut achhā, agle hafte tayyār hogī", en: "Perfect — ready next week", next: 12 },
+      { who: "you", ur: "شکریہ! اللہ حافظ", tr: "shukriya! Allāh hāfiz", en: "Thank you! Goodbye", next: 13 },
+      { who: "them", ur: "اللہ حافظ، فکر نہ کریں", tr: "Allāh hāfiz, fikar na kareṉ", en: "Goodbye — don't you worry", next: "end" },
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
