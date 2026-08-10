@@ -1290,7 +1290,7 @@ function openLevel(i) {
   while (factIdx < facts.length) body += funFact(facts[factIdx++]);
 
   app().innerHTML = `
-    ${backBar(`Level ${i + 1} · ${esc(lv.title)}`)}
+    ${backBar(`Level ${i + 1} · ${esc(lv.title)}`, "renderTrack('speak')")}
     <p class="lesson-intro">${esc(lv.intro)}</p>
     ${lv.img ? `<figure class="photo kutub-photo"><img src="${lv.img.src}" alt="${esc(lv.img.alt)}" loading="lazy"><figcaption>${esc(lv.img.caption)}<span class="photo-credit">${esc(lv.img.credit)}</span></figcaption></figure>` : ""}
     ${micCompatNote()}
@@ -1351,7 +1351,7 @@ function micCompat() {
 
 function micCompatNote() {
   const c = micCompat();
-  if (c.ok) return "";
+  if (c.ok) return `<div class="mic-note subtle">🎤 Live mic checks work best in <b>Chrome or Edge</b> (computer or Android). iPhone/Safari can't hear Urdu yet — Apple's speech engine doesn't support it — so there, use <b>🪞 Goonj</b>: record yourself and compare by ear.</div>`;
   const why = {
     ios: "iPhones and iPads can't do Urdu speech recognition yet — every iOS browser has to use Safari's engine, and it doesn't speak Urdu",
     safari: "Safari can't do Urdu speech recognition yet",
@@ -1607,7 +1607,7 @@ function finishLevelQuiz() {
   if (passed) markCompleted(lv.id, pct);
   const nextIdx = quiz.levelIdx + 1;
   app().innerHTML = `
-    ${backBar(`Quiz results · ${esc(lv.title)}`)}
+    ${backBar(`Quiz results · ${esc(lv.title)}`, "renderTrack('speak')")}
     <div class="result-card ${passed ? "pass" : "fail"}">
       <div class="result-emoji">${passed ? "🎖️" : "💪"}</div>
       <h2 class="retro">${passed ? "Shābāsh! Level passed!" : "So close — one more go!"}</h2>
@@ -2232,8 +2232,9 @@ function openUnit(unitsName, i) {
     body += `<p class="credit">${esc(SOUND_DIAGRAMS_CREDIT)}</p>`;
   }
 
+  const UNIT_TRACK = { READING_UNITS: "reading", SOUND_UNITS: "sounds", CULTURE_UNITS: "virsa", PAKISTAN_UNITS: "pakistan" };
   app().innerHTML = `
-    ${backBar(`${esc(u.title)}`)}
+    ${backBar(`${esc(u.title)}`, `renderTrack('${UNIT_TRACK[unitsName] || "speak"}')`)}
     <p class="lesson-intro">${esc(u.intro)}</p>
     ${body}
     <div class="lesson-actions">
@@ -3578,9 +3579,15 @@ function renderKutubWork(i) {
 
 function backBar(title, backFn = "renderHome()") {
   removeAzadiRain(); // confetti is a home-page greeting only
+  // History-tracked pages pop real history so the browser and the button
+  // agree; transient pages (quizzes, game rounds) run their fallback
+  // directly — their parent is still the current history entry.
+  const useHist = navStableRender;
+  navStableRender = false;
+  const click = useHist ? `navBack() || ${backFn}` : backFn;
   return `
     <div class="topbar">
-      ${backFn ? `<button class="btn back" onclick="${backFn}">← Back</button>` : ""}
+      ${backFn ? `<button class="btn back" onclick="${click}">← Back</button>` : ""}
       <span class="topbar-title">${title}</span>
     </div>`;
 }
@@ -3621,6 +3628,58 @@ for (const prof of Object.values(root.profiles || {})) {
   }
 }
 saveRoot();
+
+// ── Browser history: make the back button behave like a website ──
+// Stable pages push a history entry; popstate re-renders without
+// pushing. Transient flows (quizzes, game rounds, placement) stay
+// untracked — browser-back from those lands on the last stable page.
+const NAV_PAGES = [
+  "renderHome", "renderTrack", "openLevel", "openUnit", "renderSair",
+  "startRolePlay", "renderKutub", "renderKutubWork", "renderLughat",
+  "renderReport", "renderTracing", "startTracing", "renderTyping",
+  "startFlashcards",
+];
+let navPopping = false;
+let navStableRender = false;
+for (const fname of NAV_PAGES) {
+  const orig = window[fname];
+  if (typeof orig !== "function") continue;
+  window[fname] = function (...args) {
+    navStableRender = true; // this render's backBar may use real history
+    if (!navPopping) {
+      const entry = {
+        n: fname,
+        a: args.filter((x) => typeof x === "string" || typeof x === "number"),
+        d: (history.state?.d ?? 0) + 1,
+      };
+      const same = history.state?.n === fname && JSON.stringify(history.state.a) === JSON.stringify(entry.a);
+      if (same) { /* re-render of the same page — no duplicate entry */ }
+      else if (history.state?.n) history.pushState(entry, "");
+      else history.replaceState({ ...entry, d: 0 }, "");
+    }
+    return orig.apply(this, args);
+  };
+}
+window.addEventListener("popstate", (e) => {
+  const s = e.state;
+  navPopping = true;
+  try {
+    if (s?.n && typeof window[s.n] === "function") window[s.n](...(s.a || []));
+    else renderHome();
+  } finally {
+    navPopping = false;
+  }
+});
+
+// In-app ← Back prefers real history (so browser and button agree);
+// backBar's fallback expression runs only when there's nothing to pop.
+function navBack() {
+  if (history.state && history.state.d > 0) {
+    history.back();
+    return true;
+  }
+  return false;
+}
 
 initTheme();
 Cloud.init();

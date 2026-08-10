@@ -632,6 +632,7 @@ body {
 
 /* ── mic compatibility notice ── */
 .mic-note { background: linear-gradient(120deg, #fdf6dd, #fbeec7); border: 1.5px solid #ecd28c; border-radius: 14px; padding: 12px 16px; margin: 12px 0; font-size: 0.93rem; line-height: 1.55; }
+.mic-note.subtle { background: none; border-color: var(--line); font-size: 0.86rem; color: var(--muted); padding: 8px 14px; }
 
 /* ── practice arcade row ── */
 .arcade-row { margin: 10px 2px 0; font-size: 0.93rem; color: var(--muted-strong); }
