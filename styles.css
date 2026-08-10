@@ -194,6 +194,10 @@ body {
 .pr.goonj { background: #e7f0f1; border: 1px solid #b5d3d6; }
 .goonj-btns { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
 .goonj-hint { display: block; color: var(--muted); font-size: 0.82rem; }
+.word-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.word-wrap .word { flex: 1 1 260px; }
+.word-wrap .goonj-out { width: 100%; }
+.word-wrap .goonj-out:empty { display: none; }
 
 /* ── Fun facts ── */
 .funfact {

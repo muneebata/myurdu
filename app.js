@@ -2136,6 +2136,7 @@ function openUnit(unitsName, i) {
   const units = TRACKS[unitsName];
   const u = units[i];
   let body = "";
+  let wordSeq = 0; // unique goonj-out ids across a unit's word lists
   for (const sec of u.sections) {
     body += `<div class="read-section"><h3>${sec.heading}</h3>`;
     if (sec.note) body += `<p class="read-note">${sec.note}</p>`;
@@ -2190,15 +2191,21 @@ function openUnit(unitsName, i) {
         .join("")}</div>`;
     }
     if (sec.words) {
+      const goonjHere = unitsName === "SOUND_UNITS" && Speech.recordingSupported();
       body += `<div class="word-list">${sec.words
-        .map(
-          (w) => `
+        .map((w) => {
+          const row = `
         <button class="word" onclick='Speech.speak(${JSON.stringify(w.ur)}, ${JSON.stringify(w.tr)})'>
           <span class="word-ur ur">${w.ur}</span>
           <span class="word-meta"><strong>${esc(w.tr)}</strong> · ${esc(w.en)}<br><span class="word-spell">${esc(w.spell)}</span></span>
           <span class="word-play">🔊</span>
-        </button>`
-        )
+        </button>`;
+          if (!goonjHere) return row;
+          const oid = `wg-${u.id}-${wordSeq++}`;
+          return `<div class="word-wrap">${row}
+        ${goonjBtn(oid, w.ur, w.tr)}
+        <div class="goonj-out" id="${oid}"></div></div>`;
+        })
         .join("")}</div>`;
     }
     if (sec.verse) {
