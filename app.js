@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Urdu Ustaadh — app shell, profiles, lessons, quizzes, drills
+// Urdu Ustaadh, app shell, profiles, lessons, quizzes, drills
 // ─────────────────────────────────────────────────────────────
 
 const TRACKS = { READING_UNITS: READING_UNITS, CULTURE_UNITS: CULTURE_UNITS, SOUND_UNITS: SOUND_UNITS, PAKISTAN_UNITS: PAKISTAN_UNITS };
@@ -77,7 +77,7 @@ function renderProfiles() {
     <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
     <div class="roster">
       <h2 class="retro">Who's learning today?</h2>
-      <p class="lesson-intro">Each learner gets their own progress, title, and streak — stored on this device.</p>
+      <p class="lesson-intro">Each learner gets their own progress, title, and streak, stored on this device.</p>
       ${
         names.length
           ? `<div class="roster-list">${names
@@ -98,7 +98,7 @@ function renderProfiles() {
                onkeydown="if(event.key==='Enter')addProfile(this.value)" />
         <button class="btn primary" onclick="addProfile(document.getElementById('new-profile').value)">Join in →</button>
       </div>
-      <p class="hint">Progress is saved on this device — and to your free account if you sign in (💾 top left of the home screen).</p>
+      <p class="hint">Progress is saved on this device, and to your free account if you sign in (💾 top left of the home screen).</p>
     </div>
   `;
 }
@@ -117,7 +117,7 @@ function showAccount() {
       </div>`
     : `
       <h2 class="retro">💾 Save your progress</h2>
-      <p>Playing works fine without an account — everything is saved on this device. Sign in to back it up and continue on any other device.</p>
+      <p>Playing works fine without an account, everything is saved on this device. Sign in to back it up and continue on any other device.</p>
       <div class="cloud-form">
         <input id="cloud-email" class="input" type="email" placeholder="Email" autocomplete="email" />
         <input id="cloud-pass" class="input" type="password" placeholder="Password (8+ characters)" autocomplete="current-password"
@@ -129,7 +129,7 @@ function showAccount() {
       </div>
       <p class="hint"><button class="linklike" onclick="cloudForgot()">Forgot password?</button></p>
       <div id="cloud-status"></div>
-      <p class="no-spam">🔒 Your email is used only for logging in. No newsletters, no marketing, no spam — ever. Urdu Ustaadh is completely free.</p>`;
+      <p class="no-spam">🔒 Your email is used only for logging in. No newsletters, no marketing, no spam, ever. Urdu Ustaadh is completely free.</p>`;
   overlay.innerHTML = `<div class="modal-card">${inner}</div>`;
   document.body.appendChild(overlay);
 }
@@ -164,7 +164,7 @@ async function cloudForgot() {
     await Cloud.requestReset(email);
     out.innerHTML = `<div class="pr good">📬 If that account exists, a reset link is on its way. Check your inbox (and spam).</div>`;
   } catch (e) {
-    out.innerHTML = `<div class="pr warn">⚠️ Couldn't send just now — email sending may not be configured yet. (${esc(e.message)})</div>`;
+    out.innerHTML = `<div class="pr warn">⚠️ Couldn't send just now, email sending may not be configured yet. (${esc(e.message)})</div>`;
   }
 }
 
@@ -193,7 +193,7 @@ function rankFor(p) {
   return r;
 }
 
-// The whole curriculum is open — no sequential locks. Levels still
+// The whole curriculum is open, no sequential locks. Levels still
 // suggest an order (they reference each other), and quizzes still
 // mark things passed for titles/progress, but learners roam free.
 function levelUnlocked() {
@@ -213,7 +213,7 @@ function overallPercent() {
 
 // Daily games flip at each learner's OWN local midnight (like Wordle).
 // The calendar date drives every seed, so the whole world still gets
-// the same puzzle on the same date — the day just begins when yours does.
+// the same puzzle on the same date, the day just begins when yours does.
 function todayKey() {
   return new Intl.DateTimeFormat("en-CA", {
     year: "numeric", month: "2-digit", day: "2-digit",
@@ -376,7 +376,7 @@ function startFlashcards() {
       ${backBar("🃏 Flashcards")}
       <div class="fc-empty">
         <p class="fc-empty-art">🔖</p>
-        <p><b>Your deck is empty — for now.</b></p>
+        <p><b>Your deck is empty, for now.</b></p>
         <p class="hint">Tap <b>🔖 Save</b> on any phrase in a lesson, any word in the Lughat, or any couplet
         in the Kutub Khana to flag it as one you want to work on. Words you miss in quizzes also
         land here automatically once their review day comes around.</p>
@@ -412,7 +412,7 @@ function renderFlashcard(revealed) {
           </div>
           <div id="fc-goonj-out"></div>
         </div>
-        <p class="fc-ask">Say it out loud first — then be honest:</p>
+        <p class="fc-ask">Say it out loud first, then be honest:</p>
         <div class="fc-grades">
           <button class="btn fc-again" onclick="fcGrade(0)">❌ Phir se<span>again soon</span></button>
           <button class="btn fc-good" onclick="fcGrade(1)">🙂 Thīk hai<span>got it</span></button>
@@ -455,8 +455,8 @@ function finishFlashcards() {
         <span>⚡ Āsān · ${fc.easy}</span>
       </div>
       <p class="hint">${fc.again > 0
-        ? "The ❌ ones dropped to box 1 — they'll keep coming back until they stick. That's the whole trick."
-        : "Everything climbed a box — these words rest longer before their next visit."}</p>
+        ? "The ❌ ones dropped to box 1, they'll keep coming back until they stick. That's the whole trick."
+        : "Everything climbed a box, these words rest longer before their next visit."}</p>
       <div class="result-actions">
         ${more ? `<button class="btn primary" onclick="startFlashcards()">Another round (${more} waiting) →</button>` : ""}
         <button class="btn" onclick="renderHome()">Home</button>
@@ -484,7 +484,7 @@ function ledgerRow(onclick, num, title, urName, sub, statusHtml) {
 
 // Azadi is tiered: the whole of August is celebration month (flags,
 // banner, share card); Aug 7–14 is the peak week (fireworks, confetti,
-// and the Suno azadi-words swap — kept short so the pool stays fresh).
+// and the Suno azadi-words swap, kept short so the pool stays fresh).
 function azadiMonth() {
   const t = new URLSearchParams(location.search).get("azadi");
   if (t === "1" || t === "14") return true;
@@ -505,9 +505,9 @@ function isAzadiDay() {
   return m === 8 && d === 14;
 }
 
-// The retro waving flag — a loving tribute to every 90s homepage.
+// The retro waving flag, a loving tribute to every 90s homepage.
 // Ripple via animated turbulence displacement (the old GIF-flag look).
-// Firework bursts flanking the hero during Azadi week — SMIL pops in the
+// Firework bursts flanking the hero during Azadi week. SMIL pops in the
 // flag-and-PTV palette, hidden for reduced-motion users via CSS.
 const AZADI_FIREWORKS_L = `<svg class="azadi-fireworks azadi-fw-left" viewBox="0 0 160 140" aria-hidden="true">
   <g transform="translate(48,54)">
@@ -1076,7 +1076,7 @@ const AZADI_FLAG_SVG = `
     </g></g>
 </svg>`;
 
-// Gentle page-wide confetti rain for Jashn-e-Azadi week — home page only:
+// Gentle page-wide confetti rain for Jashn-e-Azadi week, home page only:
 // renderHome() turns it on, backBar() (built by every other view) turns it
 // off. Sparse, click-through, and hidden for reduced-motion users (CSS).
 function ensureAzadiRain() {
@@ -1112,7 +1112,7 @@ function removeAzadiRain() {
 
 function renderHome() {
   if (!root.active) {
-    // First visit: start instantly as "Mehmaan" (guest) — no questions
+    // First visit: start instantly as "Mehmaan" (guest), no questions
     // asked. Learners can rename/add profiles or sign in whenever.
     if (!root.profiles["Guest - Mehmaan"]) root.profiles["Guest - Mehmaan"] = blankProfile();
     root.active = "Guest - Mehmaan";
@@ -1140,9 +1140,9 @@ function renderHome() {
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
       ${azadiPeak() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R : ""}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
-      <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh — اردو" />
+      <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
-      <p class="tagline">Speak it, hear it, read it — thora thora, har roz.</p>
+      <p class="tagline">Speak it, hear it, read it. Thora thora, har roz.</p>
       <div class="id-row">
         <button class="tag profile-tag" onclick="renderProfiles()" title="Switch learner">👤 ${esc(root.active)} ▾</button>
         <span class="tag rank-tag">★ ${rank.name} · <span class="ur-inline">${rank.ur}</span></span>
@@ -1155,14 +1155,14 @@ function renderHome() {
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
       ${azadiMonth() ? azadiBanner() : ""}
-      ${due > 0 ? `<button class="review-banner" onclick="startFlashcards()">🃏 ${due} word${due === 1 ? "" : "s"} due — flip through your flashcards →</button>` : ""}
+      ${due > 0 ? `<button class="review-banner" onclick="startFlashcards()">🃏 ${due} word${due === 1 ? "" : "s"} due, flip through your flashcards →</button>` : ""}
     </header>
 
     <section>
-      <h2 class="track-title retro">🎲 Roz ka Khel · Daily Games <span class="track-sub">short, every day — that's how words stick</span></h2>
+      <h2 class="track-title retro">🎲 Roz ka Khel · Daily Games <span class="track-sub">short, every day, that's how words stick</span></h2>
       ${kahawat ? `
       <button class="proverb-card" onclick='Speech.speak(${JSON.stringify(kahawat.ur)}, ${JSON.stringify(kahawat.tr)}, {slow:true})'>
-        <span class="proverb-tag">🗣️ Aaj ki Kahawat · Proverb of the day — tap to hear</span>
+        <span class="proverb-tag">🗣️ Aaj ki Kahawat · Proverb of the day, tap to hear</span>
         ${kahawat.jummah ? `<span class="jummah-chip">🕌 جمعہ مبارک · Jummah Mubārak!</span>` : ""}
         <span class="proverb-ur ur">${esc(kahawat.ur)}</span>
         <span class="proverb-en">${esc(kahawat.en)}</span>
@@ -1173,7 +1173,7 @@ function renderHome() {
           <span class="tstub"><span>AAJ KA PAANCH</span></span>
           <div class="card-num gold">Aaj Ka Paanch · Today's Five</div>
           <div class="card-title">The Daily Quiz <span class="tu ur">آج کا پانچ</span></div>
-          <div class="card-sub">Five fresh questions — sounds, word roots, and the map — new every midnight</div>
+          <div class="card-sub">Five fresh questions, sounds, word roots, and the map, new every midnight</div>
           <div class="card-status">${p.dailyBest[todayKey() + "#d5"] != null ? `✅ Done today · best ${p.dailyBest[todayKey() + "#d5"]}/5 · replay?` : "▶ Play today's five"}</div>
         </button>
         <button class="ticket2" style="--tk:var(--terracotta)" onclick="startCallback()">
@@ -1181,56 +1181,56 @@ function renderHome() {
           <div class="card-num" style="color:var(--terracotta)">Yaaddasht · Memory</div>
           <div class="card-title">Callback Round <span class="tu ur">یادداشت</span></div>
           <div class="card-sub">Rapid-fire review pulled from everything you've passed</div>
-          <div class="card-status">${due > 0 ? `📚 ${due} due — review now` : "▶ Six quick callbacks"}</div>
+          <div class="card-status">${due > 0 ? `📚 ${due} due, review now` : "▶ Six quick callbacks"}</div>
         </button>
       </div>
-      <p class="arcade-row">🎮 Practice anytime — endless rounds drawn from the same question banks as Aaj Ka Paanch:
+      <p class="arcade-row">🎮 Practice anytime, endless rounds drawn from the same question banks as Aaj Ka Paanch:
         <button class="linklike" onclick="startDaily()">🌱 Desi Roots</button> ·
         <button class="linklike" onclick="startGeo()">🗺️ Naqsha</button> ·
         <button class="linklike" onclick="startSuno()">🎧 Suno!</button> ·
         <button class="linklike" onclick="startImla()">✍️ Imlā!</button>
       </p>
-      <p class="arcade-row">🔖 See a word you want to keep? Save it anywhere it appears — then drill your own deck: <button class="linklike" onclick="startFlashcards()">🃏 Flashcards</button></p>
+      <p class="arcade-row">🔖 See a word you want to keep? Save it anywhere it appears, then drill your own deck: <button class="linklike" onclick="startFlashcards()">🃏 Flashcards</button></p>
     </section>
 
     <section>
-      <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane — everything is open, nothing is locked</span></h2>
+      <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane, everything is open, nothing is locked</span></h2>
       <div class="trackgrid">${TRACK_DEFS.filter((t) => t.id !== "pakistan").map(trackCard).join("")}</div>
-      <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat — look up any word the app teaches</button></p>
+      <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat, look up any word the app teaches</button></p>
       ${p.placedAt == null && completedCount() < 2 ? `<p class="placement-line"><button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button></p>` : ""}
     </section>
 
     <section>
-      <h2 class="track-title retro">📚 Kutub Khana · <span class="ur">کتب خانہ</span> <span class="track-sub">the Urdu library — open to all</span></h2>
+      <h2 class="track-title retro">📚 Kutub Khana · <span class="ur">کتب خانہ</span> <span class="track-sub">the Urdu library, open to all</span></h2>
       <button class="library-card" onclick="renderKutub()">
         <span class="library-spines" aria-hidden="true">${KUTUB_EMBLEM}</span>
         <span class="library-main">
           <span class="library-title">The legendary works of Urdu literature</span>
-          <span class="library-desc">${KUTUB.length} shelves, from Khusrau to the Qaumī Tarānah — every line in Urdu with transliteration, English translation, annotation, and audio.</span>
+          <span class="library-desc">${KUTUB.length} shelves, from Khusrau to the Qaumī Tarānah, every line in Urdu with transliteration, English translation, annotation, and audio.</span>
         </span>
         <span class="library-count">${Object.keys(profile().kutub || {}).length ? `${Object.keys(profile().kutub || {}).length}/${KUTUB.length}<br><span>read</span>` : `${KUTUB.length}<br><span>shelves</span>`}</span>
       </button>
     </section>
 
     <section>
-      <h2 class="track-title retro">🚶 Sair · <span class="ur">سیر</span> <span class="track-sub">take a walk — have a conversation</span></h2>
+      <h2 class="track-title retro">🚶 Sair · <span class="ur">سیر</span> <span class="track-sub">take a walk, have a conversation</span></h2>
       <button class="sair-card" onclick="renderSair()">
         <span class="sair-route" aria-hidden="true">${ROLEPLAYS.map((sc) => `<span>${SAIR_STOPS[sc.id] || "🎭"}</span>`).join("")}</span>
         <span class="sair-main">
-          <span class="sair-title">Eight stops through town — live, with your mic</span>
-          <span class="sair-desc">Order chai, haggle for mangoes, fix a rickshaw fare, see the doctor — the app talks back, and your choices change every ending.</span>
+          <span class="sair-title">Eight stops through town, live, with your mic</span>
+          <span class="sair-desc">Order chai, haggle for mangoes, fix a rickshaw fare, see the doctor, the app talks back, and your choices change every ending.</span>
         </span>
         <span class="sair-prog">${Object.keys(p.roleplay || {}).length}/${ROLEPLAYS.length}<br><span>scenes</span></span>
       </button>
     </section>
 
     <section>
-      <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson — a little holiday</span></h2>
+      <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson, a little holiday</span></h2>
       <button class="break-card" onclick="renderTrack('pakistan')">
         <span class="break-stamp ur">پاکستان</span>
         <span class="break-main">
           <span class="break-title">Tired of Urdu? Take a break in Pakistan.</span>
-          <span class="break-desc">Postcards from home — mountains and mangoes, history and markhors. No quizzes ambushing you here.</span>
+          <span class="break-desc">Postcards from home, mountains and mangoes, history and markhors. No quizzes ambushing you here.</span>
         </span>
         <span class="break-prog">${PAKISTAN_UNITS.filter((u) => isCompleted(u.id)).length}/${PAKISTAN_UNITS.length}<br><span>postcards</span></span>
       </button>
@@ -1335,8 +1335,8 @@ function playItem(levelIdx, itemIdx, slow) {
 }
 
 // Urdu speech recognition needs an engine that actually speaks Urdu.
-// Safari's (Siri) doesn't — and every iOS browser must use Safari's
-// engine — so warn those users up front instead of letting the mic fail.
+// Safari's (Siri) doesn't, and every iOS browser must use Safari's
+// engine, so warn those users up front instead of letting the mic fail.
 function micCompat() {
   const force = new URLSearchParams(location.search).get("mic");
   if (force) return force === "ok" ? { ok: true } : { ok: false, reason: force };
@@ -1351,34 +1351,34 @@ function micCompat() {
 
 function micCompatNote() {
   const c = micCompat();
-  if (c.ok) return `<div class="mic-note subtle">🎤 Live mic checks work best in <b>Chrome or Edge</b> (computer or Android). iPhone/Safari can't hear Urdu yet — Apple's speech engine doesn't support it — so there, use <b>🪞 Goonj</b>: record yourself and compare by ear.</div>`;
+  if (c.ok) return `<div class="mic-note subtle">🎤 Live mic checks work best in <b>Chrome or Edge</b> (computer or Android). iPhone/Safari can't hear Urdu yet. Apple's speech engine doesn't support it, so there, use <b>🪞 Goonj</b>: record yourself and compare by ear.</div>`;
   const why = {
-    ios: "iPhones and iPads can't do Urdu speech recognition yet — every iOS browser has to use Safari's engine, and it doesn't speak Urdu",
+    ios: "iPhones and iPads can't do Urdu speech recognition yet, every iOS browser has to use Safari's engine, and it doesn't speak Urdu",
     safari: "Safari can't do Urdu speech recognition yet",
     none: "this browser doesn't support speech recognition",
   }[c.reason];
   const goonjTip = Speech.recordingSupported()
-    ? " And <b>🪞 Goonj</b> works here: record yourself, then hear your take next to the native clip — your ear does the checking."
+    ? " And <b>🪞 Goonj</b> works here: record yourself, then hear your take next to the native clip, your ear does the checking."
     : "";
-  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine — and you can always practice by repeating after the audio.${goonjTip}</div>`;
+  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine, and you can always practice by repeating after the audio.${goonjTip}</div>`;
 }
 
 const MIC_ERRORS = {
-  "not-allowed": "Microphone access was blocked — allow the mic in your browser's site settings and try again.",
-  "no-speech": "Didn't catch anything — try again, a bit louder and closer to the mic.",
+  "not-allowed": "Microphone access was blocked, allow the mic in your browser's site settings and try again.",
+  "no-speech": "Didn't catch anything, try again, a bit louder and closer to the mic.",
   "audio-capture": "No working microphone found on this device.",
-  "language-not-supported": "This browser can't recognize Urdu speech yet (Safari can't — Chrome and Edge can).",
-  "service-not-allowed": "This browser blocked its speech service — Chrome or Edge handles the mic check best.",
-  network: "The speech service couldn't be reached — check your connection.",
-  timeout: "The mic stayed silent — check the right microphone is selected, then try again.",
-  aborted: "Listening got interrupted — try again.",
+  "language-not-supported": "This browser can't recognize Urdu speech yet (Safari can't. Chrome and Edge can).",
+  "service-not-allowed": "This browser blocked its speech service. Chrome or Edge handles the mic check best.",
+  network: "The speech service couldn't be reached, check your connection.",
+  timeout: "The mic stayed silent, check the right microphone is selected, then try again.",
+  aborted: "Listening got interrupted, try again.",
 };
 
 let micFailStreak = 0;
 
 function selfCheckNote() {
-  const goonjTip = Speech.recordingSupported() ? " Or tap 🪞 Goonj — record yourself and hear your take next to the native clip." : "";
-  return `<div class="pr warn">🎧 Plan B — self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip.${goonjTip} For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
+  const goonjTip = Speech.recordingSupported() ? " Or tap 🪞 Goonj, record yourself and hear your take next to the native clip." : "";
+  return `<div class="pr warn">🎧 Plan B, self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip.${goonjTip} For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
 }
 
 async function practiceItem(cardId, levelIdx, itemIdx) {
@@ -1396,7 +1396,7 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
     let verdict, cls;
     if (score >= 80) { verdict = "🌟 Shābāsh! (Bravo!) Nailed it."; cls = "good"; }
     else if (score >= 55) { verdict = "👍 Close! Hit 🐢 Slow and mind the tricky sounds."; cls = "ok"; }
-    else { verdict = "🔁 Not quite — tap 🐢 Slow and echo it piece by piece."; cls = "bad"; }
+    else { verdict = "🔁 Not quite, tap 🐢 Slow and echo it piece by piece."; cls = "bad"; }
     out.innerHTML = `
       <div class="pr ${cls}">
         <strong>${verdict}</strong> <span class="score">match: ${score}%</span><br>
@@ -1404,14 +1404,14 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
       </div>`;
   } catch (e) {
     if (!["no-speech", "not-allowed"].includes(e.message)) micFailStreak++;
-    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now, try again.";
     const dead = Speech.fatalMicError(e.message) || micFailStreak >= 2;
     out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead ? selfCheckNote() : "");
   }
 }
 
 // ── Goonj: record yourself, hear your take next to the native
-// clip. No scoring — your own ear is the judge. The recording
+// clip. No scoring, your own ear is the judge. The recording
 // lives in memory only; nothing is uploaded or saved. ─────────
 
 const GOONJ_MAX_MS = 8000;
@@ -1432,8 +1432,8 @@ async function goonjStart(outId, ur, tr) {
     await Speech.recordStart();
   } catch (e) {
     out.innerHTML = `<div class="pr warn">⚠️ ${e?.name === "NotAllowedError"
-      ? "Microphone access was blocked — allow the mic in your browser's site settings and try again."
-      : "Couldn't reach the microphone just now — try again."}</div>`;
+      ? "Microphone access was blocked, allow the mic in your browser's site settings and try again."
+      : "Couldn't reach the microphone just now, try again."}</div>`;
     return;
   }
   out.innerHTML = `<div class="pr listening">🔴 Recording… say: <em>${esc(tr)}</em>
@@ -1448,21 +1448,21 @@ async function goonjFinish(outId, ur, tr) {
   const out = document.getElementById(outId);
   if (!out) return;
   if (!blob || !blob.size) {
-    out.innerHTML = `<div class="pr warn">⚠️ Nothing got recorded — try again, and check the right mic is selected.</div>`;
+    out.innerHTML = `<div class="pr warn">⚠️ Nothing got recorded, try again, and check the right mic is selected.</div>`;
     return;
   }
   if (goonjUrls[outId]) URL.revokeObjectURL(goonjUrls[outId]);
   const url = (goonjUrls[outId] = URL.createObjectURL(blob));
   out.innerHTML = `
     <div class="pr goonj">
-      <b>🪞 Goonj — compare by ear:</b>
+      <b>🪞 Goonj, compare by ear:</b>
       <span class="goonj-btns">
         <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)})'>▶️ Your take</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 Native</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)}, {slow:true})'>🐢</button>
         <button class="btn" onclick='goonjStart(${JSON.stringify(outId)}, ${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔁 Again</button>
       </span>
-      <span class="goonj-hint">Listen for the long vowels and the tricky sounds. Your recording stays on this device — nothing is uploaded.</span>
+      <span class="goonj-hint">Listen for the long vowels and the tricky sounds. Your recording stays on this device, nothing is uploaded.</span>
     </div>`;
 }
 
@@ -1588,7 +1588,7 @@ function answerQuiz(i) {
   }
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">
-      ${chosen.correct ? "✅ Sahī! (Correct!)" : "❌ Not this one — the answer is highlighted."}
+      ${chosen.correct ? "✅ Sahī! (Correct!)" : "❌ Not this one, the answer is highlighted."}
     </div>
     <button class="btn primary" onclick="nextQuiz()">${quiz.current + 1 < quiz.questions.length ? "Next →" : "See results →"}</button>`;
 }
@@ -1610,15 +1610,15 @@ function finishLevelQuiz() {
     ${backBar(`Quiz results · ${esc(lv.title)}`, "renderTrack('speak')")}
     <div class="result-card ${passed ? "pass" : "fail"}">
       <div class="result-emoji">${passed ? "🎖️" : "💪"}</div>
-      <h2 class="retro">${passed ? "Shābāsh! Level passed!" : "So close — one more go!"}</h2>
-      <p class="result-score">${quiz.correct} / ${quiz.questions.length} correct — ${pct}%</p>
+      <h2 class="retro">${passed ? "Shābāsh! Level passed!" : "So close, one more go!"}</h2>
+      <p class="result-score">${quiz.correct} / ${quiz.questions.length} correct, ${pct}%</p>
       ${passed ? rankUpNote() : ""}
       <p>${
         passed
           ? nextIdx < LEVELS.length
             ? `Next up: <strong>Level ${nextIdx + 1}: ${esc(LEVELS[nextIdx].title)}</strong>.`
             : "Speaking track: complete! 🏆"
-          : `You need ${QUIZ_PASS_PERCENT}% to pass. Review the phrases and go again — repetition is the whole game.`
+          : `You need ${QUIZ_PASS_PERCENT}% to pass. Review the phrases and go again, repetition is the whole game.`
       }</p>
       <div class="result-actions">
         ${passed && nextIdx < LEVELS.length ? `<button class="btn primary big" onclick="openLevel(${nextIdx})">Start Level ${nextIdx + 1} →</button>` : ""}
@@ -1637,7 +1637,7 @@ function finishCallback() {
       <div class="result-emoji">${pct >= 70 ? "🧠" : "🔁"}</div>
       <h2 class="retro">${pct >= 70 ? "Memory holding strong" : "Time for a refresher"}</h2>
       <p class="result-score">${quiz.correct} / ${quiz.questions.length} recalled</p>
-      <p>${pct >= 70 ? "Old words, still sharp. Words you aced move to a higher box and rest; anything missed comes straight back next round — that spacing is what locks them in." : "No shame — forgetting is part of learning. Revisit the missions these came from and drill again."}</p>
+      <p>${pct >= 70 ? "Old words, still sharp. Words you aced move to a higher box and rest; anything missed comes straight back next round, that spacing is what locks them in." : "No shame, forgetting is part of learning. Revisit the missions these came from and drill again."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startCallback()">Run it again →</button>
         <button class="btn" onclick="renderHome()">Home</button>
@@ -1655,7 +1655,7 @@ function rankUpNote() {
 
 let daily = null;
 
-// distractors must differ in meaning AND word — several loanwords
+// distractors must differ in meaning AND word, several loanwords
 // share a root (pijama/pyjamas, champú/shampoo)
 function rootsQuestion(w, rng) {
   const candidates = LOANWORDS.filter((x) => x.meaning !== w.meaning && x.en !== w.en);
@@ -1756,7 +1756,7 @@ function finishDaily() {
       <h2 class="retro">${daily.correct === daily.questions.length ? "Perfect round!" : "Round complete"}</h2>
       <p class="result-score">${daily.correct} / ${daily.questions.length}</p>
       <p class="share-squares">${daily.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>Practice is endless — a fresh five every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
+      <p>Practice is endless, a fresh five every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startDaily()">Another five →</button>
         <button class="btn" onclick="renderHome()">Home</button>
@@ -1846,10 +1846,10 @@ function finishGeo() {
     ${backBar("🗺️ Naqsha · practice")}
     <div class="result-card pass">
       <div class="result-emoji">🗺️</div>
-      <h2 class="retro">${geo.correct === geo.questions.length ? "Perfect — a true naqsha-nawis!" : "Map explored"}</h2>
+      <h2 class="retro">${geo.correct === geo.questions.length ? "Perfect, a true naqsha-nawis!" : "Map explored"}</h2>
       <p class="result-score">${geo.correct} / ${geo.questions.length}</p>
       <p class="share-squares">${geo.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>Practice is endless — a fresh map every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
+      <p>Practice is endless, a fresh map every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startGeo()">Another map →</button>
         <button class="btn" onclick="renderHome()">Home</button>
@@ -1886,7 +1886,7 @@ function renderSunoQuestion() {
     <div class="quiz-progress">Sound ${suno.current + 1} of ${suno.questions.length}</div>
     <div class="quiz-card">
       <div class="quiz-prompt suno-prompt">
-        <p>🎧 Listen closely — what does it mean?</p>
+        <p>🎧 Listen closely, what does it mean?</p>
         <button class="btn primary big" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)})'>▶ Play the sound</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)}, {slow:true})'>🐢 Slow</button>
       </div>
@@ -1914,7 +1914,7 @@ function answerSuno(i) {
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">
       ${chosen.correct ? "✅ Sahī!" : "❌ Not this one."}
-      It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong> — ${esc(q.item.en)}
+      It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong>: ${esc(q.item.en)}
     </div>
     <button class="btn primary" onclick="nextSuno()">${suno.current + 1 < suno.questions.length ? "Next sound →" : "Finish →"}</button>`;
 }
@@ -1933,7 +1933,7 @@ function finishSuno() {
       <h2 class="retro">${suno.correct === suno.questions.length ? "Golden ears!" : "Good listening"}</h2>
       <p class="result-score">${suno.correct} / ${suno.questions.length}</p>
       <p class="share-squares">${suno.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>Practice is endless — five fresh sounds every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
+      <p>Practice is endless, five fresh sounds every round. The daily streak lives in 🎯 Aaj Ka Paanch.</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="startSuno()">Another five →</button>
         <button class="btn" onclick="renderHome()">Home</button>
@@ -1942,7 +1942,7 @@ function finishSuno() {
   `;
 }
 
-// ── Aaj Ka Paanch: THE daily quiz — one streak, every bank ───
+// ── Aaj Ka Paanch: THE daily quiz, one streak, every bank ───
 // 2 listening + 2 word roots + 1 map, drawn from per-bank no-repeat
 // cycles (repeat horizons: ~66 / ~32 / ~45 days).
 
@@ -1955,7 +1955,7 @@ function startDaily5() {
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
   let fullPool = azadiPeak() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
 
-  // The seeded deal is deterministic — but growing a question bank
+  // The seeded deal is deterministic, but growing a question bank
   // reshuffles the cycles, which once changed a user's five mid-day
   // after a content deploy. So: pin the first deal of each day in
   // the profile; replays that day always use the pinned five.
@@ -2004,7 +2004,7 @@ function renderD5() {
   } else {
     body = `
       <div class="quiz-prompt suno-prompt">
-        <p>🎧 Listen closely — what does it mean?</p>
+        <p>🎧 Listen closely, what does it mean?</p>
         <button class="btn primary big" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)})'>▶ Play the sound</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(q.item.ur)}, ${JSON.stringify(q.item.tr)}, {slow:true})'>🐢 Slow</button>
       </div>`;
@@ -2041,7 +2041,7 @@ function answerD5(i) {
     : q.kind === "geo"
       ? `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}
          <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>`
-      : `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong> — ${esc(q.item.en)}`;
+      : `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong>: ${esc(q.item.en)}`;
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">${chosen.correct ? "✅ Sahī!" : "❌ Not this one."} ${detail}</div>
     ${q.kind === "geo" ? `<aside class="funfact geo-fact"><span class="ff-tag">✨ Fun fact · ${esc(q.feature.name)}</span><p>${esc(q.feature.blurb)}</p></aside>` : ""}
@@ -2065,9 +2065,9 @@ function finishD5() {
     <div class="result-card pass">
       <div class="result-emoji">${d5.correct === d5.questions.length ? "🏆" : "🎯"}</div>
       <h2 class="retro">${d5.correct === d5.questions.length ? "Paanch out of paanch!" : "Round complete"}</h2>
-      <p class="result-score">${d5.correct} / ${d5.questions.length} — streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
+      <p class="result-score">${d5.correct} / ${d5.questions.length}, streak: ${p.streak} day${p.streak === 1 ? "" : "s"}</p>
       <p class="share-squares">${d5.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-      <p>${firstRunToday ? "Streak updated. Five fresh questions at midnight — sounds, roots, and the map." : "Already counted today — replays sharpen, streaks stay honest."}</p>
+      <p>${firstRunToday ? "Streak updated. Five fresh questions at midnight, sounds, roots, and the map." : "Already counted today, replays sharpen, streaks stay honest."}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="shareDaily('d5', this)">📤 Share score</button>
         <button class="btn" onclick="renderHome()">Home</button>
@@ -2152,7 +2152,7 @@ function openUnit(unitsName, i) {
     if (sec.mapEmbed && typeof PAK_MAP_SVG !== "undefined") {
       body += `
       <figure class="photo map-embed">${PAK_MAP_SVG}
-        <figcaption>Pakistan's provinces, the Indus, and K2 — the same map as the Naqsha Challenge.<span class="photo-credit">Map data: Natural Earth (public domain)</span></figcaption>
+        <figcaption>Pakistan's provinces, the Indus, and K2, the same map as the Naqsha Challenge.<span class="photo-credit">Map data: Natural Earth (public domain)</span></figcaption>
       </figure>`;
     }
     const dia = sec.diagram && typeof SOUND_DIAGRAMS !== "undefined" ? SOUND_DIAGRAMS[sec.diagram] : null;
@@ -2258,12 +2258,12 @@ function azadiBanner() {
   const daysLeft = m === 8 ? 14 - d : null;
   const years = y - 1947;
   const line = isAzadiDay()
-    ? `🇵🇰 Jashn-e-Azadi Mubarak! ${years} years of azadi — Happy 14th of August!`
+    ? `🇵🇰 Jashn-e-Azadi Mubarak! ${years} years of azadi. Happy 14th of August!`
     : azadiPeak()
-      ? `🇵🇰 Jashn-e-Azadi week — ${daysLeft} din to the 14th. Suno! is serving azadi words all week.`
+      ? `🇵🇰 Jashn-e-Azadi week, ${daysLeft} din to the 14th. Suno! is serving azadi words all week.`
       : daysLeft && daysLeft > 0
-        ? `🇵🇰 Azadi month is here — the big day lands on the 14th (${daysLeft} din). Jashn shurū!`
-        : `🇵🇰 ${years} saal of azadi — celebrating all month. Azadi Mubarak!`;
+        ? `🇵🇰 Azadi month is here, the big day lands on the 14th (${daysLeft} din). Jashn shurū!`
+        : `🇵🇰 ${years} saal of azadi, celebrating all month. Azadi Mubarak!`;
   return `
     <div class="azadi-banner">
       <span>${line}</span>
@@ -2325,7 +2325,7 @@ async function showAzadiCard() {
   ctx.font = "700 36px 'Baloo 2', sans-serif";
   ctx.fillText("Jashn-e-Azadi Mubarak · 14 August", 620, 580);
   ctx.font = "24px 'Baloo 2', sans-serif"; ctx.fillStyle = "#d9a413";
-  ctx.fillText("I'm learning Urdu at myurdu.org — a free Urdu-learning resource", 620, 640);
+  ctx.fillText("I'm learning Urdu at myurdu.org, a free Urdu-learning resource", 620, 640);
   document.getElementById("azadi-dl").href = cv.toDataURL("image/png");
 }
 
@@ -2351,19 +2351,19 @@ function showAbout() {
 
 const TRACK_DEFS = [
   { id: "speak", emoji: "🗣️", title: "Speak & Listen", ur: "بولیں", cls: "",
-    desc: "24 levels, salaam to the B1 train journey — plus live role-play scenes with your mic",
+    desc: "24 levels, salaam to the B1 train journey, plus live role-play scenes with your mic",
     prog: () => [LEVELS.filter((lv) => isCompleted(lv.id)).length, LEVELS.length] },
   { id: "sounds", emoji: "👄", title: "Sound School", ur: "آوازیں", cls: "sounds",
-    desc: "Train the sounds English doesn't have — rolled Rs, curled Ts, real anatomy",
+    desc: "Train the sounds English doesn't have, rolled Rs, curled Ts, real anatomy",
     prog: () => [SOUND_UNITS.filter((u) => isCompleted(u.id)).length, SOUND_UNITS.length] },
   { id: "reading", emoji: "📖", title: "Learn to Read", ur: "پڑھیں", cls: "reading",
-    desc: "The Nastaliq script from zero — letters, vowels, numerals, street signboards",
+    desc: "The Nastaliq script from zero, letters, vowels, numerals, street signboards",
     prog: () => [READING_UNITS.filter((u) => isCompleted(u.id)).length, READING_UNITS.length] },
   { id: "virsa", emoji: "🎵", title: "Virsa · Heritage", ur: "ورثہ", cls: "culture",
     desc: "Iqbal, Ghalib, proverbs, and how a ghazal actually works",
     prog: () => [CULTURE_UNITS.filter((u) => isCompleted(u.id)).length, CULTURE_UNITS.length] },
   { id: "pakistan", emoji: "🇵🇰", title: "Thora Break", ur: "تھوڑا وقفہ", cls: "pakistan",
-    desc: "Tired of Urdu? Postcards from Pakistan — geography, food, history, wildlife",
+    desc: "Tired of Urdu? Postcards from Pakistan, geography, food, history, wildlife",
     prog: () => [PAKISTAN_UNITS.filter((u) => isCompleted(u.id)).length, PAKISTAN_UNITS.length] },
 ];
 
@@ -2384,7 +2384,7 @@ function renderTrack(id) {
   const t = TRACK_DEFS.find((x) => x.id === id);
   const p = profile();
   const bodies = {
-    speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair — eight live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
+    speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair, eight live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
     reading: () => tracingCard() + typingCard() + trackReadingHTML(),
     virsa: () => kutubCard() + trackVirsaHTML(),
@@ -2401,7 +2401,7 @@ function trackSpeakHTML() {
   const p = profile();
   return `
     <section>
-      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best — they build on each other — but roam freely</span></h2>
+      <h2 class="track-title retro">🗣️ Speak &amp; Listen <span class="track-sub">in order is best, they build on each other, but roam freely</span></h2>
       <div class="ledger2">
         ${LEVELS.map((lv, i) => {
           const done = isCompleted(lv.id);
@@ -2466,7 +2466,7 @@ function trackPakistanHTML() {
   const p = profile();
   return `
     <section>
-      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead — open in any order</span></h2>
+      <h2 class="track-title retro">🇵🇰 Thora Break <span class="track-sub">tired of Urdu? Dive into Pakistan itself instead, open in any order</span></h2>
       <div class="postcards2">
         ${PAKISTAN_UNITS.map((u, i) => `
         <button class="postcard2" onclick="openUnit('PAKISTAN_UNITS',${i})">
@@ -2486,8 +2486,8 @@ const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "�
 
 function renderSair() {
   app().innerHTML = `
-    ${backBar("🚶 Sair · سیر — Take a Walk")}
-    <p class="lesson-intro">A stroll through town, entirely in Urdu. Eight stops — the dhaba, a new friend, the bazaar, the way to the station, the clinic, a rickshaw, a phone call home, and the darzi's shop. At every stop the app talks back, your mic answers, and your choices steer the scene.</p>
+    ${backBar("🚶 Sair · سیر. Take a Walk")}
+    <p class="lesson-intro">A stroll through town, entirely in Urdu. Eight stops, the dhaba, a new friend, the bazaar, the way to the station, the clinic, a rickshaw, a phone call home, and the darzi's shop. At every stop the app talks back, your mic answers, and your choices steer the scene.</p>
     ${micCompatNote()}
     ${rolePlayCards()}
   `;
@@ -2555,10 +2555,10 @@ async function rpSayChoice() {
     const scores = turn.choice.map((o) => Speech.score(alts, o.ur));
     const best = scores.indexOf(Math.max(...scores));
     if (scores[best] >= 55) return rpPickChoice(best, "mic");
-    out.innerHTML = `<div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🔊 on a card to hear it, then try again.</div>`;
+    out.innerHTML = `<div class="pr bad">🔁 Not quite, heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🔊 on a card to hear it, then try again.</div>`;
   } catch (e) {
     if (!["no-speech", "not-allowed"].includes(e.message)) rp.micFails++;
-    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now, try again.";
     if (Speech.fatalMicError(e.message) || rp.micFails >= 2) {
       rp.forceTap = true;
       renderRP();
@@ -2585,18 +2585,18 @@ function renderRP() {
     const micOK = Speech.recognitionSupported() && micCompat().ok && !rp.forceTap;
     controls = `
       <div class="rp-now you-turn">
-        <p class="rp-who">A fork in the conversation — choose your road:</p>
+        <p class="rp-who">A fork in the conversation, choose your road:</p>
         ${turn.choice.map((o, k) => `
           <button class="rp-opt" onclick="${micOK ? `rpHearOption(${k})` : `rpPickChoice(${k}, 'said aloud')`}">
             <span class="rp-ur ur">${esc(o.ur)}</span>
-            <span class="rp-tr">${esc(o.tr)} — <em>${esc(o.en)}</em></span>
+            <span class="rp-tr">${esc(o.tr)}, <em>${esc(o.en)}</em></span>
             <span class="rp-opt-hint">${micOK ? "🔊 tap to hear" : "say it aloud, then tap to choose"}</span>
           </button>`).join("")}
         <div class="rp-btns">
           ${micOK ? `<button class="btn primary" onclick="rpSayChoice()">🎤 Say the line you choose</button>` : ""}
           <button class="btn small" onclick="rpPickChoice(0)">Skip</button>
         </div>
-        ${micOK ? "" : `<p class="hint">Say your pick out loud, then tap its card — the scene follows your choice.</p>`}
+        ${micOK ? "" : `<p class="hint">Say your pick out loud, then tap its card, the scene follows your choice.</p>`}
         <div id="rp-feedback" aria-live="polite"></div>
       </div>`;
   } else if (turn.who === "them") {
@@ -2604,7 +2604,7 @@ function renderRP() {
       <div class="rp-now them-turn">
         <p class="rp-who">${esc(sc.themRole)} says:</p>
         <p class="rp-ur ur">${esc(turn.ur)}</p>
-        <p class="rp-tr">${esc(turn.tr)} — <em>${esc(turn.en)}</em></p>
+        <p class="rp-tr">${esc(turn.tr)}, <em>${esc(turn.en)}</em></p>
         <div class="rp-btns">
           <button class="btn speak" onclick='Speech.speak(${JSON.stringify(turn.ur)}, ${JSON.stringify(turn.tr)})'>🔊 Hear again</button>
           <button class="btn primary" onclick="rpAdvance()">Continue →</button>
@@ -2616,7 +2616,7 @@ function renderRP() {
       <div class="rp-now you-turn">
         <p class="rp-who">Your line:</p>
         <p class="rp-ur ur">${esc(turn.ur)}</p>
-        <p class="rp-tr">${esc(turn.tr)} — <em>${esc(turn.en)}</em></p>
+        <p class="rp-tr">${esc(turn.tr)}, <em>${esc(turn.en)}</em></p>
         <div class="rp-btns">
           <button class="btn speak" onclick='Speech.speak(${JSON.stringify(turn.ur)}, ${JSON.stringify(turn.tr)}, {slow:true})'>🐢 Hear it first</button>
           ${micOK
@@ -2624,13 +2624,13 @@ function renderRP() {
             : `<button class="btn primary" onclick="rpAdvance('said aloud')">Said it aloud →</button>`}
           <button class="btn small" onclick="rpAdvance()">Skip</button>
         </div>
-        ${micOK ? "" : `<p class="hint">${micCompat().reason === "none" ? "No mic support in this browser" : "Mic checking isn't available in this browser (Safari's engine doesn't speak Urdu — Chrome and Edge do)"} — say the line out loud, then continue.</p>`}
+        ${micOK ? "" : `<p class="hint">${micCompat().reason === "none" ? "No mic support in this browser" : "Mic checking isn't available in this browser (Safari's engine doesn't speak Urdu. Chrome and Edge do)"}, say the line out loud, then continue.</p>`}
         <div id="rp-feedback" aria-live="polite"></div>
       </div>`;
   }
   app().innerHTML = `
     ${backBar(`${SAIR_STOPS[sc.id] || "🎭"} ${esc(sc.title)}`, "renderSair()")}
-    <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. ${sc.turns.some((t) => t.choice) ? `Line ${rp.history.length + 1} — your choices steer the scene.` : `Line ${rp.idx + 1} of ${sc.turns.length}.`}</p>
+    <p class="lesson-intro">You are ${esc(sc.youRole)}; the app is ${esc(sc.themRole)}. ${sc.turns.some((t) => t.choice) ? `Line ${rp.history.length + 1}, your choices steer the scene.` : `Line ${rp.idx + 1} of ${sc.turns.length}.`}</p>
     <div class="rp-chat">${rpBubbles()}</div>
     ${controls}
   `;
@@ -2664,14 +2664,14 @@ async function rpSay() {
       rpGoto(turn.next);
     } else {
       out.innerHTML = `
-        <div class="pr bad">🔁 Not quite — heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🐢, then try again (or Skip).</div>`;
+        <div class="pr bad">🔁 Not quite, heard: <span class="ur-inline">${esc(alts[0] || "—")}</span>. Tap 🐢, then try again (or Skip).</div>`;
     }
   } catch (e) {
     if (!["no-speech", "not-allowed"].includes(e.message)) rp.micFails++;
-    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now — try again.";
+    const msg = MIC_ERRORS[e.message] || "Couldn't listen just now, try again.";
     const dead = Speech.fatalMicError(e.message) || rp.micFails >= 2;
     out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead
-      ? `<div class="pr warn">No mic, no problem — 🐢 hear the line, say it out loud, then:</div>
+      ? `<div class="pr warn">No mic, no problem, 🐢 hear the line, say it out loud, then:</div>
          <button class="btn primary" onclick="rpAdvance('said aloud')">I said it aloud →</button>`
       : "");
   }
@@ -2690,16 +2690,16 @@ function finishRP() {
     ${backBar(`${SAIR_STOPS[sc.id] || "🎭"} ${esc(sc.title)} · scene complete`, "renderSair()")}
     <div class="result-card ${pct >= 60 ? "pass" : ""}">
       <div class="result-emoji">${pct >= 90 ? "🏆" : pct >= 60 ? "🎉" : "💪"}</div>
-      <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished — keep practicing!"}</h2>
-      <p class="result-score">${rp.passed} of ${yourLines} lines ${self ? "said aloud (self-checked)" : `landed — ${pct}%`}</p>
+      <h2 class="retro">${pct >= 60 ? "You just held a conversation in Urdu!" : "Scene finished, keep practicing!"}</h2>
+      <p class="result-score">${rp.passed} of ${yourLines} lines ${self ? "said aloud (self-checked)" : `landed, ${pct}%`}</p>
       ${rp.choices.length ? `
       <div class="rp-reveal">
         <p class="rp-reveal-title">🛤️ Your road through the scene</p>
         ${rp.choices.map((c) => {
           const ch = c.options[c.chosen];
           const alt = c.options[(c.chosen + 1) % c.options.length];
-          return `<div class="rp-fx">✓ <b>“${esc(ch.en)}”</b> — ${esc(ch.fx)}
-            <span class="rp-alt">↪ the road not taken: “${esc(alt.en)}” — ${esc(alt.fx)}</span></div>`;
+          return `<div class="rp-fx">✓ <b>“${esc(ch.en)}”</b>: ${esc(ch.fx)}
+            <span class="rp-alt">↪ the road not taken: “${esc(alt.en)}”, ${esc(alt.fx)}</span></div>`;
         }).join("")}
       </div>` : ""}
       <p>${pct >= 60 ? "That was a real exchange, start to finish. Say it again tomorrow and it'll come out faster." : "Every run makes the lines more automatic. Tap 🐢 on the hard ones and go again."}</p>
@@ -2806,10 +2806,10 @@ function finishPlacement() {
       <h2 class="retro">${topped ? "You cleared the whole ladder!" : `Your starting line: Level ${idx + 1}`}</h2>
       <p class="result-score">${esc(lv.title)}</p>
       <p>${fresh
-        ? "The very beginning is exactly the right place — everyone's salaam starts somewhere."
+        ? "The very beginning is exactly the right place, everyone's salaam starts somewhere."
         : topped
           ? "Straight to the A2 arc: past tense, future, and the wedding capstone await."
-          : `Earlier levels are marked "placed past" — dip back anytime; they don't count as passed until you take their quizzes.`}</p>
+          : `Earlier levels are marked "placed past", dip back anytime; they don't count as passed until you take their quizzes.`}</p>
       <div class="result-actions">
         <button class="btn primary big" onclick="openLevel(${topped ? idx : idx})">Start Level ${idx + 1} →</button>
         <button class="btn" onclick="renderTrack('speak')">See all levels</button>
@@ -2820,7 +2820,7 @@ function finishPlacement() {
   window.scrollTo(0, 0);
 }
 
-// ── Ṭāip: Urdu typing — set up the keyboard, text your family ──
+// ── Ṭāip: Urdu typing, set up the keyboard, text your family ──
 // Not a rank completable (like tracing): a practical tool. Drill words
 // are typed with the learner's own system Urdu keyboard.
 
@@ -2849,7 +2849,7 @@ function typingCard() {
       <button class="rp-card" onclick="renderTyping()">
         <span class="rp-tag">⌨️ Ṭāip · Typing</span>
         <span class="rp-title">Type in Urdu <span class="ur">ٹائپ</span></span>
-        <span class="rp-desc">Set up the Urdu keyboard on your own phone or computer — then type your first words and text your family in real Urdu script.</span>
+        <span class="rp-desc">Set up the Urdu keyboard on your own phone or computer, then type your first words and text your family in real Urdu script.</span>
         <span class="rp-best">${done ? `${done}/${TYPE_DRILLS.length} words typed · keep going` : "▶ Set up & start typing"}</span>
       </button>
     </div>`;
@@ -2859,7 +2859,7 @@ function renderTyping() {
   const t = profile().typing || {};
   app().innerHTML = `
     ${backBar("⌨️ Ṭāip · Type in Urdu", "renderTrack('reading')")}
-    <p class="lesson-intro">The fastest way to make Urdu part of your day: put the keyboard on the phone already in your pocket, and text somebody a real سلام. Pick your device, follow the steps once, then drill below — with your own keyboard, not ours.</p>
+    <p class="lesson-intro">The fastest way to make Urdu part of your day: put the keyboard on the phone already in your pocket, and text somebody a real سلام. Pick your device, follow the steps once, then drill below, with your own keyboard, not ours.</p>
     <div class="type-setups">
       ${TYPE_SETUP.map((g) => `
         <details class="type-setup">
@@ -2867,8 +2867,8 @@ function renderTyping() {
           <ol>${g.steps.map((st) => `<li>${st}</li>`).join("")}</ol>
         </details>`).join("")}
     </div>
-    <p class="hint">Menu names can shift a little between versions — look for “Keyboard” and “Urdu” and you'll land there. No Urdu keyboard yet? The <button class="linklike" onclick="startImla()">Imlā tiles</button> are your training wheels.</p>
-    <h3 class="track-title" style="font-size:1.1rem">🖊 Your first words <span class="track-sub">listen, then type what you hear — dots and all</span></h3>
+    <p class="hint">Menu names can shift a little between versions, look for “Keyboard” and “Urdu” and you'll land there. No Urdu keyboard yet? The <button class="linklike" onclick="startImla()">Imlā tiles</button> are your training wheels.</p>
+    <h3 class="track-title" style="font-size:1.1rem">🖊 Your first words <span class="track-sub">listen, then type what you hear, dots and all</span></h3>
     <div class="type-list">
       ${TYPE_DRILLS.map((d, i) => `
         <div class="type-row${t[Speech.slug(d.tr)] ? " done" : ""}" id="type-row-${i}">
@@ -2904,20 +2904,20 @@ function typeCheck(i, input) {
   const fb = row.querySelector(".type-feedback");
   const got = typeNorm(input.value);
   const want = typeNorm(d.ur);
-  if (!got) { fb.innerHTML = `<div class="pr warn">Type it first — switch to your Urdu keyboard (🌐) and listen again.</div>`; return; }
+  if (!got) { fb.innerHTML = `<div class="pr warn">Type it first, switch to your Urdu keyboard (🌐) and listen again.</div>`; return; }
   if (got === want) {
     const t = (profile().typing ||= {});
     t[Speech.slug(d.tr)] = true;
     saveRoot();
     row.classList.add("done");
     row.querySelector(".type-check").textContent = "✅";
-    fb.innerHTML = `<div class="pr good">✅ ${esc(d.ur)} — typed by YOU. Shābāsh!</div>`;
+    fb.innerHTML = `<div class="pr good">✅ ${esc(d.ur)}, typed by YOU. Shābāsh!</div>`;
     Speech.speak(d.ur, d.tr);
   } else {
     let k = 0;
     while (k < Math.min(got.length, want.length) && got[k] === want[k]) k++;
     const hintCh = want[k] || "";
-    fb.innerHTML = `<div class="pr bad">Not quite — compare: <span class="ur-inline">${esc(input.value)}</span> vs <span class="ur-inline">${esc(d.ur)}</span>${hintCh ? ` · check the letter <span class="ur-inline">${esc(hintCh)}</span>` : ""}</div>`;
+    fb.innerHTML = `<div class="pr bad">Not quite, compare: <span class="ur-inline">${esc(input.value)}</span> vs <span class="ur-inline">${esc(d.ur)}</span>${hintCh ? ` · check the letter <span class="ur-inline">${esc(hintCh)}</span>` : ""}</div>`;
   }
 }
 
@@ -2940,7 +2940,7 @@ function tracingCard() {
       <button class="rp-card" onclick="renderTracing()">
         <span class="rp-tag">✍️ Likhna · Writing</span>
         <span class="rp-title">Letter Tracing <span class="ur">لکھنا</span></span>
-        <span class="rp-desc">Draw the letters yourself — body first, dots after, the way the qaida teaches. ${TRACE_LETTERS.length} letters, finger or mouse.</span>
+        <span class="rp-desc">Draw the letters yourself, body first, dots after, the way the qaida teaches. ${TRACE_LETTERS.length} letters, finger or mouse.</span>
         <span class="rp-best">${done ? `${done}/${TRACE_LETTERS.length} letters mastered · keep going` : "▶ Start tracing"}</span>
       </button>
     </div>`;
@@ -2951,7 +2951,7 @@ function renderTracing() {
   const t = p.tracing || {};
   app().innerHTML = `
     ${backBar("✍️ Likhna · Letter Tracing", "renderTrack('reading')")}
-    <p class="lesson-intro">Write each letter the way the qaida teaches: the body first, in one flowing stroke — Urdu moves <b>right to left</b> — then its dots and marks. Trace with a finger or a mouse.</p>
+    <p class="lesson-intro">Write each letter the way the qaida teaches: the body first, in one flowing stroke. Urdu moves <b>right to left</b>: then its dots and marks. Trace with a finger or a mouse.</p>
     <div class="tw-grid">
       ${TRACE_LETTERS.map((L, i) => `
         <button class="tw-pick" onclick="startTracing(${i})">
@@ -2960,7 +2960,7 @@ function renderTracing() {
           <span class="tw-best">${t[L.name] != null ? `${t[L.name] >= TRACE_PASS ? "✅ " : ""}${t[L.name]}%` : "trace it"}</span>
         </button>`).join("")}
     </div>
-    <h3 class="track-title" style="font-size:1.1rem">🔗 Whole words <span class="track-sub">letters holding hands — the bridge to Imlā</span></h3>
+    <h3 class="track-title" style="font-size:1.1rem">🔗 Whole words <span class="track-sub">letters holding hands, the bridge to Imlā</span></h3>
     <div class="tw-grid">
       ${TRACE_WORDS.map((L, i) => `
         <button class="tw-pick" onclick="startTracing(${TRACE_LETTERS.length + i})">
@@ -3129,22 +3129,22 @@ function twEvaluate() {
     if (hit) {
       tw.scores.push(100);
       tw.step++;
-      tw.msg = `<div class="pr good">✅ Dot — nuqta done!</div>`;
+      tw.msg = `<div class="pr good">✅ Dot, nuqta done!</div>`;
     } else {
       tw.msg = `<div class="pr bad">Draw the dot right on the green target ●.</div>`;
     }
   } else {
     const r = traceScore(st.p, tw.pts);
     if (!r.startOK) {
-      tw.msg = `<div class="pr warn">Start at the green dot ● — Urdu strokes flow right to left.</div>`;
+      tw.msg = `<div class="pr warn">Start at the green dot ●. Urdu strokes flow right to left.</div>`;
     } else if (!r.tidy) {
-      tw.msg = `<div class="pr warn">Trace just the dashed stroke — one smooth pass, no scribbling.</div>`;
+      tw.msg = `<div class="pr warn">Trace just the dashed stroke, one smooth pass, no scribbling.</div>`;
     } else if (r.pct >= TRACE_PASS) {
       tw.scores.push(r.pct);
       tw.step++;
-      tw.msg = `<div class="pr good">✅ ${r.pct}% — shābāsh!</div>`;
+      tw.msg = `<div class="pr good">✅ ${r.pct}%, shābāsh!</div>`;
     } else {
-      tw.msg = `<div class="pr bad">${r.pct}% traced — follow the dashed line all the way to its end.</div>`;
+      tw.msg = `<div class="pr bad">${r.pct}% traced, follow the dashed line all the way to its end.</div>`;
     }
   }
   tw.pts = [];
@@ -3170,7 +3170,7 @@ function twResultHTML() {
       <div class="result-emoji">${pct >= 90 ? "🏆" : "✍️"}</div>
       <h2 class="retro">You wrote ${esc(tw.letter.name)}!</h2>
       <p class="result-score">${pct}% · <span class="ur tw-glyph">${tw.letter.ch}</span></p>
-      <p>${pct >= 90 ? "Beautiful hand — a true qaida student." : "Every pass makes the hand surer. Trace it again and watch the score climb."}</p>
+      <p>${pct >= 90 ? "Beautiful hand, a true qaida student." : "Every pass makes the hand surer. Trace it again and watch the score climb."}</p>
       <div class="result-actions">
         ${next != null ? `<button class="btn primary big" onclick="startTracing(${next})">Next letter: ${esc(TRACE_LETTERS[next].name)} →</button>` : ""}
         <button class="btn" onclick="startTracing(${tw.i})">Trace it again</button>
@@ -3179,7 +3179,7 @@ function twResultHTML() {
     </div>`;
 }
 
-// ── Lughat: the glossary — every word the app teaches ────────
+// ── Lughat: the glossary, every word the app teaches ────────
 
 let lughatEntries = null;
 
@@ -3207,7 +3207,7 @@ function renderLughat() {
   const entries = lughatBuild();
   app().innerHTML = `
     ${backBar("📖 Lughat · Glossary")}
-    <p class="lesson-intro">Every word and phrase on Urdu Ustaadh — ${entries.length} entries, each with native audio and the lesson it lives in. Type to search in English, transliteration, or Urdu.</p>
+    <p class="lesson-intro">Every word and phrase on Urdu Ustaadh, ${entries.length} entries, each with native audio and the lesson it lives in. Type to search in English, transliteration, or Urdu.</p>
     <input id="lughat-q" class="lughat-search" type="search" placeholder="Search… (e.g. water, pānī, پانی)" oninput="lughatFilter(this.value)" autocomplete="off">
     <div id="lughat-list">${lughatRows(entries)}</div>
   `;
@@ -3216,11 +3216,11 @@ function renderLughat() {
 }
 
 function lughatRows(entries) {
-  if (!entries.length) return `<p class="hint" style="text-align:center">Nothing matches — try fewer letters.</p>`;
+  if (!entries.length) return `<p class="hint" style="text-align:center">Nothing matches, try fewer letters.</p>`;
   return entries.slice(0, 400).map((e, i) => `
     <div class="lughat-row">
       <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(e.ur)}, ${JSON.stringify(e.tr)})' aria-label="Play audio">🔊</button>
-      <span class="lughat-main"><b>${esc(e.tr)}</b> — ${esc(e.en)}</span>
+      <span class="lughat-main"><b>${esc(e.tr)}</b>: ${esc(e.en)}</span>
       <span class="lughat-ur ur">${esc(e.ur)}</span>
       <button class="linklike lughat-src" onclick="${e.onclick}">${esc(e.src)}</button>
       ${nishaanBtn(e.ur, e.tr, e.en, e.src, true)}
@@ -3277,30 +3277,30 @@ function renderReport() {
       <p class="rc-rank">★ ${esc(rank.name)} <span class="ur">${esc(rank.ur)}</span></p>
       <p class="hint">${nextRank
         ? `${nextRank.need - done} more completion${nextRank.need - done === 1 ? "" : "s"} to ${esc(nextRank.name)}`
-        : "Top of the ladder — Ustaadh-e-Azam!"}</p>
+        : "Top of the ladder. Ustaadh-e-Azam!"}</p>
     </div>
 
     <div class="rc-card">
-      <h3>🧭 Lessons passed — ${done} of ${LEVELS.length + SOUND_UNITS.length + READING_UNITS.length + CULTURE_UNITS.length + PAKISTAN_UNITS.length}</h3>
+      <h3>🧭 Lessons passed, ${done} of ${LEVELS.length + SOUND_UNITS.length + READING_UNITS.length + CULTURE_UNITS.length + PAKISTAN_UNITS.length}</h3>
       ${tracks.map(([label, n, total]) => `
         <div class="rc-line"><span>${label}</span><b>${n}/${total}</b></div>
         <div class="rc-bar"><span style="width:${Math.round((n / total) * 100)}%"></span></div>`).join("")}
     </div>
 
     <div class="rc-card">
-      <h3>🔥 Daily games — ${p.streak}-day streak</h3>
+      <h3>🔥 Daily games, ${p.streak}-day streak</h3>
       <div class="rc-heatmap">${cells}</div>
       <p class="hint">Last 90 days · ${playedDays.size} day${playedDays.size === 1 ? "" : "s"} played</p>
     </div>
 
     <div class="rc-card">
-      <h3>🧠 Word memory — ${learned} words in review</h3>
+      <h3>🧠 Word memory, ${learned} words in review</h3>
       <div class="rc-boxes">
         ${boxes.map((n, i) => `
           <div class="rc-box"><div class="rc-box-bar"><span style="height:${Math.round((n / boxMax) * 100)}%"></span></div>
           <span class="rc-box-label">${["new", "1d", "2d", "4d", "8d"][i]}</span><b>${n}</b></div>`).join("")}
       </div>
-      <p class="hint">Words climb boxes as you get them right — box 5 words rest 8 days between reviews.</p>
+      <p class="hint">Words climb boxes as you get them right, box 5 words rest 8 days between reviews.</p>
       <div class="rc-line"><span>🔖 Saved with nishaan</span><b>${Object.keys(p.nishaan || {}).length}</b></div>
       <button class="btn small" onclick="startFlashcards()">🃏 Flip the flashcards</button>
     </div>
@@ -3327,7 +3327,7 @@ function slugifyTitle(t) {
 
 // ── PTV night mode ───────────────────────────────────────────
 // Fully automatic: day look 6:00–18:59, night look 19:00–5:59,
-// by the visitor's local clock — like a broadcast day. No toggle.
+// by the visitor's local clock, like a broadcast day. No toggle.
 function themeByClock() {
   const h = new Date().getHours();
   return h >= 19 || h < 6 ? "dark" : "light";
@@ -3339,7 +3339,7 @@ function initTheme() {
   setInterval(apply, 60000);
 }
 
-// ── Imla: dictation — hear it, spell it from tiles ──────────
+// ── Imla: dictation, hear it, spell it from tiles ──────────
 
 let imla = null;
 
@@ -3384,7 +3384,7 @@ function renderImla() {
     <div class="quiz-progress">Word ${imla.current + 1} of ${imla.rounds.length}</div>
     <div class="quiz-card">
       <div class="quiz-prompt suno-prompt">
-        <p>🎧 Listen, then build the word — <b>${esc(item.en)}</b></p>
+        <p>🎧 Listen, then build the word, <b>${esc(item.en)}</b></p>
         <button class="btn primary" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)})' aria-label="Play the word">▶ Hear it again</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)}, {slow:true})' aria-label="Play slowly">🐢 Slow</button>
       </div>
@@ -3434,7 +3434,7 @@ function imlaCheck() {
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${right ? "good" : "bad"}">
       ${right ? "✅ Sahī! Perfect imlā." : `❌ It's spelled: <span class="ur-inline">${esc(item.ur)}</span>`}
-      <strong>${esc(item.tr)}</strong> — ${esc(item.en)}
+      <strong>${esc(item.tr)}</strong>: ${esc(item.en)}
       <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(item.ur)}, ${JSON.stringify(item.tr)})' aria-label="Hear the word">🔊</button>
     </div>
     <button class="btn primary" onclick="imlaNext()">${imla.current + 1 < imla.rounds.length ? "Next word →" : "Finish →"}</button>`;
@@ -3451,7 +3451,7 @@ function imlaNext() {
         <h2 class="retro">${imla.correct === imla.rounds.length ? "Flawless imlā!" : "Dictation done"}</h2>
         <p class="result-score">${imla.correct} / ${imla.rounds.length}</p>
         <p class="share-squares">${imla.results.map((r) => (r ? "🟩" : "🟥")).join("")}</p>
-        <p>Practice is endless — five fresh words every round, spelled letter by letter.</p>
+        <p>Practice is endless, five fresh words every round, spelled letter by letter.</p>
         <div class="result-actions">
           <button class="btn primary big" onclick="startImla()">Another five →</button>
           <button class="btn" onclick="renderHome()">Home</button>
@@ -3464,7 +3464,7 @@ function imlaNext() {
 // ── Kutub Khana: the public-domain library ───────────────────
 
 // ── Kutub Khana emblem: a taaq (arched alcove) of books with a
-// hanging diya — drawn in the site palette, truck-art dotted frame.
+// hanging diya, drawn in the site palette, truck-art dotted frame.
 const KUTUB_EMBLEM = `<svg class="kutub-emblem" viewBox="0 0 120 132" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <rect x="4" y="4" width="112" height="124" rx="14" fill="#fffdf3" stroke="#3b2e1f" stroke-width="3"/>
   <rect x="11" y="11" width="98" height="110" rx="10" fill="none" stroke="#d9a413" stroke-width="2.5" stroke-dasharray="0.5 7" stroke-linecap="round"/>
@@ -3487,11 +3487,11 @@ const KUTUB_EMBLEM = `<svg class="kutub-emblem" viewBox="0 0 120 132" xmlns="htt
 
 // Chronological wings for the library shelf
 const KUTUB_WINGS = [
-  { title: "The Founding Voices", ur: "ابتدا", sub: "1300–1810 — where the language found its music", ids: ["K4", "K2"] },
-  { title: "The Delhi Court", ur: "دلی", sub: "the 1800s — the last emperors and their poets", ids: ["K1", "K7", "K5"] },
+  { title: "The Founding Voices", ur: "ابتدا", sub: "1300–1810, where the language found its music", ids: ["K4", "K2"] },
+  { title: "The Delhi Court", ur: "دلی", sub: "the 1800s, the last emperors and their poets", ids: ["K1", "K7", "K5"] },
   { title: "The People's Poets", ur: "عوام", sub: "bazaar, schoolroom, and satire", ids: ["K12", "K13", "K14"] },
-  { title: "Iqbal", ur: "اقبال", sub: "1877–1938 — the poet of the awakening", ids: ["K3", "K6", "K15", "K16"] },
-  { title: "The Nation", ur: "قوم", sub: "1947–1954 — the words of the founding", ids: ["K8", "K11", "K10", "K9"] },
+  { title: "Iqbal", ur: "اقبال", sub: "1877–1938, the poet of the awakening", ids: ["K3", "K6", "K15", "K16"] },
+  { title: "The Nation", ur: "قوم", sub: "1947–1954, the words of the founding", ids: ["K8", "K11", "K10", "K9"] },
 ];
 
 function kutubCard() {
@@ -3500,7 +3500,7 @@ function kutubCard() {
       <button class="rp-card" onclick="renderKutub()">
         <span class="rp-tag">📚 Kutub Khana · Library</span>
         <span class="rp-title">The Poetry Shelf <span class="ur">کتب خانہ</span></span>
-        <span class="rp-desc">Ghalib, Mir, Iqbal, Khusrau — line by line, translated and annotated, with audio. Public domain, browsed freely.</span>
+        <span class="rp-desc">Ghalib, Mir, Iqbal, Khusrau, line by line, translated and annotated, with audio. Public domain, browsed freely.</span>
         <span class="rp-best">▶ Open the shelf</span>
       </button>
     </div>`;
@@ -3510,7 +3510,7 @@ function renderKutub() {
   app().innerHTML = `
     ${backBar("📚 Kutub Khana · کتب خانہ", "renderHome()")}
     <div class="kutub-hero">${KUTUB_EMBLEM}</div>
-    <p class="lesson-intro">${KUTUB.length} shelves, seven hundred years. Everything here is out of copyright and belongs to everyone — read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
+    <p class="lesson-intro">${KUTUB.length} shelves, seven hundred years. Everything here is out of copyright and belongs to everyone, read it aloud, tap any line to hear it, and take your time. No quizzes in the library.</p>
     ${KUTUB_WINGS.map((wing) => `
       <h3 class="kutub-wing">${esc(wing.title)} <span class="ur">${esc(wing.ur)}</span> <span class="kutub-wing-sub">${esc(wing.sub)}</span></h3>
       <div class="kutub-shelf">
@@ -3567,7 +3567,7 @@ function renderKutubWork(i) {
     ${w.links ? `<div class="link-row kutub-links">${w.links.map((l) => `<a class="btn link" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>` : ""}
     <p class="credit">${esc(w.source)}</p>
     <div class="result-actions">
-      <button class="btn ${profile().kutub?.[w.id] ? "" : "primary"}" onclick="kutubToggleRead('${w.id}', ${i})">${profile().kutub?.[w.id] ? "✓ Read — tap to unmark" : "Mark as read ✓"}</button>
+      <button class="btn ${profile().kutub?.[w.id] ? "" : "primary"}" onclick="kutubToggleRead('${w.id}', ${i})">${profile().kutub?.[w.id] ? "✓ Read, tap to unmark" : "Mark as read ✓"}</button>
       ${i + 1 < KUTUB.length ? `<button class="btn primary" onclick="renderKutubWork(${i + 1})">Next shelf: ${esc(KUTUB[i + 1].author)} →</button>` : ""}
       <button class="btn" onclick="renderKutub()">The shelf</button>
     </div>
@@ -3581,7 +3581,7 @@ function backBar(title, backFn = "renderHome()") {
   removeAzadiRain(); // confetti is a home-page greeting only
   // History-tracked pages pop real history so the browser and the button
   // agree; transient pages (quizzes, game rounds) run their fallback
-  // directly — their parent is still the current history entry.
+  // directly, their parent is still the current history entry.
   const useHist = navStableRender;
   navStableRender = false;
   const click = useHist ? `navBack() || ${backFn}` : backFn;
@@ -3632,7 +3632,7 @@ saveRoot();
 // ── Browser history: make the back button behave like a website ──
 // Stable pages push a history entry; popstate re-renders without
 // pushing. Transient flows (quizzes, game rounds, placement) stay
-// untracked — browser-back from those lands on the last stable page.
+// untracked, browser-back from those lands on the last stable page.
 const NAV_PAGES = [
   "renderHome", "renderTrack", "openLevel", "openUnit", "renderSair",
   "startRolePlay", "renderKutub", "renderKutubWork", "renderLughat",
@@ -3653,7 +3653,7 @@ for (const fname of NAV_PAGES) {
         d: (history.state?.d ?? 0) + 1,
       };
       const same = history.state?.n === fname && JSON.stringify(history.state.a) === JSON.stringify(entry.a);
-      if (same) { /* re-render of the same page — no duplicate entry */ }
+      if (same) { /* re-render of the same page, no duplicate entry */ }
       else if (history.state?.n) history.pushState(entry, "");
       else history.replaceState({ ...entry, d: 0 }, "");
     }
@@ -3686,7 +3686,7 @@ Cloud.init();
 renderHome();
 
 // Anonymous visitor tick: one tiny { day } record per device per day.
-// Nothing personal is sent or stored — see admin.html for the tally.
+// Nothing personal is sent or stored, see admin.html for the tally.
 (() => {
   try {
     const k = "urdu-ustaadh-visit";

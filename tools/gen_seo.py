@@ -125,7 +125,7 @@ HEAD = """<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <style>{css}</style></head><body><div class="strap"></div><div class="wrap">"""
 
-FOOT_T = """<div class="foot">Urdu Ustaadh is a free Urdu-learning resource — native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
+FOOT_T = """<div class="foot">Urdu Ustaadh is a free Urdu-learning resource: native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
 <script>var AR=__AUDIO_REFRESH__;function play(s){new Audio('../audio/'+s+'.mp3'+(AR[s]?('?r='+AR[s]):'')).play()}</script>
 </div></body></html>"""
 FOOT = FOOT_T.replace("__AUDIO_REFRESH__", AUDIO_REFRESH_JSON)
@@ -136,7 +136,7 @@ for idx, l in enumerate(lessons):
     prev_l = lessons[idx - 1] if idx > 0 else None
     next_l = lessons[idx + 1] if idx + 1 < len(lessons) else None
     canon = f"{SITE}/learn/{l['slug']}.html"
-    page_title = f"{l['title']} — free Urdu lesson | Urdu Ustaadh"
+    page_title = f"{l['title']} · free Urdu lesson | Urdu Ustaadh"
     desc = (l["subtitle"] + ". " + l["intro"])[:158]
     body = [HEAD.format(title=e(page_title), desc=e(desc), canon=canon, css=CSS)]
     ld = {
@@ -159,14 +159,14 @@ for idx, l in enumerate(lessons):
     body.append(f'<button class="printbtn" onclick="window.print()">🖨 Print cheat sheet</button>')
     body.append(f'<h1>{e(l["title"])}</h1><p class="sub">{e(l["subtitle"])}</p>')
     body.append(f'<p>{e(l["intro"])}</p>')
-    body.append(f'<a class="cta" href="https://myurdu.org/">Practice this lesson free — with audio, quizzes & games →</a>')
+    body.append(f'<a class="cta" href="https://myurdu.org/">Practice this lesson free, with audio, quizzes & games →</a>')
     if l["items"]:
         body.append("<h2>The phrases</h2>")
         for it in l["items"]:
             slug = audio_slug(it["tr"])
             body.append(
                 f'<div class="phrase"><button class="play" onclick="play(\'{slug}\')">🔊 Listen</button>'
-                f'<span class="u ur">{e(it["ur"])}</span><b>{e(it["tr"])}</b> — {e(it["en"])}'
+                f'<span class="u ur">{e(it["ur"])}</span><b>{e(it["tr"])}</b>: {e(it["en"])}'
                 + (f'<span class="n">{e(it["note"])}</span>' if it["note"] else "") + "</div>")
     if l["facts"]:
         body.append("<h2>Good to know</h2>")
@@ -179,7 +179,7 @@ for idx, l in enumerate(lessons):
     body.append(FOOT)
     open(os.path.join(OUT, l["slug"] + ".html"), "w", encoding="utf-8").write("\n".join(body))
 
-# glossary page — every word, with audio and a tiny client-side filter
+# glossary page, every word, with audio and a tiny client-side filter
 gl_rows = []
 gl_seen = set()
 for l in lessons:
@@ -192,21 +192,21 @@ for l in lessons:
         gl_seen.add(k)
         gl_rows.append((it["tr"], it["en"], it["ur"], l["slug"], l["kind"]))
 gl_rows.sort(key=lambda r: r[0].lower())
-gp = [HEAD.format(title="Urdu glossary — every word with audio | Urdu Ustaadh",
+gp = [HEAD.format(title="Urdu glossary · every word with audio | Urdu Ustaadh",
                   desc=f"A free searchable Urdu glossary: {len(gl_rows)} words and phrases with Nastaliq script, transliteration, meaning, and native audio.",
                   canon=f"{SITE}/learn/lughat.html", css=CSS + """
 .gl-row{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid #ecdcbb;font-size:.95rem}
 .gl-row b{white-space:nowrap}.gl-ur{margin-left:auto;font-size:1.2rem;white-space:nowrap}
 .gl-search{width:100%;font:inherit;font-size:1.05rem;padding:11px 15px;border:2px solid #ecdcbb;border-radius:14px;margin:8px 0 14px}""")]
 gp.append('<p class="crumbs"><a href="index.html">All lessons</a> › Glossary</p>')
-gp.append(f"<h1>Lughat · Urdu Glossary</h1><p class='sub'>{len(gl_rows)} words and phrases — tap 🔊 to hear native audio.</p>")
+gp.append(f"<h1>Lughat · Urdu Glossary</h1><p class='sub'>{len(gl_rows)} words and phrases. Tap 🔊 to hear native audio.</p>")
 gp.append('<a class="cta" href="https://myurdu.org/">Practice them all free in the app →</a>')
 gp.append('<input class="gl-search" type="search" placeholder="Filter… (e.g. water, pani)" oninput="flt(this.value)">')
 gp.append('<div id="gl">')
 for tr, en, ur, slug, kind in gl_rows:
     aslug = audio_slug(tr)
     gp.append(f'<div class="gl-row"><button class="play" onclick="play(\'{aslug}\')">🔊</button>'
-              f'<span><b>{e(tr)}</b> — {e(en)} <a href="{slug}.html" style="font-size:.8rem">({e(kind)})</a></span>'
+              f'<span><b>{e(tr)}</b>: {e(en)} <a href="{slug}.html" style="font-size:.8rem">({e(kind)})</a></span>'
               f'<span class="gl-ur ur">{e(ur)}</span></div>')
 gp.append("</div>")
 gp.append("""<script>function flt(q){q=q.toLowerCase();for(const r of document.querySelectorAll('.gl-row'))r.style.display=r.textContent.toLowerCase().includes(q)?'':'none'}</script>""")
@@ -214,16 +214,16 @@ gp.append(FOOT)
 open(os.path.join(OUT, "lughat.html"), "w", encoding="utf-8").write("\n".join(gp))
 
 # hub page
-hub = [HEAD.format(title="Learn Urdu free — all lessons | Urdu Ustaadh",
+hub = [HEAD.format(title="Learn Urdu free, all lessons | Urdu Ustaadh",
                    desc="Every free Urdu lesson on Urdu Ustaadh: 18 speaking levels with native audio, the Nastaliq script from zero, poetry, proverbs, and Pakistan itself.",
                    canon=f"{SITE}/learn/", css=CSS)]
-hub.append("<h1>Learn Urdu, free — every lesson</h1>")
+hub.append("<h1>Learn Urdu, free, every lesson</h1>")
 hub.append('<p class="sub">Native audio on every phrase. No signup, no ads, free forever.</p>')
 hub.append('<a class="cta" href="https://myurdu.org/">Open the full app →</a>')
-hub.append('<p><a href="lughat.html"><b>📖 Lughat — the full glossary, every word with audio</b></a></p>')
+hub.append('<p><a href="lughat.html"><b>📖 Lughat, the full glossary, every word with audio</b></a></p>')
 hub.append("<ul class='hub'>")
 for l in lessons:
-    hub.append(f'<li><a href="{l["slug"]}.html">{e(l["title"])}</a> <span>· {e(l["kind"])} — {e(l["subtitle"])}</span></li>')
+    hub.append(f'<li><a href="{l["slug"]}.html">{e(l["title"])}</a> <span>· {e(l["kind"])}, {e(l["subtitle"])}</span></li>')
 hub.append("</ul>")
 hub.append(FOOT.replace("../audio/", "audio/"))
 open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write("\n".join(hub))

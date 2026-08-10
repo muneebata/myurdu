@@ -99,8 +99,8 @@ const Speech = {
   voiceNotice() {
     if (this.voiceQuality === "ur") return null;
     if (this.voiceQuality === "hi")
-      return "No Urdu voice on this device — using a Hindi voice (same sound system) reading the transliteration. Recorded clips, when added, always play natively.";
-    return "No Urdu or Hindi voice found — audio uses a default voice reading the transliteration. On a Mac, add voices in System Settings → Accessibility → Spoken Content.";
+      return "No Urdu voice on this device, so audio uses a Hindi voice (same sound system) reading the transliteration. Recorded clips, when added, always play natively.";
+    return "No Urdu or Hindi voice found, so audio uses a default voice reading the transliteration. On a Mac, add voices in System Settings → Accessibility → Spoken Content.";
   },
 
   // ── Pronunciation practice ────────────────────────────────

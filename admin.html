@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://myurdu-backend-production.up.railway.app; object-src 'none'; base-uri 'self'" />
-<title>Urdu Ustaadh — Admin</title>
+<title>Urdu Ustaadh. Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet" />
 <style>
 :root { --bg:#faf3e1; --ink:#3b2e1f; --muted:#8a7458; --card:#fffdf3; --teal:#12808b; --teal-dark:#0c5f66; --mustard:#d9a413; --rose:#b05464; --line:#ecdcbb; }
@@ -34,7 +34,7 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
 <body>
 <div class="wrap">
   <h1>Urdu Ustaadh · Admin</h1>
-  <p class="sub">Usage overview and account roster — visible only to the superuser (you).</p>
+  <p class="sub">Usage overview and account roster, visible only to the superuser (you).</p>
 
   <div class="card" id="login-card">
     <p style="margin-top:0">Sign in with your PocketBase <b>superuser</b> account (the one you use for the admin panel).</p>
@@ -45,11 +45,11 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
   </div>
 
   <div id="dash" hidden>
-    <div class="priv">🔒 Superuser-only view. Aggregates first; the account roster at the bottom shows emails and learner names to you alone — nothing here is ever public.</div>
+    <div class="priv">🔒 Superuser-only view. Aggregates first; the account roster at the bottom shows emails and learner names to you alone, nothing here is ever public.</div>
     <h2 style="margin-top:0">Daily visitors</h2>
     <div class="tiles" id="visit-tiles"></div>
     <div id="visit-chart" style="margin-top:10px"></div>
-    <p class="note">Counted as one tick per device per day (stored: the date only — no IPs, no cookies, no personal data). Counting began 4 Aug 2026.</p>
+    <p class="note">Counted as one tick per device per day (stored: the date only, no IPs, no cookies, no personal data). Counting began 4 Aug 2026.</p>
     <h2>Accounts &amp; learning</h2>
     <div class="tiles" id="tiles"></div>
     <h2>Signups by month</h2>
@@ -60,7 +60,7 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
     <div class="card" style="padding:8px 12px; overflow-x:auto">
       <table id="roster" style="width:100%; border-collapse:collapse; font-size:0.85rem"></table>
     </div>
-    <p class="note" style="margin-top:20px">The account tiles cover signed-in users; the Daily Visitors counter at the top covers everyone, account or not. For the richer view — referrers, countries, top pages — your <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Web Analytics dashboard</a> (already enabled) has it, cookieless and free.</p>
+    <p class="note" style="margin-top:20px">The account tiles cover signed-in users; the Daily Visitors counter at the top covers everyone, account or not. For the richer view, referrers, countries, top pages, your <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Web Analytics dashboard</a> (already enabled) has it, cookieless and free.</p>
   </div>
 </div>
 
@@ -201,7 +201,7 @@ async function loadStats() {
 </script>
 
 <div class="card" id="qa-card">
-  <h2>🎧 Audio spot-check <span class="note">— the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
+  <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
 <script src="data.js"></script>
@@ -231,7 +231,7 @@ async function loadStats() {
     document.getElementById("qa-list").textContent = "Could not build clip list: " + e.message;
     return;
   }
-  // Sound School: the clips that TEACH articulation — check each against
+  // Sound School: the clips that TEACH articulation, check each against
   // its target sound (the hint says what to listen for)
   const ssRows = [];
   for (const u of (typeof SOUND_UNITS !== "undefined" ? SOUND_UNITS : []))
@@ -269,9 +269,9 @@ async function loadStats() {
     </div>`;
   }
   document.getElementById("qa-list").insertAdjacentHTML("beforebegin",
-    `<div style="margin:6px 0 12px"><b>🗨 Kahawatein — every proverb clip, listen for vowel slips:</b>${kahHtml}</div>`);
+    `<div style="margin:6px 0 12px"><b>🗨 Kahawatein, every proverb clip, listen for vowel slips:</b>${kahHtml}</div>`);
   document.getElementById("qa-list").insertAdjacentHTML("beforebegin",
-    `<div style="margin:6px 0 12px"><b>🗣 Sound School — listen for the target sound in each:</b>${ssHtml}</div><div style="margin:14px 0 4px; font-weight:700">Shortest clips (general sweep):</div>`);
+    `<div style="margin:6px 0 12px"><b>🗣 Sound School, listen for the target sound in each:</b>${ssHtml}</div><div style="margin:14px 0 4px; font-weight:700">Shortest clips (general sweep):</div>`);
   document.getElementById("qa-list").outerHTML = rows.map((r) => `
     <div style="display:flex; align-items:center; gap:10px; padding:5px 2px; border-bottom:1px solid var(--line)">
       <button onclick="new Audio('audio/${r.slug}.mp3${(typeof AUDIO_REFRESH !== 'undefined' && AUDIO_REFRESH[r.slug]) ? '?r=' + AUDIO_REFRESH[r.slug] : ''}').play()" style="font:inherit; cursor:pointer; border:1.5px solid var(--line); background:var(--card); border-radius:8px; padding:2px 10px">▶</button>
@@ -284,7 +284,7 @@ async function loadStats() {
 
 
 <script>
-// Tap 🚩 next to any clip that sounds wrong — flags persist in this browser
+// Tap 🚩 next to any clip that sounds wrong, flags persist in this browser
 // and the summary box gives a copy-ready list to hand to Claude.
 (function () {
   const KEY = "qa-flags";
@@ -301,7 +301,7 @@ async function loadStats() {
       ? `<b>🚩 ${flags.length} flagged:</b> <code style="word-break:break-all">${flags.join(", ")}</code>
          <button id="qa-copy" style="font:inherit;margin-left:8px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:2px 10px">Copy list</button>
          <button id="qa-clear" style="font:inherit;margin-left:4px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:2px 10px">Clear</button>`
-      : `<span class="note">🚩 No clips flagged yet — tap the flag next to anything that sounds wrong.</span>`;
+      : `<span class="note">🚩 No clips flagged yet, tap the flag next to anything that sounds wrong.</span>`;
     document.getElementById("qa-copy")?.addEventListener("click", () => navigator.clipboard.writeText("These clips sound wrong: " + load().join(", ")));
     document.getElementById("qa-clear")?.addEventListener("click", () => { save([]); render(); syncButtons(); });
   };
