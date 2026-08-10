@@ -108,6 +108,41 @@ const Speech = {
     return "webkitSpeechRecognition" in window || "SpeechRecognition" in window;
   },
 
+  // ── Goonj: record the learner, play it back ───────────────
+  // Works everywhere speech recognition doesn't (iOS, Safari):
+  // MediaRecorder is universal. Audio lives in memory only —
+  // nothing is uploaded, nothing is saved.
+  recordingSupported() {
+    return !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
+  },
+
+  _rec: null,
+
+  async recordStart() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    // Safari records mp4/aac; Chromium records webm/opus.
+    const mime = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm"].find((t) => MediaRecorder.isTypeSupported(t)) || "";
+    const mr = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    const chunks = [];
+    mr.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    const done = new Promise((resolve) => {
+      mr.onstop = () => {
+        stream.getTracks().forEach((t) => t.stop());
+        resolve(new Blob(chunks, mime ? { type: mime } : undefined));
+      };
+    });
+    mr.start();
+    this._rec = { mr, done };
+  },
+
+  recordStop() {
+    const r = this._rec;
+    this._rec = null;
+    if (!r) return Promise.resolve(null);
+    if (r.mr.state !== "inactive") r.mr.stop();
+    return r.done;
+  },
+
   listen() {
     return new Promise((resolve, reject) => {
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;

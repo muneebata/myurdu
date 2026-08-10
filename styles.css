@@ -190,6 +190,11 @@ body {
 .pr .score { color: var(--muted); font-size: 0.82rem; margin-left: 6px; }
 .pr .heard { color: var(--muted); font-size: 0.88rem; }
 
+/* ── Goonj: record & compare ── */
+.pr.goonj { background: #e7f0f1; border: 1px solid #b5d3d6; }
+.goonj-btns { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
+.goonj-hint { display: block; color: var(--muted); font-size: 0.82rem; }
+
 /* ── Fun facts ── */
 .funfact {
   background: linear-gradient(120deg, #fdf6dd, #fbeec7);
@@ -814,6 +819,7 @@ html[data-theme="dark"] .btn.link { background: #22382a; }
 html[data-theme="dark"] .btn.link:hover { background: #2c4735; }
 html[data-theme="dark"] .progress-bar { background: #234449; }
 html[data-theme="dark"] .pr.listening { background: #1d3a41; color: var(--ink); }
+html[data-theme="dark"] .pr.goonj { background: #1d3a41; color: var(--ink); border-color: #2e565e; }
 html[data-theme="dark"] .pr.good { background: #1d4a33; color: #c9e8c9; }
 html[data-theme="dark"] .pr.ok, html[data-theme="dark"] .pr.warn { background: #4a3d1d; color: #f0dfae; border-color: #6e5c2e; }
 html[data-theme="dark"] .pr.bad { background: #4a2626; color: #f0c2b8; border-color: #6e3a3a; }

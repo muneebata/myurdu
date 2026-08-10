@@ -408,7 +408,9 @@ function renderFlashcard(revealed) {
           <div class="fc-audio">
             <button class="btn speak" onclick='Speech.speak(${JSON.stringify(c.ur)}, ${JSON.stringify(c.tr)})'>🔊 Listen</button>
             <button class="btn speak" onclick='Speech.speak(${JSON.stringify(c.ur)}, ${JSON.stringify(c.tr)}, {slow:true})'>🐢 Slow</button>
+            ${goonjBtn("fc-goonj-out", c.ur, c.tr)}
           </div>
+          <div id="fc-goonj-out"></div>
         </div>
         <p class="fc-ask">Say it out loud first — then be honest:</p>
         <div class="fc-grades">
@@ -1320,6 +1322,7 @@ function phraseCard(levelIdx, itemIdx, item) {
         <button class="btn speak" title="Hear it" onclick="playItem(${levelIdx},${itemIdx},false)">🔊 Listen</button>
         <button class="btn speak" title="Hear it extra slowly" onclick="playItem(${levelIdx},${itemIdx},true)">🐢 Slow</button>
         <button class="btn mic" title="Say it and get checked" onclick="practiceItem('${id}',${levelIdx},${itemIdx})">🎤 Say it</button>
+        ${goonjBtn(`${id}-result`, item.ur, item.tr)}
         ${nishaanBtn(item.ur, item.tr, item.en, `Level ${levelIdx + 1}`, false)}
       </div>
       <div class="practice-result" id="${id}-result"></div>
@@ -1354,7 +1357,10 @@ function micCompatNote() {
     safari: "Safari can't do Urdu speech recognition yet",
     none: "this browser doesn't support speech recognition",
   }[c.reason];
-  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine — and you can always practice by repeating after the audio.</div>`;
+  const goonjTip = Speech.recordingSupported()
+    ? " And <b>🪞 Goonj</b> works here: record yourself, then hear your take next to the native clip — your ear does the checking."
+    : "";
+  return `<div class="mic-note">🎤 <b>Heads up:</b> ${why}, so the live mic check won't work here. <b>Chrome or Edge</b> (on a computer or Android) hears you perfectly. Everything else works fine — and you can always practice by repeating after the audio.${goonjTip}</div>`;
 }
 
 const MIC_ERRORS = {
@@ -1371,7 +1377,8 @@ const MIC_ERRORS = {
 let micFailStreak = 0;
 
 function selfCheckNote() {
-  return `<div class="pr warn">🎧 Plan B — self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip. For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
+  const goonjTip = Speech.recordingSupported() ? " Or tap 🪞 Goonj — record yourself and hear your take next to the native clip." : "";
+  return `<div class="pr warn">🎧 Plan B — self-check: tap 🔊 Listen, say it aloud, and match your voice to the clip.${goonjTip} For live mic checking, Chrome or Edge (computer or Android) works best.</div>`;
 }
 
 async function practiceItem(cardId, levelIdx, itemIdx) {
@@ -1401,6 +1408,68 @@ async function practiceItem(cardId, levelIdx, itemIdx) {
     const dead = Speech.fatalMicError(e.message) || micFailStreak >= 2;
     out.innerHTML = `<div class="pr warn">⚠️ ${esc(msg)}</div>` + (dead ? selfCheckNote() : "");
   }
+}
+
+// ── Goonj: record yourself, hear your take next to the native
+// clip. No scoring — your own ear is the judge. The recording
+// lives in memory only; nothing is uploaded or saved. ─────────
+
+const GOONJ_MAX_MS = 8000;
+const goonjUrls = {}; // outId -> blob URL of the learner's latest take
+let goonjTimer = null;
+
+function goonjBtn(outId, ur, tr) {
+  if (!Speech.recordingSupported()) return "";
+  return `<button class="btn mic" title="Record yourself, then hear your take next to the native clip"
+    onclick='goonjStart(${JSON.stringify(outId)}, ${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🪞 Goonj</button>`;
+}
+
+async function goonjStart(outId, ur, tr) {
+  const out = document.getElementById(outId);
+  if (!out) return;
+  speechSynthesis.cancel();
+  try {
+    await Speech.recordStart();
+  } catch (e) {
+    out.innerHTML = `<div class="pr warn">⚠️ ${e?.name === "NotAllowedError"
+      ? "Microphone access was blocked — allow the mic in your browser's site settings and try again."
+      : "Couldn't reach the microphone just now — try again."}</div>`;
+    return;
+  }
+  out.innerHTML = `<div class="pr listening">🔴 Recording… say: <em>${esc(tr)}</em>
+    <button class="btn small" onclick='goonjFinish(${JSON.stringify(outId)}, ${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>■ Done</button></div>`;
+  clearTimeout(goonjTimer);
+  goonjTimer = setTimeout(() => goonjFinish(outId, ur, tr), GOONJ_MAX_MS);
+}
+
+async function goonjFinish(outId, ur, tr) {
+  clearTimeout(goonjTimer);
+  const blob = await Speech.recordStop();
+  const out = document.getElementById(outId);
+  if (!out) return;
+  if (!blob || !blob.size) {
+    out.innerHTML = `<div class="pr warn">⚠️ Nothing got recorded — try again, and check the right mic is selected.</div>`;
+    return;
+  }
+  if (goonjUrls[outId]) URL.revokeObjectURL(goonjUrls[outId]);
+  const url = (goonjUrls[outId] = URL.createObjectURL(blob));
+  out.innerHTML = `
+    <div class="pr goonj">
+      <b>🪞 Goonj — compare by ear:</b>
+      <span class="goonj-btns">
+        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)})'>▶️ Your take</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 Native</button>
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)}, {slow:true})'>🐢</button>
+        <button class="btn" onclick='goonjStart(${JSON.stringify(outId)}, ${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔁 Again</button>
+      </span>
+      <span class="goonj-hint">Listen for the long vowels and the tricky sounds. Your recording stays on this device — nothing is uploaded.</span>
+    </div>`;
+}
+
+function goonjPlay(outId) {
+  if (!goonjUrls[outId]) return;
+  speechSynthesis.cancel();
+  new Audio(goonjUrls[outId]).play();
 }
 
 // ── Quizzes (level quizzes + callback drill share this engine) ──
