@@ -282,5 +282,56 @@ async function loadStats() {
 })();
 </script>
 
+
+<script>
+// Tap 🚩 next to any clip that sounds wrong — flags persist in this browser
+// and the summary box gives a copy-ready list to hand to Claude.
+(function () {
+  const KEY = "qa-flags";
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } };
+  const save = (a) => localStorage.setItem(KEY, JSON.stringify(a));
+  const summary = document.createElement("div");
+  summary.id = "qa-flag-summary";
+  summary.style.cssText = "margin:10px 0; padding:10px 12px; border:1.5px dashed var(--line); border-radius:10px";
+  const card = document.getElementById("qa-card");
+  card.insertBefore(summary, card.children[1]);
+  const render = () => {
+    const flags = load();
+    summary.innerHTML = flags.length
+      ? `<b>🚩 ${flags.length} flagged:</b> <code style="word-break:break-all">${flags.join(", ")}</code>
+         <button id="qa-copy" style="font:inherit;margin-left:8px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:2px 10px">Copy list</button>
+         <button id="qa-clear" style="font:inherit;margin-left:4px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:2px 10px">Clear</button>`
+      : `<span class="note">🚩 No clips flagged yet — tap the flag next to anything that sounds wrong.</span>`;
+    document.getElementById("qa-copy")?.addEventListener("click", () => navigator.clipboard.writeText("These clips sound wrong: " + load().join(", ")));
+    document.getElementById("qa-clear")?.addEventListener("click", () => { save([]); render(); syncButtons(); });
+  };
+  const slugOf = (btn) => (btn.getAttribute("onclick").match(/audio\/([a-z0-9-]+)\.mp3/) || [])[1];
+  const syncButtons = () => {
+    const flags = load();
+    card.querySelectorAll(".qa-flag-btn").forEach((b) => {
+      b.textContent = flags.includes(b.dataset.slug) ? "🚩" : "⚐";
+      b.style.opacity = flags.includes(b.dataset.slug) ? "1" : "0.55";
+    });
+  };
+  card.querySelectorAll('[onclick^="new Audio"]').forEach((play) => {
+    const slug = slugOf(play);
+    if (!slug) return;
+    const b = document.createElement("button");
+    b.className = "qa-flag-btn";
+    b.dataset.slug = slug;
+    b.title = "Flag this clip as mispronounced";
+    b.style.cssText = "font:inherit;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:2px 8px";
+    b.addEventListener("click", () => {
+      const flags = load();
+      const i = flags.indexOf(slug);
+      i >= 0 ? flags.splice(i, 1) : flags.push(slug);
+      save(flags); render(); syncButtons();
+    });
+    play.after(b);
+  });
+  render(); syncButtons();
+})();
+</script>
+
 </body>
 </html>
