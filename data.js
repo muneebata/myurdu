@@ -1159,6 +1159,202 @@ const CULTURE_UNITS = [
       "Ghalib wrote his greatest work in the 1850s while chronically broke, endlessly witty about it — his letters complain about mangoes, debts, and critics in equal measure. He remains Urdu's most quoted personality, ghost-writing the subcontinent's captions and toasts 170 years on.",
     ],
   },
+  {
+    id: "C4",
+    title: "Tehzeeb · The Art of Aadāb",
+    cover: "پہلے آپ",
+    subtitle: "takalluf, titles, and the manners built into the language",
+    intro:
+      "Urdu doesn't just have vocabulary — it has manners baked into the grammar. Which 'you' you choose, how many times you refuse food, and what you call the barber are all part of tehzeeb: the courtesy culture the language grew up in. Heritage speakers often know the words but not these rules. This unit is the missing manual.",
+    sections: [
+      {
+        heading: "Aadāb arz hai — the greeting that belongs to everyone",
+        note: "Alongside assalām-o-alaikum lives a second classic greeting: aadāb (literally 'respects'). Associated with Lucknow and Delhi's shared Ganga-Jamuni culture, it was designed to be religion-neutral — anyone can offer it to anyone. The gesture: right palm raised toward your face, a slight bow of the head.",
+        words: [
+          { ur: "آداب عرض ہے", tr: "ādāb arz hai", en: "I offer my respects", spell: "the full formal version — plain 'ādāb' works too" },
+          { ur: "جناب", tr: "janāb", en: "sir / your honor", spell: "the safest formal address for a stranger" },
+          { ur: "بزرگ", tr: "buzurg", en: "an elder", spell: "elders get greeted first — always" },
+        ],
+      },
+      {
+        heading: "Āp, tum, or tū — three ways to say 'you'",
+        facts: [
+          "<strong>Āp</strong> — respect. For elders, strangers, teachers, in-laws… and in many families, even for parents. When in doubt, āp. Nobody was ever offended by too much āp.",
+          "<strong>Tum</strong> — familiar. Friends, younger relatives, close colleagues. Warm, casual, everyday.",
+          "<strong>Tū</strong> — intimate, and dangerous. Used for one's closest childhood friends, small children — and for God in prayer and poetry, where the intimacy is the whole point. Used on a stranger, it's an insult. Treat tū like a loaded word until you've lived in Urdu for years.",
+        ],
+      },
+      {
+        heading: "Takalluf — the beautiful theater of refusal",
+        note: "When a Pakistani host offers food, the guest refuses. The host insists. The guest refuses again. The host insists harder. Around the third round, the guest 'reluctantly' accepts what everyone knew they wanted. This ritual is takalluf — formality as affection. Refusing it ('bas, takalluf nahīṉ!') is itself a compliment, meaning 'we're close enough to skip the theater.'",
+        words: [
+          { ur: "تکلف", tr: "takalluf", en: "ceremonious formality", spell: "the politeness ritual itself" },
+          { ur: "پہلے آپ", tr: "pehle āp", en: "after you (literally: first, you)", spell: "Lucknow's signature phrase" },
+          { ur: "مہمان نوازی", tr: "mehmān-nawāzī", en: "hospitality", spell: "guest-cherishing — a core cultural value" },
+        ],
+      },
+      {
+        heading: "Ustād, sāhib, bājī — titles for everyone",
+        facts: [
+          "<strong>Sāhib</strong> (from Arabic, 'companion') attaches to nearly any name or role as respect: Ḍākṭar sāhib, Khan sāhib. The feminine counterpart in everyday speech is <strong>sāhiba</strong>.",
+          "<strong>Ustād</strong> means master — of anything. Your music teacher is ustād, and so is the master mechanic and the master barber. Craft is craft; the title honors skill itself. (Yes, this app's name plays on it.)",
+          "<strong>Bhāī</strong> (brother) and <strong>bājī</strong> (elder sister) turn strangers into family — the shopkeeper, the rickshaw driver, the neighbor. Urdu extends kinship to the whole street.",
+        ],
+      },
+    ],
+    funFacts: [
+      "The famous 'pehle āp' joke: two Lucknow gentlemen miss their train because neither will board first — each insisting 'pehle āp!' as it pulls away. It's a legend, not a news report, but it's how the whole subcontinent teases Lucknow's legendary politeness.",
+      "For goodbyes you'll hear both <em>Khudā hāfiz</em> and <em>Allāh hāfiz</em> — 'God protect you.' The older Khudā hāfiz (with the Persian word for God) and the newer Allāh hāfiz coexist today; both are warm, both are correct, and which one a speaker uses often says something about their generation.",
+    ],
+  },
+  {
+    id: "C5",
+    title: "Mushaira · The Poetry Gathering",
+    cover: "ارشاد",
+    subtitle: "the live show where Urdu poetry has always lived",
+    intro:
+      "A mushaira is a poetry gathering — but calling it that undersells it. It's a contact sport with couplets: poets perform, the audience talks back, and a good sher can bring the house down at two in the morning. The conventions are centuries old and still running, from Karachi halls to convention centers in Chicago and Dubai.",
+    sections: [
+      {
+        heading: "How the room works",
+        facts: [
+          "Poets sit together facing the audience, and recite in order of seniority — newcomers first, the most celebrated poet last, deep into the night. The host is the <strong>sadr</strong> (president) of the gathering.",
+          "In the classical mushaira, a lit candle — the <strong>shama</strong> — was placed before the poet whose turn it was, then passed along. 'The shama has reached…' still means 'it's your turn' in mushaira language.",
+          "The invitation to recite is one elegant word: <strong>irshād!</strong> — roughly, 'please, proceed.' The poet often responds with polite hesitation before beginning. (Takalluf, everywhere.)",
+        ],
+      },
+      {
+        heading: "Talking back — the audience's job",
+        note: "Silence at a mushaira is failure. The audience pays in dād — vocal appreciation: wāh wāh for a fine line, mukarrar ('again!') to demand an instant encore, and finishing the refrain along with the poet. You already met these in Ghazal 101 — here's where they live.",
+        words: [
+          { ur: "ارشاد", tr: "irshād", en: "please recite / go ahead", spell: "the host's invitation to begin" },
+          { ur: "داد", tr: "dād", en: "vocal appreciation", spell: "dād denā — to give praise aloud" },
+          { ur: "محفل", tr: "mehfil", en: "a gathering, an intimate assembly", spell: "any evening of poetry or music" },
+          { ur: "شمع", tr: "shama", en: "candle", spell: "the mushaira's ancient talking-stick" },
+        ],
+      },
+      {
+        heading: "Two ways to recite",
+        facts: [
+          "<strong>Tarannum</strong> — reciting in melody, half-singing the verses. Crowd-pleasing, hypnotic, and controversial: purists have argued about it for a century.",
+          "<strong>Taht-ul-lafz</strong> — spoken recitation, no melody, all timing. The poet's pauses do the work a singer's voice would.",
+          "Either way, the first line is delivered slowly — often twice — so the audience can savor the setup before the second line lands.",
+        ],
+      },
+      {
+        heading: "From Mughal Delhi to your city",
+        facts: [
+          "The mushaira came of age in Mughal Delhi and the courts of Lucknow, where Ghalib, Zauq, and Momin traded couplets as rivals before live audiences.",
+          "The most beloved portrait of that world is <strong>Dehli ki Ākhrī Shama</strong> ('Delhi's Last Candle') — Farhatullah Baig's fictionalized memoir of a great 1840s Delhi mushaira, with Ghalib and Zauq among the cast. A dramatized classic, not a transcript — and cherished precisely for capturing the atmosphere.",
+          "The tradition never stopped: international <strong>aalami mushairas</strong> fill halls from Dubai to Toronto, and Delhi's Jashn-e-Rekhta festival (running since 2015) draws hundreds of thousands to celebrate Urdu.",
+        ],
+      },
+    ],
+    funFacts: [
+      "Mushaira appreciation has levels: quiet 'hmm' for competent, 'wāh' for good, 'wāh wāh!' for excellent, and standing up mid-couplet for once-in-a-night. Withholding dād from a weak sher is also communication — the silence is deafening.",
+      "At classical mushairas the candle regulated more than turns — it kept order among rival poets who might otherwise talk over each other. Two hundred years before conference facilitation, Urdu poets had invented the speaking token.",
+    ],
+  },
+  {
+    id: "C6",
+    title: "PTV Golden Age · Screen Urdu",
+    cover: "خبرنامہ",
+    subtitle: "the dramas, announcers, and songs that taught a nation its accent",
+    intro:
+      "For decades, one channel raised the whole country. Pakistan Television — PTV — went on air in 1964, and its announcers' crisp Urdu became the sound of correctness itself, while its dramas gave the language its shared stories. This site's whole look is a salaam to that era; here's what it's saluting.",
+    sections: [
+      {
+        heading: "One channel, one nation",
+        facts: [
+          "PTV's first broadcast aired on <strong>26 November 1964</strong> from a makeshift studio in Lahore. Among the first faces and voices on air: <strong>Tariq Aziz</strong> and <strong>Kanwal Naseer</strong>, Pakistan's pioneering announcers.",
+          "The nine o'clock <strong>Khabarnāma</strong> (news bulletin) was a nightly national ritual — and its newscasters' formal, precisely-pronounced Urdu became the prestige accent of the whole country. Generations learned talaffuz (pronunciation) from the news.",
+          "Tariq Aziz went on to host <strong>Neelam Ghar</strong> (from 1974), the beloved quiz show whose greeting — 'dekhtī āṉkhoṉ, sunte kānoṉ ko Tariq Aziz kā salām' ('Tariq Aziz's salaam to watching eyes and listening ears') — is quotable to this day.",
+        ],
+        words: [
+          { ur: "خبرنامہ", tr: "khabarnāma", en: "news bulletin", spell: "khabar (news) + nāma (letter/document)" },
+          { ur: "فنکار", tr: "fankār", en: "artist, performer", spell: "fan (art) + kār (doer)" },
+          { ur: "نغمہ", tr: "naghma", en: "song, melody", spell: "the word for film and national songs alike" },
+        ],
+      },
+      {
+        heading: "The dramas that emptied the streets",
+        facts: [
+          "<strong>Khuda Ki Basti</strong> (1969) — the pioneer, adapted from Shaukat Siddiqui's acclaimed novel of Karachi's struggling classes. Serious literature, on television, for everyone.",
+          "<strong>Waris</strong> (1979) — the feudal family saga. The stories say streets emptied at airtime; the legend is unverifiable, the devotion was real.",
+          "<strong>Tanhaiyaan</strong> (1985) and <strong>Dhoop Kinare</strong> (1987) — writer Haseena Moin's masterpieces: witty, urbane women leading stories decades ahead of their time. Still binge-watched on YouTube by the diaspora.",
+          "<strong>Ainak Wala Jin</strong> (1993) — the kids' classic about a bespectacled genie; its demon Zakoota's refrain 'mujhe kām batāo!' ('give me a task!') is a national inside joke.",
+          "<strong>Alpha Bravo Charlie</strong> (1998) — Shoaib Mansoor's army-life trilogy-closer, still a byword for PTV's craft.",
+        ],
+      },
+      {
+        heading: "Lollywood & the golden voices",
+        facts: [
+          "Lahore's film industry — <strong>Lollywood</strong> — ruled the 1960s–70s. Waheed Murad, the 'chocolate hero,' packed cinemas; his film Armaan (1966) ran so long it earned a platinum jubilee.",
+          "From Armaan came <strong>'Ko Ko Korina'</strong> (sung by Ahmed Rushdi) — often called South Asia's first film pop song.",
+          "<strong>Noor Jehan</strong> — Malika-e-Tarannum, 'the Queen of Melody' — recorded thousands of songs across film and national naghmas; her voice remains shorthand for the golden age itself.",
+        ],
+      },
+    ],
+    funFacts: [
+      "PTV transmissions traditionally opened with Quranic recitation and the national anthem, and in the early decades ended entirely at midnight — the channel said goodnight, and so did the country.",
+      "The rooftop TV antenna was such a status symbol in the 1970s that some households installed one before buying the television. The neighbors could see the antenna; only the family knew about the TV.",
+      "This app's tri-color strap, jali patterns, and 'PTV register' color palette are a deliberate homage to this era — now you know exactly what's being homaged.",
+    ],
+  },
+  {
+    id: "C7",
+    title: "Khattati · The Written Art",
+    cover: "نستعلیق",
+    subtitle: "from master calligraphers to truck art — Urdu as a thing of beauty",
+    intro:
+      "Urdu isn't just spoken and read — it's drawn. The script you've been tracing in Sound School has been an art form for six centuries, practiced by court calligraphers, newspaper kātibs, modern masters, and the anonymous geniuses who paint trucks. This unit is the story of Urdu as a visual art.",
+    sections: [
+      {
+        heading: "Nastaliq — the hanging script",
+        img: { src: "images/calligraphy.jpg", alt: "Nastaliq calligraphy artwork", caption: "An illuminated master-calligraphy piece whose words literally read khatt-e Nastaliq — 'the Nastaliq script'. You've been tracing its letters all along.", credit: "Photo: فرزان کرمانی نژاد at Persian Wikipedia · public domain · via Wikimedia Commons" },
+        facts: [
+          "Nastaliq arose in 14th-century Persia — its very name is a fusion of two older scripts, <strong>naskh</strong> and <strong>ta'līq</strong>. Tradition credits the calligrapher <strong>Mir Ali Tabrizi</strong> with perfecting it.",
+          "Unlike flat-line naskh, Nastaliq <em>hangs</em>: words cascade diagonally, letters swell and taper, and the whole line breathes. That beauty is exactly what made it brutally hard to digitize.",
+          "Urdu embraced Nastaliq as its own — and Pakistan's preferred style, the <strong>Lahori nastaliq</strong>, is the one this site renders in.",
+        ],
+        words: [
+          { ur: "خطاطی", tr: "khattātī", en: "calligraphy", spell: "khatt (line/script) is the root" },
+          { ur: "کاتب", tr: "kātib", en: "scribe, calligrapher", spell: "the professional who wrote the newspapers" },
+          { ur: "قلم", tr: "qalam", en: "pen", spell: "the reed pen, cut at an angle, made the strokes" },
+        ],
+      },
+      {
+        heading: "The kātibs — newspapers written by hand",
+        facts: [
+          "Well into the 1980s, Urdu newspapers could not be typeset in Nastaliq — so every page of dailies like Jang was <strong>hand-written by professional kātibs</strong>, then photographed and printed. Every single day.",
+          "The revolution came in <strong>1981</strong>, when calligrapher-entrepreneur Mirza Ahmad Jamil created <strong>Noori Nastaliq</strong> with Monotype — the first practical digital Nastaliq font, built from thousands of hand-drawn letter combinations.",
+          "The struggle isn't over: much of the internet still renders Urdu in Arabic-style naskh, and keeping true Nastaliq alive digitally remains an active fight — one this site has picked a side in.",
+        ],
+      },
+      {
+        heading: "Sadequain — the master who painted with letters",
+        facts: [
+          "<strong>Sadequain</strong> (1930–1987), Pakistan's most celebrated modern artist, fused calligraphy with mural painting on a monumental scale — treating the written word itself as the picture.",
+          "His giant works live on public ceilings and walls: the Lahore Museum's entrance-hall ceiling, the 'Saga of Labour' mural at Mangla Dam, and the ceiling of Karachi's Frere Hall — left unfinished at his death and preserved that way.",
+          "He famously painted for institutions and gave away much of his work — insisting that art, like the script it celebrated, belonged to the public.",
+        ],
+      },
+      {
+        heading: "Truck art — the moving gallery",
+        img: { src: "images/truckart.jpg", alt: "Decorated Pakistani truck with a huge cargo load on a highway", caption: "A working truck in full regalia near Thatta — art, engineering, and optimism about load limits.", credit: "Photo: A.Savin · FAL · via Wikimedia Commons" },
+        facts: [
+          "Pakistan's trucks are the world's loudest folk-art tradition: florals, partridges, portraits, mirror-work, and couplets of poetry, painted by specialist workshops concentrated in Karachi and Rawalpindi.",
+          "The styles have names — the floral vocabulary is <strong>phūl pattī</strong> (flower-and-leaf), and the reflective tape work is <strong>chamak pattī</strong> (sparkle strips). American soldiers in the region nicknamed the adorned vehicles 'jingle trucks' for the chained pendants ringing beneath the bumpers.",
+          "Truck artists became international ambassadors: Karachi master <strong>Haider Ali</strong> painted a full truck live at the Smithsonian Folklife Festival in Washington in 2002.",
+          "Look closely at a truck's back panel and you'll usually find a sher — often teasing the driver behind: 'dekh magar pyār se' ('look, but with love').",
+        ],
+      },
+    ],
+    funFacts: [
+      "A kātib's apprenticeship traditionally began with years of practicing single letters before being allowed to write a full word — the same alif-se-shurū patience your tracing boards ask of you, just with higher stakes.",
+      "This app's own icon is painted in the truck-art style — flowers, borders, and all. The tradition now decorates trucks, rickshaws, teapots, sneakers… and Urdu-learning apps.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -2484,11 +2680,11 @@ const KUTUB = [
 
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
-  { need: 7, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 16, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 24, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 33, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 45, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 8, name: "Shagird · Apprentice", ur: "شاگرد" },
+  { need: 17, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 26, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 36, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 49, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
