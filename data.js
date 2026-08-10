@@ -976,7 +976,45 @@ const READING_UNITS = [
       "Stories written only from words a learner already knows are how qāida primers have taught children across South Asia for generations — the confidence of reading a WHOLE page is the point.",
       "Urdu past tense always whispers who's talking: gayā is a man who went, gaī a woman, gaye a group. Three of these lines only make sense because of that one vowel.",
     ],
-  },];
+  },
+  {
+    id: "R10",
+    title: "Kahānī 2 · More Stories",
+    subtitle: "Two more little stories — an invitation, and bazaar bargaining",
+    intro:
+      "Round two of reading real Urdu prose. Same rule as Kahānī 1: every word here is one you've already met (the two new bends are glossed). Read each line aloud before tapping the audio.",
+    sections: [
+      {
+        heading: "دوست کی دعوت · A friend's invitation",
+        note: "An invitation, an answer, a plan — the whole social loop in six lines.",
+        words: [
+          { ur: "میرے دوست نے کہا: کل گھر آؤ", tr: "mere dost ne kahā: kal ghar āo", en: "My friend said: come over tomorrow.", spell: "kahā + the L16 tum-command āo" },
+          { ur: "میں نے کہا: ٹھیک ہے، ضرور", tr: "maiṉ ne kahā: ṭhīk hai, zarūr", en: "I said: okay, definitely.", spell: "zarūr — your R9 word, back already" },
+          { ur: "کل ہم ملیں گے", tr: "kal ham mileṉ ge", en: "Tomorrow we will meet.", spell: "kal + future verb = tomorrow (the L8 trick)" },
+          { ur: "ہم چائے پئیں گے", tr: "ham chāy pīeṉge", en: "We will drink chai.", spell: "of course you will" },
+          { ur: "دوست کا گھر اچھا ہے", tr: "dost kā ghar achhā hai", en: "My friend's house is nice.", spell: "kā possession — house OF friend" },
+          { ur: "بہت اچھا دن ہو گا", tr: "bahut achhā din ho gā", en: "It will be a very good day.", spell: "ho gā — will be" },
+        ],
+      },
+      {
+        heading: "بازار میں مول تول · Bargaining in the bazaar",
+        note: "The RP3 bargaining moves, now in story form. Mol-tol = haggling — the bazaar's official sport.",
+        words: [
+          { ur: "میں بازار گیا", tr: "maiṉ bāzār gayā", en: "I went to the bazaar.", spell: "the L14 line you know by heart" },
+          { ur: "آم کتنے کے ہیں؟", tr: "ām kitne ke haiṉ?", en: "How much are the mangoes?", spell: "kitne ke — asking a plural price" },
+          { ur: "وہ بہت مہنگے تھے", tr: "woh bahut mahange the", en: "They were very expensive.", spell: "NEW BEND: mahangā flexes to mahange for plural" },
+          { ur: "میں نے کہا: تھوڑا سستا کریں", tr: "maiṉ ne kahā: thoṛā sastā kareṉ", en: "I said: make it a little cheaper.", spell: "the sacred bazaar phrase, straight from L11" },
+          { ur: "ہم نے دس آم لیے", tr: "ham ne das ām liye", en: "We took ten mangoes.", spell: "NEW BEND: lenā becomes liye in the ne-past" },
+          { ur: "امی بہت خوش ہوئیں", tr: "ammī bahut khush huīṉ", en: "Mom was very happy.", spell: "huīṉ — the respectful plural for elders" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Mol-tol (haggling) has rules of courtesy: the seller quotes high knowing you'll counter, and walking away slowly is a legitimate negotiating move — the call-back discount is real.",
+      "Mangoes are sold by the darjan (dozen) or the kilo depending on the city — and a practiced ammī can judge a whole crate's ripeness from the smell alone.",
+    ],
+  },
+];
 
 const QUIZ_PASS_PERCENT = 70;
 

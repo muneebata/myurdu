@@ -3,7 +3,7 @@
 // online), cache-first for version-stamped assets and audio clips
 // (immutable per URL). Never touches the API or other origins,
 // except Google Fonts (cache-first).
-const CACHE = "myurdu-v202608091952"; // stamped by tools/deploy.sh
+const CACHE = "myurdu-v202608092009"; // stamped by tools/deploy.sh
 
 self.addEventListener("install", () => self.skipWaiting());
 
