@@ -2219,24 +2219,49 @@ function openRishtay() {
 // ── Rishtay: the interactive family tree (R13) ───────────────
 // Generation rows scroll sideways like a dawat seating chart;
 // each card is a tap-to-hear button, border color = family side.
+let rishtaSide = null;
+
+// Tapping a legend chip pops that side of the family forward and fades
+// the rest, so "which side is she on?" becomes a single glance.
+function rishtaFilter(side) {
+  rishtaSide = rishtaSide === side ? null : side;
+  const wrap = $(".rishta-wrap");
+  if (!wrap) return;
+  wrap.classList.remove("filter-t", "filter-m", "filter-g");
+  if (rishtaSide) wrap.classList.add(`filter-${rishtaSide}`);
+  wrap.querySelectorAll(".rl").forEach((b) => {
+    b.setAttribute("aria-pressed", b.dataset.side === rishtaSide ? "true" : "false");
+  });
+  const note = $("#rishta-filter-note");
+  if (note) {
+    note.textContent = rishtaSide
+      ? { t: "Showing abbū's side. Tap again to show everyone.", m: "Showing ammī's side. Tap again to show everyone.", g: "Showing your own gharwāle. Tap again to show everyone." }[rishtaSide]
+      : "Tap a side to pick out who belongs to it.";
+  }
+}
+
 function rishtaTreeHTML() {
+  rishtaSide = null; // fresh render, no filter
+  const chip = (side, label) =>
+    `<button class="rl ${side}" data-side="${side}" aria-pressed="false" onclick="rishtaFilter('${side}')">${label}</button>`;
   return `
-    <div class="rishta-legend" aria-hidden="true">
-      <span class="rl t">abbū's side</span>
-      <span class="rl m">ammī's side</span>
-      <span class="rl g">your gharwāle</span>
-    </div>
-    ${RISHTAY.map((g) => `
-    <div class="rishta-genlabel">${esc(g.gen)}</div>
-    <div class="rishta-gen">${g.people.map((p) => `
-      <button class="rishta-card side-${p.side}${p.you ? " you" : ""}"
-        aria-label="${esc(p.tr)}: ${esc(p.en)}"
-        onclick='Speech.speak(${JSON.stringify(p.ur)}, ${JSON.stringify(p.tr)})'>
-        <img src="${p.pic}" alt="" loading="lazy">
-        <span class="rc-ur ur">${p.ur}</span>
-        <span class="rc-tr">${esc(p.tr)}</span>
-        <span class="rc-en">${esc(p.en)}</span>
-      </button>`).join("")}</div>`).join("")}`;
+    <div class="rishta-wrap">
+      <div class="rishta-legend">
+        ${chip("t", "abbū's side")}${chip("m", "ammī's side")}${chip("g", "your gharwāle")}
+      </div>
+      <p class="rishta-filter-note" id="rishta-filter-note" aria-live="polite">Tap a side to pick out who belongs to it.</p>
+      ${RISHTAY.map((g) => `
+      <div class="rishta-genlabel">${esc(g.gen)}</div>
+      <div class="rishta-gen">${g.people.map((p) => `
+        <button class="rishta-card side-${p.side}${p.you ? " you" : ""}"
+          aria-label="${esc(p.tr)}: ${esc(p.en)}"
+          onclick='Speech.speak(${JSON.stringify(p.ur)}, ${JSON.stringify(p.tr)})'>
+          <img src="${p.pic}" alt="" loading="lazy">
+          <span class="rc-ur ur">${p.ur}</span>
+          <span class="rc-tr">${esc(p.tr)}</span>
+          <span class="rc-en">${esc(p.en)}</span>
+        </button>`).join("")}</div>`).join("")}
+    </div>`;
 }
 
 function openUnit(unitsName, i) {
