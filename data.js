@@ -1014,6 +1014,132 @@ const READING_UNITS = [
       "Mangoes are sold by the darjan (dozen) or the kilo depending on the city, and a practiced ammī can judge a whole crate's ripeness from the smell alone.",
     ],
   },
+  {
+    id: "R11",
+    title: "Chiṛiyā Ghar · A Trip to the Zoo",
+    subtitle: "every animal you can point at, in Urdu",
+    intro:
+      "The Urdu word for zoo is chiṛiyā ghar, literally 'bird house', a name so charming nobody ever fixed it. Today's trip covers every jānwar (animal) you can point at: the zoo stars, the farm regulars, the birds, and the creatures of water and ground. Tap each one to hear it.",
+    sections: [
+      {
+        heading: "The stars of the show",
+        note: "Every zoo trip starts here. Sher technically means lion (babbar sher if you want to be unmistakable), but in everyday speech it stretches to tigers too. The leopard has its own word: tenduā.",
+        img: { src: "images/snowleopard.jpg", alt: "Snow leopard portrait", caption: "The snow leopard, barfānī tenduā: the 'snowy leopard', ghost of Pakistan's mountains.", credit: "Photo: Tambako The Jaguar · CC BY-SA 2.0 · via Wikimedia Commons" },
+        words: [
+          { ur: "شیر", tr: "sher", en: "🦁 lion", spell: "babbar sher = definitely a lion" },
+          { ur: "ہاتھی", tr: "hāthī", en: "🐘 elephant", spell: "hāth (hand) hiding inside, that trunk" },
+          { ur: "تیندوا", tr: "tenduā", en: "🐆 leopard", spell: "barfānī tenduā = snow leopard" },
+          { ur: "ریچھ", tr: "rīchh", en: "🐻 bear", spell: "one syllable, all growl" },
+          { ur: "بندر", tr: "bandar", en: "🐒 monkey", spell: "also Karachi's old port name: Bandar Road" },
+          { ur: "ہرن", tr: "hiran", en: "🦌 deer", spell: "the graceful one of Urdu poetry" },
+          { ur: "اونٹ", tr: "ūṉṭ", en: "🐫 camel", spell: "starts with the nasal ūṉ, Sound School's hum" },
+          { ur: "مارخور", tr: "mārkhor", en: "🐐 markhor", spell: "the national animal, corkscrew horns and all" },
+        ],
+      },
+      {
+        heading: "Gāṉv ke jānwar · down on the farm",
+        note: "The everyday animals of village and home. Mind the sheep: add one syllable to bheṛ and it becomes the wolf that eats it.",
+        words: [
+          { ur: "گائے", tr: "gāe", en: "🐄 cow", spell: "long ā, then e" },
+          { ur: "بکری", tr: "bakrī", en: "🐐 goat", spell: "Bakra Eid's bakrā is her brother" },
+          { ur: "بھیڑ", tr: "bheṛ", en: "🐑 sheep", spell: "aspirated bh + the curl ṛ" },
+          { ur: "بھیڑیا", tr: "bheṛiyā", en: "🐺 wolf", spell: "bheṛ + iyā = sheep's worst enemy" },
+          { ur: "گھوڑا", tr: "ghoṛā", en: "🐎 horse", spell: "aspirated gh, curled ṛ, pure Sound School" },
+          { ur: "گدھا", tr: "gadhā", en: "🫏 donkey", spell: "also the subcontinent's favorite mild insult" },
+          { ur: "کتا", tr: "kuttā", en: "🐕 dog", spell: "doubled t, short and sharp" },
+          { ur: "بلی", tr: "billī", en: "🐈 cat", spell: "doubled l, soft as the cat" },
+          { ur: "مرغی", tr: "murghī", en: "🐔 hen", spell: "murgh (rooster) is the biryani word" },
+          { ur: "خرگوش", tr: "khargosh", en: "🐇 rabbit", spell: "khar + gosh = 'donkey ears' in Persian" },
+        ],
+      },
+      {
+        heading: "Parinday · the birds",
+        note: "The section the whole zoo is named after. Chiṛiyā is any small bird; the falcon is shāhīn, the bird Iqbal turned into a national symbol of ambition. You'll find his shāhīn couplets in the Kutub Khana.",
+        words: [
+          { ur: "چڑیا", tr: "chiṛiyā", en: "🐦 sparrow / small bird", spell: "the chiṛiyā of chiṛiyā ghar" },
+          { ur: "طوطا", tr: "totā", en: "🦜 parrot", spell: "spelled with to'e, one of that letter's few common words" },
+          { ur: "مور", tr: "mor", en: "🦚 peacock", spell: "monsoon dances and all" },
+          { ur: "کوا", tr: "kawwā", en: "🐦‍⬛ crow", spell: "the uninvited guest of every rooftop" },
+          { ur: "شاہین", tr: "shāhīn", en: "🦅 falcon", spell: "Iqbal's bird: high flight, no nest" },
+          { ur: "چکور", tr: "chakor", en: "🐦 chukar partridge", spell: "Pakistan's national bird" },
+        ],
+      },
+      {
+        heading: "Pānī aur zamīn · water and ground",
+        note: "You met machhlī in the nursery rhyme; here is the rest of her neighborhood.",
+        words: [
+          { ur: "مچھلی", tr: "machhlī", en: "🐟 fish", spell: "jal kī rānī, queen of the water" },
+          { ur: "مینڈک", tr: "meṉḍak", en: "🐸 frog", spell: "nasal ṉ in the middle" },
+          { ur: "کچھوا", tr: "kachhwā", en: "🐢 turtle", spell: "the app's own slow-button mascot" },
+          { ur: "سانپ", tr: "sāṉp", en: "🐍 snake", spell: "the nasal hum before the p" },
+          { ur: "مگرمچھ", tr: "magarmachh", en: "🐊 crocodile", spell: "magar + machh, the 'fish-grabber'" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Chiṛiyā ghar, 'bird house', became the word for zoo across Urdu and Hindi. The name likely spread from Delhi's colonial-era menageries, where the aviaries were the star attraction, and it stuck for lions, elephants, and everything else.",
+      "Lahore Zoo opened in 1872, making it one of the oldest zoos still running anywhere in the world.",
+      "Urdu has crocodile tears too: magarmachh ke āṉsū means exactly what the English idiom means, and aunties deploy it with exactly the same energy.",
+    ],
+  },
+  {
+    id: "R12",
+    title: "Duniyā kā Naqshā · The World in Urdu",
+    subtitle: "countries whose Urdu names will surprise you",
+    intro:
+      "Some countries keep their English names in Urdu. The interesting ones don't. Egypt is Miṣr, Greece is Yūnān, and Syria shares its name with the evening. These names arrived centuries before English did, riding caravan routes through Persian and Arabic, and reading them is a tour of history. Duniyā = world, mulk = country. Chalo.",
+    sections: [
+      {
+        heading: "Old names from the caravan routes",
+        note: "These countries were named in Urdu long before English reached the subcontinent, so their names came through Persian and Arabic instead.",
+        words: [
+          { ur: "مصر", tr: "Miṣr", en: "🇪🇬 Egypt", spell: "Arabic's own name for Egypt, unchanged" },
+          { ur: "یونان", tr: "Yūnān", en: "🇬🇷 Greece", spell: "from 'Ionia', the Greeks the East met first" },
+          { ur: "چین", tr: "Chīn", en: "🇨🇳 China", spell: "same spelling as chain (peace), context decides" },
+          { ur: "روس", tr: "Rūs", en: "🇷🇺 Russia", spell: "short and old, via Persian" },
+          { ur: "ترکی", tr: "Turkī", en: "🇹🇷 Türkiye", spell: "the country and the adjective in one word" },
+          { ur: "ایران", tr: "Īrān", en: "🇮🇷 Iran", spell: "Persian's own name for Persia" },
+          { ur: "عراق", tr: "Irāq", en: "🇮🇶 Iraq", spell: "starts with ain, the throat letter" },
+          { ur: "شام", tr: "Shām", en: "🇸🇾 Syria", spell: "also the word for evening, one of Urdu's best homographs" },
+          { ur: "فلسطین", tr: "Filastīn", en: "🇵🇸 Palestine", spell: "ends in the long -īn" },
+          { ur: "ہسپانیہ", tr: "Hispāniyā", en: "🇪🇸 Spain", spell: "via Arabic; plain 'Spen' is also heard now" },
+        ],
+      },
+      {
+        heading: "Paṛos · the neighborhood",
+        note: "India gets two names in Urdu: Hindustān, the old shared name, and Bhārat, which you'll hear in news bulletins. Both are correct; they carry different flavors of history.",
+        words: [
+          { ur: "ہندوستان", tr: "Hindustān", en: "🇮🇳 India (the classic name)", spell: "land of the Indus, hind + stān" },
+          { ur: "بھارت", tr: "Bhārat", en: "🇮🇳 India (the official name)", spell: "the one in the khabarnāma" },
+          { ur: "افغانستان", tr: "Afghānistān", en: "🇦🇫 Afghanistan", spell: "another -stān, 'land of'" },
+          { ur: "بنگلہ دیش", tr: "Banglādesh", en: "🇧🇩 Bangladesh", spell: "desh = country, in Bengali" },
+          { ur: "سری لنکا", tr: "Srī Lankā", en: "🇱🇰 Sri Lanka", spell: "as spoken, two words" },
+          { ur: "نیپال", tr: "Nepāl", en: "🇳🇵 Nepal", spell: "long ā carries the stress" },
+          { ur: "سعودی عرب", tr: "Saūdī Arab", en: "🇸🇦 Saudi Arabia", spell: "Arab, not 'Arabia', in Urdu" },
+          { ur: "امارات", tr: "Imārāt", en: "🇦🇪 UAE", spell: "short for Mutahidda Arab Imārāt" },
+        ],
+      },
+      {
+        heading: "Straight from English",
+        note: "The newer arrivals mostly kept their English names, re-dressed in Urdu letters. Reading these is great practice: you already know the answer, you just have to decode it.",
+        words: [
+          { ur: "امریکہ", tr: "Amrīkā", en: "🇺🇸 America / USA", spell: "ends in gol he" },
+          { ur: "برطانیہ", tr: "Barṭāniyā", en: "🇬🇧 Britain", spell: "from 'Britannia', via Arabic" },
+          { ur: "فرانس", tr: "Farāns", en: "🇫🇷 France", spell: "as heard, no silent letters" },
+          { ur: "جرمنی", tr: "Jarmanī", en: "🇩🇪 Germany", spell: "soft j, long ī" },
+          { ur: "کینیڈا", tr: "Kaneḍā", en: "🇨🇦 Canada", spell: "with the retroflex ḍ" },
+          { ur: "آسٹریلیا", tr: "Āsṭreliyā", en: "🇦🇺 Australia", spell: "opens with alif madda, the long āā" },
+          { ur: "جاپان", tr: "Jāpān", en: "🇯🇵 Japan", spell: "two long ā's, evenly weighted" },
+          { ur: "اٹلی", tr: "Iṭlī", en: "🇮🇹 Italy", spell: "with the retroflex ṭ" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Pakistan is the rare country that named itself in Urdu: pāk (pure) + stān (land). The name was coined in 1933 in Choudhry Rahmat Ali's 'Now or Never' pamphlet, woven from the regions it hoped to unite, and it doubled as a word that already meant something beautiful.",
+      "Shām means both Syria and evening, so 'Shām kī shām' (an evening in Syria) is a real, grammatical, and slightly poetic sentence.",
+      "The -stān in Afghanistān, Hindustān, and Pākistān is the same Persian 'land of' that English borrowed for made-up places. Urdu speakers can name real ones all day.",
+    ],
+  },
 ];
 
 const QUIZ_PASS_PERCENT = 70;
@@ -2681,10 +2807,10 @@ const KUTUB = [
 const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 8, name: "Shagird · Apprentice", ur: "شاگرد" },
-  { need: 17, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 26, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 36, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 49, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 18, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
+  { need: 27, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 37, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 51, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
