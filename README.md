@@ -16,7 +16,7 @@ Live at **[myurdu.org](https://myurdu.org)** · A web app for learning Urdu: spe
 - **Proverb of the day** on the home screen, rotating daily through the kahawatain with audio.
 - **Certificates (Sanad):** earn a title, tap 🎓 to render a downloadable truck-art-styled certificate.
 - **PWA:** installable (manifest + service worker — network-first HTML so no staleness, cache-first for versioned assets and audio → offline play after first visit).
-- **Daily Drills** — all daily games reset at midnight US Central time (America/Chicago), so the whole world plays the same puzzle on the same day:
+- **Daily Drills** — every learner's day flips at their own local midnight (Wordle-style), and the puzzle is seeded from the date string, so everyone playing a given date gets the same five wherever they are:
   - *Desi Roots*: a date-seeded daily round of English words borrowed from Urdu (khaki, pyjamas, shampoo…), with etymology stories. Maintains a 🔥 streak.
   - *Naqsha Challenge*: a real-geometry SVG map of Pakistan (Natural Earth 10m admin boundaries, public domain; cities/K2/Indus placed by true coordinates — regenerate via `tools/gen_map.py`) lights up a province, city, river, or peak — name it. Date-seeded daily five.
   - Both daily games end with a Wordle-style 📤 share card (emoji squares + streak) via the native share sheet or clipboard.

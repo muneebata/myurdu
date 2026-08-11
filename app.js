@@ -226,8 +226,8 @@ function shiftKey(key, days) {
   return `${dt.getUTCFullYear()}-${String(dt.getUTCMonth() + 1).padStart(2, "0")}-${String(dt.getUTCDate()).padStart(2, "0")}`;
 }
 
-function daySeed() {
-  return Number(todayKey().replaceAll("-", ""));
+function daySeed(key = todayKey()) {
+  return Number(key.replaceAll("-", ""));
 }
 
 function mulberry32(a) {
@@ -242,8 +242,8 @@ function mulberry32(a) {
 // No-repeat rotation: shuffle the whole pool once per cycle (seeded,
 // so identical worldwide), then deal `count` per day off the deck.
 // Nothing repeats until the deck runs out; then a fresh shuffle.
-function cycleDraw(pool, count, seedBase) {
-  const [y, m, d] = todayKey().split("-").map(Number);
+function cycleDraw(pool, count, seedBase, key = todayKey()) {
+  const [y, m, d] = key.split("-").map(Number);
   const dayIndex = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
   const daysPerCycle = Math.max(1, Math.floor(pool.length / count));
   const cycle = Math.floor(dayIndex / daysPerCycle);
@@ -480,7 +480,7 @@ function ledgerRow(onclick, num, title, urName, sub, statusHtml) {
     </button>`;
 }
 
-// ── Jashn-e-Azadi week (Aug 7–14, Chicago time) ─────────────
+// ── Jashn-e-Azadi week (Aug 7–14, each learner's local date) ──
 
 // Azadi is tiered: the whole of August is celebration month (flags,
 // banner, share card); Aug 7–14 is the peak week (fireworks, confetti,
@@ -492,10 +492,10 @@ function azadiMonth() {
   return m === 8;
 }
 
-function azadiPeak() {
+function azadiPeak(key = todayKey()) {
   const t = new URLSearchParams(location.search).get("azadi");
   if (t === "1" || t === "14") return true;
-  const [, m, d] = todayKey().split("-").map(Number);
+  const [, m, d] = key.split("-").map(Number);
   return m === 8 && d >= 7 && d <= 14;
 }
 
@@ -1998,6 +1998,33 @@ function finishSuno() {
 
 let d5 = null;
 
+// The raw seeded deal for any date. Shared by the game and by the
+// admin preview, so what an admin reviews for tomorrow is exactly
+// what learners will get. Pure: touches no profile, saves nothing.
+function daily5Picks(key) {
+  const sunoPool = LEVELS.flatMap((lv) => lv.items);
+  return {
+    sunoPicks: azadiPeak(key)
+      ? seededPick(AZADI_ITEMS, 2, mulberry32(daySeed(key) + 47))
+      : cycleDraw(sunoPool, 2, 13001, key),
+    rootsPicks: cycleDraw(LOANWORDS, 2, 1, key),
+    geoPicks: cycleDraw(GEO_FEATURES, 1, 7001, key),
+  };
+}
+
+// The five questions for a date, in the order players see them.
+function daily5Preview(key) {
+  const rng = mulberry32(daySeed(key) + 5);
+  const sunoPool = LEVELS.flatMap((lv) => lv.items);
+  const fullPool = azadiPeak(key) ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
+  const { sunoPicks, rootsPicks, geoPicks } = daily5Picks(key);
+  return seededPick([
+    ...sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
+    ...rootsPicks.map((w) => rootsQuestion(w, rng)),
+    ...geoPicks.map((f) => geoQuestion(f, rng)),
+  ], 5, rng);
+}
+
 function startDaily5() {
   pingPlay("d5");
   const rng = mulberry32(daySeed() + 5);
@@ -2018,11 +2045,7 @@ function startDaily5() {
     geoPicks = pin.geo.map((id) => GEO_FEATURES.find((x) => x.id === id)).filter(Boolean);
   }
   if (!pin || sunoPicks.length !== 2 || rootsPicks.length !== 2 || geoPicks.length !== 1) {
-    sunoPicks = azadiPeak()
-      ? seededPick(AZADI_ITEMS, 2, mulberry32(daySeed() + 47))
-      : cycleDraw(sunoPool, 2, 13001);
-    rootsPicks = cycleDraw(LOANWORDS, 2, 1);
-    geoPicks = cycleDraw(GEO_FEATURES, 1, 7001);
+    ({ sunoPicks, rootsPicks, geoPicks } = daily5Picks(today));
     p.d5Deal = { date: today, suno: sunoPicks.map((x) => x.tr), roots: rootsPicks.map((x) => x.en), geo: geoPicks.map((x) => x.id) };
     saveRoot();
   }
@@ -3742,7 +3765,7 @@ function shuffle(arr) {
 
 // ── Boot ─────────────────────────────────────────────────────
 
-if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && !window.MYURDU_NO_BOOT) {
   navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
@@ -3820,9 +3843,13 @@ function navBack() {
   return false;
 }
 
-initTheme();
-Cloud.init();
-renderHome();
+// admin.html loads this file purely for the shared game logic and sets
+// MYURDU_NO_BOOT first, so nothing renders and no visit is counted.
+if (!window.MYURDU_NO_BOOT) {
+  initTheme();
+  Cloud.init();
+  renderHome();
+}
 
 // Anonymous game tick: one tiny { day, game } record per device per
 // day per game, sent when a round is started. Nothing about the
@@ -3845,6 +3872,7 @@ function pingPlay(game) {
 // Anonymous visitor tick: one tiny { day } record per device per day.
 // Nothing personal is sent or stored, see admin.html for the tally.
 (() => {
+  if (window.MYURDU_NO_BOOT) return;
   try {
     const k = "urdu-ustaadh-visit";
     const today = todayKey();
@@ -3856,4 +3884,4 @@ function pingPlay(game) {
     }).then((r) => { if (r.ok) localStorage.setItem(k, today); }).catch(() => {});
   } catch (_) {}
 })();
-if (isAzadiDay()) launchConfetti();
+if (!window.MYURDU_NO_BOOT && isAzadiDay()) launchConfetti();

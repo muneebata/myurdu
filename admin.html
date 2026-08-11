@@ -29,6 +29,19 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
 .bar i { display:block; height:100%; background:linear-gradient(90deg,var(--teal),var(--mustard)); border-radius:999px; }
 .note { font-size:0.8rem; color:var(--muted); }
 .priv { background:#eef3e2; border:1px solid #c9d8ab; border-radius:12px; padding:9px 12px; font-size:0.82rem; color:#55703a; margin-bottom:16px; }
+
+  .d5-day { font: inherit; font-size: .85rem; padding: 5px 12px; border-radius: 99px; border: 2px solid #cfc4a5; background: #fff; cursor: pointer; }
+  .d5-day.on { background: #1a6b6b; border-color: #1a6b6b; color: #fff; font-weight: 700; }
+  .d5-list { margin: 0; padding-left: 20px; }
+  .d5-list li { margin-bottom: 14px; }
+  .d5-kind { display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #7a6a45; }
+  .d5-prompt { margin: 2px 0 6px; }
+  .d5-prompt .q-ur, .d5-prompt .ur { font-size: 1.5rem; }
+  .d5-opts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+  .d5-opt { font-size: .85rem; padding: 3px 10px; border-radius: 8px; border: 1px solid #ddd2b4; background: #fdfaf1; }
+  .d5-opt.ok { border-color: #4f8f3f; background: #e8f2dd; font-weight: 700; }
+  .d5-opt i { color: #6b6350; }
+  .d5-play { font: inherit; font-size: .8rem; padding: 2px 9px; border-radius: 8px; border: 1px solid #b5d3d6; background: #e7f0f1; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -55,6 +68,9 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
     <div id="play-games" style="margin-top:10px"></div>
     <div id="play-chart" style="margin-top:10px"></div>
     <p class="note">One tick per device per day per game, sent when a round starts (stored: the date and which game, nothing about the player or their score). Counting began 11 Aug 2026, so figures before that date are blank rather than zero.</p>
+    <h2>🎯 Aaj Ka Paanch preview <span class="note">check tomorrow's five before anyone plays them</span></h2>
+    <div id="d5-preview">Loading…</div>
+    <p class="note">Seeded from the date, so this is exactly what every learner gets on that date, wherever they are. Each learner's day flips at their own local midnight. Changing a question bank before a date arrives changes that date's deal, so review early and edit early.</p>
     <h2>Accounts &amp; learning</h2>
     <div class="tiles" id="tiles"></div>
     <h2>Signups by month</h2>
@@ -252,6 +268,60 @@ async function loadStats() {
 </div>
 <script src="data.js"></script>
 <script src="speech.js"></script>
+<script>window.MYURDU_NO_BOOT = true;</script>
+<script src="app.js"></script>
+<script>
+// Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
+// (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
+// so this shows the real questions, not a reimplementation of them.
+(function () {
+  const el = document.getElementById("d5-preview");
+  if (typeof daily5Preview !== "function") {
+    el.innerHTML = '<p class="note">Preview unavailable: app.js did not load.</p>';
+    return;
+  }
+  const dayKey = (offset) => {
+    const d = new Date();
+    d.setDate(d.getDate() + offset);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  };
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const KIND = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha" };
+
+  const render = (offset) => {
+    const key = dayKey(offset);
+    let qs;
+    try { qs = daily5Preview(key); } catch (e) {
+      el.innerHTML = `<p class="note">Could not build the deal for ${key}: ${esc(e.message)}</p>`;
+      return;
+    }
+    const label = offset === 0 ? "today" : offset === 1 ? "tomorrow" : `+${offset} days`;
+    el.innerHTML = `
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        ${[0, 1, 2, 3].map((o) => `<button class="d5-day${o === offset ? " on" : ""}" data-o="${o}">${o === 0 ? "Today" : o === 1 ? "Tomorrow" : "+" + o + "d"}</button>`).join("")}
+      </div>
+      <p class="note" style="margin:0 0 8px"><b>${key}</b> · ${label} · ${qs.length} questions</p>
+      <ol class="d5-list">
+        ${qs.map((q) => {
+          const item = q.item || {};
+          const answer = (q.options || []).find((o) => o.correct);
+          const audio = item.ur && item.tr
+            ? `<button class="d5-play" data-ur="${esc(item.ur)}" data-tr="${esc(item.tr)}">▶ hear</button>` : "";
+          return `<li>
+            <span class="d5-kind">${KIND[q.kind] || q.kind || "?"}</span>
+            <div class="d5-prompt">${q.prompt ? q.prompt.replace(/<button[\s\S]*?<\/button>/g, "") : ""}</div>
+            <div class="d5-opts">${(q.options || []).map((o) =>
+              `<span class="d5-opt${o.correct ? " ok" : ""}">${esc(o.label)}${o.sub ? ` <i>${esc(o.sub)}</i>` : ""}</span>`).join("")}</div>
+            <div class="note">answer: <b>${esc(answer ? answer.label : "?")}</b>${item.tr ? ` · source: ${esc(item.tr)}` : ""} ${audio}</div>
+          </li>`;
+        }).join("")}
+      </ol>`;
+    el.querySelectorAll(".d5-day").forEach((b) => (b.onclick = () => render(Number(b.dataset.o))));
+    el.querySelectorAll(".d5-play").forEach((b) => (b.onclick = () => Speech.speak(b.dataset.ur, b.dataset.tr)));
+  };
+  render(1); // tomorrow first, since that is the one still worth changing
+})();
+</script>
 <script>
 (function () {
   // Risk-ranked ear-check: letter names first (proven risk class), then
