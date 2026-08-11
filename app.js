@@ -1703,6 +1703,7 @@ function rootsQuestion(w, rng) {
 }
 
 function startDaily() {
+  pingPlay("roots");
   // practice mode: endless random rounds; the streak lives in Aaj Ka Paanch
   const rng = mulberry32(Math.floor(Math.random() * 1e9));
   const words = seededPick(LOANWORDS, DAILY_QUESTIONS, rng);
@@ -1815,6 +1816,7 @@ function geoQuestion(f, rng) {
 }
 
 function startGeo() {
+  pingPlay("naqsha");
   const rng = mulberry32(Math.floor(Math.random() * 1e9));
   const picks = seededPick(GEO_FEATURES, GEO_QUESTIONS, rng);
   geo = { questions: picks.map((f) => geoQuestion(f, rng)), current: 0, correct: 0, results: [] };
@@ -1907,6 +1909,7 @@ function sunoQuestion(item, pool, rng) {
 }
 
 function startSuno() {
+  pingPlay("suno");
   const rng = mulberry32(Math.floor(Math.random() * 1e9));
   const pool = LEVELS.flatMap((lv) => lv.items);
   const picks = seededPick(pool, DAILY_QUESTIONS, rng);
@@ -1984,6 +1987,7 @@ function finishSuno() {
 let d5 = null;
 
 function startDaily5() {
+  pingPlay("d5");
   const rng = mulberry32(daySeed() + 5);
   const p = profile();
   const today = todayKey();
@@ -3400,6 +3404,7 @@ function imlaPool() {
 const IMLA_EXTRA = [..."بتنکملسدرہوجی"];
 
 function startImla() {
+  pingPlay("imla");
   const pool = imlaPool();
   const rng = mulberry32(Math.floor(Math.random() * 1e9));
   const picks = seededPick(pool, Math.min(5, pool.length), rng);
@@ -3724,6 +3729,24 @@ function navBack() {
 initTheme();
 Cloud.init();
 renderHome();
+
+// Anonymous game tick: one tiny { day, game } record per device per
+// day per game, sent when a round is started. Nothing about the
+// player or their score goes with it, just "somebody played this
+// today", so the games can be counted without tracking anyone.
+function pingPlay(game) {
+  try {
+    const k = `urdu-ustaadh-play-${game}`;
+    const today = todayKey();
+    if (localStorage.getItem(k) === today || !window.MYURDU_API) return;
+    localStorage.setItem(k, today); // set first: one ping a day even if the request fails
+    fetch(window.MYURDU_API.replace(/\/+$/, "") + "/api/collections/plays/records", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ day: today, game }),
+    }).catch(() => {});
+  } catch (_) {}
+}
 
 // Anonymous visitor tick: one tiny { day } record per device per day.
 // Nothing personal is sent or stored, see admin.html for the tally.
