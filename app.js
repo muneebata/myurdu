@@ -3357,7 +3357,11 @@ function renderReport() {
 }
 
 function slugifyTitle(t) {
-  return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+  // NFD strips diacritics to base letters (ā→a, ṛ→r) so titles like
+  // "Chiṛiyā Ghar" slug to chiriya-ghar, not chi-iy-ghar. Must stay
+  // in lockstep with slugify() in tools/gen_seo.py.
+  return t.normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 }
 
 // ── PTV night mode ───────────────────────────────────────────

@@ -5,7 +5,7 @@ Parses data.js (machine-generated, regular format) and emits one SEO page
 per level/unit with real audio buttons, cross-links, and a hub page.
 Run by tools/deploy.sh on every deploy.
 """
-import os, re, html, json
+import os, re, html, json, unicodedata
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 DATA = open(os.path.join(ROOT, "data.js"), encoding="utf-8").read()
@@ -22,7 +22,10 @@ def grab(block, key):
     return unesc(m.group(1)) if m else ""
 
 def slugify(title):
-    s = re.sub(r"[^a-z0-9]+", "-", title.lower())
+    # NFD strips diacritics to base letters (ā→a, ṛ→r); lockstep with
+    # slugifyTitle() in app.js.
+    t = "".join(c for c in unicodedata.normalize("NFD", title) if not unicodedata.combining(c))
+    s = re.sub(r"[^a-z0-9]+", "-", t.lower())
     return re.sub(r"-+", "-", s).strip("-")
 
 def audio_slug(tr):
