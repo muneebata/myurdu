@@ -1225,6 +1225,18 @@ function renderHome() {
     </section>
 
     <section>
+      <h2 class="track-title retro">👪 Rishtay · <span class="ur">رشتے</span> <span class="track-sub">who everyone is, and what to call them</span></h2>
+      <button class="rishta-home-card" onclick="openRishtay()">
+        ${RISHTA_TREE_ART}
+        <span class="sair-main">
+          <span class="sair-title">Four aunts, four uncles, one family tree</span>
+          <span class="sair-desc">English has one word for aunt. Urdu has four, and each one says which side of the family she is on. Tap through the whole khāndān, hear every name, and never guess at a shaadi again.</span>
+        </span>
+        <span class="sair-prog">${isCompleted("R13") ? "✓" : "👋"}<br><span>${isCompleted("R13") ? "explored" : "meet them"}</span></span>
+      </button>
+    </section>
+
+    <section>
       <h2 class="track-title retro">🏖️ Thora Break · <span class="ur">تھوڑا وقفہ</span> <span class="track-sub">not a lesson, a little holiday</span></h2>
       <button class="break-card" onclick="renderTrack('pakistan')">
         <span class="break-stamp ur">پاکستان</span>
@@ -2170,6 +2182,39 @@ async function showCertificate() {
 }
 
 // ── Reading & culture units ──────────────────────────────────
+
+// Home-card art: a real descending tree, grandparents to you.
+// Teal strokes are abbū's side, mustard is ammī's side, and the
+// two lines meet at āp in the middle. Portraits are the same
+// crops the unit uses.
+const RISHTA_TREE_ART = `
+  <svg class="rishta-tree-art" viewBox="0 0 200 162" role="img" aria-label="A family tree from grandparents down to you">
+    <defs>
+      ${[["ta", 26, 24], ["tb", 70, 24], ["ma", 130, 24], ["mb", 174, 24],
+         ["pa", 48, 84], ["pb", 152, 84], ["you", 100, 138]]
+        .map(([id, cx, cy]) => `<clipPath id="rt-${id}"><circle cx="${cx}" cy="${cy}" r="${id === "you" ? 20 : 18}"/></clipPath>`).join("")}
+    </defs>
+    <g fill="none" stroke-width="2.5" stroke-linecap="round">
+      <path stroke="#1a6b6b" d="M26,44 V54 H70 V44 M48,54 V64"/>
+      <path stroke="#c99a2e" d="M130,44 V54 H174 V54 V44 M152,54 V64"/>
+      <path stroke="#1a6b6b" d="M48,104 V114 H100"/>
+      <path stroke="#c99a2e" d="M152,104 V114 H100"/>
+      <path stroke="#8a7f5f" d="M100,114 V118"/>
+    </g>
+    ${[["ta", "dada", 26, 24, 18, "#1a6b6b"], ["tb", "dadi", 70, 24, 18, "#1a6b6b"],
+       ["ma", "nana", 130, 24, 18, "#c99a2e"], ["mb", "nani", 174, 24, 18, "#c99a2e"],
+       ["pa", "abbu", 48, 84, 18, "#1a6b6b"], ["pb", "ammi", 152, 84, 18, "#c99a2e"],
+       ["you", "aap", 100, 138, 20, "#0f5a5a"]]
+      .map(([id, file, cx, cy, r, ring]) => `
+      <image href="images/rishtay/${file}.jpg" x="${cx - r}" y="${cy - r}" width="${r * 2}" height="${r * 2}"
+        preserveAspectRatio="xMidYMid slice" clip-path="url(#rt-${id})"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${ring}" stroke-width="${id === "you" ? 3.5 : 2.5}"/>`).join("")}
+  </svg>`;
+
+function openRishtay() {
+  const i = READING_UNITS.findIndex((u) => u.id === "R13");
+  if (i >= 0) openUnit("READING_UNITS", i);
+}
 
 // ── Rishtay: the interactive family tree (R13) ───────────────
 // Generation rows scroll sideways like a dawat seating chart;

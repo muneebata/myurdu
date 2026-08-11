@@ -285,6 +285,12 @@ body {
 .word-play { font-size: 1.1rem; }
 .word-pic { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; flex-shrink: 0; border: 1.5px solid var(--line); }
 
+/* ── Rishtay home card ── */
+.rishta-home-card { display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
+.rishta-home-card:hover { border-color: var(--mustard); }
+.rishta-tree-art { flex: none; width: 150px; height: auto; display: block; }
+@media (max-width: 560px) { .rishta-tree-art { width: 104px; } .rishta-home-card { gap: 12px; padding: 14px; } }
+
 /* ── Rishtay family tree ── */
 .rishta-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
 .rl { font-size: 0.8rem; padding: 3px 10px; border-radius: 99px; border: 2px solid; background: #fbf5e0; }
@@ -855,6 +861,10 @@ html[data-theme="dark"] .rishta-card.side-m { border-color: #e0b84f; }
 html[data-theme="dark"] .rl.t { border-color: #5fb8b8; }
 html[data-theme="dark"] .rl.m { border-color: #e0b84f; }
 html[data-theme="dark"] .rc-ur { color: #7fd0d0; }
+html[data-theme="dark"] .rishta-home-card { background: var(--card); }
+html[data-theme="dark"] .rishta-tree-art path[stroke="#1a6b6b"] { stroke: #5fb8b8; }
+html[data-theme="dark"] .rishta-tree-art circle[stroke="#1a6b6b"] { stroke: #5fb8b8; }
+html[data-theme="dark"] .rishta-tree-art circle[stroke="#0f5a5a"] { stroke: #8ee0e0; }
 html[data-theme="dark"] .pr.good { background: #1d4a33; color: #c9e8c9; }
 html[data-theme="dark"] .pr.ok, html[data-theme="dark"] .pr.warn { background: #4a3d1d; color: #f0dfae; border-color: #6e5c2e; }
 html[data-theme="dark"] .pr.bad { background: #4a2626; color: #f0c2b8; border-color: #6e3a3a; }
