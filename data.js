@@ -1201,11 +1201,13 @@ const READING_UNITS = [
 ];
 
 // ─────────────────────────────────────────────────────────────
-// Rishtay: the interactive family tree (R13). side: "t" = abbū's
-// (paternal) side, "m" = ammī's (maternal) side, "g" = your own
-// gharwāle. Portraits: user-provided illustration, cropped into
-// images/rishtay/. Cousins inherit their parent's side color —
-// that's the whole lesson at a glance.
+// Rishtay: the interactive family tree (R13). side = the card's color:
+// "t" = abbū's (paternal) side, "m" = ammī's (maternal) side, "g" =
+// your own gharwāle. `also` adds a second membership without changing
+// the color, which is how ammī and abbū belong to their own side AND
+// to your household. Portraits: user-provided illustration, cropped
+// into images/rishtay/. Cousins inherit their parent's side color,
+// which is the whole lesson at a glance.
 // ─────────────────────────────────────────────────────────────
 const RISHTAY = [
   { gen: "Dādā-dādī aur nānā-nānī · the grandparents", people: [
@@ -1218,8 +1220,8 @@ const RISHTAY = [
     { ur: "تایا", tr: "tāyā", en: "abbū's elder brother", side: "t", pic: "images/rishtay/taya.jpg" },
     { ur: "چچا", tr: "chachā", en: "abbū's younger brother", side: "t", pic: "images/rishtay/chacha.jpg" },
     { ur: "پھوپھی", tr: "phūphī", en: "abbū's sister", side: "t", pic: "images/rishtay/phuphi.jpg" },
-    { ur: "ابو", tr: "abbū", en: "father", side: "t", pic: "images/rishtay/abbu.jpg" },
-    { ur: "امی", tr: "ammī", en: "mother", side: "m", pic: "images/rishtay/ammi.jpg" },
+    { ur: "ابو", tr: "abbū", en: "father", side: "t", also: "g", pic: "images/rishtay/abbu.jpg" },
+    { ur: "امی", tr: "ammī", en: "mother", side: "m", also: "g", pic: "images/rishtay/ammi.jpg" },
     { ur: "ماموں", tr: "māmūṉ", en: "ammī's brother", side: "m", pic: "images/rishtay/mamun.jpg" },
     { ur: "خالہ", tr: "khālā", en: "ammī's sister", side: "m", pic: "images/rishtay/khala.jpg" },
   ] },
@@ -1228,6 +1230,7 @@ const RISHTAY = [
     { ur: "بھابھی", tr: "bhābhī", en: "bhāī's wife", side: "g", pic: "images/rishtay/bhabhi.jpg" },
     { ur: "آپ", tr: "āp", en: "YOU", side: "g", you: true, pic: "images/rishtay/aap.jpg" },
     { ur: "بہن", tr: "behen", en: "sister", side: "g", pic: "images/rishtay/behen.jpg" },
+    { ur: "تایا زاد", tr: "tāyā-zād", en: "cousin · tāyā's son", side: "t", pic: "images/rishtay/tayazad.jpg" },
     { ur: "چچا زاد", tr: "chachā-zād", en: "cousin · chachā's son", side: "t", pic: "images/rishtay/chachazad.jpg" },
     { ur: "پھوپھی زاد", tr: "phūphī-zād", en: "cousin · phūphī's daughter", side: "t", pic: "images/rishtay/phuphizad.jpg" },
     { ur: "ماموں زاد", tr: "māmūṉ-zād", en: "cousin · māmūṉ's son", side: "m", pic: "images/rishtay/mamunzad.jpg" },

@@ -328,12 +328,12 @@ body {
 .rishta-card img { width: 86px; height: 86px; object-fit: cover; border-radius: 10px; }
 
 /* filter: pop the chosen side, fade the rest */
-.rishta-wrap.filter-t .rishta-card:not(.side-t),
-.rishta-wrap.filter-m .rishta-card:not(.side-m),
-.rishta-wrap.filter-g .rishta-card:not(.side-g) { opacity: 0.3; filter: grayscale(0.85); }
-.rishta-wrap.filter-t .rishta-card.side-t,
-.rishta-wrap.filter-m .rishta-card.side-m,
-.rishta-wrap.filter-g .rishta-card.side-g { transform: translateY(-4px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18); }
+.rishta-wrap.filter-t .rishta-card:not(.in-t),
+.rishta-wrap.filter-m .rishta-card:not(.in-m),
+.rishta-wrap.filter-g .rishta-card:not(.in-g) { opacity: 0.3; filter: grayscale(0.85); }
+.rishta-wrap.filter-t .rishta-card.in-t,
+.rishta-wrap.filter-m .rishta-card.in-m,
+.rishta-wrap.filter-g .rishta-card.in-g { transform: translateY(-4px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18); }
 @media (prefers-reduced-motion: reduce) { .rishta-card, .rl { transition: none; } }
 .rc-ur { font-size: 1.35rem; line-height: 1.9; color: var(--teal-dark); }
 .rc-tr { font-weight: 700; font-size: 0.88rem; }

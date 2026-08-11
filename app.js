@@ -2258,8 +2258,8 @@ function rishtaFilter(side) {
   const note = $("#rishta-filter-note");
   if (note) {
     note.textContent = rishtaSide
-      ? { t: "Showing abbū's side. Tap again to show everyone.", m: "Showing ammī's side. Tap again to show everyone.", g: "Showing your own gharwāle. Tap again to show everyone." }[rishtaSide]
-      : "Tap a side to pick out who belongs to it.";
+      ? { t: "Showing abbū's side, including abbū himself. Tap again to show everyone.", m: "Showing ammī's side, including ammī herself. Tap again to show everyone.", g: "Showing your own gharwāle. Ammī and abbū are here too: they are your household and the root of their own sides." }[rishtaSide]
+      : "Tap a side to pick out who belongs to it. Ammī and abbū belong to two: their own side, and your gharwāle.";
   }
 }
 
@@ -2276,7 +2276,7 @@ function rishtaTreeHTML() {
       ${RISHTAY.map((g) => `
       <div class="rishta-genlabel">${esc(g.gen)}</div>
       <div class="rishta-gen">${g.people.map((p) => `
-        <button class="rishta-card side-${p.side}${p.you ? " you" : ""}"
+        <button class="rishta-card side-${p.side} in-${p.side}${p.also ? ` in-${p.also}` : ""}${p.you ? " you" : ""}"
           aria-label="${esc(p.tr)}: ${esc(p.en)}"
           onclick='Speech.speak(${JSON.stringify(p.ur)}, ${JSON.stringify(p.tr)})'>
           <img src="${p.pic}" alt="" loading="lazy">

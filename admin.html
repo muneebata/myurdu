@@ -41,6 +41,8 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
   .d5-opt { font-size: .85rem; padding: 3px 10px; border-radius: 8px; border: 1px solid #ddd2b4; background: #fdfaf1; }
   .d5-opt.ok { border-color: #4f8f3f; background: #e8f2dd; font-weight: 700; }
   .d5-opt i { color: #6b6350; }
+  .d5-ur { font-size: 1.6rem; line-height: 1.9; color: #0c5f66; }
+  .d5-extra { font-size: .82rem; background: #f7f2e2; border-left: 3px solid #e0cf9a; padding: 5px 10px; border-radius: 0 8px 8px 0; margin: 4px 0; }
   .d5-play { font: inherit; font-size: .8rem; padding: 2px 9px; border-radius: 8px; border: 1px solid #b5d3d6; background: #e7f0f1; cursor: pointer; }
 </style>
 </head>
@@ -303,16 +305,34 @@ async function loadStats() {
       <p class="note" style="margin:0 0 8px"><b>${key}</b> · ${label} · ${qs.length} questions</p>
       <ol class="d5-list">
         ${qs.map((q) => {
-          const item = q.item || {};
           const answer = (q.options || []).find((o) => o.correct);
-          const audio = item.ur && item.tr
-            ? `<button class="d5-play" data-ur="${esc(item.ur)}" data-tr="${esc(item.tr)}">▶ hear</button>` : "";
+          // Rebuild what the player actually sees, per question kind.
+          let ask = "", extra = "", play = "";
+          if (q.kind === "roots") {
+            const w = q.word || {};
+            ask = `${esc(w.borrower || "English")} borrowed <b>“${esc(w.en)}”</b> from Urdu. What does it literally mean?`;
+            extra = `<div class="d5-ur ur">${esc(w.ur)}</div><div class="note">${esc(w.tr)}</div>`;
+            if (w.story) extra += `<div class="d5-extra"><b>Story shown after answering:</b> ${esc(w.story)}</div>`;
+            play = w.ur ? `<button class="d5-play" data-ur="${esc(w.ur)}" data-tr="${esc(w.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "geo") {
+            const f = q.feature || {};
+            ask = esc(typeof geoPrompt === "function" ? geoPrompt(f.type) : "Which feature is highlighted?");
+            extra = `<div class="d5-extra"><b>🔎 Clue shown to the player:</b> ${esc(f.clue || "(none)")}</div>`
+              + (f.blurb ? `<div class="d5-extra"><b>Fact shown after answering:</b> ${esc(f.blurb)}</div>` : "")
+              + `<div class="note">map target: ${esc(f.name)} · type: ${esc(f.type)}${f.ur ? ` · ${esc(f.ur)}` : ""}</div>`;
+          } else {
+            const it = q.item || {};
+            ask = "🎧 Listen closely, what does it mean? (audio only, no text shown)";
+            extra = `<div class="d5-ur ur">${esc(it.ur)}</div><div class="note">${esc(it.tr)}</div>`;
+            play = it.ur ? `<button class="d5-play" data-ur="${esc(it.ur)}" data-tr="${esc(it.tr)}">▶ hear</button>` : "";
+          }
           return `<li>
-            <span class="d5-kind">${KIND[q.kind] || q.kind || "?"}</span>
-            <div class="d5-prompt">${q.prompt ? q.prompt.replace(/<button[\s\S]*?<\/button>/g, "") : ""}</div>
+            <span class="d5-kind">${KIND[q.kind] || q.kind || "?"}</span> ${play}
+            <div class="d5-prompt">${ask}</div>
+            ${extra}
             <div class="d5-opts">${(q.options || []).map((o) =>
               `<span class="d5-opt${o.correct ? " ok" : ""}">${esc(o.label)}${o.sub ? ` <i>${esc(o.sub)}</i>` : ""}</span>`).join("")}</div>
-            <div class="note">answer: <b>${esc(answer ? answer.label : "?")}</b>${item.tr ? ` · source: ${esc(item.tr)}` : ""} ${audio}</div>
+            <div class="note">answer: <b>${esc(answer ? answer.label : "?")}</b></div>
           </li>`;
         }).join("")}
       </ol>`;
