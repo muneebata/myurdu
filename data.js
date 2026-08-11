@@ -1026,54 +1026,58 @@ const READING_UNITS = [
         note: "Every zoo trip starts here. Sher technically means lion (babbar sher if you want to be unmistakable), but in everyday speech it stretches to tigers too. The leopard has its own word: tenduā.",
         img: { src: "images/snowleopard.jpg", alt: "Snow leopard portrait", caption: "The snow leopard, barfānī tenduā: the 'snowy leopard', ghost of Pakistan's mountains.", credit: "Photo: Tambako The Jaguar · CC BY-SA 2.0 · via Wikimedia Commons" },
         words: [
-          { ur: "شیر", tr: "sher", en: "🦁 lion", spell: "babbar sher = definitely a lion" },
-          { ur: "ہاتھی", tr: "hāthī", en: "🐘 elephant", spell: "hāth (hand) hiding inside, that trunk" },
-          { ur: "تیندوا", tr: "tenduā", en: "🐆 leopard", spell: "barfānī tenduā = snow leopard" },
-          { ur: "ریچھ", tr: "rīchh", en: "🐻 bear", spell: "one syllable, all growl" },
-          { ur: "بندر", tr: "bandar", en: "🐒 monkey", spell: "also Karachi's old port name: Bandar Road" },
-          { ur: "ہرن", tr: "hiran", en: "🦌 deer", spell: "the graceful one of Urdu poetry" },
-          { ur: "اونٹ", tr: "ūṉṭ", en: "🐫 camel", spell: "starts with the nasal ūṉ, Sound School's hum" },
-          { ur: "مارخور", tr: "mārkhor", en: "🐐 markhor", spell: "the national animal, corkscrew horns and all" },
+          { ur: "شیر", pic: "images/zoo/sher.jpg", tr: "sher", en: "lion", spell: "babbar sher = definitely a lion" },
+          { ur: "ہاتھی", pic: "images/zoo/haathi.jpg", tr: "hāthī", en: "elephant", spell: "hāth (hand) hiding inside, that trunk" },
+          { ur: "تیندوا", pic: "images/snowleopard.jpg", tr: "tenduā", en: "leopard", spell: "barfānī tenduā = snow leopard" },
+          { ur: "ریچھ", pic: "images/zoo/reechh.jpg", tr: "rīchh", en: "bear", spell: "one syllable, all growl" },
+          { ur: "بندر", pic: "images/zoo/bandar.jpg", tr: "bandar", en: "monkey", spell: "also Karachi's old port name: Bandar Road" },
+          { ur: "ہرن", pic: "images/zoo/hiran.jpg", tr: "hiran", en: "deer", spell: "the graceful one of Urdu poetry" },
+          { ur: "اونٹ", pic: "images/camel.jpg", tr: "ūṉṭ", en: "camel", spell: "starts with the nasal ūṉ, Sound School's hum" },
+          { ur: "مارخور", pic: "images/markhor.jpg", tr: "mārkhor", en: "markhor", spell: "the national animal, corkscrew horns and all" },
         ],
       },
       {
         heading: "Gāṉv ke jānwar · down on the farm",
         note: "The everyday animals of village and home. Mind the sheep: add one syllable to bheṛ and it becomes the wolf that eats it.",
         words: [
-          { ur: "گائے", tr: "gāe", en: "🐄 cow", spell: "long ā, then e" },
-          { ur: "بکری", tr: "bakrī", en: "🐐 goat", spell: "Bakra Eid's bakrā is her brother" },
-          { ur: "بھیڑ", tr: "bheṛ", en: "🐑 sheep", spell: "aspirated bh + the curl ṛ" },
-          { ur: "بھیڑیا", tr: "bheṛiyā", en: "🐺 wolf", spell: "bheṛ + iyā = sheep's worst enemy" },
-          { ur: "گھوڑا", tr: "ghoṛā", en: "🐎 horse", spell: "aspirated gh, curled ṛ, pure Sound School" },
-          { ur: "گدھا", tr: "gadhā", en: "🫏 donkey", spell: "also the subcontinent's favorite mild insult" },
-          { ur: "کتا", tr: "kuttā", en: "🐕 dog", spell: "doubled t, short and sharp" },
-          { ur: "بلی", tr: "billī", en: "🐈 cat", spell: "doubled l, soft as the cat" },
-          { ur: "مرغی", tr: "murghī", en: "🐔 hen", spell: "murgh (rooster) is the biryani word" },
-          { ur: "خرگوش", tr: "khargosh", en: "🐇 rabbit", spell: "khar + gosh = 'donkey ears' in Persian" },
+          { ur: "گائے", pic: "images/zoo/gaae.jpg", tr: "gāe", en: "cow", spell: "long ā, then e" },
+          { ur: "بکری", pic: "images/zoo/bakri.jpg", tr: "bakrī", en: "goat", spell: "bak as in bakbak, chicken-chatter short; Bakra Eid's bakrā is her brother" },
+          { ur: "بھیڑ", pic: "images/zoo/bherr.jpg", tr: "bheṛ", en: "sheep", spell: "ends in the curled ṛ, between r and l to English ears" },
+          { ur: "بھیڑیا", pic: "images/zoo/bherriya.jpg", tr: "bheṛiyā", en: "wolf", spell: "bheṛ + iyā = sheep's worst enemy" },
+          { ur: "گھوڑا", pic: "images/zoo/ghorra.jpg", tr: "ghoṛā", en: "horse", spell: "aspirated gh, curled ṛ, pure Sound School" },
+          { ur: "گدھا", pic: "images/zoo/gadha.jpg", tr: "gadhā", en: "donkey", spell: "also the subcontinent's favorite mild insult" },
+          { ur: "کتا", pic: "images/zoo/kutta.jpg", tr: "kuttā", en: "dog", spell: "doubled t, short and sharp" },
+          { ur: "بلی", pic: "images/zoo/billi.jpg", tr: "billī", en: "cat", spell: "doubled l, soft as the cat" },
+          { ur: "مرغی", pic: "images/zoo/murghi.jpg", tr: "murghī", en: "hen", spell: "murgh (rooster) is the biryani word" },
+          { ur: "خرگوش", pic: "images/zoo/khargosh.jpg", tr: "khargosh", en: "rabbit", spell: "khar + gosh = 'donkey ears' in Persian" },
         ],
       },
       {
         heading: "Parinday · the birds",
         note: "The section the whole zoo is named after. Chiṛiyā is any small bird; the falcon is shāhīn, the bird Iqbal turned into a national symbol of ambition. You'll find his shāhīn couplets in the Kutub Khana.",
         words: [
-          { ur: "چڑیا", tr: "chiṛiyā", en: "🐦 sparrow / small bird", spell: "the chiṛiyā of chiṛiyā ghar" },
-          { ur: "طوطا", tr: "totā", en: "🦜 parrot", spell: "spelled with to'e, one of that letter's few common words" },
-          { ur: "مور", tr: "mor", en: "🦚 peacock", spell: "monsoon dances and all" },
-          { ur: "کوا", tr: "kawwā", en: "🐦‍⬛ crow", spell: "the uninvited guest of every rooftop" },
-          { ur: "شاہین", tr: "shāhīn", en: "🦅 falcon", spell: "Iqbal's bird: high flight, no nest" },
-          { ur: "چکور", tr: "chakor", en: "🐦 chukar partridge", spell: "Pakistan's national bird" },
+          { ur: "چڑیا", pic: "images/zoo/chirriya.jpg", tr: "chiṛiyā", en: "sparrow / small bird", spell: "the chiṛiyā of chiṛiyā ghar" },
+          { ur: "طوطا", pic: "images/zoo/tota.jpg", tr: "totā", en: "parrot", spell: "spelled with to'e, one of that letter's few common words" },
+          { ur: "مور", pic: "images/zoo/mor.jpg", tr: "mor", en: "peacock", spell: "monsoon dances and all" },
+          { ur: "کوا", pic: "images/zoo/kawwa.jpg", tr: "kawwā", en: "crow", spell: "the uninvited guest of every rooftop" },
+          { ur: "شاہین", pic: "images/zoo/shaheen.jpg", tr: "shāhīn", en: "falcon", spell: "Iqbal's bird: high flight, no nest" },
+          { ur: "چکور", pic: "images/zoo/chakor.jpg", tr: "chakor", en: "chukar partridge", spell: "Pakistan's national bird" },
         ],
       },
       {
         heading: "Pānī aur zamīn · water and ground",
         note: "You met machhlī in the nursery rhyme; here is the rest of her neighborhood.",
         words: [
-          { ur: "مچھلی", tr: "machhlī", en: "🐟 fish", spell: "jal kī rānī, queen of the water" },
-          { ur: "مینڈک", tr: "meṉḍak", en: "🐸 frog", spell: "nasal ṉ in the middle" },
-          { ur: "کچھوا", tr: "kachhwā", en: "🐢 turtle", spell: "the app's own slow-button mascot" },
-          { ur: "سانپ", tr: "sāṉp", en: "🐍 snake", spell: "the nasal hum before the p" },
-          { ur: "مگرمچھ", tr: "magarmachh", en: "🐊 crocodile", spell: "magar + machh, the 'fish-grabber'" },
+          { ur: "مچھلی", pic: "images/zoo/machhli.jpg", tr: "machhlī", en: "fish", spell: "jal kī rānī, queen of the water" },
+          { ur: "مینڈک", pic: "images/zoo/mendak.jpg", tr: "meṉḍak", en: "frog", spell: "nasal ṉ in the middle" },
+          { ur: "کچھوا", pic: "images/zoo/kachhwa.jpg", tr: "kachhwā", en: "turtle", spell: "the app's own slow-button mascot" },
+          { ur: "سانپ", pic: "images/zoo/saanp.jpg", tr: "sāṉp", en: "snake", spell: "the nasal hum before the p" },
+          { ur: "مگرمچھ", pic: "images/zoo/magarmachh.jpg", tr: "magarmachh", en: "crocodile", spell: "magar + machh, the 'fish-grabber'" },
         ],
+      },
+      {
+        heading: "Photo credits",
+        note: "Animal photos via Wikimedia Commons: lions Benh Lieu Song (CC BY-SA 3.0); elephant, macaque, parakeet and crocodile Charles J. Sharp (CC BY-SA 4.0); bear Zoo Hluboká (CC BY-SA 4.0); chital Tisha Mukherjee (CC BY-SA 4.0); Sahiwal cow Harvinder Chandigarh (CC BY-SA 4.0); goat André Karwath (CC BY-SA 2.5); sheep 4028mdk09 (CC BY-SA 3.0); wolf Gary Kramer/USFWS (public domain); Marwari horse Virendra Kankariya (public domain); donkey Zak Raha (CC BY-SA 4.0); dog Frank-3 (CC0); cat Alvesgaspar (CC BY-SA 3.0); hen Jörg Hempel (CC BY-SA 3.0 de); rabbit JJ Harrison (CC BY-SA 3.0); sparrow Terragio67 (CC BY-SA 4.0); peacock Richard Bartz (CC BY-SA 2.5); crow GerifalteDelSabana (CC BY-SA 4.0); falcon Dhairya Dixit (CC BY-SA 4.0); chukar Paul VanDerWerf (CC BY 2.0); goldfish Nightgane (CC0); frog Sandilya Theuerkauf (CC BY-SA 2.5); star tortoise Jacob.jose (CC BY-SA 3.0); cobra Dr. Raju Kasambe (CC BY-SA 4.0); snow leopard Tambako The Jaguar (CC BY-SA 2.0); camel Vyacheslav Argenberg (CC BY 4.0); markhor Bill Abbott (CC BY-SA 2.0).",
       },
     ],
     funFacts: [
@@ -3360,7 +3364,7 @@ const TRACE_WORDS = [
 
 // Clips whose CONTENT was replaced under the same filename, the rev number
 // busts the CDN edge and service-worker caches (bump on every re-record).
-const AUDIO_REFRESH = { "alif": 2, "be": 2, "pe": 2, "te": 2, "tte": 2, "se": 2, "jeem": 2, "che": 2, "barree-he": 2, "khe": 2, "daal": 2, "ddaal": 2, "zaal": 2, "re": 2, "rre": 2, "ze": 2, "zhe": 2, "seen": 2, "sheen": 2, "swaad": 2, "zwaad": 2, "toe": 2, "zoe": 2, "ain": 2, "ghain": 3, "fe": 2, "qaaf": 2, "kaaf": 2, "gaaf": 2, "laam": 2, "meem": 2, "noon": 2, "noon-ghunna": 2, "waao": 2, "gol-he": 2, "do-chashmee-he": 2, "hamza": 2, "chottee-ye": 2, "barree-ye": 2, "ek": 2, "do": 2, "paanch": 2, "chhe": 2, "saat": 2, "nau": 2, "das": 2, "gyaarah": 2, "baarah": 2, "pandrah": 2, "bees": 2, "tees": 2, "chaalees": 2, "pachaas": 2, "sau": 2, "dderrh": 2, "saarrhe": 2, "chaar": 2, "aatth": 2, "teen": 2, "duudh": 2, "laakh": 2, "khodaa-pahaarr-niklaa-choohaa": 2 };
+const AUDIO_REFRESH = { "bakree": 2, "bherr": 2, "bherriyaa": 2, "ghorraa": 2, "chirriyaa": 2, "alif": 2, "be": 2, "pe": 2, "te": 2, "tte": 2, "se": 2, "jeem": 2, "che": 2, "barree-he": 2, "khe": 2, "daal": 2, "ddaal": 2, "zaal": 2, "re": 2, "rre": 2, "ze": 2, "zhe": 2, "seen": 2, "sheen": 2, "swaad": 2, "zwaad": 2, "toe": 2, "zoe": 2, "ain": 2, "ghain": 3, "fe": 2, "qaaf": 2, "kaaf": 2, "gaaf": 2, "laam": 2, "meem": 2, "noon": 2, "noon-ghunna": 2, "waao": 2, "gol-he": 2, "do-chashmee-he": 2, "hamza": 2, "chottee-ye": 2, "barree-ye": 2, "ek": 2, "do": 2, "paanch": 2, "chhe": 2, "saat": 2, "nau": 2, "das": 2, "gyaarah": 2, "baarah": 2, "pandrah": 2, "bees": 2, "tees": 2, "chaalees": 2, "pachaas": 2, "sau": 2, "dderrh": 2, "saarrhe": 2, "chaar": 2, "aatth": 2, "teen": 2, "duudh": 2, "laakh": 2, "khodaa-pahaarr-niklaa-choohaa": 2 };
 
 
 // ── Aaj ki Kahawat banks ─────────────────────────────────────

@@ -2231,6 +2231,7 @@ function openUnit(unitsName, i) {
         .map((w) => {
           const row = `
         <button class="word" onclick='Speech.speak(${JSON.stringify(w.ur)}, ${JSON.stringify(w.tr)})'>
+          ${w.pic ? `<img class="word-pic" src="${w.pic}" alt="${esc(w.en)}" loading="lazy">` : ""}
           <span class="word-ur ur">${w.ur}</span>
           <span class="word-meta"><strong>${esc(w.tr)}</strong> · ${esc(w.en)}<br><span class="word-spell">${esc(w.spell)}</span></span>
           <span class="word-play">🔊</span>

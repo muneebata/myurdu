@@ -283,6 +283,7 @@ body {
 .word-meta { flex: 1; font-size: 0.92rem; }
 .word-spell { color: var(--muted); font-size: 0.82rem; }
 .word-play { font-size: 1.1rem; }
+.word-pic { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; flex-shrink: 0; border: 1.5px solid var(--line); }
 
 /* ── Verses (virsa track) ── */
 .verse { display: flex; flex-direction: column; gap: 8px; }

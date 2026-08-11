@@ -49,6 +49,13 @@ CLIP_OVERRIDES = {
     "duudh": (V, "दूध"), "laakh": (V, "लाख"),
     # khodā (dug) was being read as khudā (God) — Devanagari pins the o
     "khodaa-pahaarr-niklaa-choohaa": (V, "खोदा पहाड़, निकला चूहा"),
+    # Zoo words: short vowels and retroflex flaps that Uzma flattens.
+    # Devanagari spells both explicitly (user ear-flagged bakrī, bheṛ).
+    "bakree": (V, "बकरी"),
+    "bherr": (V, "भेड़"),
+    "bherriyaa": (V, "भेड़िया"),
+    "ghorraa": (V, "घोड़ा"),
+    "chirriyaa": (V, "चिड़िया"),
 }
 
 # Diacritized so the neural voice reads the letter NAMES cleanly
