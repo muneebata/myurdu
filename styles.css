@@ -285,6 +285,28 @@ body {
 .word-play { font-size: 1.1rem; }
 .word-pic { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; flex-shrink: 0; border: 1.5px solid var(--line); }
 
+/* ── Rishtay family tree ── */
+.rishta-legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
+.rl { font-size: 0.8rem; padding: 3px 10px; border-radius: 99px; border: 2px solid; background: #fbf5e0; }
+.rl.t { border-color: #1a6b6b; }
+.rl.m { border-color: #c99a2e; }
+.rl.g { border-color: var(--line); }
+.rishta-genlabel { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 14px 0 4px; }
+.rishta-gen { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; }
+.rishta-card {
+  flex: 0 0 122px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font: inherit; background: #fbf5e0; border: 2.5px solid var(--line); border-radius: 14px;
+  padding: 8px 6px; cursor: pointer; text-align: center; transition: background 0.12s;
+}
+.rishta-card:hover { background: #f2ead2; }
+.rishta-card.side-t { border-color: #1a6b6b; }
+.rishta-card.side-m { border-color: #c99a2e; }
+.rishta-card.you { box-shadow: 0 0 0 3px var(--teal-dark); }
+.rishta-card img { width: 86px; height: 86px; object-fit: cover; border-radius: 10px; }
+.rc-ur { font-size: 1.35rem; line-height: 1.9; color: var(--teal-dark); }
+.rc-tr { font-weight: 700; font-size: 0.88rem; }
+.rc-en { font-size: 0.76rem; color: var(--muted); }
+
 /* ── Verses (virsa track) ── */
 .verse { display: flex; flex-direction: column; gap: 8px; }
 .verse-line {
@@ -826,6 +848,13 @@ html[data-theme="dark"] .btn.link:hover { background: #2c4735; }
 html[data-theme="dark"] .progress-bar { background: #234449; }
 html[data-theme="dark"] .pr.listening { background: #1d3a41; color: var(--ink); }
 html[data-theme="dark"] .pr.goonj { background: #1d3a41; color: var(--ink); border-color: #2e565e; }
+html[data-theme="dark"] .rishta-card, html[data-theme="dark"] .rl { background: var(--card); color: var(--ink); }
+html[data-theme="dark"] .rishta-card:hover { background: #1d3a41; }
+html[data-theme="dark"] .rishta-card.side-t { border-color: #5fb8b8; }
+html[data-theme="dark"] .rishta-card.side-m { border-color: #e0b84f; }
+html[data-theme="dark"] .rl.t { border-color: #5fb8b8; }
+html[data-theme="dark"] .rl.m { border-color: #e0b84f; }
+html[data-theme="dark"] .rc-ur { color: #7fd0d0; }
 html[data-theme="dark"] .pr.good { background: #1d4a33; color: #c9e8c9; }
 html[data-theme="dark"] .pr.ok, html[data-theme="dark"] .pr.warn { background: #4a3d1d; color: #f0dfae; border-color: #6e5c2e; }
 html[data-theme="dark"] .pr.bad { background: #4a2626; color: #f0c2b8; border-color: #6e3a3a; }

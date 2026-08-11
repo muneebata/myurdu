@@ -1144,7 +1144,105 @@ const READING_UNITS = [
       "The -stān in Afghanistān, Hindustān, and Pākistān is the same Persian 'land of' that English borrowed for made-up places. Urdu speakers can name real ones all day.",
     ],
   },
+  {
+    id: "R13",
+    title: "Rishtay · The Family Tree",
+    subtitle: "four aunts, four uncles, and why the words matter",
+    intro:
+      "English has one word for aunt. Urdu has four, and which one you use announces exactly how she is related to you. This is the unit for everyone who has frozen at a shaadi trying to work out khālā or phūphī. The rule underneath is simple: abbū's side and ammī's side get different words, always. Learn the map once and you will never be corrected at a dawat again.",
+    sections: [
+      {
+        heading: "Ek dawat, pūrā khāndān · tap everyone",
+        note: "The whole family, laid out like the dawat seating chart. Green borders are abbū's side, mustard borders are ammī's side, plain borders are your own gharwāle. Tap anyone to hear their name. Notice the cousins carry their parent's color: one glance tells you which side they come from.",
+        rishtaTree: true,
+      },
+      {
+        heading: "The other halves · aunts and uncles by marriage",
+        note: "Every blood aunt and uncle brings a spouse, and each spouse gets their own word. Nobody is just 'uncle's wife' in Urdu.",
+        words: [
+          { ur: "تائی", tr: "tāyī", pic: "images/rishtay/tayi.jpg", en: "tāyā's wife", spell: "aunt by marriage, abbū's side" },
+          { ur: "چچی", tr: "chachī", en: "chachā's wife", spell: "aunt by marriage, abbū's side" },
+          { ur: "پھوپھا", tr: "phūphā", en: "phūphī's husband", spell: "uncle by marriage, abbū's side" },
+          { ur: "ممانی", tr: "mumānī", en: "māmūṉ's wife", spell: "aunt by marriage, ammī's side" },
+          { ur: "خالو", tr: "khālū", en: "khālā's husband", spell: "uncle by marriage, ammī's side" },
+        ],
+      },
+      {
+        heading: "Shādī ke rishtay · the in-laws",
+        note: "Marriage brings a whole second vocabulary. These are the words you will hear constantly in dramas, and sālā comes with a warning: between brothers-in-law it is family, shouted at a stranger it is an insult.",
+        words: [
+          { ur: "ساس", tr: "sās", en: "mother-in-law", spell: "the most powerful character in every drama" },
+          { ur: "سسر", tr: "sasur", en: "father-in-law", spell: "sās and sasur, always a pair" },
+          { ur: "بہو", tr: "bahū", en: "daughter-in-law", spell: "the sās-bahū saga is a whole TV genre" },
+          { ur: "داماد", tr: "dāmād", en: "son-in-law", spell: "the honored guest at every dawat" },
+          { ur: "سالا", tr: "sālā", en: "wife's brother", spell: "careful: also a rude word outside the family" },
+          { ur: "سالی", tr: "sālī", en: "wife's sister", spell: "the shaadi-season tease" },
+          { ur: "دیور", tr: "devar", en: "husband's younger brother", spell: "the ally in the household" },
+          { ur: "جیٹھ", tr: "jeṭh", en: "husband's elder brother", spell: "with the retroflex ṭh" },
+          { ur: "نند", tr: "nand", en: "husband's sister", spell: "a famous frenemy of drama plots" },
+        ],
+      },
+      {
+        heading: "Jān, āpā, bājī · how you actually address them",
+        note: "Kinship words double as names. Elders are never, ever called by their first name; younger siblings usually are. Add -jān (dear) to warm anything up: ammī-jān, bhāī-jān. This is the tehzeeb layer from the Virsa track, applied to your own dining table.",
+        words: [
+          { ur: "آپا", tr: "āpā", en: "elder sister (as a name)", spell: "what you call her, not just what she is" },
+          { ur: "باجی", tr: "bājī", en: "elder sister (as a name)", spell: "same job as āpā, house by house" },
+          { ur: "بھائی جان", tr: "bhāī-jān", en: "dear elder brother", spell: "-jān turns any rishta affectionate" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Urdu has no everyday word for cousin. Formally your chachā's son is your chachā-zād bhāī ('chachā-born brother'), but in speech cousins are simply bhāī and behen, family, not a separate category. The English word 'cousin' gets borrowed when precision is needed.",
+      "The grandparent mnemonic: abbū's side both start with d (dādā, dādī), ammī's side both start with n (nānā, nānī). Two letters, and you will never mix them up again.",
+      "Mixing up khālā and phūphī is the classic diaspora mistake, and every aunty notices, because the words say which side of the family she belongs to. Get it right once at a dawat and watch the delight.",
+    ],
+  },
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Rishtay: the interactive family tree (R13). side: "t" = abbū's
+// (paternal) side, "m" = ammī's (maternal) side, "g" = your own
+// gharwāle. Portraits: user-provided illustration, cropped into
+// images/rishtay/. Cousins inherit their parent's side color —
+// that's the whole lesson at a glance.
+// ─────────────────────────────────────────────────────────────
+const RISHTAY = [
+  { gen: "Dādā-dādī aur nānā-nānī · the grandparents", people: [
+    { ur: "دادا", tr: "dādā", en: "abbū's father", side: "t", pic: "images/rishtay/dada.jpg" },
+    { ur: "دادی", tr: "dādī", en: "abbū's mother", side: "t", pic: "images/rishtay/dadi.jpg" },
+    { ur: "نانا", tr: "nānā", en: "ammī's father", side: "m", pic: "images/rishtay/nana.jpg" },
+    { ur: "نانی", tr: "nānī", en: "ammī's mother", side: "m", pic: "images/rishtay/nani.jpg" },
+  ] },
+  { gen: "Ammī-abbū kī nasl · the parents and their siblings", people: [
+    { ur: "تایا", tr: "tāyā", en: "abbū's elder brother", side: "t", pic: "images/rishtay/taya.jpg" },
+    { ur: "چچا", tr: "chachā", en: "abbū's younger brother", side: "t", pic: "images/rishtay/chacha.jpg" },
+    { ur: "پھوپھی", tr: "phūphī", en: "abbū's sister", side: "t", pic: "images/rishtay/phuphi.jpg" },
+    { ur: "ابو", tr: "abbū", en: "father", side: "t", pic: "images/rishtay/abbu.jpg" },
+    { ur: "امی", tr: "ammī", en: "mother", side: "m", pic: "images/rishtay/ammi.jpg" },
+    { ur: "ماموں", tr: "māmūṉ", en: "ammī's brother", side: "m", pic: "images/rishtay/mamun.jpg" },
+    { ur: "خالہ", tr: "khālā", en: "ammī's sister", side: "m", pic: "images/rishtay/khala.jpg" },
+  ] },
+  { gen: "Āp kī nasl · your generation", people: [
+    { ur: "بھائی", tr: "bhāī", en: "elder brother", side: "g", pic: "images/rishtay/bhai.jpg" },
+    { ur: "بھابھی", tr: "bhābhī", en: "bhāī's wife", side: "g", pic: "images/rishtay/bhabhi.jpg" },
+    { ur: "آپ", tr: "āp", en: "YOU", side: "g", you: true, pic: "images/rishtay/aap.jpg" },
+    { ur: "بہن", tr: "behen", en: "sister", side: "g", pic: "images/rishtay/behen.jpg" },
+    { ur: "چچا زاد", tr: "chachā-zād", en: "cousin · chachā's son", side: "t", pic: "images/rishtay/chachazad.jpg" },
+    { ur: "پھوپھی زاد", tr: "phūphī-zād", en: "cousin · phūphī's daughter", side: "t", pic: "images/rishtay/phuphizad.jpg" },
+    { ur: "ماموں زاد", tr: "māmūṉ-zād", en: "cousin · māmūṉ's son", side: "m", pic: "images/rishtay/mamunzad.jpg" },
+    { ur: "خالہ زاد", tr: "khālā-zād", en: "cousin · khālā's daughter", side: "m", pic: "images/rishtay/khalazad.jpg" },
+  ] },
+  { gen: "Bachche · the kids", people: [
+    { ur: "بھتیجا", tr: "bhatījā", en: "bhāī's son", side: "g", pic: "images/rishtay/bhatija.jpg" },
+    { ur: "بھتیجی", tr: "bhatījī", en: "bhāī's daughter", side: "g", pic: "images/rishtay/bhatiji.jpg" },
+    { ur: "بھانجا", tr: "bhānjā", en: "behen's son", side: "g", pic: "images/rishtay/bhanja.jpg" },
+    { ur: "بھانجی", tr: "bhānjī", en: "behen's daughter", side: "g", pic: "images/rishtay/bhanji.jpg" },
+    { ur: "بیٹا", tr: "beṭā", en: "your son", side: "g", pic: "images/rishtay/beta.jpg" },
+    { ur: "بیٹی", tr: "beṭī", en: "your daughter", side: "g", pic: "images/rishtay/beti.jpg" },
+  ] },
+];
+
 
 const QUIZ_PASS_PERCENT = 70;
 
@@ -2812,9 +2910,9 @@ const RANKS = [
   { need: 0, name: "Talib-e-Ilm · Student", ur: "طالب علم" },
   { need: 8, name: "Shagird · Apprentice", ur: "شاگرد" },
   { need: 18, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
-  { need: 27, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
-  { need: 37, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 51, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 28, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
+  { need: 38, name: "Ustaadh · Master", ur: "استاد" },
+  { need: 52, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────

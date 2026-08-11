@@ -18,10 +18,10 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 // top-level const bindings stay lexical — read them out with a second script
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
-  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN,
+  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY,
   KUTUB,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY })",
   sandbox
 );
 
@@ -54,10 +54,17 @@ check(RANKS[0].need === 0, "first rank must need 0");
 check(RANKS[RANKS.length - 1].need <= completables, `top rank needs ${RANKS[RANKS.length - 1].need} > ${completables} completables`);
 check(RANKS[RANKS.length - 1].need >= completables - 4, `top rank ${RANKS[RANKS.length - 1].need} lags far behind ${completables} completables — rescale RANKS`);
 
+// Rishtay tree: every family member is tappable
+for (const g of RISHTAY) for (const p of g.people) {
+  check(p.ur && p.tr && p.en && p.pic, `rishta entry incomplete: ${p.tr || "?"}`);
+  check(["t", "m", "g"].includes(p.side), `rishta side invalid: ${p.tr}`);
+}
+
 // ── 3. audio coverage: every speakable tr has a clip ──
 const audio = new Set(fs.readdirSync(path.join(ROOT, "audio")).map((f) => f.replace(/\.mp3$/, "")));
 const wanted = new Map(); // slug -> example tr
 const want = (tr) => { if (tr) { const k = slug(tr); if (k && !wanted.has(k)) wanted.set(k, tr); } };
+for (const g of RISHTAY) for (const p of g.people) want(p.tr);
 LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr)));
 AZADI_ITEMS.forEach((it) => want(it.tr));
 GEO_FEATURES.forEach((f) => want(f.tr));

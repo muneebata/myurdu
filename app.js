@@ -2171,6 +2171,29 @@ async function showCertificate() {
 
 // ── Reading & culture units ──────────────────────────────────
 
+// ── Rishtay: the interactive family tree (R13) ───────────────
+// Generation rows scroll sideways like a dawat seating chart;
+// each card is a tap-to-hear button, border color = family side.
+function rishtaTreeHTML() {
+  return `
+    <div class="rishta-legend" aria-hidden="true">
+      <span class="rl t">abbū's side</span>
+      <span class="rl m">ammī's side</span>
+      <span class="rl g">your gharwāle</span>
+    </div>
+    ${RISHTAY.map((g) => `
+    <div class="rishta-genlabel">${esc(g.gen)}</div>
+    <div class="rishta-gen">${g.people.map((p) => `
+      <button class="rishta-card side-${p.side}${p.you ? " you" : ""}"
+        aria-label="${esc(p.tr)}: ${esc(p.en)}"
+        onclick='Speech.speak(${JSON.stringify(p.ur)}, ${JSON.stringify(p.tr)})'>
+        <img src="${p.pic}" alt="" loading="lazy">
+        <span class="rc-ur ur">${p.ur}</span>
+        <span class="rc-tr">${esc(p.tr)}</span>
+        <span class="rc-en">${esc(p.en)}</span>
+      </button>`).join("")}</div>`).join("")}`;
+}
+
 function openUnit(unitsName, i) {
   const units = TRACKS[unitsName];
   const u = units[i];
@@ -2194,6 +2217,7 @@ function openUnit(unitsName, i) {
         <figcaption>Pakistan's provinces, the Indus, and K2, the same map as the Naqsha Challenge.<span class="photo-credit">Map data: Natural Earth (public domain)</span></figcaption>
       </figure>`;
     }
+    if (sec.rishtaTree && typeof RISHTAY !== "undefined") body += rishtaTreeHTML();
     const dia = sec.diagram && typeof SOUND_DIAGRAMS !== "undefined" ? SOUND_DIAGRAMS[sec.diagram] : null;
     if (dia) body += `<figure class="diagram">${dia.svg}<figcaption>${esc(dia.caption)}</figcaption></figure>`;
     if (sec.facts) body += sec.facts.map((f) => `<p class="read-fact">${f}</p>`).join("");
