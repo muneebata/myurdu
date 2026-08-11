@@ -288,7 +288,7 @@ async function loadStats() {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   };
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const KIND = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha" };
+  const KIND = (typeof D5_KIND_TAG !== "undefined") ? D5_KIND_TAG : { suno: "🎧 Suno", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha" };
 
   const render = (offset) => {
     const key = dayKey(offset);
@@ -320,6 +320,32 @@ async function loadStats() {
             extra = `<div class="d5-extra"><b>🔎 Clue shown to the player:</b> ${esc(f.clue || "(none)")}</div>`
               + (f.blurb ? `<div class="d5-extra"><b>Fact shown after answering:</b> ${esc(f.blurb)}</div>` : "")
               + `<div class="note">map target: ${esc(f.name)} · type: ${esc(f.type)}${f.ur ? ` · ${esc(f.ur)}` : ""}</div>`;
+          } else if (q.kind === "rishta") {
+            const p = q.person || {};
+            ask = esc(typeof rishtaAsk === "function" ? rishtaAsk(p) : "Kinship question");
+            extra = `<div class="d5-ur ur">${esc(p.ur)}</div><div class="note">answer word: ${esc(p.tr)} · ${esc(p.en)}</div>`;
+            play = p.ur ? `<button class="d5-play" data-ur="${esc(p.ur)}" data-tr="${esc(p.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "kahawat") {
+            const s = q.saying || {};
+            ask = "🫖 A kahāwat is shown. What does it mean?";
+            extra = `<div class="d5-ur ur">${esc(s.ur)}</div><div class="note">${esc(s.tr)}</div>`
+              + (s.ctx ? `<div class="d5-extra"><b>Context shown after answering:</b> ${esc(s.ctx)}</div>` : "");
+            play = s.ur ? `<button class="d5-play" data-ur="${esc(s.ur)}" data-tr="${esc(s.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "janwar") {
+            const a = q.animal || {};
+            ask = "🐾 A photo is shown. What is this animal called in Urdu?";
+            extra = `<img src="${esc(a.pic)}" alt="" style="width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid #ddd2b4">`
+              + `<div class="note">${esc(a.ur)} · ${esc(a.tr)} · ${esc(a.en)}</div>`;
+            play = a.ur ? `<button class="d5-play" data-ur="${esc(a.ur)}" data-tr="${esc(a.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "mulk") {
+            const c = q.country || {};
+            ask = "🌍 An Urdu country name is shown. Which country is it?";
+            extra = `<div class="d5-ur ur">${esc(c.ur)}</div><div class="note">${esc(c.tr)} · ${esc(c.en)}${c.spell ? ` · ${esc(c.spell)}` : ""}</div>`;
+            play = c.ur ? `<button class="d5-play" data-ur="${esc(c.ur)}" data-tr="${esc(c.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "fact") {
+            const f = q.fact || {};
+            ask = esc(f.q);
+            extra = `<div class="d5-extra"><b>Source unit:</b> ${esc(f.src)}</div>`;
           } else {
             const it = q.item || {};
             ask = "🎧 Listen closely, what does it mean? (audio only, no text shown)";

@@ -242,9 +242,13 @@ function mulberry32(a) {
 // No-repeat rotation: shuffle the whole pool once per cycle (seeded,
 // so identical worldwide), then deal `count` per day off the deck.
 // Nothing repeats until the deck runs out; then a fresh shuffle.
-function cycleDraw(pool, count, seedBase, key = todayKey()) {
+function dayIndexFor(key) {
   const [y, m, d] = key.split("-").map(Number);
-  const dayIndex = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+  return Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+}
+
+function cycleDraw(pool, count, seedBase, key = todayKey(), stepOverride = null) {
+  const dayIndex = stepOverride == null ? dayIndexFor(key) : stepOverride;
   const daysPerCycle = Math.max(1, Math.floor(pool.length / count));
   const cycle = Math.floor(dayIndex / daysPerCycle);
   const pos = dayIndex % daysPerCycle;
@@ -2001,14 +2005,98 @@ let d5 = null;
 // The raw seeded deal for any date. Shared by the game and by the
 // admin preview, so what an admin reviews for tomorrow is exactly
 // what learners will get. Pure: touches no profile, saves nothing.
+// ── Question builders for the site's own content ─────────────
+// Each takes one item plus a seeded rng and returns the same shape
+// the daily five already speaks: { kind, options: [{label, correct}] }.
+
+function rishtaAsk(p) {
+  const own = { father: "your father", mother: "your mother", "elder brother": "your elder brother", sister: "your sister" };
+  const who = (own[p.en] || p.en).replace(/^cousin · /, "");
+  return `What do you call ${who}?`;
+}
+
+function rishtaQuestion(person, rng) {
+  const all = RISHTAY.flatMap((g) => g.people).filter((p) => !p.you);
+  const distractors = seededPick(all.filter((p) => p.tr !== person.tr), 3, rng);
+  return {
+    kind: "rishta",
+    person,
+    options: seededPick([person, ...distractors], 4, rng).map((x) => ({ label: x.tr, correct: x === person })),
+  };
+}
+
+function kahawatQuestion(saying, rng) {
+  const pool = [...KAHAWATEIN, ...(typeof JUMMAH_KAHAWATEIN !== "undefined" ? JUMMAH_KAHAWATEIN : [])];
+  const distractors = seededPick(pool.filter((x) => x.tr !== saying.tr), 3, rng);
+  return {
+    kind: "kahawat",
+    saying,
+    options: seededPick([saying, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === saying })),
+  };
+}
+
+function janwarQuestion(animal, rng) {
+  const pool = zooAnimals();
+  const distractors = seededPick(pool.filter((x) => x.tr !== animal.tr), 3, rng);
+  return {
+    kind: "janwar",
+    animal,
+    options: seededPick([animal, ...distractors], 4, rng).map((x) => ({ label: x.tr, correct: x === animal })),
+  };
+}
+
+function mulkQuestion(country, rng) {
+  const pool = worldCountries();
+  const distractors = seededPick(pool.filter((x) => x.tr !== country.tr), 3, rng);
+  return {
+    kind: "mulk",
+    country,
+    options: seededPick([country, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === country })),
+  };
+}
+
+function factQuestion(fact, rng) {
+  const opts = [{ label: fact.a, correct: true }, ...fact.wrong.map((w) => ({ label: w, correct: false }))];
+  return { kind: "fact", fact, options: seededPick(opts, 4, rng) };
+}
+
+// Word rows out of the picture units, pulled by unit id so the pools
+// track the curriculum instead of being copied into a second list.
+function unitWords(id) {
+  const u = READING_UNITS.find((x) => x.id === id);
+  return u ? u.sections.flatMap((s) => s.words || []) : [];
+}
+// Animals are asked from their photo, so they must have one. Countries
+// are asked from their Urdu name and carry a flag in the label instead.
+const zooAnimals = () => unitWords("R11").filter((w) => w.pic);
+const worldCountries = () => unitWords("R12");
+
+// The daily five: one listening, one loanword, one map, one thing the
+// site taught you, and one picture. The last two rotate through their
+// own pools so the deck stays deep (a kinship question comes round
+// every third day, an animal every other day).
+const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", fact: "💡 Yād hai?" };
+const D5_KNOWLEDGE = ["rishta", "kahawat", "fact"];
+const D5_PICTURE = ["janwar", "mulk"];
+
 function daily5Picks(key) {
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
+  const di = dayIndexFor(key);
+  const kKind = D5_KNOWLEDGE[((di % D5_KNOWLEDGE.length) + D5_KNOWLEDGE.length) % D5_KNOWLEDGE.length];
+  const pKind = D5_PICTURE[((di % D5_PICTURE.length) + D5_PICTURE.length) % D5_PICTURE.length];
+  const kStep = Math.floor(di / D5_KNOWLEDGE.length);
+  const pStep = Math.floor(di / D5_PICTURE.length);
+  const knowledgePool = { rishta: RISHTAY.flatMap((g) => g.people).filter((p) => !p.you), kahawat: [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], fact: D5_FACTS }[kKind];
+  const picturePool = { janwar: zooAnimals(), mulk: worldCountries() }[pKind];
   return {
     sunoPicks: azadiPeak(key)
-      ? seededPick(AZADI_ITEMS, 2, mulberry32(daySeed(key) + 47))
-      : cycleDraw(sunoPool, 2, 13001, key),
-    rootsPicks: cycleDraw(LOANWORDS, 2, 1, key),
+      ? seededPick(AZADI_ITEMS, 1, mulberry32(daySeed(key) + 47))
+      : cycleDraw(sunoPool, 1, 13001, key),
+    rootsPicks: cycleDraw(LOANWORDS, 1, 1, key),
     geoPicks: cycleDraw(GEO_FEATURES, 1, 7001, key),
+    kKind, pKind,
+    knowledgePicks: cycleDraw(knowledgePool, 1, 5101, key, kStep),
+    picturePicks: cycleDraw(picturePool, 1, 9301, key, pStep),
   };
 }
 
@@ -2017,11 +2105,14 @@ function daily5Preview(key) {
   const rng = mulberry32(daySeed(key) + 5);
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
   const fullPool = azadiPeak(key) ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
-  const { sunoPicks, rootsPicks, geoPicks } = daily5Picks(key);
+  const d = daily5Picks(key);
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion };
   return seededPick([
-    ...sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
-    ...rootsPicks.map((w) => rootsQuestion(w, rng)),
-    ...geoPicks.map((f) => geoQuestion(f, rng)),
+    ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
+    ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
+    ...d.geoPicks.map((f) => geoQuestion(f, rng)),
+    ...d.knowledgePicks.map((x) => build[d.kKind](x, rng)),
+    ...d.picturePicks.map((x) => build[d.pKind](x, rng)),
   ], 5, rng);
 }
 
@@ -2031,28 +2122,64 @@ function startDaily5() {
   const p = profile();
   const today = todayKey();
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
-  let fullPool = azadiPeak() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
+  const fullPool = azadiPeak() ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
 
   // The seeded deal is deterministic, but growing a question bank
   // reshuffles the cycles, which once changed a user's five mid-day
   // after a content deploy. So: pin the first deal of each day in
-  // the profile; replays that day always use the pinned five.
-  let sunoPicks, rootsPicks, geoPicks;
+  // the profile; replays that day always use the pinned five. Each
+  // pick is stored by a stable key and looked back up; if anything
+  // no longer resolves, the day is simply re-dealt.
+  const KEYED = {
+    rishta: [() => RISHTAY.flatMap((g) => g.people), (x) => x.tr],
+    kahawat: [() => [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], (x) => x.tr],
+    fact: [() => D5_FACTS, (x) => x.q],
+    janwar: [() => zooAnimals(), (x) => x.tr],
+    mulk: [() => worldCountries(), (x) => x.tr],
+  };
+  const lookup = (kind, keys) => {
+    const [pool, id] = KEYED[kind] || [];
+    if (!pool) return [];
+    const list = pool();
+    return (keys || []).map((k) => list.find((x) => id(x) === k)).filter(Boolean);
+  };
+
+  let d = null;
   const pin = p.d5Deal && p.d5Deal.date === today ? p.d5Deal : null;
-  if (pin) {
-    sunoPicks = pin.suno.map((tr) => fullPool.find((x) => x.tr === tr)).filter(Boolean);
-    rootsPicks = pin.roots.map((en) => LOANWORDS.find((x) => x.en === en)).filter(Boolean);
-    geoPicks = pin.geo.map((id) => GEO_FEATURES.find((x) => x.id === id)).filter(Boolean);
+  if (pin && pin.kKind && pin.pKind) {
+    d = {
+      kKind: pin.kKind,
+      pKind: pin.pKind,
+      sunoPicks: (pin.suno || []).map((tr) => fullPool.find((x) => x.tr === tr)).filter(Boolean),
+      rootsPicks: (pin.roots || []).map((en) => LOANWORDS.find((x) => x.en === en)).filter(Boolean),
+      geoPicks: (pin.geo || []).map((id) => GEO_FEATURES.find((x) => x.id === id)).filter(Boolean),
+      knowledgePicks: lookup(pin.kKind, pin.know),
+      picturePicks: lookup(pin.pKind, pin.pic),
+    };
+    const complete = [d.sunoPicks, d.rootsPicks, d.geoPicks, d.knowledgePicks, d.picturePicks].every((a) => a.length === 1);
+    if (!complete) d = null;
   }
-  if (!pin || sunoPicks.length !== 2 || rootsPicks.length !== 2 || geoPicks.length !== 1) {
-    ({ sunoPicks, rootsPicks, geoPicks } = daily5Picks(today));
-    p.d5Deal = { date: today, suno: sunoPicks.map((x) => x.tr), roots: rootsPicks.map((x) => x.en), geo: geoPicks.map((x) => x.id) };
+  if (!d) {
+    d = daily5Picks(today);
+    p.d5Deal = {
+      date: today,
+      suno: d.sunoPicks.map((x) => x.tr),
+      roots: d.rootsPicks.map((x) => x.en),
+      geo: d.geoPicks.map((x) => x.id),
+      kKind: d.kKind,
+      know: d.knowledgePicks.map((x) => (d.kKind === "fact" ? x.q : x.tr)),
+      pKind: d.pKind,
+      pic: d.picturePicks.map((x) => x.tr),
+    };
     saveRoot();
   }
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion };
   const questions = seededPick([
-    ...sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
-    ...rootsPicks.map((w) => rootsQuestion(w, rng)),
-    ...geoPicks.map((f) => geoQuestion(f, rng)),
+    ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
+    ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
+    ...d.geoPicks.map((f) => geoQuestion(f, rng)),
+    ...d.knowledgePicks.map((x) => build[d.kKind](x, rng)),
+    ...d.picturePicks.map((x) => build[d.pKind](x, rng)),
   ], 5, rng);
   d5 = { questions, current: 0, correct: 0, results: [] };
   renderD5();
@@ -2060,7 +2187,7 @@ function startDaily5() {
 
 function renderD5() {
   const q = d5.questions[d5.current];
-  const kindTag = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha" }[q.kind];
+  const kindTag = D5_KIND_TAG[q.kind] || q.kind;
   let body;
   if (q.kind === "roots") {
     body = `
@@ -2075,6 +2202,38 @@ function renderD5() {
       <div class="map-wrap">${PAK_MAP_SVG}</div>
       <p class="geo-q">${geoPrompt(q.feature.type)}</p>
       <aside class="funfact geo-clue"><span class="ff-tag">🔎 Surāgh · Clue</span><p>${esc(q.feature.clue)}</p></aside>`;
+  } else if (q.kind === "rishta") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">👪 From the family tree:</p>
+        <p class="d5-ask">${esc(rishtaAsk(q.person))}</p>
+      </div>`;
+  } else if (q.kind === "kahawat") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">🫖 A kahāwat, what does it mean?</p>
+        <div class="q-ur ur">${esc(q.saying.ur)}</div>
+        <div class="q-tr">${esc(q.saying.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.saying.ur)}, ${JSON.stringify(q.saying.tr)})' aria-label="Play audio">🔊</button></div>
+      </div>`;
+  } else if (q.kind === "janwar") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">🐾 Yeh kyā hai? What is this animal called in Urdu?</p>
+        <img class="d5-pic" src="${q.animal.pic}" alt="An animal to name">
+      </div>`;
+  } else if (q.kind === "mulk") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">🌍 Which country is this?</p>
+        <div class="q-ur ur">${esc(q.country.ur)}</div>
+        <div class="q-tr">${esc(q.country.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.country.ur)}, ${JSON.stringify(q.country.tr)})' aria-label="Play audio">🔊</button></div>
+      </div>`;
+  } else if (q.kind === "fact") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">💡 Something the site taught you:</p>
+        <p class="d5-ask">${esc(q.fact.q)}</p>
+      </div>`;
   } else {
     body = `
       <div class="quiz-prompt suno-prompt">
@@ -2110,12 +2269,16 @@ function answerD5(i) {
   });
   if (chosen.correct) d5.correct++;
   d5.results.push(chosen.correct);
-  const detail = q.kind === "roots"
-    ? `<em>${esc(q.word.story)}</em>`
-    : q.kind === "geo"
-      ? `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}
-         <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.feature.ur)}, ${JSON.stringify(q.feature.tr)})'>🔊 ${esc(q.feature.tr)}</button>`
-      : `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong>: ${esc(q.item.en)}`;
+  const hear = (ur, tr) => `<button class="btn speak small" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 ${esc(tr)}</button>`;
+  let detail;
+  if (q.kind === "roots") detail = `<em>${esc(q.word.story)}</em>`;
+  else if (q.kind === "geo") detail = `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}${hear(q.feature.ur, q.feature.tr)}`;
+  else if (q.kind === "rishta") detail = `<span class="ur-inline">${esc(q.person.ur)}</span> <strong>${esc(q.person.tr)}</strong>: ${esc(q.person.en)} ${hear(q.person.ur, q.person.tr)}`;
+  else if (q.kind === "kahawat") detail = `<em>${esc(q.saying.en)}</em>${q.saying.ctx ? ` <span class="hint">${esc(q.saying.ctx)}</span>` : ""}`;
+  else if (q.kind === "janwar") detail = `<span class="ur-inline">${esc(q.animal.ur)}</span> <strong>${esc(q.animal.tr)}</strong>: ${esc(q.animal.en)} ${hear(q.animal.ur, q.animal.tr)}`;
+  else if (q.kind === "mulk") detail = `<strong>${esc(q.country.tr)}</strong> is ${esc(q.country.en)}. ${esc(q.country.spell || "")}`;
+  else if (q.kind === "fact") detail = `<em>${esc(q.fact.a)}</em> <span class="hint">from ${esc(q.fact.src)}</span>`;
+  else detail = `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong>: ${esc(q.item.en)}`;
   $("#quiz-feedback").innerHTML = `
     <div class="pr ${chosen.correct ? "good" : "bad"}">${chosen.correct ? "✅ Sahī!" : "❌ Not this one."} ${detail}</div>
     ${q.kind === "geo" ? `<aside class="funfact geo-fact"><span class="ff-tag">✨ Fun fact · ${esc(q.feature.name)}</span><p>${esc(q.feature.blurb)}</p></aside>` : ""}

@@ -18,10 +18,10 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 // top-level const bindings stay lexical — read them out with a second script
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
-  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY,
+  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
   KUTUB,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS })",
   sandbox
 );
 
@@ -59,6 +59,19 @@ for (const g of RISHTAY) for (const p of g.people) {
   check(p.ur && p.tr && p.en && p.pic, `rishta entry incomplete: ${p.tr || "?"}`);
   check(["t", "m", "g"].includes(p.side), `rishta side invalid: ${p.tr}`);
 }
+
+// Aaj Ka Paanch fact bank: answerable, and never two identical options
+for (const f of D5_FACTS) {
+  check(f.q && f.a && f.src, `D5 fact incomplete: ${f.q || "?"}`);
+  check(Array.isArray(f.wrong) && f.wrong.length === 3, `D5 fact needs 3 distractors: ${f.q}`);
+  check(new Set([f.a, ...f.wrong]).size === 4, `D5 fact has a repeated option: ${f.q}`);
+  check(f.a.length <= 60, `D5 fact answer too long for a button: ${f.q}`);
+}
+// picture pools the daily five draws from
+const zoo = (READING_UNITS.find((u) => u.id === "R11") || { sections: [] }).sections.flatMap((s) => s.words || []).filter((w) => w.pic);
+const mulk = (READING_UNITS.find((u) => u.id === "R12") || { sections: [] }).sections.flatMap((s) => s.words || []);
+check(zoo.length >= 20, `zoo picture pool shrank to ${zoo.length}`);
+check(mulk.length >= 20, `country picture pool shrank to ${mulk.length}`);
 
 // ── 3. audio coverage: every speakable tr has a clip ──
 const audio = new Set(fs.readdirSync(path.join(ROOT, "audio")).map((f) => f.replace(/\.mp3$/, "")));
