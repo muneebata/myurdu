@@ -2076,16 +2076,34 @@ const worldCountries = () => unitWords("R12");
 // own pools so the deck stays deep (a kinship question comes round
 // every third day, an animal every other day).
 const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", fact: "💡 Yād hai?" };
-const D5_KNOWLEDGE = ["rishta", "kahawat", "fact"];
+// Proverbs used to sit in this rotation, but answering one means
+// reading a whole Urdu idiom, which a beginner simply cannot do.
+// They live on the home screen as the proverb of the day instead,
+// where they are shown WITH their meaning rather than quizzed.
+const D5_KNOWLEDGE = ["rishta", "fact", "fact"];
 const D5_PICTURE = ["janwar", "mulk"];
+
+// Which kind is up today, and how many times that kind has come round
+// before. A kind can hold more than one slot in a rotation (facts hold
+// two), so the step has to count that kind's own turns: sharing a
+// counter would deal the same card on two consecutive days.
+function rotationSlot(rotation, dayIndex) {
+  const n = rotation.length;
+  const pos = ((dayIndex % n) + n) % n;
+  const cycles = Math.floor(dayIndex / n);
+  const kind = rotation[pos];
+  const perCycle = rotation.filter((x) => x === kind).length;
+  let within = 0;
+  for (let i = 0; i <= pos; i++) if (rotation[i] === kind) within++;
+  return { kind, step: cycles * perCycle + within - 1 };
+}
 
 function daily5Picks(key) {
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
   const di = dayIndexFor(key);
-  const kKind = D5_KNOWLEDGE[((di % D5_KNOWLEDGE.length) + D5_KNOWLEDGE.length) % D5_KNOWLEDGE.length];
-  const pKind = D5_PICTURE[((di % D5_PICTURE.length) + D5_PICTURE.length) % D5_PICTURE.length];
-  const kStep = Math.floor(di / D5_KNOWLEDGE.length);
-  const pStep = Math.floor(di / D5_PICTURE.length);
+  const k = rotationSlot(D5_KNOWLEDGE, di);
+  const p = rotationSlot(D5_PICTURE, di);
+  const kKind = k.kind, pKind = p.kind, kStep = k.step, pStep = p.step;
   const knowledgePool = { rishta: RISHTAY.flatMap((g) => g.people).filter((p) => !p.you), kahawat: [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], fact: D5_FACTS }[kKind];
   const picturePool = { janwar: zooAnimals(), mulk: worldCountries() }[pKind];
   return {
@@ -2224,9 +2242,10 @@ function renderD5() {
   } else if (q.kind === "mulk") {
     body = `
       <div class="quiz-prompt">
-        <p class="daily-lead">🌍 Which country is this?</p>
-        <div class="q-ur ur">${esc(q.country.ur)}</div>
-        <div class="q-tr">${esc(q.country.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.country.ur)}, ${JSON.stringify(q.country.tr)})' aria-label="Play audio">🔊</button></div>
+        <p class="daily-lead">🌍 Urdu speakers call this country <strong class="daily-word">“${esc(q.country.tr)}”</strong>. Which one is it?</p>
+        <button class="btn primary" onclick='Speech.speak(${JSON.stringify(q.country.ur)}, ${JSON.stringify(q.country.tr)})'>🔊 Hear it</button>
+        <div class="q-ur ur d5-script-aside">${esc(q.country.ur)}</div>
+        <p class="hint">(the script is just for looking at, you do not need to read it)</p>
       </div>`;
   } else if (q.kind === "fact") {
     body = `

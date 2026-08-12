@@ -285,6 +285,7 @@ body {
 .word-play { font-size: 1.1rem; }
 .word-pic { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; flex-shrink: 0; border: 1.5px solid var(--line); }
 
+.d5-script-aside { opacity: 0.75; }
 .d5-ask { font-size: 1.15rem; font-weight: 600; margin: 6px 0 2px; }
 .d5-pic { width: 100%; max-width: 260px; aspect-ratio: 1; object-fit: cover; border-radius: 16px; border: 2px solid var(--line); margin: 6px auto; display: block; }
 
