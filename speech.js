@@ -145,13 +145,23 @@ const Speech = {
 
   _actx: null,
 
-  // Playing back a recording is where iPhones bite. Two reasons:
-  // an <audio> element is silenced by the physical ring/silent switch,
-  // and blob URLs of a just-finished mp4 recording sometimes refuse to
-  // play at all. Web Audio has neither problem, so try it first and
-  // keep the element as the fallback. Throws with a real message
-  // rather than failing silently, which is what happened before.
+  // Playing back a recording is where iPhones bite: iOS Chrome refuses
+  // to play a just-recorded blob through an <audio> element at all
+  // (NotAllowedError, confirmed on a real device), so Web Audio has to
+  // go first with the element as fallback.
+  //
+  // The catch is that iOS mutes Web Audio when the ring/silent switch
+  // is on, because the audio session defaults to "ambient". Declaring
+  // the session as "playback" tells iOS this is media and should be
+  // heard regardless. Only Safari implements this API, hence the
+  // feature check. (Plain <audio> is unaffected by the switch, which
+  // is why the lesson clips never needed any of this.)
   async playRecording(url) {
+    try {
+      if (navigator.audioSession && navigator.audioSession.type !== "playback") {
+        navigator.audioSession.type = "playback";
+      }
+    } catch (_) {}
     const Ctx = window.AudioContext || window.webkitAudioContext;
     if (Ctx) {
       try {

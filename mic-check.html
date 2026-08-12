@@ -39,6 +39,7 @@
   <div class="card">
     <h2>Live test</h2>
     <p class="step">Tap record, say <b>“assalām-o-alaikum”</b> for about two seconds, then tap stop. It will try to play your voice back two different ways.</p>
+    <p class="step"><b>Worth running twice on an iPhone:</b> once normally, and once with the side ring/silent switch set to silent. If a method goes quiet only in silent mode, that tells us exactly what to fix.</p>
     <button class="btn" id="rec">● Start recording</button>
     <button class="btn sec" id="stop" disabled>■ Stop and play back</button>
     <div class="log" id="log">Ready.</div>
@@ -68,6 +69,7 @@ document.getElementById("caps").innerHTML = [
   row("Recording formats", supportedMimes.length > 0, supportedMimes.join(", ") || "none"),
   row("Web Audio (playback)", !!Ctx),
   row("Speech recognition", !!(window.SpeechRecognition || window.webkitSpeechRecognition)),
+  row("Audio session control", !!navigator.audioSession, navigator.audioSession ? ("yes, currently: " + navigator.audioSession.type) : "no"),
 ].join("");
 
 const ua = navigator.userAgent;
@@ -109,6 +111,10 @@ document.getElementById("stop").onclick = async () => {
 
     say("4. trying Web Audio playback…");
     try {
+      if (navigator.audioSession) {
+        navigator.audioSession.type = "playback";
+        say("   audio session set to: " + navigator.audioSession.type);
+      }
       const actx = new Ctx();
       if (actx.state === "suspended") await actx.resume();
       const buf = await blob.arrayBuffer();
