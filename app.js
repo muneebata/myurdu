@@ -1861,7 +1861,7 @@ function renderGeoQuestion() {
     ${backBar("🗺️ Naqsha · Practice")}
     <div class="quiz-progress">Round ${geo.current + 1} of ${geo.questions.length}</div>
     <div class="quiz-card">
-      <div class="map-wrap">${PAK_MAP_SVG}</div>
+      <div class="map-wrap geo-focus">${PAK_MAP_SVG}</div>
       <p class="geo-q">${geoPrompt(q.feature.type)}</p>
       <aside class="funfact geo-clue"><span class="ff-tag">🔎 Surāgh · Clue</span><p>${esc(q.feature.clue)}</p></aside>
       <div class="quiz-options">
@@ -2223,7 +2223,7 @@ function renderD5() {
       </div>`;
   } else if (q.kind === "geo") {
     body = `
-      <div class="map-wrap">${PAK_MAP_SVG}</div>
+      <div class="map-wrap geo-focus">${PAK_MAP_SVG}</div>
       <p class="geo-q">${geoPrompt(q.feature.type)}</p>
       <aside class="funfact geo-clue"><span class="ff-tag">🔎 Surāgh · Clue</span><p>${esc(q.feature.clue)}</p></aside>`;
   } else if (q.kind === "rishta") {

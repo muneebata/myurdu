@@ -427,6 +427,19 @@ body {
 
 /* ── Naqsha Challenge map ── */
 .map-wrap { text-align: center; margin-bottom: 12px; }
+
+/* Quiz focus mode. The full map carries ~60 markers, which makes the
+   one that is blinking genuinely hard to spot. During a question the
+   other pins disappear and the rivers and desert recede, leaving the
+   country's shape for orientation and exactly one thing to look at.
+   The geography unit's map is untouched: browsing it is the point. */
+.geo-focus .geo-city:not(.geo-hi),
+.geo-focus .geo-site:not(.geo-hi),
+.geo-focus .geo-peak:not(.geo-hi),
+.geo-focus .geo-lake:not(.geo-hi) { opacity: 0; }
+.geo-focus .geo-river:not(.geo-hi) { opacity: 0.15; }
+.geo-focus .geo-thar:not(.geo-hi) { opacity: 0.12; }
+.geo-focus .geo-country:not(.geo-hi) { opacity: 0.45; }
 #pakmap { width: 100%; max-width: 400px; height: auto; }
 .geo-q { text-align: center; font-weight: 600; }
 .geo-sea { fill: #cfe3e8; stroke: #9dc2cc; stroke-width: 1.5; }
