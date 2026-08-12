@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Mic check · Urdu Ustaadh</title>
+<link rel="icon" href="favicon-32.png" />
+<style>
+  :root { --bg:#faf3e1; --ink:#3b2e1f; --muted:#8a7458; --card:#fffdf3; --teal:#12808b; --teal-dark:#0c5f66; --line:#ecdcbb; --good:#3f7a2f; --bad:#b05464; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.5; }
+  .wrap { max-width:640px; margin:0 auto; padding:26px 18px 70px; }
+  h1 { font-size:1.35rem; color:var(--teal-dark); margin:0 0 4px; }
+  p.sub { color:var(--muted); margin:0 0 20px; font-size:0.92rem; }
+  .card { background:var(--card); border:1.5px solid var(--line); border-radius:16px; padding:16px; margin-bottom:14px; }
+  h2 { font-size:1rem; color:var(--teal-dark); margin:0 0 10px; }
+  .row { display:flex; justify-content:space-between; gap:12px; padding:5px 0; border-bottom:1px dashed var(--line); font-size:0.9rem; }
+  .row:last-child { border-bottom:0; }
+  .row b { font-weight:700; text-align:right; }
+  .yes { color:var(--good); } .no { color:var(--bad); }
+  .btn { font:inherit; font-weight:700; border:1.5px solid var(--teal-dark); background:var(--teal); color:#fffdf3; border-radius:12px; padding:11px 18px; cursor:pointer; width:100%; margin-top:8px; }
+  .btn.sec { background:var(--card); color:var(--teal-dark); }
+  .btn:disabled { opacity:0.5; }
+  .log { font-family:ui-monospace,Menlo,monospace; font-size:0.8rem; white-space:pre-wrap; background:#f6efdd; border:1px solid var(--line); border-radius:12px; padding:10px; margin-top:10px; max-height:280px; overflow:auto; }
+  .step { font-size:0.85rem; color:var(--muted); margin:0 0 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🎤 Mic check</h1>
+  <p class="sub">A one-page test of whether recording and playback work on this device. Nothing is uploaded; the recording stays in this browser tab. Run the test, then send the report back so the problem can be fixed.</p>
+
+  <div class="card">
+    <h2>What this browser supports</h2>
+    <div id="caps"></div>
+  </div>
+
+  <div class="card">
+    <h2>Live test</h2>
+    <p class="step">Tap record, say <b>“assalām-o-alaikum”</b> for about two seconds, then tap stop. It will try to play your voice back two different ways.</p>
+    <button class="btn" id="rec">● Start recording</button>
+    <button class="btn sec" id="stop" disabled>■ Stop and play back</button>
+    <div class="log" id="log">Ready.</div>
+    <button class="btn sec" id="copy">📋 Copy the report</button>
+  </div>
+</div>
+
+<script>
+const log = document.getElementById("log");
+const lines = [];
+function say(msg) { lines.push(msg); log.textContent = lines.join("\n"); log.scrollTop = log.scrollHeight; }
+
+function row(label, ok, detail) {
+  return `<div class="row"><span>${label}</span><b class="${ok ? "yes" : "no"}">${detail ?? (ok ? "yes" : "no")}</b></div>`;
+}
+
+const Ctx = window.AudioContext || window.webkitAudioContext;
+const mimes = ["audio/mp4", "audio/aac", "audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus"];
+const supportedMimes = window.MediaRecorder
+  ? mimes.filter((m) => { try { return MediaRecorder.isTypeSupported(m); } catch (e) { return false; } })
+  : [];
+
+document.getElementById("caps").innerHTML = [
+  row("Secure page (https)", window.isSecureContext),
+  row("Microphone API", !!navigator.mediaDevices?.getUserMedia),
+  row("MediaRecorder (recording)", !!window.MediaRecorder),
+  row("Recording formats", supportedMimes.length > 0, supportedMimes.join(", ") || "none"),
+  row("Web Audio (playback)", !!Ctx),
+  row("Speech recognition", !!(window.SpeechRecognition || window.webkitSpeechRecognition)),
+].join("");
+
+const ua = navigator.userAgent;
+say("device: " + ua);
+say("secure: " + window.isSecureContext + " | recorder: " + !!window.MediaRecorder + " | formats: " + (supportedMimes.join(",") || "none"));
+
+let rec = null, chunks = [], blobUrl = null;
+
+document.getElementById("rec").onclick = async () => {
+  try {
+    say("\n1. asking for microphone permission…");
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    say("   permission granted, tracks: " + stream.getAudioTracks().length);
+    const mime = supportedMimes[0] || "";
+    rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    chunks = [];
+    rec.ondataavailable = (e) => { chunks.push(e.data); say("   chunk received: " + e.data.size + " bytes"); };
+    rec.onerror = (e) => say("   RECORDER ERROR: " + (e.error && e.error.name));
+    rec.onstop = () => stream.getTracks().forEach((t) => t.stop());
+    rec.start();
+    say("2. recording started, format: " + (rec.mimeType || "default"));
+    document.getElementById("rec").disabled = true;
+    document.getElementById("stop").disabled = false;
+  } catch (e) {
+    say("   FAILED at permission/start: " + e.name + " — " + e.message);
+  }
+};
+
+document.getElementById("stop").onclick = async () => {
+  document.getElementById("stop").disabled = true;
+  try {
+    const done = new Promise((res) => { const prev = rec.onstop; rec.onstop = (ev) => { prev && prev(ev); res(); }; });
+    rec.stop();
+    await done;
+    const blob = new Blob(chunks, chunks[0] && chunks[0].type ? { type: chunks[0].type } : undefined);
+    say("3. recording stopped. size: " + blob.size + " bytes, type: " + (blob.type || "unknown"));
+    if (!blob.size) { say("   PROBLEM: the recording is empty."); return; }
+    blobUrl = URL.createObjectURL(blob);
+
+    say("4. trying Web Audio playback…");
+    try {
+      const actx = new Ctx();
+      if (actx.state === "suspended") await actx.resume();
+      const buf = await blob.arrayBuffer();
+      const decoded = await actx.decodeAudioData(buf);
+      const node = actx.createBufferSource();
+      node.buffer = decoded;
+      node.connect(actx.destination);
+      node.start();
+      say("   Web Audio: PLAYING (" + decoded.duration.toFixed(1) + "s). Did you hear yourself?");
+    } catch (e) {
+      say("   Web Audio FAILED: " + e.name + " — " + e.message);
+    }
+
+    setTimeout(async () => {
+      say("5. trying <audio> element playback…");
+      try {
+        const el = new Audio(blobUrl);
+        el.setAttribute("playsinline", "");
+        await el.play();
+        say("   element: PLAYING. If this one was silent but step 4 was not, the phone's ring/silent switch is the cause.");
+      } catch (e) {
+        say("   element FAILED: " + e.name + " — " + e.message);
+      }
+    }, 2500);
+  } catch (e) {
+    say("   FAILED at stop: " + e.name + " — " + e.message);
+  } finally {
+    document.getElementById("rec").disabled = false;
+  }
+};
+
+document.getElementById("copy").onclick = async () => {
+  const text = lines.join("\n");
+  try { await navigator.clipboard.writeText(text); say("\n(report copied to clipboard)"); }
+  catch (e) { say("\n(couldn't copy automatically, please screenshot this box)"); }
+};
+</script>
+</body>
+</html>

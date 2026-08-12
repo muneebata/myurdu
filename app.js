@@ -1410,7 +1410,7 @@ function selfCheckNote() {
 function echoRow(outId, ur, tr, retry) {
   return `
       <span class="goonj-btns">
-        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)})'>▶️ Your take</button>
+        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)}, this)'>▶️ Your take</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 Native</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)}, {slow:true})'>🐢</button>
         <button class="btn" onclick="${retry}">🔁 Again</button>
@@ -1514,7 +1514,7 @@ async function goonjFinish(outId, ur, tr) {
     <div class="pr goonj">
       <b>🪞 Goonj, compare by ear:</b>
       <span class="goonj-btns">
-        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)})'>▶️ Your take</button>
+        <button class="btn speak" onclick='goonjPlay(${JSON.stringify(outId)}, this)'>▶️ Your take</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔊 Native</button>
         <button class="btn speak" onclick='Speech.speak(${JSON.stringify(ur)}, ${JSON.stringify(tr)}, {slow:true})'>🐢</button>
         <button class="btn" onclick='goonjStart(${JSON.stringify(outId)}, ${JSON.stringify(ur)}, ${JSON.stringify(tr)})'>🔁 Again</button>
@@ -1523,10 +1523,19 @@ async function goonjFinish(outId, ur, tr) {
     </div>`;
 }
 
-function goonjPlay(outId) {
+async function goonjPlay(outId, btn) {
   if (!goonjUrls[outId]) return;
   speechSynthesis.cancel();
-  new Audio(goonjUrls[outId]).play();
+  try {
+    await Speech.playRecording(goonjUrls[outId]);
+  } catch (e) {
+    // Silence with no explanation is the worst outcome, so say something.
+    const out = document.getElementById(outId);
+    const note = out && out.querySelector(".goonj-hint");
+    const msg = "Couldn't play that back on this device. If your iPhone's ring/silent switch is set to silent, flick it on and try again.";
+    if (note) note.textContent = msg;
+    else if (btn) btn.textContent = "▶️ playback failed";
+  }
 }
 
 // ── Quizzes (level quizzes + callback drill share this engine) ──

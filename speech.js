@@ -143,6 +143,37 @@ const Speech = {
     return r.done;
   },
 
+  _actx: null,
+
+  // Playing back a recording is where iPhones bite. Two reasons:
+  // an <audio> element is silenced by the physical ring/silent switch,
+  // and blob URLs of a just-finished mp4 recording sometimes refuse to
+  // play at all. Web Audio has neither problem, so try it first and
+  // keep the element as the fallback. Throws with a real message
+  // rather than failing silently, which is what happened before.
+  async playRecording(url) {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (Ctx) {
+      try {
+        this._actx = this._actx || new Ctx();
+        if (this._actx.state === "suspended") await this._actx.resume();
+        const bytes = await (await fetch(url)).arrayBuffer();
+        const decoded = await this._actx.decodeAudioData(bytes);
+        const node = this._actx.createBufferSource();
+        node.buffer = decoded;
+        node.connect(this._actx.destination);
+        node.start();
+        return "webaudio";
+      } catch (_) {
+        // fall through to the element
+      }
+    }
+    const el = new Audio(url);
+    el.setAttribute("playsinline", "");
+    await el.play();
+    return "element";
+  },
+
   listen() {
     return new Promise((resolve, reject) => {
       const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
