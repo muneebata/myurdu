@@ -2506,10 +2506,12 @@ function openUnit(unitsName, i) {
     if (sec.note) body += `<p class="read-note">${sec.note}</p>`;
     if (sec.img) {
       for (const im of [sec.img].flat()) {
+        const cap = im.caption || im.credit
+          ? `<figcaption>${esc(im.caption || "")}${im.credit ? `<span class="photo-credit">${esc(im.credit)}</span>` : ""}</figcaption>`
+          : "";
         body += `
       <figure class="photo">
-        <img src="${im.src}" alt="${esc(im.alt || "")}" loading="lazy" />
-        <figcaption>${esc(im.caption || "")}<span class="photo-credit">${esc(im.credit || "")}</span></figcaption>
+        <img src="${im.src}" alt="${esc(im.alt || "")}" loading="lazy" />${cap}
       </figure>`;
       }
     }

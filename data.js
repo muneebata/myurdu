@@ -937,6 +937,7 @@ const READING_UNITS = [
       {
         heading: "Chāy kā din · A chai kind of day",
         note: "Our first narrator is a man, you'll hear it in his verbs (gayā, āyā). Six lines: present, past, and future all shake hands.",
+        img: { src: "images/story-chai.jpg", alt: "Four people sitting around a low table with a metal teapot and small cups, rain running down the window behind them" },
         words: [
           { ur: "آج موسم اچھا ہے۔", tr: "āj mausam achhā hai", en: "Today the weather is nice.", spell: "every kahānī starts somewhere, this one with L12's weather" },
           { ur: "کل میں بازار گیا۔", tr: "kal maiṉ bāzār gayā", en: "Yesterday I went to the bazaar.", spell: "kal = yesterday here, past-tense gayā is what tells you which kal (L8's famous trick)" },
@@ -949,6 +950,7 @@ const READING_UNITS = [
       {
         heading: "Rikshā wālā · The rickshaw driver",
         note: "A tiny bargaining scene, and a new narrator. Watch her verbs.",
+        img: { src: "images/story-rickshaw.jpg", alt: "A rickshaw driver leaning out of a flower-painted auto-rickshaw, talking to passengers standing on the street" },
         words: [
           { ur: "مجھے رکشہ چاہیے۔", tr: "mujhe rikshā chāhiye", en: "I need a rickshaw.", spell: "L20's dative chāhiye doing its job" },
           { ur: "رکشہ والے نے کہا: پچاس روپے۔", tr: "rikshā wāle ne kahā: pachās rupaye", en: "The rickshaw driver said: fifty rupees.", spell: "NEW: ne kahā = said. And wālā bends to wāle before ne, the L14 pattern with a new verb" },
@@ -961,6 +963,7 @@ const READING_UNITS = [
       {
         heading: "Ṭren kā safar · The train journey",
         note: "The L24 capstone, retold as a story, ham (we) this time.",
+        img: { src: "images/story-train.jpg", alt: "A green and yellow train at a railway platform, travellers with suitcases and bundles, a chai vendor carrying a tray of cups" },
         words: [
           { ur: "ہم نے کہا: ایک ٹکٹ لاہور کا۔", tr: "ham ne kahā: ek ṭikaṭ lāhaur kā", en: "We said: one ticket for Lahore.", spell: "L24's ticket line, live at the counter" },
           { ur: "ٹرین صبح آئی۔", tr: "ṭren subah āī", en: "The train came in the morning.", spell: "NEW: āī = came (feminine, ṭren is a she)" },
@@ -987,6 +990,7 @@ const READING_UNITS = [
       {
         heading: "دوست کی دعوت · A friend's invitation",
         note: "An invitation, an answer, a plan, the whole social loop in six lines.",
+        img: { src: "images/story-dawat.jpg", alt: "Four friends around a table crowded with shared dishes of rice, curries and flatbread, passing a plate between them" },
         words: [
           { ur: "میرے دوست نے کہا: کل گھر آؤ", tr: "mere dost ne kahā: kal ghar āo", en: "My friend said: come over tomorrow.", spell: "kahā + the L16 tum-command āo" },
           { ur: "میں نے کہا: ٹھیک ہے، ضرور", tr: "maiṉ ne kahā: ṭhīk hai, zarūr", en: "I said: okay, definitely.", spell: "zarūr, your R9 word, back already" },
@@ -999,6 +1003,7 @@ const READING_UNITS = [
       {
         heading: "بازار میں مول تول · Bargaining in the bazaar",
         note: "The RP3 bargaining moves, now in story form. Mol-tol = haggling, the bazaar's official sport.",
+        img: { src: "images/story-bazaar.jpg", alt: "A fruit stall piled with mangoes, an older vendor gesturing while a customer holds one up and looks unconvinced" },
         words: [
           { ur: "میں بازار گیا", tr: "maiṉ bāzār gayā", en: "I went to the bazaar.", spell: "the L14 line you know by heart" },
           { ur: "آم کتنے کے ہیں؟", tr: "ām kitne ke haiṉ?", en: "How much are the mangoes?", spell: "kitne ke, asking a plural price" },

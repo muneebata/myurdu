@@ -11,7 +11,7 @@ on grid sheets, and nothing touching the canvas edge.
 
 ---
 
-# BATCH 1 · Sair thumbnails
+# BATCH 1 · Sair thumbnails  ✅ DONE, live on the site
 Three landscape scenes, 1536×1024. Highest priority: these three stops are
 the only ones with no picture.
 
@@ -26,7 +26,7 @@ the only ones with no picture.
 
 ---
 
-# BATCH 1B · The five remaining Sair stops
+# BATCH 1B · The five remaining Sair stops  ✅ DONE, live on the site
 These five currently use Wikimedia photographs. Replacing them with
 illustrations makes the whole walk one consistent world, which is worth
 more than the photographs' realism. Same 1536×1024 landscape, same style,
@@ -49,7 +49,7 @@ more than the photographs' realism. Same 1536×1024 landscape, same style,
 
 ---
 
-# BATCH 2 · Story illustrations
+# BATCH 2 · Story illustrations  ✅ DONE, live in Kahani 1 and 2
 Five landscape scenes, 1536×1024, for the graded readers.
 **Keep the same cast across all five if your tool allows it**, so the
 readers feel like one storybook.
