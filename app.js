@@ -1731,7 +1731,12 @@ let daily = null;
 const quizLoanwords = () => LOANWORDS.filter((w) => w.quiz !== false);
 
 function rootsQuestion(w, rng) {
-  const candidates = quizLoanwords().filter((x) => x.meaning !== w.meaning && x.en !== w.en);
+  const seen = new Set([w.meaning]);
+  const candidates = quizLoanwords().filter((x) => {
+    if (x.en === w.en || seen.has(x.meaning)) return false;
+    seen.add(x.meaning);
+    return true;
+  });
   const distractors = seededPick(candidates, 3, rng);
   return {
     kind: "roots",
@@ -1756,7 +1761,7 @@ function renderDailyQuestion() {
     <div class="quiz-progress">Word ${daily.current + 1} of ${daily.questions.length}</div>
     <div class="quiz-card">
       <div class="quiz-prompt">
-        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
+        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from ${esc(q.word.from || "Urdu")}:</p>
         <div class="q-ur ur">${esc(q.word.ur)}</div>
         <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})' aria-label="Play audio">🔊</button></div>
         <p>What does it literally mean?</p>
@@ -2232,7 +2237,7 @@ function renderD5() {
   if (q.kind === "roots") {
     body = `
       <div class="quiz-prompt">
-        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from Urdu:</p>
+        <p class="daily-lead">${esc(q.word.borrower || "English")} borrowed <strong class="daily-word">“${esc(q.word.en)}”</strong> from ${esc(q.word.from || "Urdu")}:</p>
         <div class="q-ur ur">${esc(q.word.ur)}</div>
         <div class="q-tr">${esc(q.word.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.word.ur)}, ${JSON.stringify(q.word.tr)})' aria-label="Play audio">🔊</button></div>
         <p>What does it literally mean?</p>

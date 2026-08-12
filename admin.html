@@ -268,10 +268,10 @@ async function loadStats() {
   <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
-<script src="data.js?v=202608121559"></script>
-<script src="speech.js?v=202608121559"></script>
+<script src="data.js?v=202608121610"></script>
+<script src="speech.js?v=202608121610"></script>
 <script>window.MYURDU_NO_BOOT = true;</script>
-<script src="app.js?v=202608121559"></script>
+<script src="app.js?v=202608121610"></script>
 <script>
 // Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
 // (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
@@ -310,7 +310,7 @@ async function loadStats() {
           let ask = "", extra = "", play = "";
           if (q.kind === "roots") {
             const w = q.word || {};
-            ask = `${esc(w.borrower || "English")} borrowed <b>“${esc(w.en)}”</b> from Urdu. What does it literally mean?`;
+            ask = `${esc(w.borrower || "English")} borrowed <b>“${esc(w.en)}”</b> from ${esc(w.from || "Urdu")}. What does it literally mean?`;
             extra = `<div class="d5-ur ur">${esc(w.ur)}</div><div class="note">${esc(w.tr)}</div>`;
             if (w.story) extra += `<div class="d5-extra"><b>Story shown after answering:</b> ${esc(w.story)}</div>`;
             play = w.ur ? `<button class="d5-play" data-ur="${esc(w.ur)}" data-tr="${esc(w.tr)}">▶ hear</button>` : "";

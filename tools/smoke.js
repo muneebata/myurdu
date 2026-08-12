@@ -76,6 +76,13 @@ for (const w of quizWords) {
     `loanword "${w.en}" gives its own answer away: "${w.meaning}"`);
 }
 
+// No two loanwords in one question may share a meaning, or a player
+// could rule both out for free.
+const meaningCounts = {};
+for (const w of quizWords) meaningCounts[w.meaning] = (meaningCounts[w.meaning] || 0) + 1;
+const twinned = Object.entries(meaningCounts).filter(([, n]) => n > 1).length;
+check(twinned <= 12, `${twinned} meanings are shared by several loanwords; the distractor picker must dedupe`);
+
 // picture pools the daily five draws from
 const zoo = (READING_UNITS.find((u) => u.id === "R11") || { sections: [] }).sections.flatMap((s) => s.words || []).filter((w) => w.pic);
 const mulk = (READING_UNITS.find((u) => u.id === "R12") || { sections: [] }).sections.flatMap((s) => s.words || []);
