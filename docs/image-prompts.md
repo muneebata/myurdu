@@ -26,6 +26,29 @@ the only ones with no picture.
 
 ---
 
+# BATCH 1B · The five remaining Sair stops
+These five currently use Wikimedia photographs. Replacing them with
+illustrations makes the whole walk one consistent world, which is worth
+more than the photographs' realism. Same 1536×1024 landscape, same style,
+**and keep the decorative floral border** so they match the first three.
+
+### 1B.1 At the chai dhaba
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear, decorative floral border frame around the scene. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is: A roadside Pakistani chai dhaba, a vendor pouring milky tea from a height between two metal jugs, steam rising, customers sitting on charpai benches at low tables, kettles on a stove, warm afternoon light.
+
+### 1B.2 Bargaining at the bazaar
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear, decorative floral border frame around the scene. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is: A busy Pakistani bazaar stall piled with fruit and sacks of dry fruit and nuts, the vendor holding up a mango and gesturing at the price, a customer with a cloth bag looking unconvinced, other shoppers behind them.
+
+### 1B.3 Asking the way to the station
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear, decorative floral border frame around the scene. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is: A street corner near a Pakistani railway station, an older man pointing down the road to help a young traveller carrying a suitcase, the station's arched colonial-era facade visible behind them, a fruit cart at the kerb.
+
+### 1B.4 At the clinic
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear, decorative floral border frame around the scene. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is: A small friendly Pakistani clinic room, a doctor in a white coat with a stethoscope listening kindly to a seated patient who is holding their stomach, a simple desk, a curtain, a window with soft daylight.
+
+### 1B.5 The rickshaw ride
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear, decorative floral border frame around the scene. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is: A brightly painted auto-rickshaw covered in floral truck-art decoration parked at a Pakistani street corner, the driver turning to speak to a passenger climbing in, busy shopfronts and a tree behind, late afternoon light.
+
+---
+
 # BATCH 2 · Story illustrations
 Five landscape scenes, 1536×1024, for the graded readers.
 **Keep the same cast across all five if your tool allows it**, so the
