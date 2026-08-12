@@ -464,6 +464,17 @@ body {
   padding: 5px 12px; cursor: pointer; color: var(--teal-dark); z-index: 6;
 }
 .about-btn:hover { background: #f2ead2; }
+.install-btn {
+  position: absolute; top: 24px; right: 92px;
+  font: inherit; font-size: 0.82rem; font-weight: 700;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 999px;
+  padding: 5px 12px; cursor: pointer; color: var(--teal-dark); z-index: 6;
+}
+.install-btn:hover { background: #f2ead2; }
+.install-lead { font-weight: 700; margin: 10px 0 4px; }
+.install-steps { text-align: left; margin: 0 0 8px; padding-left: 22px; font-size: 0.92rem; line-height: 1.6; }
+.install-steps li { margin-bottom: 5px; }
+.install-done { background: #e8f2dd; border: 1px solid #b4d290; border-radius: 12px; padding: 9px 12px; font-size: 0.9rem; }
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(59, 46, 31, 0.55);
   display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px;
@@ -520,7 +531,7 @@ body {
   background: #eef3e2; border: 1px solid #c9d8ab; border-radius: 12px; padding: 9px 12px;
 }
 @media (max-width: 560px) {
-  .about-btn, .save-btn { position: static; display: inline-block; margin: 8px 4px 0; }
+  .about-btn, .save-btn, .install-btn { position: static; display: inline-block; margin: 8px 4px 0; }
   .hero { display: flex; flex-direction: column; align-items: center; }
   .hero .hero-strap { align-self: stretch; }
 }
@@ -867,6 +878,7 @@ html[data-theme="dark"] .letter:hover,
 html[data-theme="dark"] .word:hover,
 html[data-theme="dark"] .verse-line:hover,
 html[data-theme="dark"] .profile-tag:hover,
+html[data-theme="dark"] .install-btn:hover,
 html[data-theme="dark"] .about-btn:hover,
 html[data-theme="dark"] .save-btn:hover,
 html[data-theme="dark"] .cert-tag:hover,

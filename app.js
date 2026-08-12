@@ -75,6 +75,7 @@ function renderProfiles() {
   app().innerHTML = `
     ${backBar("Learners · Kaun seekh raha hai?", root.active ? "renderHome()" : null)}
     <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
     <div class="roster">
       <h2 class="retro">Who's learning today?</h2>
       <p class="lesson-intro">Each learner gets their own progress, title, and streak, stored on this device.</p>
@@ -1142,6 +1143,7 @@ function renderHome() {
     <header class="hero">
       <div class="hero-strap"></div>
       <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
       ${azadiPeak() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R : ""}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
@@ -2670,6 +2672,84 @@ async function showAzadiCard() {
 
 // ── About ────────────────────────────────────────────────────
 
+// ── Add to phone ─────────────────────────────────────────────
+// Installing a web app is a different ritual on every platform and
+// none of them are discoverable, so this explains the one the visitor
+// is actually on rather than listing all of them.
+function isStandalone() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function devicePlatform() {
+  const ua = navigator.userAgent;
+  const iOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (iOS) return "ios";
+  if (/Android/.test(ua)) return "android";
+  return "desktop";
+}
+
+async function runInstallPrompt(btn) {
+  if (!deferredInstall) return;
+  btn.disabled = true;
+  deferredInstall.prompt();
+  const { outcome } = await deferredInstall.userChoice;
+  deferredInstall = null;
+  const card = btn.closest(".modal-card");
+  if (card) {
+    card.querySelector(".install-live").innerHTML = outcome === "accepted"
+      ? `<p class="install-done">✅ Installing. Look for the truck-art icon on your home screen.</p>`
+      : `<p class="hint">No problem. You can always come back to this button later.</p>`;
+  }
+}
+
+function showInstall() {
+  const platform = devicePlatform();
+  const steps = {
+    ios: `
+      <p class="install-lead">On an iPhone or iPad, Safari does this from the Share menu:</p>
+      <ol class="install-steps">
+        <li>Tap the <b>Share</b> button (the square with an arrow pointing up), at the bottom of Safari or top-right on an iPad.</li>
+        <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+        <li>Tap <b>Add</b>. The truck-art icon appears with your other apps.</li>
+      </ol>
+      <p class="hint">This only works in Safari on iOS. If you are in Chrome or another browser, open myurdu.org in Safari first.</p>`,
+    android: `
+      <p class="install-lead">On Android:</p>
+      <ol class="install-steps">
+        <li>Tap the <b>⋮</b> menu at the top-right of your browser.</li>
+        <li>Tap <b>Install app</b>, or <b>Add to Home screen</b> if you do not see that.</li>
+        <li>Confirm, and the icon lands on your home screen.</li>
+      </ol>`,
+    desktop: `
+      <p class="install-lead">On a computer:</p>
+      <ol class="install-steps">
+        <li>In Chrome or Edge, look for the small <b>install icon</b> at the right-hand end of the address bar.</li>
+        <li>Click it and choose <b>Install</b>.</li>
+      </ol>
+      <p class="hint">Safari on a Mac can do it too: File → Add to Dock.</p>`,
+  }[platform];
+
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal-card">
+      <img src="icon-192.png" alt="" class="modal-logo" />
+      <h2 class="retro">Put Urdu Ustaadh on your phone</h2>
+      ${isStandalone()
+        ? `<p class="install-done">✅ You are already using the installed app. Enjoy.</p>`
+        : `<p>Add it to your home screen and it opens like any other app: full screen, its own icon, and your lessons keep working even with no signal.</p>
+           <div class="install-live">
+             ${deferredInstall
+               ? `<button class="btn primary big" onclick="runInstallPrompt(this)">📲 Install now</button>
+                  <p class="hint">One tap, no app store.</p>`
+               : steps}
+           </div>`}
+      <button class="btn" onclick="this.closest('.modal-overlay').remove()">Close</button>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
 function showAbout() {
   const overlay = document.createElement("div");
   overlay.className = "modal-overlay";
@@ -3946,6 +4026,16 @@ function shuffle(arr) {
 }
 
 // ── Boot ─────────────────────────────────────────────────────
+
+// Chromium fires this instead of showing its own install banner. Keep
+// it so the "Add to phone" button can offer a genuine one-tap install;
+// Safari has no equivalent, so that path falls back to instructions.
+let deferredInstall = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstall = e;
+});
+window.addEventListener("appinstalled", () => { deferredInstall = null; });
 
 if ("serviceWorker" in navigator && !window.MYURDU_NO_BOOT) {
   navigator.serviceWorker.register("sw.js").catch(() => {});
