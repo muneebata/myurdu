@@ -2959,7 +2959,7 @@ function rolePlayCards() {
     <div class="rp-cards">
       ${ROLEPLAYS.map((sc, i) => `
       <button class="rp-card ${sc.img ? "has-thumb" : ""}" onclick="startRolePlay(${i})">
-        ${sc.img ? `<span class="rp-thumb"><img src="${sc.img.src}" alt="${esc(sc.img.alt)}" loading="lazy"><span class="rp-thumb-credit">${esc(sc.img.credit)}</span></span>` : ""}
+        ${sc.img ? `<span class="rp-thumb"><img src="${sc.img.src}" alt="${esc(sc.img.alt)}" loading="lazy">${sc.img.credit ? `<span class="rp-thumb-credit">${esc(sc.img.credit)}</span>` : ""}</span>` : ""}
         <span class="rp-tag">${SAIR_STOPS[sc.id] || "🎭"} Stop ${i + 1} · Live role-play</span>
         <span class="rp-title">${esc(sc.title)} <span class="ur">${esc(sc.urName)}</span></span>
         <span class="rp-desc">${esc(sc.desc)}</span>

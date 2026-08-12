@@ -3331,7 +3331,7 @@ const AZADI_ITEMS = [
 const ROLEPLAYS = [
   {
     id: "RP1",
-    img: { src: "images/sair-dhaba.jpg", alt: "A dhaba vendor pouring chai from a height between two jugs", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-dhaba.jpg", alt: "A dhaba vendor pouring chai from a height between two jugs" },
     title: "At the Chai Dhaba",
     urName: "چائے خانہ",
     desc: "Order chai and pay, or charm the wala into a discount. Level 10's scene, your way.",
@@ -3367,7 +3367,7 @@ const ROLEPLAYS = [
     id: "RP2",
     title: "Meeting Someone New",
     urName: "ملاقات",
-    img: { src: "images/sair-mulaqat.jpg", alt: "Two students shaking hands on a university lawn", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-mulaqat.jpg", alt: "Two students shaking hands on a university lawn" },
     desc: "Greetings and introductions, your answers steer where the chat goes.",
     youRole: "yourself",
     themRole: "a new friend",
@@ -3399,7 +3399,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP3",
-    img: { src: "images/sair-bazaar-art.jpg", alt: "A fruit vendor holding up a mango to a sceptical customer", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-bazaar-art.jpg", alt: "A fruit vendor holding up a mango to a sceptical customer" },
     title: "Bargaining at the Bazaar",
     urName: "مول تول",
     desc: "Ask the price, then choose your road, pay up or haggle hard. The ending changes.",
@@ -3432,7 +3432,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP4",
-    img: { src: "images/sair-station-art.jpg", alt: "An older man pointing the way for a traveller outside a railway station", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-station-art.jpg", alt: "An older man pointing the way for a traveller outside a railway station" },
     title: "Asking the Way",
     urName: "راستہ پوچھنا",
     desc: "Lost near the station, your questions pick the route: on foot or by rickshaw, bus stop or chai.",
@@ -3463,7 +3463,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP5",
-    img: { src: "images/sair-clinic.jpg", alt: "A doctor with a stethoscope listening to a seated patient", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-clinic.jpg", alt: "A doctor with a stethoscope listening to a seated patient" },
     title: "At the Doctor's",
     urName: "ڈاکٹر کے پاس",
     desc: "Describe what hurts and ask the right questions. Level 13's feelings, under pressure.",
@@ -3496,7 +3496,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP6",
-    img: { src: "images/sair-rickshaw-art.jpg", alt: "A passenger climbing into a decorated auto-rickshaw", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-rickshaw-art.jpg", alt: "A passenger climbing into a decorated auto-rickshaw" },
     title: "The Rickshaw Ride",
     urName: "رکشہ والا",
     desc: "Fix the fare before the wheels move, counter, hold firm, or walk away.",
@@ -3530,7 +3530,7 @@ const ROLEPLAYS = [
     id: "RP7",
     title: "The Phone Call",
     urName: "فون پر",
-    img: { src: "images/sair-call.jpg", alt: "A woman on a phone call at home, chai beside her", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-call.jpg", alt: "A woman on a phone call at home, chai beside her" },
     desc: "No faces, no gestures, pure listening. Make a plan and pick the spot.",
     youRole: "yourself",
     themRole: "your friend",
@@ -3562,7 +3562,7 @@ const ROLEPLAYS = [
     id: "RP8",
     title: "The Tailor",
     urName: "درزی کے پاس",
-    img: { src: "images/sair-darzi.jpg", alt: "A tailor greeting a customer among bolts of fabric", credit: "Illustration · Urdu Ustaadh" },
+    img: { src: "images/sair-darzi.jpg", alt: "A tailor greeting a customer among bolts of fabric" },
     desc: "A new qamīz needs stitching. Bring your fabric, or buy his, and talk nāp, timing, and trust.",
     youRole: "yourself",
     themRole: "the darzi (tailor)",
