@@ -16,13 +16,13 @@ Three landscape scenes, 1536×1024. Highest priority: these three stops are
 the only ones with no picture.
 
 ### 1.1 Meeting someone new
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, important action centred vertically, generous margins. Two young South Asian men smiling and shaking hands on a university lawn, one in a kurta and one in a shirt, a few students walking and sitting under trees in the soft background, late afternoon light. Warm, friendly, dignified. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, important action centred vertically, generous margins. Two young Pakistani men smiling and shaking hands on a university lawn, one in a kurta and one in a shirt, a few students walking and sitting under trees in the soft background, late afternoon light. Warm, friendly, dignified. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 1.2 The phone call
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, important action centred vertically, generous margins. A young South Asian woman sitting on a sofa at home holding a mobile phone to her ear, mid-conversation, smiling slightly, a cup of chai on a low table beside her, warm evening lamplight, patterned cushions. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, important action centred vertically, generous margins. A young Pakistani woman sitting on a sofa at home holding a mobile phone to her ear, mid-conversation, smiling slightly, a cup of chai on a low table beside her, warm evening lamplight, patterned cushions. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 1.3 The tailor's shop
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, important action centred vertically, generous margins. Interior of a small South Asian tailor's shop, bolts of colourful fabric stacked on shelves, an old sewing machine on a wooden table, a measuring tape around the tailor's neck, the tailor greeting a customer with a welcoming gesture. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, important action centred vertically, generous margins. Interior of a small Pakistani tailor's shop, bolts of colourful fabric stacked on shelves, an old sewing machine on a wooden table, a measuring tape around the tailor's neck, the tailor greeting a customer with a welcoming gesture. No text, no lettering, no signs, no writing anywhere in the image.
 
 ---
 
@@ -32,19 +32,19 @@ Five landscape scenes, 1536×1024, for the graded readers.
 readers feel like one storybook.
 
 ### 2.1 A chai kind of day
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. A South Asian family at home around a low table with a metal teapot and small cups, steam rising, monsoon rain running down the window behind them, cosy warm interior. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. A Pakistani family at home around a low table with a metal teapot and small cups, steam rising, monsoon rain running down the window behind them, cosy warm interior. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 2.2 The rickshaw driver
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. A brightly decorated auto-rickshaw covered in floral truck-art patterns at a busy street corner, the driver leaning out and gesturing, a passenger standing beside it negotiating, shops and a tree in the background. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. A brightly decorated auto-rickshaw covered in floral truck-art patterns at a busy street corner, the driver leaning out and gesturing, a passenger standing beside it negotiating, shops and a tree in the background. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 2.3 The train journey
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. A green and yellow passenger train pulling into a South Asian railway platform, families waiting with suitcases and bundles, a chai vendor carrying a tray of small cups, arched platform pillars. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. A green and yellow passenger train pulling into a Pakistani railway platform, families waiting with suitcases and bundles, a chai vendor carrying a tray of small cups, arched platform pillars. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 2.4 A friend's invitation
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. A crowded dinner table seen slightly from above, many shared dishes of South Asian food, rice, curries and flatbread, four friends seated around it laughing and passing a plate, warm overhead light. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. A crowded dinner table seen slightly from above, many shared dishes of Pakistani food, rice, curries and flatbread, four friends seated around it laughing and passing a plate, warm overhead light. No text, no lettering, no signs, no writing anywhere in the image.
 
 ### 2.5 Bargaining in the bazaar
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. A fruit stall piled high with mangoes and baskets of fruit, an older vendor gesturing with one hand, a customer holding a mango and looking sceptical, a busy market behind them. No text, no lettering, no signs, no writing anywhere in the image.
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. A fruit stall piled high with mangoes and baskets of fruit, an older vendor gesturing with one hand, a customer holding a mango and looking sceptical, a busy market behind them. No text, no lettering, no signs, no writing anywhere in the image.
 
 ---
 
@@ -63,7 +63,7 @@ object big, simple and centred.
 ### 3.2 Feelings and times of day
 > …1 a smiling happy face, 2 a sad face, 3 a hungry face looking at an empty plate, 4 a thirsty face holding an empty glass, 5 a tired yawning face, 6 an angry frowning face, 7 a frightened face, 8 a surprised face with raised eyebrows, 9 sunrise over rooftops, 10 bright midday sun overhead, 11 an orange evening sky, 12 a night sky with a crescent moon and stars.
 >
-> For items 1 to 8 use friendly South Asian faces in the same illustrated style, each inside a decorative rounded frame with small floral corner motifs.
+> For items 1 to 8 use friendly Pakistani faces in the same illustrated style, each inside a decorative rounded frame with small floral corner motifs.
 
 ### 3.3 Weather and colours
 > …1 heavy rain falling on a street, 2 a bright sun in a clear sky, 3 fluffy clouds, 4 wind bending a tree, 5 snow on a mountain peak, 6 a thermometer showing a hot day with shimmering heat, 7 a cold frosty morning with breath fog, 8 a red rose, 9 a blue kite, 10 a green leaf, 11 a yellow lemon, 12 a white cotton flower.
@@ -78,7 +78,7 @@ object big, simple and centred.
 > …1 a bed with a blanket, 2 a wooden chair, 3 a low table, 4 a wooden door, 5 a window with shutters, 6 a metal key, 7 an old telephone, 8 a closed book, 9 a wall clock, 10 a teacup on a saucer, 11 a table lamp lit, 12 an empty plate.
 
 ### 3.7 Clothes
-> …1 a shalwar kameez outfit laid flat, 2 a folded dupatta scarf, 3 a men's kurta, 4 an embroidered topi cap, 5 a pair of leather sandals, 6 a knitted sweater, 7 a draped sari, 8 a woollen shawl, 9 a pair of trousers, 10 a plain shirt, 11 a pair of socks, 12 a pair of shoes.
+> …1 a shalwar kameez outfit laid flat, 2 a folded dupatta scarf, 3 a men's kurta, 4 an embroidered topi cap, 5 a pair of leather sandals, 6 a knitted sweater, 7 a gharara, wide flared formal trousers worn at weddings, 8 a woollen shawl, 9 a pair of trousers, 10 a plain shirt, 11 a pair of socks, 12 a pair of shoes.
 
 ### 3.8 The body
 > …1 a head in profile, 2 an eye, 3 an ear, 4 a nose in profile, 5 a mouth smiling, 6 an open hand, 7 a bare foot, 8 a stomach shown as a torso outline, 9 long hair, 10 a single tooth, 11 an arm bent at the elbow, 12 a leg bent at the knee.
@@ -91,14 +91,14 @@ object big, simple and centred.
 Twenty-two landscape scenes, 1536×1024. **Each prompt is the style line
 plus one scene**, so paste this opening every time:
 
-> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, South Asian vintage printed-card feeling. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is:
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is:
 
 Then one of these:
 
 1. **Greetings** – two neighbours greeting each other warmly at a doorway, one with a hand raised in salaam
 2. **Introductions** – a small group meeting for the first time at a gathering, polite handshakes
 3. **Numbers** – a customer counting banknotes at a fruit stall, vendor waiting
-4. **Family** – three generations of a South Asian family posed together in a courtyard
+4. **Family** – three generations of a Pakistani family posed together in a courtyard
 5. **Food** – a dastarkhwan spread on the floor, many shared dishes, hands reaching in
 6. **Question words** – a curious child looking up and asking a parent something, parent smiling
 7. **Verbs** – one busy courtyard where several people are eating, walking, talking and working at once
@@ -124,7 +124,7 @@ Then one of these:
 Four landscape scenes, 1536×1024. Use the Batch 4 opening line, then:
 
 ### 5.1 The aadab gesture
-> A younger South Asian person greeting an elder with the aadab gesture, right palm raised toward their own face, head slightly bowed, the elder smiling in return, a warm home interior behind them.
+> A younger Pakistani person greeting an elder with the aadab gesture, right palm raised toward their own face, head slightly bowed, the elder smiling in return, a warm home interior behind them.
 
 ### 5.2 Takalluf at a dawat
 > A host leaning forward to serve more food onto a guest's already full plate, the guest raising a hand to politely decline while smiling, a table of dishes between them, other guests around.
@@ -138,6 +138,17 @@ Four landscape scenes, 1536×1024. Use the Batch 4 opening line, then:
 ---
 
 ## Notes
+
+- **On "Pakistani".** It is in the prompts because models drift toward
+  Indian defaults on "South Asian", and saris and temple architecture would
+  be quietly wrong here. But the adjective does less work than the concrete
+  details do, which is why the prompts also name shalwar kameez, chai
+  glasses, truck art and rickshaws. If a result still looks generic, add
+  a city: "a Lahore street", "a Karachi market".
+- **Keep the people varied.** The family tree deliberately shows a range of
+  backgrounds among the relatives who married in, because that is what
+  diaspora families look like. Do not let "Pakistani" flatten every face
+  into one look, especially in crowd scenes.
 
 - **Reuse your cast.** If the tool lets you keep characters consistent, use
   the same faces across Batch 2 and Batch 4 so the site feels like one
