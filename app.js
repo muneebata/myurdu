@@ -74,8 +74,10 @@ function renderProfiles() {
   const names = Object.keys(root.profiles);
   app().innerHTML = `
     ${backBar("Learners · Kaun seekh raha hai?", root.active ? "renderHome()" : null)}
-    <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
-      <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
+    <div class="hero-actions">
+        <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
+        <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      </div>
     <div class="roster">
       <h2 class="retro">Who's learning today?</h2>
       <p class="lesson-intro">Each learner gets their own progress, title, and streak, stored on this device.</p>
@@ -1142,8 +1144,10 @@ function renderHome() {
   app().innerHTML = `
     <header class="hero">
       <div class="hero-strap"></div>
-      <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
-      <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
+      <div class="hero-actions">
+        <button class="install-btn" onclick="showInstall()" title="Add Urdu Ustaadh to your phone">📲 Add to phone</button>
+        <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
+      </div>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
       ${azadiPeak() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R : ""}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
