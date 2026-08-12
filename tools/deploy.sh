@@ -7,7 +7,10 @@ cd "$(dirname "$0")/.."
 node tools/smoke.js || { echo "DEPLOY ABORTED: smoke tests failed"; exit 1; }
 python3 tools/gen_seo.py
 V=$(date +%Y%m%d%H%M)
-sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html
+# Stamp every page that loads versioned assets. admin.html was left
+# out once and quietly served a cached app.js for a whole release,
+# which showed stale quiz questions in the preview panel.
+sed -i '' -E "s/\.(css|js)\?v=[0-9]+/.\1?v=$V/g" index.html admin.html
 sed -i '' -E "s/myurdu-v[0-9]+/myurdu-v$V/" sw.js
 git add -A
 git -c user.name="Muneeb Ata" -c user.email="194409090+muneebata@users.noreply.github.com" commit -m "${1:-Deploy} (assets v$V)
