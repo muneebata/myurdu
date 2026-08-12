@@ -54,6 +54,15 @@ check(RANKS[0].need === 0, "first rank must need 0");
 check(RANKS[RANKS.length - 1].need <= completables, `top rank needs ${RANKS[RANKS.length - 1].need} > ${completables} completables`);
 check(RANKS[RANKS.length - 1].need >= completables - 4, `top rank ${RANKS[RANKS.length - 1].need} lags far behind ${completables} completables — rescale RANKS`);
 
+// Minimal pairs: both halves must be complete and speakable
+for (const u of SOUND_UNITS) for (const sec of u.sections) {
+  for (const p of sec.pairs || []) {
+    for (const w of [p.a, p.b]) check(w && w.ur && w.tr && w.en, `${u.id} pair half incomplete`);
+    check(p.note, `${u.id} pair missing its explanation`);
+    check(p.a.tr !== p.b.tr, `${u.id} pair has the same word twice`);
+  }
+}
+
 // Rishtay tree: every family member is tappable
 for (const g of RISHTAY) for (const p of g.people) {
   check(p.ur && p.tr && p.en && p.pic, `rishta entry incomplete: ${p.tr || "?"}`);
@@ -94,6 +103,7 @@ const audio = new Set(fs.readdirSync(path.join(ROOT, "audio")).map((f) => f.repl
 const wanted = new Map(); // slug -> example tr
 const want = (tr) => { if (tr) { const k = slug(tr); if (k && !wanted.has(k)) wanted.set(k, tr); } };
 for (const g of RISHTAY) for (const p of g.people) want(p.tr);
+for (const u of SOUND_UNITS) for (const s of u.sections) for (const p of s.pairs || []) { want(p.a.tr); want(p.b.tr); }
 LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr)));
 AZADI_ITEMS.forEach((it) => want(it.tr));
 GEO_FEATURES.forEach((f) => want(f.tr));

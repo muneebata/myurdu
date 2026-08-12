@@ -3043,6 +3043,24 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: flap consonants (with audio)", url: "https://en.wikipedia.org/wiki/Flap_consonant" },
         ],
       },
+      {
+        heading: "More words to tap",
+        note: "Every one of these hides the same quick flick of the tongue. Say them at normal speed: the tap is too fast to force.",
+        words: [
+          { ur: "کمرہ", tr: "kamra", en: "room", spell: "kam-(tap)-a" },
+          { ur: "دروازہ", tr: "darwāza", en: "door", spell: "da-(tap)-waa-za" },
+          { ur: "رات", tr: "rāt", en: "night", spell: "the tap opens the word" },
+          { ur: "بہار", tr: "bahār", en: "spring", spell: "and here it closes it" },
+          { ur: "شکریہ", tr: "shukriya", en: "thank you", spell: "shuk-(tap)-i-ya" },
+        ],
+      },
+      {
+        heading: "The mistake to avoid",
+        facts: [
+          "<strong>Do not bunch your tongue.</strong> The English r curls the tongue back without touching anything. The Urdu ر touches, once, and lets go. If your r lasts long enough to hear, it is too long.",
+          "<strong>Word-initial taps are the hardest.</strong> Starting a word on a tap (rāt, roṭī) feels unnatural to English speakers. Practise by saying a word ending in a vowel first: “merā rāt”, then drop the first word.",
+        ],
+      },
     ],
     funFacts: [
       "English speakers make the Urdu tapped r thousands of times a day without knowing it, every fast “butter”, “water”, and “ladder” contains it. The sound isn't new; only its address is.",
@@ -3075,6 +3093,26 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: retroflex consonants (with audio)", url: "https://en.wikipedia.org/wiki/Retroflex_consonant" },
         ],
       },
+      {
+        heading: "Hear the difference",
+        note: "These pairs differ by one thing only: whether the tongue touches the teeth or curls back to the roof of the mouth. If you can hear these apart, you have the sound.",
+        pairs: [
+          { a: { ur: "دال", tr: "dāl", en: "lentils" }, b: { ur: "ڈال", tr: "ḍāl", en: "branch" },
+            note: "Dental d, tongue on the teeth, versus retroflex ḍ, tongue curled back. Two different words at every dinner table." },
+          { a: { ur: "تال", tr: "tāl", en: "rhythm, beat" }, b: { ur: "ٹال", tr: "ṭāl", en: "put off, postpone" },
+            note: "The same contrast on t. Mixing them up turns a drumbeat into a delay." },
+        ],
+      },
+      {
+        heading: "More curled words",
+        words: [
+          { ur: "ٹماٹر", tr: "ṭamāṭar", en: "tomato", spell: "two curls in one word" },
+          { ur: "ڈاکٹر", tr: "ḍākṭar", en: "doctor", spell: "ḍ at the front, ṭ in the middle" },
+          { ur: "لڑکا", tr: "laṛkā", en: "boy", spell: "the flapped ṛ, curl then flick" },
+          { ur: "چھوٹا", tr: "chhoṭā", en: "small", spell: "aspirated chh, then the curled ṭ" },
+          { ur: "پڑھنا", tr: "paṛhnā", en: "to read", spell: "ṛh, curl and puff together" },
+        ],
+      },
     ],
     funFacts: [
       "The retroflex ٹ ڈ ڑ don't exist in Arabic or Persian, the subcontinent added them, marking the letters with a tiny ط on top. When you nail them, you sound South Asian, not Middle Eastern.",
@@ -3105,8 +3143,20 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: dental consonants (with audio)", url: "https://en.wikipedia.org/wiki/Dental_consonant" },
         ],
       },
+      {
+        heading: "More dental words",
+        note: "For every one of these, the tongue-tip touches the back of the top teeth. English never puts it that far forward, which is why these feel oddly polite to say.",
+        words: [
+          { ur: "تین", tr: "tīn", en: "three", spell: "teeth, not ridge" },
+          { ur: "دودھ", tr: "dūdh", en: "milk", spell: "dental d at both ends" },
+          { ur: "دانت", tr: "dāṉt", en: "tooth", spell: "the word is its own instruction" },
+          { ur: "دل", tr: "dil", en: "heart", spell: "short and dental" },
+          { ur: "توتا", tr: "totā", en: "parrot", spell: "two dental t's" },
+        ],
+      },
     ],
-    funFacts: [],
+    funFacts: [
+      "Urdu's dental t and d are the same sounds Spanish, French and Italian use. If you have ever been told your Spanish t sounds too English, this is the identical fix: move the tongue forward to the teeth.",],
   },
   {
     id: "S4",
@@ -3132,6 +3182,26 @@ const SOUND_UNITS = [
         links: [
           { label: "▶ YouTube: aspirated consonants (kha, gha, tha…)", url: "https://www.youtube.com/results?search_query=aspirated+consonants+hindi+urdu+kha+gha+pronunciation" },
           { label: "📖 Wikipedia: aspirated consonants (with audio)", url: "https://en.wikipedia.org/wiki/Aspirated_consonant" },
+        ],
+      },
+      {
+        heading: "Hear the difference",
+        note: "Aspiration is not decoration. These pairs are different words, and the only difference is the puff of air.",
+        pairs: [
+          { a: { ur: "پل", tr: "pal", en: "a moment" }, b: { ur: "پھل", tr: "phal", en: "fruit" },
+            note: "Hold a hand in front of your mouth: phal moves the air, pal does not." },
+          { a: { ur: "بات", tr: "bāt", en: "a matter, talk" }, b: { ur: "بھات", tr: "bhāt", en: "cooked rice" },
+            note: "A conversation or a plate of rice, decided entirely by one breath." },
+        ],
+      },
+      {
+        heading: "More breathy words",
+        words: [
+          { ur: "پھول", tr: "phūl", en: "flower", spell: "puff, then the vowel" },
+          { ur: "بھائی", tr: "bhāī", en: "brother", spell: "bh, the family puff" },
+          { ur: "کھانا", tr: "khānā", en: "food, to eat", spell: "kh at the front" },
+          { ur: "گھر", tr: "ghar", en: "house", spell: "gh, voiced and breathy at once" },
+          { ur: "تھالی", tr: "thālī", en: "metal plate", spell: "dental t plus the puff" },
         ],
       },
     ],
@@ -3165,8 +3235,27 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: the خ sound (with audio)", url: "https://en.wikipedia.org/wiki/Voiceless_velar_fricative" },
         ],
       },
+      {
+        heading: "Hear the difference",
+        note: "The throat sounds have plain cousins. Swapping one for the other is the commonest giveaway of a non-native speaker.",
+        pairs: [
+          { a: { ur: "کالا", tr: "kālā", en: "black" }, b: { ur: "خالہ", tr: "khālā", en: "mother's sister" },
+            note: "Plain k versus the throaty kh. One is a colour, the other is your aunt from the family tree." },
+        ],
+      },
+      {
+        heading: "More throat words",
+        words: [
+          { ur: "خوش", tr: "khush", en: "happy", spell: "kh, from the back of the throat" },
+          { ur: "خبر", tr: "khabar", en: "news", spell: "the kh of khabarnāma" },
+          { ur: "غریب", tr: "gharīb", en: "poor", spell: "gh, the gargled one" },
+          { ur: "قلم", tr: "qalam", en: "pen", spell: "q, deeper than k, at the very back" },
+          { ur: "قیمت", tr: "qīmat", en: "price", spell: "the q you will need in every bazaar" },
+        ],
+      },
     ],
-    funFacts: [],
+    funFacts: [
+      "The three throat letters are all borrowings from Arabic and Persian, which is why they cluster in formal and religious vocabulary. Everyday Urdu words rarely need them, so a learner who avoids them sounds casual rather than wrong.",],
   },
   {
     id: "S6",
@@ -3193,13 +3282,29 @@ const SOUND_UNITS = [
           { label: "📖 Wikipedia: nasal vowels (with audio)", url: "https://en.wikipedia.org/wiki/Nasal_vowel" },
         ],
       },
+      {
+        heading: "Hear the difference",
+        note: "The nasal is not an extra n. It colours the vowel and then stops.",
+        pairs: [
+          { a: { ur: "مان", tr: "mān", en: "accept, agree" }, b: { ur: "ماں", tr: "māṉ", en: "mother" },
+            note: "Say the second without ever touching your tongue to the roof of your mouth. The air goes through the nose instead." },
+        ],
+      },
+      {
+        heading: "More nasal words",
+        words: [
+          { ur: "ہاں", tr: "hāṉ", en: "yes", spell: "the most-used nasal in the language" },
+          { ur: "نہیں", tr: "nahīṉ", en: "no", spell: "plain n first, nasal at the end" },
+          { ur: "یہاں", tr: "yahāṉ", en: "here", spell: "ya-haaṉ" },
+          { ur: "کہاں", tr: "kahāṉ", en: "where", spell: "its partner in every question" },
+          { ur: "دانت", tr: "dāṉt", en: "tooth", spell: "nasal in the middle, not at the end" },
+        ],
+      },
     ],
     funFacts: [
-      "English speakers make the Urdu tapped r thousands of times a day without knowing it, every fast “butter”, “water”, and “ladder” contains it. The sound isn't new; only its address is.",
-      "The retroflex ٹ ڈ ڑ don't exist in Arabic or Persian, the subcontinent added them, marking the letters with a tiny ط on top. When you nail them, you sound South Asian, not Middle Eastern.",
-      "Aspiration is why 'Pakistan' said by a native speaker sounds different from the English version: the P is unaspirated, no puff, while English blasts it.",
+      "The dotless ں only turns up at the end of a syllable. In the middle of a word the same nasal hum is written with an ordinary ن, so dāṉt (tooth) hides it in plain sight and you simply have to know it is there.",
+      "French, Portuguese and Punjabi nasalise vowels exactly this way, so anyone who can say 'bon' already owns the muscle. English dropped the habit centuries ago and now only hums through the nose by accident.",
     ],
-    funFacts: [],
   },
 ];
 

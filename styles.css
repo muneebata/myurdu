@@ -289,6 +289,28 @@ body {
 .d5-ask { font-size: 1.15rem; font-weight: 600; margin: 6px 0 2px; }
 .d5-pic { width: 100%; max-width: 260px; aspect-ratio: 1; object-fit: cover; border-radius: 16px; border: 2px solid var(--line); margin: 6px auto; display: block; }
 
+
+/* ── Minimal pairs: two words that differ by one sound ── */
+.pair-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.pair-row { background: #fbf5e0; border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.pair-two { display: flex; align-items: stretch; gap: 8px; }
+.pair-word {
+  flex: 1; font: inherit; text-align: center; cursor: pointer;
+  background: var(--card); border: 2px solid var(--line); border-radius: 12px; padding: 8px 6px;
+  display: flex; flex-direction: column; gap: 1px;
+}
+.pair-word:hover { background: #f2ead2; border-color: var(--teal); }
+.pair-ur { font-size: 1.7rem; line-height: 1.9; color: var(--teal-dark); }
+.pair-tr { font-weight: 700; font-size: 0.9rem; }
+.pair-en { font-size: 0.78rem; color: var(--muted); }
+.pair-play { font-size: 0.85rem; }
+.pair-vs { align-self: center; font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+.pair-note { font-size: 0.85rem; color: var(--muted); margin: 8px 0 0; }
+html[data-theme="dark"] .pair-row { background: #22403f; }
+html[data-theme="dark"] .pair-word { background: var(--card); color: var(--ink); }
+html[data-theme="dark"] .pair-word:hover { background: #1d3a41; }
+html[data-theme="dark"] .pair-ur { color: #7fd0d0; }
+
 /* ── Rishtay home card ── */
 .rishta-home-card { display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; background: var(--card); border: 1.5px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
 .rishta-home-card:hover { border-color: var(--mustard); }

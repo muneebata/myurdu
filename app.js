@@ -2555,6 +2555,21 @@ function openUnit(unitsName, i) {
         )
         .join("")}</div>`;
     }
+    if (sec.pairs) {
+      body += `<div class="pair-list">${sec.pairs.map((p) => `
+        <div class="pair-row">
+          <div class="pair-two">
+            ${[p.a, p.b].map((w) => `
+            <button class="pair-word" onclick='Speech.speak(${JSON.stringify(w.ur)}, ${JSON.stringify(w.tr)})'>
+              <span class="pair-ur ur">${w.ur}</span>
+              <span class="pair-tr">${esc(w.tr)}</span>
+              <span class="pair-en">${esc(w.en)}</span>
+              <span class="pair-play">🔊</span>
+            </button>`).join('<span class="pair-vs">vs</span>')}
+          </div>
+          <p class="pair-note">${esc(p.note)}</p>
+        </div>`).join("")}</div>`;
+    }
     if (sec.words) {
       const goonjHere = unitsName === "SOUND_UNITS" && Speech.recordingSupported();
       body += `<div class="word-list">${sec.words
