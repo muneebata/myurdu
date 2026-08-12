@@ -67,6 +67,15 @@ for (const f of D5_FACTS) {
   check(new Set([f.a, ...f.wrong]).size === 4, `D5 fact has a repeated option: ${f.q}`);
   check(f.a.length <= 60, `D5 fact answer too long for a button: ${f.q}`);
 }
+// Desi Roots: the quiz pool excludes entries whose meaning restates
+// the word, and must stay big enough to keep the cycle fresh.
+const quizWords = LOANWORDS.filter((w) => w.quiz !== false);
+check(quizWords.length >= 60, `Desi Roots quiz pool shrank to ${quizWords.length}`);
+for (const w of quizWords) {
+  check(w.meaning && !w.meaning.toLowerCase().includes(w.en.toLowerCase()),
+    `loanword "${w.en}" gives its own answer away: "${w.meaning}"`);
+}
+
 // picture pools the daily five draws from
 const zoo = (READING_UNITS.find((u) => u.id === "R11") || { sections: [] }).sections.flatMap((s) => s.words || []).filter((w) => w.pic);
 const mulk = (READING_UNITS.find((u) => u.id === "R12") || { sections: [] }).sections.flatMap((s) => s.words || []);

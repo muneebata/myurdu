@@ -1723,8 +1723,15 @@ let daily = null;
 
 // distractors must differ in meaning AND word, several loanwords
 // share a root (pijama/pyjamas, champú/shampoo)
+// Loanwords worth asking about. A few entries (naan, samosa, chai and
+// friends) are real borrowings and belong in the glossary, but their
+// literal meaning is just a description of the thing itself, so
+// "what does it literally mean?" has nothing to work out. They stay
+// browsable and stay out of the quiz.
+const quizLoanwords = () => LOANWORDS.filter((w) => w.quiz !== false);
+
 function rootsQuestion(w, rng) {
-  const candidates = LOANWORDS.filter((x) => x.meaning !== w.meaning && x.en !== w.en);
+  const candidates = quizLoanwords().filter((x) => x.meaning !== w.meaning && x.en !== w.en);
   const distractors = seededPick(candidates, 3, rng);
   return {
     kind: "roots",
@@ -1737,7 +1744,7 @@ function startDaily() {
   pingPlay("roots");
   // practice mode: endless random rounds; the streak lives in Aaj Ka Paanch
   const rng = mulberry32(Math.floor(Math.random() * 1e9));
-  const words = seededPick(LOANWORDS, DAILY_QUESTIONS, rng);
+  const words = seededPick(quizLoanwords(), DAILY_QUESTIONS, rng);
   daily = { questions: words.map((w) => rootsQuestion(w, rng)), current: 0, correct: 0, results: [] };
   renderDailyQuestion();
 }
@@ -2125,7 +2132,7 @@ function daily5Picks(key) {
     sunoPicks: azadiPeak(key)
       ? seededPick(AZADI_ITEMS, 1, mulberry32(daySeed(key) + 47))
       : cycleDraw(sunoPool, 1, 13001, key),
-    rootsPicks: cycleDraw(LOANWORDS, 1, 1, key),
+    rootsPicks: cycleDraw(quizLoanwords(), 1, 1, key),
     geoPicks: cycleDraw(GEO_FEATURES, 1, 7001, key),
     kKind, pKind,
     knowledgePicks: cycleDraw(knowledgePool, 1, 5101, key, kStep),
