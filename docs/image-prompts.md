@@ -181,3 +181,63 @@ Four landscape scenes, 1536×1024. Use the Batch 4 opening line, then:
   identical across a category, which matters more than any single image.
 - **If a sheet comes back with only 10 or 11 items**, send it anyway.
   Missing tiles are easy to fill later; a restyled batch is not.
+
+---
+
+# BATCH 6 · Fixes and regenerations
+
+Nine generations. Two are cast corrections, three are Pakistan-accuracy
+corrections, three add mixed guests to scenes where a diaspora learner
+would actually see one, and one fills the last empty level.
+
+**Rules for the sheets:** keep the item ORDER exactly as listed, keep a
+clear cream gap between cards, and don't let any card touch the edge.
+The slicer reads the grid automatically, so any clean grid shape works.
+
+### 6.1 The body sheet, redone (replaces all 12 body tiles)
+The current set came back fair-skinned with a blue eye and brown wavy
+hair, which reads European next to every other sheet.
+
+> Flat editorial illustration sheet, 4 columns by 3 rows, exactly 12 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each item is centred on its own plain cream card with a thin single-colour border, the object filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. Every body part belongs to a Pakistani person with warm brown skin, dark brown eyes and black hair. Draw them as simple friendly illustrated body parts, not medical diagrams. The twelve items in order are: 1 a head in profile, 2 an eye, 3 an ear, 4 a nose in profile, 5 a mouth smiling, 6 an open hand, 7 a bare foot, 8 a stomach shown as a torso outline, 9 long black hair, 10 a single tooth, 11 an arm bent at the elbow, 12 a leg bent at the knee.
+
+### 6.2 Four weather tiles (replaces rain, snow, cold, wind)
+The rain tile is a European suburb with pitched roofs and Victorian
+lampposts, the snow tile is an alpine peak in conifer forest, and the
+cold tile is a fair-skinned person in a knit beanie.
+
+> Flat editorial illustration sheet, 2 columns by 2 rows, exactly 4 separate items, arranged in a neat grid with a clear empty cream gap between the cards and a margin around the whole image so no card touches the edge. Each item is centred on its own plain cream card with a thin single-colour border, filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The four items in order are: 1 heavy monsoon rain falling on a Pakistani city street, flat-roofed concrete buildings and a parked auto-rickshaw, water running along the kerb, 2 snow on a high bare Karakoram mountain ridge, rock and snow only, no forest, 3 a cold winter morning in a Pakistani town, a man with warm brown skin wrapped in a woollen shawl and cap, his breath steaming, 4 a strong wind bending a lone tree on a dusty open plain, leaves and dust flying sideways.
+
+### 6.3 Two place tiles (replaces bazaar and bank)
+The bazaar tile has women in saris, which reads Indian, and the bank is
+a Greek-columned building that belongs in Washington.
+
+> Flat editorial illustration sheet, 2 columns by 1 row, exactly 2 separate items, side by side with a clear empty cream gap between them and a margin around the whole image so neither card touches the edge. Each item is centred on its own plain cream card with a thin single-colour border, filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The two items in order are: 1 a busy Pakistani bazaar street, stalls of fruit and folded cloth under bright awnings, shoppers in shalwar kameez and dupattas, 2 a Pakistani bank branch on a city street, a plain modern building with a glass front, a small queue of people outside, no columns and no dome.
+
+### 6.4 Salt and sugar (replaces both)
+Two dishes of white grains that no picture question can tell apart.
+These two need different silhouettes, not just different contents.
+
+> Flat editorial illustration sheet, 2 columns by 1 row, exactly 2 separate items, side by side with a clear empty cream gap between them and a margin around the whole image so neither card touches the edge. Each item is centred on its own plain cream card with a thin single-colour border, filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The two items in order are: 1 a shallow round dish of coarse white salt crystals with a tiny wooden spoon lying beside it and a few crystals spilled on the surface, 2 a tall clear glass jar of fine white sugar with a metal teaspoon standing in it and three sugar cubes stacked beside the jar.
+
+### 6.5–6.7 Mixed guests, three scenes
+Only these three. The family and household scenes stay as they are,
+because a Pakistani family at home is a Pakistani family at home.
+Append the cast line to the standard scene opening.
+
+**6.5 · Level 2, Introductions** (replaces images/levels/l2.jpg)
+> [standard scene opening] The scene is: a small group meeting for the first time at a gathering in a Pakistani home, two of them shaking hands warmly while the others look on smiling. The group is mixed: some Pakistani, one Black man, one white woman, one East Asian woman, all drawn with the same warmth and detail, some in shalwar kameez and kurtas and some in everyday western clothes.
+
+**6.6 · Level 13, Feelings** (replaces images/levels/l13.jpg)
+> [standard scene opening] The scene is: four friends sitting and talking on a rooftop at sunset, tea and a plate of snacks between them, a Pakistani city skyline behind. The friends are a mix of backgrounds: two Pakistani, one Black woman, one white man, all drawn with the same warmth and detail, relaxed and mid-conversation.
+
+**6.7 · Level 18, The wedding** (replaces images/levels/l18.jpg)
+> [standard scene opening] The scene is: a mehndi celebration, henna being applied to a bride's hands, marigold garlands, a dholak drum being played, everyone seated on floor cushions. Among the Pakistani family there are guests of other backgrounds, one Black woman and one white man, dressed for the occasion in shalwar kameez and kurtas like everyone else.
+
+### 6.8 Optional · the feelings faces
+All eight expression tiles are the same boy. A mixed set would sit
+better beside the rest of the site.
+
+> Flat editorial illustration sheet, 4 columns by 2 rows, exactly 8 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. Each face is a Pakistani child with warm brown skin and black hair, alternating between a girl and a boy across the set, each inside a decorative rounded frame with small floral corner motifs. The eight items in order are: 1 a smiling happy face, 2 a sad face, 3 a hungry face looking at an empty plate, 4 a thirsty face holding an empty glass, 5 a tired yawning face, 6 an angry frowning face, 7 a frightened face, 8 a surprised face with raised eyebrows.
+
+### 6.9 The last missing level header
+Prompt 23 in Batch 4 above: Level 23, compound verbs.
