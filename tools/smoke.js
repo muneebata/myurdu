@@ -131,8 +131,15 @@ if (missingAudio > 5) fail.push(`…and ${missingAudio - 5} more missing clips`)
 // ── 4. role-play graph integrity ──
 for (const sc of ROLEPLAYS) {
   const n = sc.turns.length;
+  // Jumps name a turn's `at` label; raw indices still work for any scene
+  // that hasn't been converted. An unresolved label is the whole reason
+  // this check exists, so it stays fatal.
+  const labels = new Map(sc.turns.map((t, i) => [t.at, i]).filter(([a]) => a));
+  const resolve = (nx) => (typeof nx === "string" && nx !== "end" ? labels.get(nx) : nx);
   const validNext = (nx, where) =>
-    check(nx === undefined || nx === "end" || (Number.isInteger(nx) && nx >= 0 && nx < n), `${sc.id}: bad next ${nx} at ${where}`);
+    check(nx === undefined || nx === "end" || Number.isInteger(resolve(nx)) && resolve(nx) >= 0 && resolve(nx) < n,
+      `${sc.id}: bad next ${nx} at ${where}`);
+  check(labels.size === 0 || labels.size === sc.turns.length, `${sc.id}: some turns have no at label`);
   sc.turns.forEach((t, i) => {
     validNext(t.next, `turn ${i}`);
     check(!!t.choice || (t.ur && t.tr && t.en), `${sc.id}: turn ${i} missing line`);
@@ -148,7 +155,7 @@ for (const sc of ROLEPLAYS) {
     const t = sc.turns[idx];
     if (!t) return idx >= n; // ran off the end = finish
     const nexts = t.choice ? t.choice.map((o) => o.next) : [t.next === undefined ? idx + 1 : t.next];
-    return nexts.every((nx) => walk(nx === "end" ? n : nx, depth + 1));
+    return nexts.every((nx) => walk(nx === "end" ? n : resolve(nx), depth + 1));
   };
   check(walk(0, 0), `${sc.id}: a dialogue path fails to terminate`);
 }

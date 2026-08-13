@@ -3073,8 +3073,16 @@ function startRolePlay(i) {
   renderRP();
 }
 
+// Jumps may be a label (a turn's `at`), "end", or a raw index. Labels
+// exist because these scripts branch: with bare indices, inserting one
+// line silently repoints every jump after it, and the bug shows up as a
+// conversation that skips a beat rather than as an error.
 function rpGoto(next) {
-  rp.idx = next === "end" ? rp.scene.turns.length : next != null ? next : rp.idx + 1;
+  if (next === "end") rp.idx = rp.scene.turns.length;
+  else if (typeof next === "string") {
+    const j = rp.scene.turns.findIndex((t) => t.at === next);
+    rp.idx = j >= 0 ? j : rp.idx + 1;
+  } else rp.idx = next != null ? next : rp.idx + 1;
   renderRP();
 }
 
