@@ -71,7 +71,7 @@ readers feel like one storybook.
 
 ---
 
-# BATCH 3 · Vocabulary tile sheets
+# BATCH 3 · Vocabulary tile sheets  ✅ DONE, 96 tiles live in R14–R17
 Eight grid sheets, **1536×1024, exactly 4 columns × 3 rows = 12 items**,
 in the reading order listed. These display at 64 pixels, so keep each
 object big, simple and centred.

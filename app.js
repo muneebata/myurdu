@@ -2072,6 +2072,17 @@ function janwarQuestion(animal, rng) {
   };
 }
 
+function cheezQuestion(thing, rng) {
+  const same = everydayThings().filter((x) => x.set === thing.set && x.tr !== thing.tr);
+  const pool = same.length >= 3 ? same : everydayThings().filter((x) => x.tr !== thing.tr);
+  const distractors = seededPick(pool, 3, rng);
+  return {
+    kind: "cheez",
+    thing,
+    options: seededPick([thing, ...distractors], 4, rng).map((x) => ({ label: x.tr, correct: x === thing })),
+  };
+}
+
 function mulkQuestion(country, rng) {
   const pool = worldCountries();
   const distractors = seededPick(pool.filter((x) => x.tr !== country.tr), 3, rng);
@@ -2097,18 +2108,31 @@ function unitWords(id) {
 // are asked from their Urdu name and carry a flag in the label instead.
 const zooAnimals = () => unitWords("R11").filter((w) => w.pic);
 const worldCountries = () => unitWords("R12");
+// Everyday things: the illustrated tiles from R14–R17. Each word keeps
+// the heading it came from so distractors stay inside their own set,
+// naming a hand against three other body parts is a real question,
+// naming it against a bus stop and a mango is not.
+function everydayThings() {
+  const out = [];
+  for (const id of ["R14", "R15", "R16", "R17"]) {
+    const u = READING_UNITS.find((x) => x.id === id);
+    if (!u) continue;
+    for (const s of u.sections) for (const w of s.words || []) if (w.pic) out.push({ ...w, set: s.heading });
+  }
+  return out;
+}
 
 // The daily five: one listening, one loanword, one map, one thing the
 // site taught you, and one picture. The last two rotate through their
 // own pools so the deck stays deep (a kinship question comes round
 // every third day, an animal every other day).
-const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", fact: "💡 Yād hai?" };
+const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", cheez: "🧺 Rozmarra", fact: "💡 Yād hai?" };
 // Proverbs used to sit in this rotation, but answering one means
 // reading a whole Urdu idiom, which a beginner simply cannot do.
 // They live on the home screen as the proverb of the day instead,
 // where they are shown WITH their meaning rather than quizzed.
 const D5_KNOWLEDGE = ["rishta", "fact", "fact"];
-const D5_PICTURE = ["janwar", "mulk"];
+const D5_PICTURE = ["janwar", "cheez", "mulk", "cheez"];
 
 // Which kind is up today, and how many times that kind has come round
 // before. A kind can hold more than one slot in a rotation (facts hold
@@ -2132,7 +2156,7 @@ function daily5Picks(key) {
   const p = rotationSlot(D5_PICTURE, di);
   const kKind = k.kind, pKind = p.kind, kStep = k.step, pStep = p.step;
   const knowledgePool = { rishta: RISHTAY.flatMap((g) => g.people).filter((p) => !p.you), kahawat: [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], fact: D5_FACTS }[kKind];
-  const picturePool = { janwar: zooAnimals(), mulk: worldCountries() }[pKind];
+  const picturePool = { janwar: zooAnimals(), mulk: worldCountries(), cheez: everydayThings() }[pKind];
   return {
     sunoPicks: azadiPeak(key)
       ? seededPick(AZADI_ITEMS, 1, mulberry32(daySeed(key) + 47))
@@ -2151,7 +2175,7 @@ function daily5Preview(key) {
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
   const fullPool = azadiPeak(key) ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
   const d = daily5Picks(key);
-  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion };
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion };
   return seededPick([
     ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
     ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
@@ -2181,6 +2205,7 @@ function startDaily5() {
     fact: [() => D5_FACTS, (x) => x.q],
     janwar: [() => zooAnimals(), (x) => x.tr],
     mulk: [() => worldCountries(), (x) => x.tr],
+    cheez: [() => everydayThings(), (x) => x.tr],
   };
   const lookup = (kind, keys) => {
     const [pool, id] = KEYED[kind] || [];
@@ -2218,7 +2243,7 @@ function startDaily5() {
     };
     saveRoot();
   }
-  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion };
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion };
   const questions = seededPick([
     ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
     ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
@@ -2265,6 +2290,12 @@ function renderD5() {
       <div class="quiz-prompt">
         <p class="daily-lead">🐾 Yeh kyā hai? What is this animal called in Urdu?</p>
         <img class="d5-pic" src="${q.animal.pic}" alt="An animal to name">
+      </div>`;
+  } else if (q.kind === "cheez") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">🧺 Yeh kyā hai? What is this called in Urdu?</p>
+        <img class="d5-pic" src="${q.thing.pic}" alt="An everyday thing to name">
       </div>`;
   } else if (q.kind === "mulk") {
     body = `
@@ -2322,6 +2353,7 @@ function answerD5(i) {
   else if (q.kind === "rishta") detail = `<span class="ur-inline">${esc(q.person.ur)}</span> <strong>${esc(q.person.tr)}</strong>: ${esc(q.person.en)} ${hear(q.person.ur, q.person.tr)}`;
   else if (q.kind === "kahawat") detail = `<em>${esc(q.saying.en)}</em>${q.saying.ctx ? ` <span class="hint">${esc(q.saying.ctx)}</span>` : ""}`;
   else if (q.kind === "janwar") detail = `<span class="ur-inline">${esc(q.animal.ur)}</span> <strong>${esc(q.animal.tr)}</strong>: ${esc(q.animal.en)} ${hear(q.animal.ur, q.animal.tr)}`;
+  else if (q.kind === "cheez") detail = `<span class="ur-inline">${esc(q.thing.ur)}</span> <strong>${esc(q.thing.tr)}</strong>: ${esc(q.thing.en)} ${hear(q.thing.ur, q.thing.tr)}`;
   else if (q.kind === "mulk") detail = `<strong>${esc(q.country.tr)}</strong> is ${esc(q.country.en)}. ${esc(q.country.spell || "")}`;
   else if (q.kind === "fact") detail = `<em>${esc(q.fact.a)}</em> <span class="hint">from ${esc(q.fact.src)}</span>`;
   else detail = `It was: <span class="ur-inline">${esc(q.item.ur)}</span> <strong>${esc(q.item.tr)}</strong>: ${esc(q.item.en)}`;

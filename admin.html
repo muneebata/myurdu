@@ -268,10 +268,10 @@ async function loadStats() {
   <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
-<script src="data.js?v=202608121833"></script>
-<script src="speech.js?v=202608121833"></script>
+<script src="data.js?v=202608121901"></script>
+<script src="speech.js?v=202608121901"></script>
 <script>window.MYURDU_NO_BOOT = true;</script>
-<script src="app.js?v=202608121833"></script>
+<script src="app.js?v=202608121901"></script>
 <script>
 // Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
 // (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
@@ -337,6 +337,12 @@ async function loadStats() {
             extra = `<img src="${esc(a.pic)}" alt="" style="width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid #ddd2b4">`
               + `<div class="note">${esc(a.ur)} · ${esc(a.tr)} · ${esc(a.en)}</div>`;
             play = a.ur ? `<button class="d5-play" data-ur="${esc(a.ur)}" data-tr="${esc(a.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "cheez") {
+            const t = q.thing || {};
+            ask = "🧺 An illustration is shown. What is this called in Urdu?";
+            extra = `<img src="${esc(t.pic)}" alt="" style="width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid #ddd2b4">`
+              + `<div class="note">${esc(t.ur)} · ${esc(t.tr)} · ${esc(t.en)}${t.set ? ` · from ${esc(t.set)}` : ""}</div>`;
+            play = t.ur ? `<button class="d5-play" data-ur="${esc(t.ur)}" data-tr="${esc(t.tr)}">▶ hear</button>` : "";
           } else if (q.kind === "mulk") {
             const c = q.country || {};
             ask = "🌍 An Urdu country name is shown. Which country is it?";
