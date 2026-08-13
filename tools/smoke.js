@@ -110,7 +110,10 @@ GEO_FEATURES.forEach((f) => want(f.tr));
 KAHAWATEIN.forEach((k) => want(k.tr));
 JUMMAH_KAHAWATEIN.forEach((k) => want(k.tr));
 LOANWORDS.forEach((w) => want(w.tr));
-(KUTUB || []).forEach((w) => w.lines.forEach((l) => want(l.tr)));
+// `speak: false` entries are heard on a linked human recording instead of
+// through the app, so their lines need no clip. Keep this in step with
+// listen_only_blocks() in tools/gen_audio.py.
+(KUTUB || []).filter((w) => w.speak !== false).forEach((w) => w.lines.forEach((l) => want(l.tr)));
 ROLEPLAYS.forEach((sc) => sc.turns.forEach((t) => {
   if (t.tr) want(t.tr);
   (t.choice || []).forEach((o) => want(o.tr));

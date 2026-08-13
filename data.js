@@ -2726,7 +2726,8 @@ const DAILY_QUESTIONS = 5;
 const KUTUB = [
   {
     id: "K1",
-    links: [{ label: "📚 Ghalib\u2019s complete dīwān at Rekhta →", url: "https://www.rekhta.org/poets/mirza-ghalib" }],
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Hazāroṉ Khwāhisheṉ Aisī, sung by Jagjit Singh \u2192", url: "https://www.youtube.com/watch?v=Y3sjcbtr6U0" }, { label: "📚 Ghalib\u2019s complete dīwān at Rekhta →", url: "https://www.rekhta.org/poets/mirza-ghalib" }],
     scope: "curated",
     img: { src: "images/ghalib.jpg", alt: "Photograph of Mirza Ghalib", caption: "Ghalib, photographed in the 1860s, one of the first great poets ever caught on camera.", credit: "Photo: unknown (1860s) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Mirza Ghalib",
@@ -2751,7 +2752,8 @@ const KUTUB = [
   },
   {
     id: "K2",
-    links: [{ label: "📚 Mir\u2019s complete kulliyāt at Rekhta →", url: "https://www.rekhta.org/poets/meer-taqi-meer" }],
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Pattā Pattā Būṭā Būṭā, sung by Mehdi Hassan \u2192", url: "https://www.youtube.com/watch?v=A373M8P6S6o" }, { label: "📚 Mir\u2019s complete kulliyāt at Rekhta →", url: "https://www.rekhta.org/poets/meer-taqi-meer" }],
     scope: "curated",
     author: "Mir Taqi Mir",
     urName: "میر",
@@ -2773,6 +2775,8 @@ const KUTUB = [
   },
   {
     id: "K3",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Lab pe Ātī Hai Duā, sung by Ali Zafar \u2192", url: "https://www.youtube.com/watch?v=Do74IFMkOQ4" }],
     scope: "complete",
     img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Allama Iqbal, the poem\u2019s author, whose duā still opens school mornings.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
@@ -2799,7 +2803,8 @@ const KUTUB = [
   },
   {
     id: "K4",
-    links: [{ label: "📚 More on Khusrau, his life and legacy (Wikipedia) →", url: "https://en.wikipedia.org/wiki/Amir_Khusrau" }],
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Chhāp Tilak, Abida Parveen & Rahat Fateh Ali Khan (Coke Studio) \u2192", url: "https://www.youtube.com/watch?v=7SDrjwtfKMk" }, { label: "📚 More on Khusrau, his life and legacy (Wikipedia) →", url: "https://en.wikipedia.org/wiki/Amir_Khusrau" }],
     scope: "traditional",
     author: "Amir Khusrau",
     urName: "خسرو",
@@ -2818,6 +2823,8 @@ const KUTUB = [
   },
   {
     id: "K5",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Lagtā Nahīṉ Hai Jī Mirā, sung by Habib Wali Muhammad \u2192", url: "https://www.youtube.com/watch?v=UjnAgu6Cys4" }],
     scope: "complete",
     img: { src: "images/zafar.jpg", alt: "Photograph of Bahadur Shah Zafar reclining in 1858", caption: "Zafar in 1858, awaiting trial after the fall of Delhi \u2014 the only Mughal emperor ever photographed.", credit: "Photo: 1858, British Library collection \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Bahadur Shah Zafar",
@@ -2842,6 +2849,8 @@ const KUTUB = [
   },
   {
     id: "K6",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Tarāna-e-Hindī, sung \u2192", url: "https://www.youtube.com/watch?v=vHyvVIfiurw" }],
     scope: "complete",
     img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Iqbal wrote the tarānah in 1904, at twenty-six.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
@@ -2874,6 +2883,8 @@ const KUTUB = [
   },
   {
     id: "K7",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Tum Mire Pās Hote Ho Goyā, recited \u2192", url: "https://www.youtube.com/watch?v=5qEj2Un_Bss" }],
     scope: "curated",
     author: "Momin · Zauq · Dagh",
     urName: "دلی",
@@ -2981,7 +2992,8 @@ const KUTUB = [
   },
   {
     id: "K12",
-    links: [{ label: "📚 The complete Ādmī Nāma and more Nazir at Rekhta →", url: "https://www.rekhta.org/poets/nazeer-akbarabadi" }],
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Ādmī Nāma, recited at Jashn-e-Rekhta \u2192", url: "https://www.youtube.com/watch?v=t5Now0xvPpI" }, { label: "📚 The complete Ādmī Nāma and more Nazir at Rekhta →", url: "https://www.rekhta.org/poets/nazeer-akbarabadi" }],
     scope: "excerpt",
     author: "Nazir Akbarabadi",
     urName: "نظیر",
@@ -3000,6 +3012,8 @@ const KUTUB = [
   },
   {
     id: "K13",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Rabb kā Shukr Adā Kar Bhāī, recited \u2192", url: "https://www.youtube.com/watch?v=htL2AcI2X1c" }],
     scope: "curated",
     author: "Ismail Merathi",
     urName: "میرٹھی",
@@ -3015,7 +3029,8 @@ const KUTUB = [
   },
   {
     id: "K14",
-    links: [{ label: "📚 More Akbar Allahabadi at Rekhta →", url: "https://www.rekhta.org/poets/akbar-allahabadi" }],
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Akbar Allahabadi, recited \u2192", url: "https://www.youtube.com/watch?v=m2EyGSj3OVk" }, { label: "📚 More Akbar Allahabadi at Rekhta →", url: "https://www.rekhta.org/poets/akbar-allahabadi" }],
     scope: "curated",
     img: { src: "images/akbarallahabadi.jpg", alt: "Portrait of Akbar Allahabadi", caption: "Akbar Allahabadi \u2014 the sessions judge who moonlighted as the subcontinent\u2019s sharpest satirist.", credit: "Photo: unknown (print reproduction) \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Akbar Allahabadi",
@@ -3036,6 +3051,8 @@ const KUTUB = [
   },
   {
     id: "K15",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Shikwa, the complete recitation \u2192", url: "https://www.youtube.com/watch?v=mrgbbziN2so" }],
     img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Iqbal, who dared to file a complaint with God, then wrote the reply.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
     urName: "شکوہ",
@@ -3236,6 +3253,8 @@ const KUTUB = [
   },
   {
     id: "K16",
+    speak: false,
+    links: [{ label: "\ud83c\udfa7 Hear it: Jawāb-e-Shikwa, the complete recitation \u2192", url: "https://www.youtube.com/watch?v=6q2YiJxKrNY" }],
     img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Four years after the Complaint, Iqbal gave God the reply.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
     urName: "جواب",

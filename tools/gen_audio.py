@@ -115,11 +115,35 @@ def slug(s: str) -> str:
     s = re.sub(r"[^a-z0-9]+", "-", s)
     return s.strip("-")
 
+# Kutub Khana entries marked `speak: false` are read by a human on a
+# linked recording instead. Classical poetry rides on the Persian izāfat,
+# an unwritten vowel the neural voices drop, and no respelling fixed it
+# across whole poems. Their lines are skipped here so we neither generate
+# nor keep clips nobody plays — but only if the line appears nowhere else
+# on the site, since a poem can share a phrase with a lesson.
+def listen_only_blocks(src):
+    # split on entry boundaries, then cut at the entry's own closing brace
+    # so the last one does not run past the end of the array
+    out = []
+    for b in src.split("\n  {\n"):
+        if "    speak: false,\n" not in b:
+            continue
+        end = b.find("\n  },")
+        out.append(b if end == -1 else b[:end])
+    return out
+
 def collect():
     src = (PROJECT / "data.js").read_text()
+    quiet = listen_only_blocks(src)
+    quiet_slugs, spoken_slugs = set(), set()
+    for ur, tr in re.findall(r'ur:\s*"([^"]+)",\s*tr:\s*"([^"]+)"', src):
+        (quiet_slugs if any(f'tr: "{tr}"' in b for b in quiet) else spoken_slugs).add(slug(tr))
+    skip = quiet_slugs - spoken_slugs
     jobs = {}  # slug -> urdu text to synthesize
     # phrases, words, verse lines, loanwords: { ur: "...", tr: "..." }
     for ur, tr in re.findall(r'ur:\s*"([^"]+)",\s*tr:\s*"([^"]+)"', src):
+        if slug(tr) in skip:
+            continue
         jobs.setdefault(slug(tr), ur)
     # letters: { ch: "...", name: "..." } — app speaks slug(name)
     for ch, name in re.findall(r'ch:\s*"([^"]+)",\s*name:\s*"([^"]+)"', src):

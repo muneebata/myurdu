@@ -4125,17 +4125,24 @@ function renderKutubWork(i) {
     ${w.flagArt ? `<div class="kutub-flag">${AZADI_FLAG_SVG}</div>` : ""}
     ${w.img ? photoFigure(w.img, "kutub-photo") : ""}
     <p class="lesson-intro">${esc(w.intro)}</p>
+    ${w.speak === false ? `<aside class="funfact listen-note"><span class="ff-tag">🎧 Hear it properly</span><p>These lines aren't read aloud by the app. Classical Urdu poetry leans on the Persian izāfat, an unwritten vowel that speech synthesis swallows, and a machine reading of Ghalib is worse than none. The recording below is the real thing.</p></aside>` : ""}
     <div class="kutub-lines">
       ${w.lines.map((l, li) => `
         ${l.band ? `<p class="kutub-band">· بند ${l.band} ·</p>` : ""}
         <div class="kutub-entry">
-          <button class="verse-line" onclick='Speech.speak(${JSON.stringify(l.ur)}, ${JSON.stringify(l.tr)}, {slow:true})'>
-            <span class="verse-ur ur">${esc(l.ur)}</span>
-            <span class="verse-tr">${esc(l.tr)}</span>
-            <span class="verse-en">${esc(l.en)}</span>
-          </button>
+          ${w.speak === false
+            ? `<div class="verse-line static">
+                 <span class="verse-ur ur">${esc(l.ur)}</span>
+                 <span class="verse-tr">${esc(l.tr)}</span>
+                 <span class="verse-en">${esc(l.en)}</span>
+               </div>`
+            : `<button class="verse-line" onclick='Speech.speak(${JSON.stringify(l.ur)}, ${JSON.stringify(l.tr)}, {slow:true})'>
+                 <span class="verse-ur ur">${esc(l.ur)}</span>
+                 <span class="verse-tr">${esc(l.tr)}</span>
+                 <span class="verse-en">${esc(l.en)}</span>
+               </button>`}
           ${l.note ? `<p class="kutub-note">✎ ${esc(l.note)}</p>` : ""}
-          <div class="kutub-nishaan">${nishaanBtn(l.ur, l.tr, l.en, w.author, true)}</div>
+          ${w.speak === false ? "" : `<div class="kutub-nishaan">${nishaanBtn(l.ur, l.tr, l.en, w.author, true)}</div>`}
         </div>`).join("")}
     </div>
     ${w.links ? `<div class="link-row kutub-links">${w.links.map((l) => `<a class="btn link" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>` : ""}
