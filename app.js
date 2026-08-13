@@ -1259,7 +1259,7 @@ function renderHome() {
     </section>
 
 
-    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <button class="linklike" onclick="renderQawaid()">📐 Qawāid · Grammar</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
+    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <button class="linklike" onclick="renderQawaid()">📐 Qawāid · Grammar</button> · <button class="linklike" onclick="renderAurSeekhiye()">🧭 Aur Seekhiye</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
   ensureAzadiRain();
 }
@@ -4319,11 +4319,30 @@ function chartCard() {
     </div>`;
 }
 
+// ── Aur Seekhiye: the curated doors out ───────────────────────
+function renderAurSeekhiye() {
+  app().innerHTML = `
+    ${backBar("🧭 Aur Seekhiye · Beyond Ustaadh")}
+    <p class="lesson-intro">This site is one door into Urdu, not the last one. These are the doors we trust when you want more — each link checked by hand (last: ${esc(AUR_SEEKHIYE_CHECKED)}), each note honest about what you'll find, including what costs money. They are other people's sites, not ours.</p>
+    ${AUR_SEEKHIYE.map((g) => `
+      <div class="read-section">
+        <h3>${esc(g.group)} · <span class="ur">${esc(g.urName)}</span></h3>
+        ${g.items.map((it) => `
+          <a class="aur-link" href="${it.url}" target="_blank" rel="noopener">
+            <span class="aur-name">${esc(it.name)} →</span>
+            <span class="aur-note">${esc(it.note)}</span>
+          </a>`).join("")}
+      </div>`).join("")}
+    <p class="hint">Our own reference shelf lives in the footer: 📖 Lughat, 📐 Qawāid, and the 🔤 Harf Chart on the reading track.</p>
+  `;
+  window.scrollTo(0, 0);
+}
+
 const NAV_PAGES = [
   "renderHome", "renderTrack", "openLevel", "openUnit", "renderSair",
   "startRolePlay", "renderKutub", "renderKutubWork", "renderLughat",
   "renderReport", "renderTracing", "startTracing", "renderTyping",
-  "startFlashcards", "renderQawaid", "renderHarfChart",
+  "startFlashcards", "renderQawaid", "renderHarfChart", "renderAurSeekhiye",
 ];
 let navPopping = false;
 let navStableRender = false;

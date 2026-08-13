@@ -1118,3 +1118,10 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
   .backbar, .btn, footer, .placement-line { display: none !important; }
   .harf-table { max-width: 100%; }
 }
+
+/* Aur Seekhiye link cards */
+.aur-link { display: block; text-decoration: none; color: var(--ink); background: var(--bg);
+  border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 6px 0; }
+.aur-link:hover { border-color: var(--teal); }
+.aur-name { display: block; font-weight: 700; color: var(--teal-dark); }
+.aur-note { display: block; font-size: 0.88rem; color: var(--muted); }

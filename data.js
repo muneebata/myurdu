@@ -1866,6 +1866,45 @@ const QAWAID = [
   },
 ];
 
+// ─────────────────────────────────────────────────────────────
+// Aur Seekhiye: where to go when you want more than this site.
+// RULE: a link ships only after it is verified alive, and its note
+// says honestly what it is (including "paid" where true). Checked
+// dates matter — recheck before adding, prune on rot.
+// ─────────────────────────────────────────────────────────────
+const AUR_SEEKHIYE_CHECKED = "13 August 2026";
+const AUR_SEEKHIYE = [
+  {
+    group: "Dictionaries beyond our Lughat", urName: "لغات",
+    items: [
+      { name: "Urdu Thesaurus", url: "https://urduthesaurus.com", note: "40,000+ words and 20,000 synonym sets, free, built by the novelist Musharraf Ali Farooqi." },
+      { name: "Rekhta Dictionary", url: "https://www.rekhta.org/urdudictionary", note: "Urdu, English and Hindi lookups with meanings shown in real poetry." },
+    ],
+  },
+  {
+    group: "Reading, once the script is yours", urName: "پڑھائی",
+    items: [
+      { name: "Rekhta", url: "https://www.rekhta.org", note: "The great online library of Urdu poetry and prose — where our Kutub Khana links have been sending you all along." },
+      { name: "Virtual Urdu · children's stories (NYU)", url: "https://wp.nyu.edu/virtualurdu/children-stories/", note: "Ten folk tales for learners — the same storybook world as our Kahānī 3." },
+    ],
+  },
+  {
+    group: "Listening, past our clips", urName: "سماعت",
+    items: [
+      { name: "BBC Urdu", url: "https://www.bbc.com/urdu", note: "News in clear broadcast Urdu — text, audio and video, updated all day." },
+      { name: "Geo Urdu", url: "https://urdu.geo.tv", note: "Pakistani news in the everyday register you hear in Pakistani homes." },
+      { name: "UrduPod101 on YouTube", url: "https://www.youtube.com/c/UrduPod101", note: "Free listening lessons; the channel is the best free part of a paid platform." },
+    ],
+  },
+  {
+    group: "Other roads into the language", urName: "مزید",
+    items: [
+      { name: "Omniglot · Urdu", url: "https://omniglot.com/writing/urdu.htm", note: "The classic one-page script reference — our Harf Chart's older cousin, with recordings." },
+      { name: "Rekhta Learning (Aamozish)", url: "https://aamozish.com", note: "Script and vocabulary courses taught through poetry, by the Rekhta Foundation. Parts are paid." },
+    ],
+  },
+];
+
 const QUIZ_PASS_PERCENT = 70;
 
 // ─────────────────────────────────────────────────────────────

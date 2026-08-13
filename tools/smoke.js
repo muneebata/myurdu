@@ -19,9 +19,9 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
   LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
-  KUTUB, QAWAID,
+  KUTUB, QAWAID, AUR_SEEKHIYE,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS, QAWAID })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS, QAWAID, AUR_SEEKHIYE })",
   sandbox
 );
 
@@ -168,6 +168,11 @@ for (const q of QAWAID || []) {
   check(q.id && q.title && q.urName && Array.isArray(q.points) && q.points.length >= 2, `QAWAID ${q.id || "?"}: incomplete card`);
   for (const tr of q.ex) check(rawTrs.has(tr), `QAWAID ${q.id}: example is not a taught line: "${tr}"`);
   for (const dd of q.drills) check(LEVELS.some((lv) => lv.id === dd), `QAWAID ${q.id}: unknown drill ${dd}`);
+}
+
+// Aur Seekhiye: every outbound door must be complete and https
+for (const g of AUR_SEEKHIYE || []) for (const it of g.items) {
+  check(it.name && it.note && /^https:\/\//.test(it.url), `Aur Seekhiye entry incomplete or non-https: ${it.name || it.url}`);
 }
 
 // ── 4. role-play graph integrity ──
