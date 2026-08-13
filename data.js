@@ -1774,7 +1774,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "The rules of the game",
-        img: { src: "images/virsa/virsa-ghazal.jpg", alt: "A ghazal singer at a harmonium with a tabla player beside him, a small audience sitting on the carpet around them by lamplight" },
+        img: { src: "images/ghalib-nuskha.jpg", alt: "An illuminated manuscript page of Ghalib's ghazals, verses in two columns beneath a gold and blue header panel", caption: "A page from the Nuskha-e-Hamidiya, an early manuscript of Ghalib's Urdu ghazals. Look at the shape rather than the words: two columns, each line one miṣra, couplet stacked on couplet all the way down. That is a ghazal on the page.", credit: "Photo: Mydust · CC BY-SA 4.0 · via Wikimedia Commons" },
         facts: [
           "<strong>Sher</strong>: a two-line couplet, complete in itself. Each sher is its own tiny story; a ghazal is an anthology, not a narrative.",
           "<strong>Radif</strong>: the identical refrain that ends both lines of the opening couplet, then the second line of every couplet after. The audience hears it coming and often says it WITH the singer.",
@@ -1784,6 +1784,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "Hear the radif. Ghalib's most beloved opening",
+        img: { src: "images/virsa/virsa-ghazal.jpg", alt: "A ghazal singer at a harmonium with a tabla player beside him, a small audience sitting on the carpet around them by lamplight" },
         note: "Both lines end in 'kyā hai', that's the radif. The rhymes before it (huā / dawā) are the qafiya. Tap each line and listen for the pattern.",
         verse: [
           { ur: "دل ناداں تجھے ہوا کیا ہے", tr: "dil-e-nādāṉ tujhe huā kyā hai", en: "Oh naive heart, what has come over you?" },
