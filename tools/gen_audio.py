@@ -76,15 +76,19 @@ ANTHEM_UR = {
     "arz-e-paakistaan": "अर्ज़-ए-पाकिस्तान",
     "markaz-e-yaqeen-shaad-baad": "मरकज़-ए-यक़ीन शाद बाद",
     "paak-sarzameen-kaa-nizaam": "पाक सरज़मीन का निज़ाम",
-    "quwwat-e-ukhuwwat-e-awaam": "क़ुव्वत-ए-उख़ुव्वत-ए-अवाम",
+    # Three lines resisted the hyphenated -ए-: the two with stacked izāfats
+    # and the one ending in an Arabic construction. Attaching the izāfat to
+    # the preceding word (क़ुव्वते rather than क़ुव्वत-ए-) fixed all three,
+    # ear-checked against spaced and nuqta-free alternatives.
+    "quwwat-e-ukhuwwat-e-awaam": "क़ुव्वते उख़ुव्वते अवाम",
     "qaum-mulk-saltanat": "क़ौम, मुल्क, सल्तनत",
     "paainda-taabinda-baad": "पाइंदा ताबिंदा बाद",
     "shaad-baad-manzil-e-muraad": "शाद बाद मंज़िल-ए-मुराद",
     "parcham-e-sitaara-o-hilaal": "परचम-ए-सितारा-ओ-हिलाल",
     "rahbar-e-taraqqee-o-kamaal": "रहबर-ए-तरक़्क़ी-ओ-कमाल",
     "tarjumaan-e-maazee-shaan-e-haal": "तर्जुमान-ए-माज़ी, शान-ए-हाल",
-    "jaan-e-istiqbaal": "जान-ए-इस्तिक़बाल",
-    "saaya-e-khudaa-e-zoo-l-jalaal": "साया-ए-ख़ुदा-ए-ज़ुल-जलाल",
+    "jaan-e-istiqbaal": "जाने इस्तिक़बाल",
+    "saaya-e-khudaa-e-zoo-l-jalaal": "सायाए ख़ुदाए ज़ुलजलाल",
 }
 CLIP_OVERRIDES.update({k: (V, t) for k, t in ANTHEM_UR.items()})
 
