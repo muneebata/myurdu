@@ -241,3 +241,23 @@ better beside the rest of the site.
 
 ### 6.9 The last missing level header
 Prompt 23 in Batch 4 above: Level 23, compound verbs.
+
+---
+
+# BATCH 7 · The food unit (P5 Dastarkhwān)
+
+Three sheets, thirty tiles. The unit is already live and teaching without
+them; these turn the word lists into tappable pictures and feed the
+Rozmarra picture round in Aaj Ka Paanch.
+
+**Same rules as always:** keep the item ORDER exactly as listed, clear
+cream gaps between cards, nothing touching the edge.
+
+### 7.1 The dishes (4 × 3, twelve tiles)
+> Flat editorial illustration sheet, 4 columns by 3 rows, exactly 12 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each dish is centred on its own plain cream card with a thin single-colour border, served in Pakistani crockery, filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The twelve items in order are: 1 a plate of layered chicken biryani with rice stained orange and yellow, 2 a bowl of dark nihari stew with ginger slivers on top, 3 a bowl of thick brown haleem with fried onion, 4 a black karahi pan of chicken curry with green chillies, 5 two flat wide chapli kebabs on a plate, 6 three seekh kebabs on skewers, 7 a bowl of dark green mustard saag beside a yellow makkai roti, 8 a plate of yellow daal with white rice, 9 a Sunday breakfast plate of puffed fried puri, orange semolina halwa and chickpea curry, 10 three fried triangular samosas, 11 a plate of golden gram-flour pakoras, 12 a tall glass of falooda with pink syrup, noodles and a scoop of ice cream.
+
+### 7.2 What goes in (4 × 3, twelve tiles)
+> Flat editorial illustration sheet, 4 columns by 3 rows, exactly 12 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each item is centred on its own plain cream card with a thin single-colour border, the object filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The twelve items in order are: 1 a small mound of bright yellow turmeric powder in a dish, 2 dried red chillies beside a fresh green chilli, 3 a spoon of cumin seeds, 4 a bunch of fresh green coriander leaves, 5 a knob of fresh ginger root, 6 a head of garlic with one clove separated, 7 a red onion, one half cut open, 8 two ripe tomatoes, 9 a bowl of wheat flour with a dusting spilled beside it, 10 a jar of golden clarified ghee with a spoon, 11 a small clear bottle of cooking oil, 12 a dish of mixed whole garam masala spices, cinnamon bark, cloves, black cardamom and peppercorns.
+
+### 7.3 At the stove (3 × 2, six tiles)
+> Flat editorial illustration sheet, 3 columns by 2 rows, exactly 6 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each action is centred on its own plain cream card with a thin single-colour border, filling most of the card, drawn as a pair of hands with warm brown skin doing the action, no faces needed. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The six items in order are: 1 hands slicing an onion on a board with a knife, 2 hands stirring browning onion and masala in a black karahi pan over a flame, 3 a pot of water at a rolling boil on a stove, 4 samosas being lowered into a deep pan of hot oil with a slotted spoon, 5 a hand lifting a wooden spoon to taste from a pot, 6 a covered pot simmering gently on a low flame with steam escaping the lid.
