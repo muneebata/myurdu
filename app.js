@@ -2117,7 +2117,7 @@ function everydayThings() {
   for (const id of ["R14", "R15", "R16", "R17"]) {
     const u = READING_UNITS.find((x) => x.id === id);
     if (!u) continue;
-    for (const s of u.sections) for (const w of s.words || []) if (w.pic) out.push({ ...w, set: s.heading });
+    for (const s of u.sections) for (const w of s.words || []) if (w.pic && w.quiz !== false) out.push({ ...w, set: s.heading });
   }
   return out;
 }

@@ -1385,8 +1385,10 @@ const READING_UNITS = [
           { ur: "انڈا", tr: "anḍā", pic: "images/tiles/anda.jpg", en: "egg", spell: "retroflex ḍ, and the plural is anḍe" },
           { ur: "آم", tr: "ām", pic: "images/tiles/aam.jpg", en: "mango", spell: "the Kahānī bargaining story haggled over these" },
           { ur: "مٹھائی", tr: "miṭhāī", pic: "images/tiles/mithai.jpg", en: "sweets", spell: "from mīṭhā, sweet; no celebration happens without a box of it" },
-          { ur: "نمک", tr: "namak", pic: "images/tiles/namak.jpg", en: "salt", spell: "namak-halāl means loyal, salt is a bond you have eaten" },
-          { ur: "چینی", tr: "chīnī", pic: "images/tiles/cheeni.jpg", en: "sugar", spell: "literally 'Chinese': sugar arrived by way of China and kept the name" },
+          // quiz: false — a dish of salt and a dish of sugar look the same,
+          // fine beside their labels here, unfair as a picture question.
+          { ur: "نمک", tr: "namak", pic: "images/tiles/namak.jpg", quiz: false, en: "salt", spell: "namak-halāl means loyal, salt is a bond you have eaten" },
+          { ur: "چینی", tr: "chīnī", pic: "images/tiles/cheeni.jpg", quiz: false, en: "sugar", spell: "literally 'Chinese': sugar arrived by way of China and kept the name" },
           { ur: "دہی", tr: "dahī", pic: "images/tiles/dahi.jpg", en: "yogurt", spell: "thin it with water and salt and it becomes lassi" },
         ],
       },
