@@ -244,7 +244,7 @@ Prompt 23 in Batch 4 above: Level 23, compound verbs.
 
 ---
 
-# BATCH 7 · The food unit (P5 Dastarkhwān)
+# BATCH 7 · The food unit (P5 Dastarkhwān)  ✅ DONE, 30 tiles live
 
 Three sheets, thirty tiles. The unit is already live and teaching without
 them; these turn the word lists into tappable pictures and feed the

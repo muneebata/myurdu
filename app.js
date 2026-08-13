@@ -2177,10 +2177,13 @@ const worldCountries = () => unitWords("R12");
 // naming it against a bus stop and a mango is not.
 function everydayThings() {
   const out = [];
-  for (const id of ["R14", "R15", "R16", "R17"]) {
-    const u = READING_UNITS.find((x) => x.id === id);
-    if (!u) continue;
-    for (const s of u.sections) for (const w of s.words || []) if (w.pic && w.quiz !== false) out.push({ ...w, set: s.heading });
+  const from = [[READING_UNITS, ["R14", "R15", "R16", "R17"]], [PAKISTAN_UNITS, ["P5"]]];
+  for (const [track, ids] of from) {
+    for (const id of ids) {
+      const u = track.find((x) => x.id === id);
+      if (!u) continue;
+      for (const s of u.sections) for (const w of s.words || []) if (w.pic && w.quiz !== false) out.push({ ...w, set: s.heading });
+    }
   }
   return out;
 }
