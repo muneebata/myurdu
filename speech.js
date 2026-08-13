@@ -155,8 +155,37 @@ const Speech = {
 
   _rec: null,
 
+  // iOS runs one audio session per page, and its type decides what the
+  // page may do. "playback" is output-ONLY: it is what makes a recording
+  // audible with the ring/silent switch on, and it is also why the very
+  // next getUserMedia is refused. So the two halves of Goonj each have
+  // to claim the session they need, every time, instead of one of them
+  // setting it once and quietly locking the other out.
+  // (Safari-only API; everywhere else this is a no-op.)
+  _session(type) {
+    try {
+      if (navigator.audioSession && navigator.audioSession.type !== type) {
+        navigator.audioSession.type = type;
+      }
+    } catch (_) {}
+  },
+
   async recordStart() {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    // A take that was never stopped would still be holding the mic.
+    if (this._rec) {
+      try { if (this._rec.mr.state !== "inactive") this._rec.mr.stop(); } catch (_) {}
+      this._rec = null;
+    }
+    this._session("play-and-record");
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) {
+      // Older iOS doesn't know "play-and-record". Drop back to the
+      // default session and ask once more before giving up.
+      this._session("auto");
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    }
     // Safari records mp4/aac; Chromium records webm/opus.
     const mime = ["audio/mp4", "audio/webm;codecs=opus", "audio/webm"].find((t) => MediaRecorder.isTypeSupported(t)) || "";
     const mr = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
@@ -177,7 +206,13 @@ const Speech = {
     this._rec = null;
     if (!r) return Promise.resolve(null);
     if (r.mr.state !== "inactive") r.mr.stop();
-    return r.done;
+    // Hand the session straight back to output. iOS routes a recording
+    // session to the earpiece, which would leave the native clip sounding
+    // faint and far away the moment a learner stopped talking.
+    return r.done.then((blob) => {
+      this._session("playback");
+      return blob;
+    });
   },
 
   _actx: null,
@@ -194,11 +229,8 @@ const Speech = {
   // feature check. (Plain <audio> is unaffected by the switch, which
   // is why the lesson clips never needed any of this.)
   async playRecording(url) {
-    try {
-      if (navigator.audioSession && navigator.audioSession.type !== "playback") {
-        navigator.audioSession.type = "playback";
-      }
-    } catch (_) {}
+    // Claims the output-only session. recordStart() takes it back.
+    this._session("playback");
     const Ctx = window.AudioContext || window.webkitAudioContext;
     if (Ctx) {
       try {
