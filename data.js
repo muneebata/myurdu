@@ -1704,7 +1704,7 @@ const CULTURE_UNITS = [
           { ur: "نظم", tr: "nazm", en: "a poem", spell: "one continuous subject, start to finish, unlike a ghazal" },
           { ur: "دعا", tr: "duā", en: "prayer, supplication", spell: "the duā in Iqbal's Lab pe ātī hai duā above" },
           { ur: "گیت", tr: "gīt", en: "song", spell: "the folk-song word, softer and older than naghma" },
-          { ur: "مصرع", tr: "miṣra", en: "a line of verse", spell: "half a sher. Two of them make one couplet" },
+          { ur: "مصرع", tr: "misra", en: "a line of verse", spell: "half a sher. Two of them make one couplet" },
           { ur: "شعر", tr: "sheʿr", en: "a couplet", spell: "the unit Urdu poetry is built from. Not sher the lion: this one has a catch in the middle" },
           { ur: "ترانہ", tr: "tarāna", en: "anthem", spell: "Iqbal's Tarāna-e-Hindī gave the subcontinent one of its most famous" },
         ],
