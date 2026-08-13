@@ -7,6 +7,7 @@
 const LEVELS = [
   {
     id: "L1",
+    img: { src: "images/levels/l1.jpg", alt: "Two neighbours greeting each other at a doorway, one with a hand raised in salaam" },
     title: "Salaam! · Greetings",
     urName: "سلام",
     subtitle: "Your first words, greet anyone, anywhere",
@@ -31,6 +32,7 @@ const LEVELS = [
   },
   {
     id: "L2",
+    img: { src: "images/levels/l2.jpg", alt: "A small group meeting for the first time, two of them shaking hands while the others look on" },
     title: "Mulaqat · Introductions",
     urName: "ملاقات",
     subtitle: "Say who you are, ask who they are",
@@ -54,6 +56,7 @@ const LEVELS = [
   },
   {
     id: "L3",
+    img: { src: "images/levels/l3.jpg", alt: "A customer counting banknotes at a fruit stall while the vendor waits" },
     title: "Ginti · Numbers",
     urName: "گنتی",
     subtitle: "Count to ten, ask 'how many?'",
@@ -80,6 +83,7 @@ const LEVELS = [
   },
   {
     id: "L4",
+    img: { src: "images/levels/l4.jpg", alt: "Three generations of a family together in a courtyard, the grandparents seated in front" },
     title: "Khandan · Family & People",
     urName: "خاندان",
     subtitle: "Talk about the people in your life",
@@ -106,6 +110,7 @@ const LEVELS = [
   },
   {
     id: "L5",
+    img: { src: "images/levels/l5.jpg", alt: "A dastarkhwan spread on the floor, many shared dishes, hands reaching in" },
     title: "Khana · Food & Requests",
     urName: "کھانا",
     subtitle: "Order food, ask prices, praise the cook",
@@ -131,6 +136,7 @@ const LEVELS = [
   },
   {
     id: "L6",
+    img: { src: "images/levels/l6.jpg", alt: "A small boy asking his father a question, the two of them sitting on a step" },
     title: "Sawalat · Question Words",
     urName: "سوالات",
     subtitle: "Ask anything, the seven little keys",
@@ -156,6 +162,7 @@ const LEVELS = [
   },
   {
     id: "L7",
+    img: { src: "images/levels/l7.jpg", alt: "A busy courtyard where people are cooking, walking, talking and carrying things all at once" },
     title: "Kaam · Essential Verbs",
     urName: "کام",
     subtitle: "Eat, drink, go, come, the engines of every sentence",
@@ -181,6 +188,7 @@ const LEVELS = [
   },
   {
     id: "L8",
+    img: { src: "images/levels/l8.jpg", alt: "The same street corner shown at dawn, midday, evening and night in four panels" },
     title: "Waqt · Time & Days",
     urName: "وقت",
     subtitle: "Today, tomorrow, and the word that means both",
@@ -207,6 +215,7 @@ const LEVELS = [
   },
   {
     id: "L9",
+    img: { src: "images/levels/l9.jpg", alt: "A fabric shop with brightly coloured cloth stacked high, the shopkeeper unfolding a length" },
     title: "Rang aur Pasand · Colors & Likes",
     urName: "رنگ",
     subtitle: "Say what you love, in full color",
@@ -233,7 +242,7 @@ const LEVELS = [
   },
   {
     id: "L10",
-    img: { src: "images/chai.jpg", alt: "Doodh-patti chai and namak paratha on a dhaba tray", caption: "Doodh-pattī and namak parāthā on the dhaba tray, the exact scene this level trains you for.", credit: "Photo: MIANBASH \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+    img: { src: "images/sair-dhaba.jpg", alt: "A chai-wala pouring tea at a roadside dhaba, customers at wooden benches behind him" },
     title: "Guftagu · At the Chai Dhaba",
     urName: "گفتگو",
     subtitle: "The capstone: a real conversation, start to finish",
@@ -259,6 +268,7 @@ const LEVELS = [
   },
   {
     id: "L11",
+    img: { src: "images/levels/l11.jpg", alt: "A man on a street corner pointing the way for a traveller carrying a bag" },
     title: "Raste · Places & Directions",
     urName: "راستے",
     subtitle: "Get anywhere: left, right, straight, and 'where is…?'",
@@ -285,6 +295,7 @@ const LEVELS = [
   },
   {
     id: "L12",
+    img: { src: "images/levels/l12.jpg", alt: "A monsoon downpour on a city street, people sheltering under umbrellas and awnings" },
     title: "Mausam · Weather",
     urName: "موسم",
     subtitle: "The world's most reliable small talk",
@@ -310,6 +321,7 @@ const LEVELS = [
   },
   {
     id: "L13",
+    img: { src: "images/levels/l13.jpg", alt: "Four friends sitting and talking on a rooftop at sunset, the city behind them" },
     title: "Dil ki Batain · Feelings & Small Talk",
     urName: "دل کی باتیں",
     subtitle: "Say how you are, and bless like a local",
@@ -335,6 +347,7 @@ const LEVELS = [
   },
   {
     id: "L14",
+    img: { src: "images/levels/l14.jpg", alt: "An elder telling a story to children gathered around him on a charpai at dusk" },
     title: "Mazi · Yesterday's Stories",
     urName: "ماضی",
     subtitle: "The past tense, kal finally picks a direction",
@@ -360,6 +373,7 @@ const LEVELS = [
   },
   {
     id: "L15",
+    img: { src: "images/levels/l15.jpg", alt: "A family planning a journey together around a map, a calendar and an open suitcase" },
     title: "Mustaqbil · Tomorrow's Plans",
     urName: "مستقبل",
     subtitle: "The future tense, and kal pays off twice",
@@ -383,6 +397,7 @@ const LEVELS = [
   },
   {
     id: "L16",
+    img: { src: "images/levels/l16.jpg", alt: "A father reaching out to stop a small child from running into the street" },
     title: "Mat Karo · No, Don't, Stop",
     urName: "منع",
     subtitle: "Negation and commands, with courtesy built in",
@@ -408,6 +423,7 @@ const LEVELS = [
   },
   {
     id: "L17",
+    img: { src: "images/levels/l17.jpg", alt: "A shopkeeper at his counter with a ledger and a calculator, a customer waiting" },
     title: "Bari Ginti · Big Numbers",
     urName: "بڑی گنتی",
     subtitle: "11 to 100, landmarks through the beautiful chaos",
@@ -434,6 +450,7 @@ const LEVELS = [
   },
   {
     id: "L18",
+    img: { src: "images/levels/l18.jpg", alt: "A mehndi celebration, henna being applied, marigolds and a dholak drum" },
     title: "Shaadi Mein · At the Wedding",
     urName: "شادی",
     subtitle: "The grand capstone, survive and shine as a wedding guest",
@@ -459,6 +476,7 @@ const LEVELS = [
   },
   {
     id: "L19",
+    img: { src: "images/levels/l19.jpg", alt: "A young man carrying a heavy sack up stone steps while others watch" },
     title: "Main Kar Saktā Hūṉ · I Can",
     urName: "صلاحیت",
     subtitle: "The power word saknā, say what you can (and can't) do",
@@ -482,6 +500,7 @@ const LEVELS = [
   },
   {
     id: "L20",
+    img: { src: "images/levels/l20.jpg", alt: "A shopper in a market weighing up two bowls, a plain clay one and a painted one" },
     title: "Chāhiye! · Wants & Needs",
     urName: "خواہش",
     subtitle: "Need it, want it, should do it, the chāhiye family",
@@ -505,6 +524,7 @@ const LEVELS = [
   },
   {
     id: "L21",
+    img: { src: "images/levels/l21.jpg", alt: "Two mangoes of very different sizes held up side by side" },
     title: "Sab Se Behtar · Comparisons",
     urName: "موازنہ",
     subtitle: "Bigger than, best of all, compare anything with one little se",
@@ -528,6 +548,7 @@ const LEVELS = [
   },
   {
     id: "L22",
+    img: { src: "images/levels/l22.jpg", alt: "A traveller pausing at a fork in a country road, deciding which way to go" },
     title: "Agar Aur Jab · If & When",
     urName: "اگر اور جب",
     subtitle: "Conditions and timing, the hinge words of real conversation",
@@ -574,7 +595,7 @@ const LEVELS = [
   },
   {
     id: "L24",
-    img: { src: "images/bolan.jpg", alt: "British-era railway bridge in the Bolan Pass", caption: "A British-era railway bridge threading the Bolan Pass, Balochistan \u2014 the line to Quetta still runs these cliffs.", credit: "Photo: ShahbanoBaloch \u00b7 CC BY-SA 4.0 \u00b7 via Wikimedia Commons" },
+    img: { src: "images/levels/l24.jpg", alt: "A green and yellow train crossing a stone arch bridge through the mountains" },
     title: "Safar Bakhair · The Train Journey",
     urName: "سفر",
     subtitle: "The B1 capstone, buy the ticket, find the seat, ride the rails",
@@ -592,6 +613,7 @@ const LEVELS = [
     ],
     funFacts: [
       "Pakistan's railways began with the Scinde Railway's Karachi–Kotri line, opened in 1861, among the oldest in South Asia. The Karachi-to-Peshawar main line still spans the whole country.",
+      "The line to Quetta climbs the Bolan Pass on British-era bridges and tunnels cut straight through the cliffs, and trains still run it. Safar bakhair means something on that stretch.",
       "Safar means journey, and yes, English 'safari' comes from the same Arabic root, having traveled through Swahili on the way. A journey word that journeyed.",
       "Train, ticket, station, seat. Urdu absorbed the railway's English vocabulary and stamped it with its own pronunciation: ṭren, ṭikaṭ, isṭeshan, sīṭ. Say them the Urdu way and you're instantly more local.",
     ],

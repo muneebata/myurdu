@@ -1314,7 +1314,7 @@ function openLevel(i) {
   app().innerHTML = `
     ${backBar(`Level ${i + 1} · ${esc(lv.title)}`, "renderTrack('speak')")}
     <p class="lesson-intro">${esc(lv.intro)}</p>
-    ${lv.img ? `<figure class="photo kutub-photo"><img src="${lv.img.src}" alt="${esc(lv.img.alt)}" loading="lazy"><figcaption>${esc(lv.img.caption)}<span class="photo-credit">${esc(lv.img.credit)}</span></figcaption></figure>` : ""}
+    ${lv.img ? photoFigure(lv.img, "kutub-photo") : ""}
     ${micCompatNote()}
     <div class="phrase-list">${body}</div>
     <div class="lesson-actions">
@@ -1324,6 +1324,17 @@ function openLevel(i) {
     </div>
   `;
   window.scrollTo(0, 0);
+}
+
+// One figure renderer for every headed image. Photographs carry a caption
+// and a credit line, our own illustrations carry neither, and an empty
+// figcaption leaves a gap under the picture, so it is only emitted when
+// there is something to say.
+function photoFigure(img, extraClass = "") {
+  const cap = img.caption || img.credit
+    ? `<figcaption>${esc(img.caption || "")}${img.credit ? `<span class="photo-credit">${esc(img.credit)}</span>` : ""}</figcaption>`
+    : "";
+  return `<figure class="photo${extraClass ? ` ${extraClass}` : ""}"><img src="${img.src}" alt="${esc(img.alt || "")}" loading="lazy">${cap}</figure>`;
 }
 
 function funFact(html) {
@@ -4047,7 +4058,7 @@ function renderKutubWork(i) {
       <p class="hint">${esc(w.form)} · ${esc(w.dates)}</p>
     </div>
     ${w.flagArt ? `<div class="kutub-flag">${AZADI_FLAG_SVG}</div>` : ""}
-    ${w.img ? `<figure class="photo kutub-photo"><img src="${w.img.src}" alt="${esc(w.img.alt)}" loading="lazy"><figcaption>${esc(w.img.caption)}<span class="photo-credit">${esc(w.img.credit)}</span></figcaption></figure>` : ""}
+    ${w.img ? photoFigure(w.img, "kutub-photo") : ""}
     <p class="lesson-intro">${esc(w.intro)}</p>
     <div class="kutub-lines">
       ${w.lines.map((l, li) => `
