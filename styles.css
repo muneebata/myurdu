@@ -1094,3 +1094,27 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
 .azadi-fw-right { right: 140px; }
 @media (max-width: 700px) { .azadi-fireworks { display: none; } }
 @media (prefers-reduced-motion: reduce) { .azadi-fireworks { display: none; } }
+
+/* Qawāid reference cards */
+.qw-points li { margin-bottom: 6px; }
+.qw-table { border-collapse: collapse; margin: 8px 0 12px; font-size: 0.92rem; }
+.qw-table th, .qw-table td { border: 1.5px solid var(--line); padding: 5px 12px; text-align: left; }
+.qw-table th { background: var(--bg); font-weight: 700; }
+.qw-ex { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; width: 100%;
+  font: inherit; text-align: left; cursor: pointer; background: var(--bg);
+  border: 1.5px solid var(--line); border-radius: 10px; padding: 7px 12px; margin: 5px 0; color: var(--ink); }
+.qw-ex .ur { font-size: 1.35rem; }
+.qw-tr { font-weight: 700; }
+.qw-en { color: var(--muted); font-style: italic; }
+.qw-drills { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+/* Harf chart */
+.harf-table { border-collapse: collapse; width: 100%; max-width: 640px; margin: 0 auto; }
+.harf-table th, .harf-table td { border: 1.5px solid var(--line); padding: 4px 10px; text-align: center; }
+.harf-table th { background: var(--bg); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.harf-name { text-align: left !important; white-space: nowrap; font-weight: 700; font-size: 0.9rem; }
+.harf-sound { font-size: 0.82rem; color: var(--muted); }
+.harf-cell { font-size: 1.7rem; line-height: 1.6; }
+@media print {
+  .backbar, .btn, footer, .placement-line { display: none !important; }
+  .harf-table { max-width: 100%; }
+}

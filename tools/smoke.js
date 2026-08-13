@@ -19,9 +19,9 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
   LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
-  KUTUB,
+  KUTUB, QAWAID,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS, QAWAID })",
   sandbox
 );
 
@@ -106,6 +106,7 @@ const wanted = new Map(); // slug -> example tr
 // "sher" once, and the couplet played the lion). want() takes the Urdu too
 // and fails the deploy on any cross-word collision.
 const urOf = new Map();
+const rawTrs = new Set();
 const normUr = (s) => String(s)
   .replace(/[\u064B-\u0655\u0670\u0610-\u0615\u200B-\u200F]/g, "")
   .replace(/[يى]/g, "ی").replace(/ك/g, "ک").replace(/ه/g, "ہ").replace(/ة/g, "ہ")
@@ -115,6 +116,7 @@ const want = (tr, ur) => {
   const k = slug(tr);
   if (!k) return;
   if (!wanted.has(k)) wanted.set(k, tr);
+  rawTrs.add(tr);
   if (!ur) return;
   const n = normUr(ur);
   // Same utterance deliberately written two ways (numeral-reading practice
@@ -158,6 +160,15 @@ if (missingAudio > 5) fail.push(`…and ${missingAudio - 5} more missing clips`)
 // informational: clips on disk that no speakable needs
 const orphanClips = [...audio].filter((f) => !wanted.has(f));
 if (orphanClips.length) console.log(`note: ${orphanClips.length} unused audio file(s): ${orphanClips.slice(0, 5).join(", ")}${orphanClips.length > 5 ? ", …" : ""}`);
+
+// ── 3c. Qawāid: reference examples must BE curriculum lines ──
+// The grammar page resolves examples by exact tr at runtime; a typo'd
+// example would silently render as nothing. Exact membership, not slug.
+for (const q of QAWAID || []) {
+  check(q.id && q.title && q.urName && Array.isArray(q.points) && q.points.length >= 2, `QAWAID ${q.id || "?"}: incomplete card`);
+  for (const tr of q.ex) check(rawTrs.has(tr), `QAWAID ${q.id}: example is not a taught line: "${tr}"`);
+  for (const dd of q.drills) check(LEVELS.some((lv) => lv.id === dd), `QAWAID ${q.id}: unknown drill ${dd}`);
+}
 
 // ── 4. role-play graph integrity ──
 for (const sc of ROLEPLAYS) {

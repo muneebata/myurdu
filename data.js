@@ -1593,6 +1593,48 @@ const READING_UNITS = [
       "Both <b>shāl</b> and <b>pājāma</b> left the subcontinent and became English words. Kashmiri shawls were such a European craze that the word wrapped itself around the language, and loose Urdu trousers became the West's sleepwear.",
     ],
   },
+  {
+    id: "R18",
+    title: "Kahānī 3 · Purānī Kahāniyāṉ",
+    subtitle: "two folk tales the whole world tells, now in your Urdu",
+    intro:
+      "Aesop's fables have been told in every language on earth, and here is the proof: two of the most famous fit into the Urdu you already have, with just a handful of new words (each one flagged as you go). Read each line aloud BEFORE tapping the audio — these are stories made for telling.",
+    sections: [
+      {
+        heading: "Sher aur Chūhā · The Lion and the Mouse",
+        note: "The zoo's sher meets the proverb's chūhā. Watch the ne-past do its work (Qawāid Q9): madad kī agrees with madad, a she.",
+        words: [
+          { ur: "ایک شیر سو رہا تھا۔", tr: "ek sher so rahā thā", en: "A lion was sleeping.", spell: "sher from the zoo, so rahā thā from your -rahā pattern" },
+          { ur: "ایک چھوٹا چوہا آیا۔", tr: "ek chhoṭā chūhā āyā", en: "A little mouse came along.", spell: "NEW: chūhā = mouse. The khodā pahāṛ proverb's chūhā, finally on his own" },
+          { ur: "شیر نے چوہے کو پکڑ لیا۔", tr: "sher ne chūhe ko pakaṛ liyā", en: "The lion caught the mouse.", spell: "NEW: pakaṛnā = to catch, with L23's liyā sealing the grab" },
+          { ur: "چوہے نے کہا: مجھے چھوڑ دیں!", tr: "chūhe ne kahā: mujhe chhoṛ deṉ!", en: "The mouse said: let me go!", spell: "NEW: chhoṛnā = to let go. The deṉ points the favour outward, pure L23" },
+          { ur: "میں بھی آپ کی مدد کروں گا۔", tr: "maiṉ bhī āp kī madad karūṉ gā", en: "I too will help you one day.", spell: "madad from L19, the future tail from L15" },
+          { ur: "شیر نے کہا: ٹھیک ہے، جاؤ۔", tr: "sher ne kahā: ṭhīk hai, jāo", en: "The lion said: fine, off you go.", spell: "a tum-command for a small creature, exactly right" },
+          { ur: "پھر ایک دن شیر مصیبت میں تھا۔", tr: "phir ek din sher musībat meṉ thā", en: "Then one day the lion was in trouble.", spell: "NEW: musībat = trouble, a word every Urdu drama runs on" },
+          { ur: "چوہے نے شیر کی مدد کی۔", tr: "chūhe ne sher kī madad kī", en: "The mouse helped the lion.", spell: "madad kī — the ne-past agreeing with madad, a she (Qawāid Q9)" },
+          { ur: "چھوٹا دوست بھی بڑا کام کرتا ہے۔", tr: "chhoṭā dost bhī baṛā kām kartā hai", en: "Even a small friend does big work.", spell: "the moral, built entirely of grammar you own" },
+        ],
+      },
+      {
+        heading: "Lomṛī aur Kawwā · The Fox and the Crow",
+        note: "The zoo's kawwā, a roti from L5, and flattery in the polite āp. Two new words, one old lesson.",
+        words: [
+          { ur: "ایک کوے کے پاس روٹی تھی۔", tr: "ek kawwe ke pās roṭī thī", en: "A crow had a piece of roti.", spell: "kawwā bends to kawwe before ke pās (Qawāid Q5)" },
+          { ur: "ایک لومڑی آئی۔", tr: "ek lomṛī āī", en: "A fox came along.", spell: "NEW: lomṛī = fox, the folk tales' professional schemer" },
+          { ur: "لومڑی نے کہا: واہ! آپ بہت خوبصورت ہیں۔", tr: "lomṛī ne kahā: wāh! āp bahut khūbsūrat haiṉ", en: "The fox said: wah! You are so beautiful.", spell: "flattery delivered in the respectful āp, naturally" },
+          { ur: "کیا آپ گا سکتے ہیں؟", tr: "kyā āp gā sakte haiṉ?", en: "And can you sing?", spell: "L19's saknā, aimed at a crow" },
+          { ur: "کوے نے منہ کھولا۔", tr: "kawwe ne muṉh kholā", en: "The crow opened his mouth.", spell: "muṉh from Jism aur Mizāj, kholā from khol deṉ" },
+          { ur: "روٹی گر گئی۔", tr: "roṭī gir gaī", en: "The roti fell.", spell: "NEW: girnā = to fall. Gir gaī — fallen and gone, L23's flavour" },
+          { ur: "لومڑی نے روٹی لی اور کہا: شکریہ!", tr: "lomṛī ne roṭī lī aur kahā: shukriya!", en: "The fox took the roti and said: thank you!", spell: "lī — lenā in the ne-past, agreeing with roṭī" },
+          { ur: "میٹھی باتوں سے ہوشیار رہیں۔", tr: "mīṭhī bātoṉ se hoshiyār raheṉ", en: "Stay wary of sweet talk.", spell: "NEW: hoshiyār = alert, sharp. You have been earning it as a rank all along; now it is officially yours" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Both tales are Aesop's, first told in Greek some 2,500 years ago — and they fit into your 24 levels of Urdu almost without a new word. That portability is the whole genius of a folk tale.",
+      "The subcontinent has its own great fable river: the Panchatantra's animal stories travelled west through Persian retellings of <b>Kalīla wa Dimna</b>, and centuries of dāstān-tellers carried them into Urdu. Your nānī's animal stories have a very long pedigree.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -1641,6 +1683,188 @@ const RISHTAY = [
   ] },
 ];
 
+
+// ─────────────────────────────────────────────────────────────
+// Qawāid: the grammar reference. Cards, not lessons — every rule
+// here is DRILLED somewhere in the levels; `drills` names where,
+// and every `ex` is an existing curriculum line (smoke enforces
+// this), so each example plays its already-verified clip.
+// ─────────────────────────────────────────────────────────────
+const QAWAID = [
+  {
+    id: "Q1", title: "Word order · the verb goes last", urName: "ترتیب",
+    points: [
+      "Urdu is subject–object–verb: <b>maiṉ chāy pītā hūṉ</b> is literally 'I tea drink'.",
+      "Everything else (time words, places) slots in before the verb; the verb ends the sentence like a full stop.",
+      "Questions do NOT reorder the sentence the way English does — the words stay put and kyā or a question word does the work (see Q13).",
+    ],
+    ex: ["maiṉ urdū sīkh rahā hūṉ", "mujhe rikshā chāhiye"],
+    drills: ["L2", "L7"],
+  },
+  {
+    id: "Q2", title: "Gender · every noun is he or she", urName: "جنس",
+    points: [
+      "Every Urdu noun has a gender. Chāy is she, pānī is he, and there is no 'it'.",
+      "Rough guide: nouns ending in <b>-ā</b> lean masculine (kamrā, laṛkā), nouns in <b>-ī</b> lean feminine (kursī, roṭī) — with exceptions (pānī is masculine; ādmī too).",
+      "Adjectives and past verbs agree: chāy achhī <b>thī</b>, safar achhā <b>thā</b>.",
+      "When in doubt, learn the word with a sentence, not alone — the sentence carries the gender for you.",
+    ],
+    ex: ["chāy bahut achhī thī", "safar achhā thā", "merī ek beṭī hai"],
+    drills: ["L9", "L14"],
+  },
+  {
+    id: "Q3", title: "Plurals", urName: "جمع",
+    table: {
+      head: ["singular", "plural", "example"],
+      rows: [
+        ["masculine -ā", "-e", "kamrā → kamre (rooms)"],
+        ["feminine -ī", "-iyāṉ", "kursī → kursiyāṉ (chairs)"],
+        ["other feminine", "-eṉ", "kitāb → kitābeṉ (books)"],
+        ["before a postposition", "-oṉ", "kamroṉ meṉ (in the rooms)"],
+      ],
+    },
+    points: [
+      "Many masculine nouns that don't end in -ā simply don't change: ek ghar, do ghar.",
+      "Respect uses the plural for ONE person: woh chale gaye can mean 'he (respected) left' (see Q4).",
+    ],
+    ex: ["mere do bhāī haiṉ", "hameṉ do kamre chāhieṉ", "woh bahut mahange the"],
+    drills: ["L4", "L20"],
+  },
+  {
+    id: "Q4", title: "Āp, tum, tū · three ways to say you", urName: "آپ",
+    points: [
+      "<b>Āp</b> is respectful and always plural in grammar — safe with anyone.",
+      "<b>Tum</b> is for friends, siblings, children; its commands end in -o (jāo, āo).",
+      "<b>Tū</b> is intimate or rude depending entirely on the relationship — as a learner, simply don't.",
+      "Respect turns verbs plural even for one person: woh chale gaye = he (respected) left.",
+    ],
+    ex: ["āp kaise haiṉ?", "woh chale gaye", "mat jāo"],
+    drills: ["L1", "L16"],
+  },
+  {
+    id: "Q5", title: "Postpositions · little words, after the noun", urName: "حروف جار",
+    points: [
+      "Where English puts prepositions before (IN Lahore), Urdu puts postpositions after: lāhaur <b>meṉ</b>.",
+      "The core set: meṉ (in), par (on), se (from/with/than), ko (to), tak (until), ke pās (near), ke liye (for).",
+      "Nouns bend (go oblique) before a postposition: laṛkā → laṛke ko, kamre meṉ (see Q3's -oṉ row for plurals).",
+      "Se is a workhorse: from (lāhaur se), with (chammach se), and than in comparisons (Q12's us se baṛā).",
+    ],
+    ex: ["lāhaur meṉ mausam ṭhanḍā thā", "maiṉ khiṛkī ke pās baiṭhnā chāhtā hūṉ", "āp kahāṉ se haiṉ?"],
+    drills: ["L11", "L24"],
+  },
+  {
+    id: "Q6", title: "Kā, ke, kī · possession", urName: "اضافت",
+    points: [
+      "X kā Y = X's Y, and kā agrees with the THING OWNED, not the owner: dost <b>kā</b> ghar (house = m), dost <b>kī</b> kitāb (book = f), dost <b>ke</b> bhāī (plural).",
+      "Pronouns fuse: merā/merī/mere (my), āp kā (your), us kā (his/her).",
+      "This is the anthem's famous kā — routinely cited as its only purely Urdu word.",
+    ],
+    ex: ["dost kā ghar achhā hai", "āp kā nām kyā hai?"],
+    drills: ["L2", "L4"],
+  },
+  {
+    id: "Q7", title: "Mujhe · feelings arrive, you receive them", urName: "مجھے",
+    points: [
+      "Urdu says 'to-me tea is pleasing', not 'I like tea': <b>mujhe</b> chāy pasand hai.",
+      "The same shape carries need (mujhe pānī chāhiye), knowing, hunger, and understanding (mujhe samajh nahīṉ āyā — understanding 'didn't come to me').",
+      "Mujhe = mujh ko. The full set: mujhe, tumheṉ, āp ko, use, hameṉ, unheṉ.",
+      "The feel-er is not the grammatical subject — so the verb agrees with the thing felt: mujhe chāy pasand <b>hai</b>.",
+    ],
+    ex: ["mujhe chāy pasand hai", "mujhe pānī chāhiye", "mujhe samajh nahīṉ āyā"],
+    drills: ["L9", "L20"],
+  },
+  {
+    id: "Q8", title: "Present · honā, habits, and right now", urName: "حال",
+    table: {
+      head: ["", "honā (to be)"],
+      rows: [
+        ["maiṉ", "hūṉ"],
+        ["tū / yeh / woh", "hai"],
+        ["tum", "ho"],
+        ["āp / ham / yeh / woh (pl)", "haiṉ"],
+      ],
+    },
+    points: [
+      "Habits: stem + tā/tī/te + honā — maiṉ rahtā hūṉ (I live), woh pītī hai (she drinks).",
+      "Right now: stem + rahā/rahī/rahe + honā — jā rahā hūṉ (I am going).",
+      "The -tā and rahā parts carry gender; the honā part carries person.",
+    ],
+    ex: ["maiṉ Amrīkā meṉ rahtā hūṉ", "maiṉ bāzār jā rahā hūṉ", "bārish ho rahī hai"],
+    drills: ["L2", "L7", "L12"],
+  },
+  {
+    id: "Q9", title: "Past · thā, and the famous ne", urName: "ماضی",
+    points: [
+      "Was/were: thā (m), thī (f), the (plural/respect) — safar achhā thā, chāy achhī thī.",
+      "Verbs without an object agree with the DOER: maiṉ gayā (a man), maiṉ gaī (a woman).",
+      "Verbs WITH an object take <b>ne</b> after the doer, and then agree with the OBJECT: maiṉ <b>ne</b> khānā khāyā (khānā = m) but maiṉ <b>ne</b> film dekhī (film = f).",
+      "That is the whole ne rule. It only appears in past tenses, and it is why 'I drank chai' is maiṉ ne chāy <b>pī</b>.",
+    ],
+    ex: ["kal maiṉ bāzār gayā", "maiṉ ne khānā khāyā", "maiṉ ne film dekhī"],
+    drills: ["L14"],
+  },
+  {
+    id: "Q10", title: "Future", urName: "مستقبل",
+    table: {
+      head: ["", "jānā (to go)"],
+      rows: [
+        ["maiṉ", "jāūṉ gā / jāūṉ gī"],
+        ["yeh / woh", "jāe gā / jāe gī"],
+        ["tum", "jāo ge"],
+        ["āp / ham", "jāeṉ ge / jāeṉ gī"],
+      ],
+    },
+    points: [
+      "The gā/gī/ge tail is a little adjective — it carries gender and number, so a woman says jāūṉ gī.",
+      "Kal + future = tomorrow; kal + past = yesterday. The verb decides which kal you meant.",
+    ],
+    ex: ["maiṉ jāūṉgā", "ṭren kab āe gī?", "ham dekheṉge"],
+    drills: ["L15", "L24"],
+  },
+  {
+    id: "Q11", title: "Commands, please, and don't", urName: "حکم",
+    points: [
+      "Three rungs of the same verb: jāo (tum), jāiye (āp, polite), jāeṉ (softest suggestion).",
+      "The -iye forms are how please is built in: baiṭhiye, suniye, dījiye — no extra word needed.",
+      "Don't: <b>mat</b> (or na) with commands — mat jāo, fikr mat karo. <b>Nahīṉ</b> negates statements: maiṉ nahīṉ jāūṉgā.",
+    ],
+    ex: ["baiṭhiye", "āhista boliye", "fikr mat karo"],
+    drills: ["L16"],
+  },
+  {
+    id: "Q12", title: "Can, should, and finished · the helper verbs", urName: "مددگار افعال",
+    points: [
+      "Can: stem + saknā — bol saktā hūṉ. The stem never changes; saknā does the agreeing.",
+      "Should/need: chāhiye after the mujhe pattern (Q7) — mujhe ārām karnā chāhiye.",
+      "Finished, for-you, for-me: compound verbs — khā liyā (ate, done), khol diyā (opened, for someone), so gayā (fell fully asleep).",
+      "Comparisons ride on se: yeh us se baṛā hai (bigger THAN that); sab se = the most.",
+    ],
+    ex: ["maiṉ urdū bol saktā hūṉ", "mujhe ārām karnā chāhiye", "maiṉ ne khānā khā liyā", "yeh us se baṛā hai"],
+    drills: ["L19", "L20", "L21", "L23"],
+  },
+  {
+    id: "Q13", title: "Questions", urName: "سوال",
+    points: [
+      "Yes/no: put <b>kyā</b> at the front and change nothing else — kyā yeh sīṭ khālī hai?",
+      "The seven keys: kyā (what), kaun (who), kahāṉ (where), kab (when), kyūṉ (why), kaise (how), kitnā (how much).",
+      "Question words sit where the answer would sit, not at the front: āp <b>kahāṉ</b> se haiṉ?",
+      "Kaun bends before postpositions: kis kā (whose), kis se (from whom).",
+    ],
+    ex: ["kyā yeh sīṭ khālī hai?", "āp kahāṉ se haiṉ?", "kis kā?"],
+    drills: ["L6"],
+  },
+  {
+    id: "Q14", title: "The izāfat · poetry's hinge", urName: "اضافتِ فارسی",
+    points: [
+      "The -e- that chains words in formal names and poetry is Persian: kishwar-e-hasīn = realm-of-beauty. Written as a small zer under the first word (کشورِ حسین), which is why it is easy to miss.",
+      "Its cousin -o- means and: sitāra-o-hilāl, star and crescent.",
+      "Everyday Urdu says the same thing with kā/kī (Q6) — the izāfat marks the elevated register: the anthem, ghazals, grand titles.",
+      "You don't need to produce it. You need to hear it, so shād bād lines stop sounding like word soup.",
+    ],
+    ex: ["kishwar-e-hasīn shād bād", "jashn-e-āzādī mubārak"],
+    drills: ["L18"],
+  },
+];
 
 const QUIZ_PASS_PERCENT = 70;
 
@@ -3587,7 +3811,7 @@ const RANKS = [
   { need: 19, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
   { need: 30, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
   { need: 41, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 56, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 57, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────

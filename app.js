@@ -1206,7 +1206,7 @@ function renderHome() {
     <section>
       <h2 class="track-title retro">🧭 Seekhne ke Raste · The Tracks <span class="track-sub">pick a lane, everything is open, nothing is locked</span></h2>
       <div class="trackgrid">${TRACK_DEFS.filter((t) => t.id !== "pakistan").map(trackCard).join("")}</div>
-      <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat, look up any word the app teaches</button></p>
+      <p class="placement-line"><button class="linklike" onclick="renderLughat()">📖 Lughat, look up any word the app teaches</button> · <button class="linklike" onclick="renderQawaid()">📐 Qawāid, look up any rule</button></p>
       ${p.placedAt == null && completedCount() < 2 ? `<p class="placement-line"><button class="linklike" onclick="startPlacement()">🧭 Already know some Urdu? Take the 3-minute placement quiz</button></p>` : ""}
     </section>
 
@@ -1259,7 +1259,7 @@ function renderHome() {
     </section>
 
 
-    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
+    <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <button class="linklike" onclick="renderQawaid()">📐 Qawāid · Grammar</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
   ensureAzadiRain();
 }
@@ -2947,7 +2947,7 @@ function renderTrack(id) {
   const bodies = {
     speak: () => micCompatNote() + `<p class="placement-line"><button class="linklike" onclick="renderSair()">🚶 Ready to talk? Take a Sair, eight live conversation walks</button></p>` + placementLine() + trackSpeakHTML(),
     sounds: trackSoundsHTML,
-    reading: () => tracingCard() + typingCard() + trackReadingHTML(),
+    reading: () => tracingCard() + typingCard() + chartCard() + trackReadingHTML(),
     virsa: () => kutubCard() + trackVirsaHTML(),
     pakistan: trackPakistanHTML,
   };
@@ -4224,11 +4224,106 @@ saveRoot();
 // Stable pages push a history entry; popstate re-renders without
 // pushing. Transient flows (quizzes, game rounds, placement) stay
 // untracked, browser-back from those lands on the last stable page.
+// ── Qawāid: the grammar reference ─────────────────────────────
+// Examples are bare tr strings resolved against the curriculum at
+// runtime, so a reference example can never drift from the taught
+// line and always plays its already-verified clip (smoke enforces
+// membership). Reference points to practice, never replaces it.
+let qwIndexCache = null;
+function qwIndex() {
+  if (qwIndexCache) return qwIndexCache;
+  const m = new Map();
+  const add = (it) => { if (it && it.tr && !m.has(it.tr)) m.set(it.tr, { ur: it.ur, en: it.en }); };
+  LEVELS.forEach((lv) => lv.items.forEach(add));
+  AZADI_ITEMS.forEach(add);
+  [READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS].forEach((arr) =>
+    arr.forEach((u) => u.sections.forEach((sec) => {
+      (sec.words || []).forEach(add);
+      (sec.verse || []).forEach(add);
+    })));
+  KUTUB.forEach((w) => w.lines.forEach(add));
+  return (qwIndexCache = m);
+}
+
+function renderQawaid() {
+  const idx = qwIndex();
+  app().innerHTML = `
+    ${backBar("📐 Qawāid · Grammar Reference")}
+    <p class="lesson-intro">Every rule on this page is drilled somewhere in the levels — this is where you look one up when a pattern nags at you. Tap any example to hear it; the "drilled in" chips take you to the practice.</p>
+    ${QAWAID.map((q) => `
+      <div class="read-section">
+        <h3>${esc(q.title)} · <span class="ur">${esc(q.urName)}</span></h3>
+        <ul class="qw-points">${q.points.map((p) => `<li>${p}</li>`).join("")}</ul>
+        ${q.table ? `<table class="qw-table"><thead><tr>${q.table.head.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${q.table.rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>` : ""}
+        ${q.ex.map((tr) => {
+          const hit = idx.get(tr);
+          if (!hit) return "";
+          return `<button class="qw-ex" onclick='Speech.speak(${JSON.stringify(hit.ur)}, ${JSON.stringify(tr)})'>
+            <span class="ur">${esc(hit.ur)}</span><span class="qw-tr">${esc(tr)}</span><span class="qw-en">${esc(hit.en)}</span></button>`;
+        }).join("")}
+        <p class="qw-drills">Drilled in: ${q.drills.map((id) => {
+          const i = LEVELS.findIndex((lv) => lv.id === id);
+          return i < 0 ? "" : `<button class="linklike" onclick="openLevel(${i})">Level ${i + 1} →</button>`;
+        }).join(" · ")}</p>
+      </div>`).join("")}
+  `;
+  window.scrollTo(0, 0);
+}
+
+// ── Harf chart: the whole script on one page ──────────────────
+// Positional forms are rendered live by the font with zero-width
+// joiners — no stored glyph data to go stale. Keyed by character.
+const HARF_SOUNDS = {
+  "ا": "ā / a", "ب": "b", "پ": "p", "ت": "t · dental", "ٹ": "ṭ · retroflex",
+  "ث": "s", "ج": "j", "چ": "ch", "ح": "h", "خ": "kh · throat",
+  "د": "d · dental", "ڈ": "ḍ · retroflex", "ذ": "z", "ر": "r · tapped",
+  "ڑ": "ṛ · flap", "ز": "z", "ژ": "zh", "س": "s", "ش": "sh",
+  "ص": "s", "ض": "z", "ط": "t", "ظ": "z", "ع": "vowel carrier",
+  "غ": "gh · throat", "ف": "f", "ق": "q · deep k", "ک": "k", "گ": "g",
+  "ل": "l", "م": "m", "ن": "n", "ں": "ṉ · nasal", "و": "w / o / ū",
+  "ہ": "h", "ھ": "adds breath (bh, kh…)", "ء": "a catch in the voice",
+  "ی": "y / ī", "ے": "e / ai",
+};
+function renderHarfChart() {
+  const ZWJ = "‍";
+  app().innerHTML = `
+    ${backBar("🔤 Harf Chart · the whole script", "renderTrack('reading')")}
+    <p class="lesson-intro">All ${TRACE_LETTERS.length} letters, with the four shapes each takes as it joins. Tap 🔊 to hear a letter's name. Letters that refuse to join forward (ا د ڈ ذ ر ڑ ز ژ و ے) simply repeat their solo shape. Print this page for a desk copy.</p>
+    <table class="harf-table">
+      <thead><tr><th>letter</th><th>sound</th><th>alone</th><th>start</th><th>middle</th><th>end</th></tr></thead>
+      <tbody>
+        ${TRACE_LETTERS.map((L) => `
+          <tr>
+            <td class="harf-name"><button class="btn speak small" onclick='Speech.speak(${JSON.stringify(L.ch)}, ${JSON.stringify(L.name)})'>🔊</button> ${esc(L.name)}</td>
+            <td class="harf-sound">${esc(HARF_SOUNDS[L.ch] || "")}</td>
+            <td class="ur-naskh harf-cell">${L.ch}</td>
+            <td class="ur-naskh harf-cell">${L.ch}${ZWJ}</td>
+            <td class="ur-naskh harf-cell">${ZWJ}${L.ch}${ZWJ}</td>
+            <td class="ur-naskh harf-cell">${ZWJ}${L.ch}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>
+  `;
+  window.scrollTo(0, 0);
+}
+
+function chartCard() {
+  return `
+    <div class="rp-cards">
+      <button class="rp-card" onclick="renderHarfChart()">
+        <span class="rp-tag">🔤 Harf Chart</span>
+        <span class="rp-title">The whole script, one page <span class="ur">حروف</span></span>
+        <span class="rp-desc">All ${TRACE_LETTERS.length} letters with the four shapes each takes as it joins — the reference chart to keep beside everything else on this track.</span>
+        <span class="rp-best">▶ Open the chart</span>
+      </button>
+    </div>`;
+}
+
 const NAV_PAGES = [
   "renderHome", "renderTrack", "openLevel", "openUnit", "renderSair",
   "startRolePlay", "renderKutub", "renderKutubWork", "renderLughat",
   "renderReport", "renderTracing", "startTracing", "renderTyping",
-  "startFlashcards",
+  "startFlashcards", "renderQawaid", "renderHarfChart",
 ];
 let navPopping = false;
 let navStableRender = false;

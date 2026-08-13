@@ -313,3 +313,16 @@ portraits of anyone real.
 The quiz result screen has no art at all. One warm image for a pass.
 
 > Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling. Wide landscape scene, generous margins. A celebratory arrangement in the centre: a box of mithai open with sweets visible, marigold petals scattered around it, a small brass cup of chai beside it, and a decorative truck-art style floral burst radiating outward behind everything. No people. No text, no lettering, no numbers, no writing anywhere in the image.
+
+---
+
+# BATCH 9 · Kahānī 3 story scenes
+
+Two landscape scenes for the new folk-tale readers, same storybook style
+and recurring world as Batch 2.
+
+### 9.1 The Lion and the Mouse
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling. Wide landscape scene, action centred vertically, generous margins. A large lion resting under a tree on a dusty plain, one paw gently raised, while a tiny mouse stands before him on its hind legs, speaking bravely, a rope net visible bundled in the background hinting at the rescue to come. No text, no lettering, no writing anywhere in the image.
+
+### 9.2 The Fox and the Crow
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling. Wide landscape scene, action centred vertically, generous margins. A crow perched on the branch of a leafy tree holding a piece of flatbread in its beak, while a fox sits below looking up with an exaggeratedly admiring expression, one paw on its chest mid-flattery. No text, no lettering, no writing anywhere in the image.
