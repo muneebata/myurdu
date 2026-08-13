@@ -1660,7 +1660,7 @@ const CULTURE_UNITS = [
       {
         heading: "Lab pe aati hai dua, the school-assembly prayer",
         img: { src: "images/iqbal.jpg", alt: "Portrait of Allama Muhammad Iqbal", caption: "Allama Iqbal \u2014 the poet-philosopher every Pakistani schoolchild recites each morning.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
-        note: "Allama Iqbal wrote this children's prayer-poem in 1902. To this day, millions of schoolchildren across Pakistan recite it every single morning at assembly. Ask any Urdu speaker, they know it by heart.",
+        note: "Allama Iqbal wrote this children's prayer-poem in 1902. To this day, millions of schoolchildren across Pakistan recite it every single morning at assembly. Ask any Urdu speaker, they know it by heart. These are its opening two lines; all six couplets are on the Kutub Khana shelf, under Bachche kī Duā.",
         verse: [
           { ur: "لب پہ آتی ہے دعا بن کے تمنا میری", tr: "lab pe ātī hai duā ban ke tamannā merī", en: "My longing comes to my lips, transformed into a prayer" },
           { ur: "زندگی شمع کی صورت ہو خدایا میری", tr: "zindagī shamma kī sūrat ho khudāyā merī", en: "O God, may my life be like a candle (giving light to others)" },
@@ -2921,6 +2921,7 @@ const KUTUB = [
     title: "Qaumī Tarānah. The National Anthem",
     form: "the state anthem of Pakistan, adopted 13 August 1954",
     intro: "The rare anthem where the tune came first: Ahmed G. Chagla's melody was chosen in 1950, and Hafeez Jalandhari's words were fitted to it and approved in August 1954. The language is deliberately elevated, so Persianized that almost every word is shared with Persian; the humble kā in the second stanza is routinely cited as its only purely Urdu word. Commissioned and published by the Government of Pakistan as the state symbol, it is reproduced here the way every schoolbook reproduces it.",
+    links: [{ label: "\ud83c\udfb5 Hear it sung (Dunya News, 75th Independence Day) \u2192", url: "https://www.youtube.com/watch?v=igozswk9nrs" }],
     source: "Adopted and published by the Government of Pakistan, 1954, reproduced as the state symbol it is.",
     lines: [
       { ur: "پاک سرزمین شاد باد", tr: "pāk sarzamīn shād bād", en: "Blessed be the pure land,", note: "Shād bād = 'may it be joyous', a pure Persian blessing form. Sarzamīn = land, soil." },
