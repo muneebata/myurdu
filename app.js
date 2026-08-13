@@ -1302,8 +1302,25 @@ function openLevel(i) {
   const factEvery = Math.ceil(lv.items.length / (facts.length + 1));
   let factIdx = 0;
 
+  // A level can group its phrases into parts (the core, then what you
+  // hear back, then extensions). It stays ONE flat items array, because
+  // the quiz, the audio harvest, the cheat sheets, Lughat and the daily
+  // five all read lv.items directly — only the display groups.
+  const hasParts = lv.items.some((it) => it.part);
+  let lastPart = null;
   let body = "";
   lv.items.forEach((item, j) => {
+    if (hasParts) {
+      const part = item.part || LEVEL_CORE_PART;
+      if (part !== lastPart) {
+        // facts sit at the seams between parts, never mid-thought
+        if (lastPart !== null && factIdx < facts.length) body += funFact(facts[factIdx++]);
+        body += `<h3 class="phrase-part">${esc(part)}</h3>`;
+        lastPart = part;
+      }
+      body += phraseCard(i, j, item);
+      return;
+    }
     body += phraseCard(i, j, item);
     if ((j + 1) % factEvery === 0 && factIdx < facts.length) {
       body += funFact(facts[factIdx++]);
@@ -1336,6 +1353,8 @@ function photoFigure(img, extraClass = "") {
     : "";
   return `<figure class="photo${extraClass ? ` ${extraClass}` : ""}"><img src="${img.src}" alt="${esc(img.alt || "")}" loading="lazy">${cap}</figure>`;
 }
+
+const LEVEL_CORE_PART = "Bunyād · the core";
 
 function funFact(html) {
   return `<aside class="funfact"><span class="ff-tag">✨ Fun fact</span><p>${html}</p></aside>`;
@@ -1605,6 +1624,14 @@ function makeQuestion(item, pool) {
   }
 }
 
+// This level plus its neighbours: near enough to be plausible wrong
+// answers, far enough that the quiz isn't just the lesson again.
+function quizPool(levelIdx) {
+  const from = Math.max(0, levelIdx - 2);
+  const to = Math.min(LEVELS.length, levelIdx + 2);
+  return LEVELS.slice(from, to).flatMap((lv) => lv.items);
+}
+
 function startQuiz(levelIdx) {
   const lv = LEVELS[levelIdx];
   quiz = {
@@ -1612,7 +1639,10 @@ function startQuiz(levelIdx) {
     levelIdx,
     title: `Quiz · ${lv.title}`,
     backFn: `openLevel(${levelIdx})`,
-    questions: buildQuestions(lv.items, lv.items, 6),
+    // Questions come from this level, but the wrong answers are drawn
+    // from its neighbours too. Distractors picked from the same eight
+    // phrases turn a quiz into the phrase list read back to you.
+    questions: buildQuestions(lv.items, quizPool(levelIdx), 6),
     current: 0,
     correct: 0,
   };

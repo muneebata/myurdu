@@ -144,6 +144,12 @@ body {
 .phrase-tr { font-weight: 700; font-size: 1.02rem; }
 .phrase-en { color: var(--ink); }
 .phrase-note { font-size: 0.82rem; color: var(--muted); margin-top: 3px; }
+/* Section headings inside a level: the core, then what you hear back. */
+.phrase-part {
+  font-family: "Baloo 2", sans-serif; font-size: 1.02rem; color: var(--teal-dark);
+  margin: 22px 0 8px; padding-bottom: 5px; border-bottom: 1.5px dashed var(--line);
+}
+.phrase-part:first-child { margin-top: 4px; }
 .phrase-btns { display: flex; flex-direction: column; gap: 7px; }
 .practice-result { grid-column: 1 / -1; }
 
