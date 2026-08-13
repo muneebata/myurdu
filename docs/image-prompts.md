@@ -261,3 +261,44 @@ cream gaps between cards, nothing touching the edge.
 
 ### 7.3 At the stove (3 × 2, six tiles)
 > Flat editorial illustration sheet, 3 columns by 2 rows, exactly 6 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each action is centred on its own plain cream card with a thin single-colour border, filling most of the card, drawn as a pair of hands with warm brown skin doing the action, no faces needed. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no numbers, no labels anywhere in the image. The six items in order are: 1 hands slicing an onion on a board with a knife, 2 hands stirring browning onion and masala in a black karahi pan over a flame, 3 a pot of water at a rolling boil on a stove, 4 samosas being lowered into a deep pan of hot oil with a slotted spoon, 5 a hand lifting a wooden spoon to taste from a pot, 6 a covered pot simmering gently on a low flame with steam escaping the lid.
+
+---
+
+# BATCH 8 · Art for the deepened content
+
+Seven sheets. Batch 7 (the three food sheets) is still outstanding and
+comes first if you only have appetite for a few; these seven cover the
+Virsa vocabulary and the two thinnest illustrated corners left.
+
+**Same rules:** keep the item ORDER exactly as listed, clear cream gaps
+between cards, nothing touching the edge, and no lettering anywhere.
+
+### 8.1 The parts of a ghazal (2 × 3, six tiles) — for C3
+The one place a picture genuinely teaches: each tile shows a page of
+verse with a DIFFERENT part highlighted, so the shape of a ghazal
+becomes visible without anyone reading a word.
+
+> Flat editorial illustration sheet, 2 columns by 3 rows, exactly 6 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each card shows the same stylised page of handwritten poetry, drawn as decorative flowing ink strokes that suggest Urdu script without being readable, six lines to a page, with one element picked out in warm terracotta while the rest stays soft grey. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No real letters, no readable text, no numbers, no labels anywhere in the image. The six cards in order highlight: 1 the topmost pair of lines on the page, 2 the bottommost pair of lines on the page, 3 the last word of every second line, repeated down the page, 4 the word immediately before that repeated word, on every second line, 5 a small ornate seal mark in the bottom corner of the page, 6 a stack of several such pages bound together as a book.
+
+### 8.2 The mushaira, three moments (3 × 1, three tiles) — for C5
+> Flat editorial illustration sheet, 3 columns by 1 row, exactly 3 separate items, side by side with a clear empty cream gap between them and a margin around the whole image so none touches the edge. Each scene is centred on its own plain cream card with a thin single-colour border. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani vintage printed-card feeling, shalwar kameez and kurta clothing. No text, no lettering, no writing anywhere in the image. The three scenes in order are: 1 an elderly poet seated cross-legged on a carpeted platform behind a lit candle, one hand raised mid-recitation, 2 a seated audience of men and women with hands raised and mouths open in a shout of appreciation, 3 a single lit candle being passed by hand from one seated poet to the next.
+
+### 8.3 The calligrapher's desk (2 × 2, four tiles) — for C7
+> Flat editorial illustration sheet, 2 columns by 2 rows, exactly 4 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each object is centred on its own plain cream card with a thin single-colour border, filling most of the card. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no readable writing anywhere in the image. The four items in order are: 1 a cut reed pen with an angled nib lying on a small wooden block, 2 a lidded brass inkwell with a little spilled ink beside it, 3 a stack of cream sheets of handmade paper with deckled edges, 4 a hand holding a reed pen mid-stroke above a page of flowing unreadable ink marks.
+
+### 8.4 Television Urdu (2 × 2, four tiles) — for C6
+> Flat editorial illustration sheet, 2 columns by 2 rows, exactly 4 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, 1970s Pakistani television feeling. No text, no lettering, no numbers, no labels anywhere in the image. The four items in order are: 1 a wood-cased vintage television set with rounded screen and dial knobs, 2 a woman with warm brown skin in a shalwar kameez seated at a news desk facing a boxy studio camera, 3 a man singing into a large vintage studio microphone, 4 a film director in a chair holding a clapperboard with a blank slate, no writing on it.
+
+### 8.5 Manners in three gestures (3 × 1, three tiles) — for C4
+> Flat editorial illustration sheet, 3 columns by 1 row, exactly 3 separate items, side by side with a clear empty cream gap between them and a margin around the whole image so none touches the edge. Each scene is centred on its own plain cream card with a thin single-colour border, showing Pakistani people with warm brown skin in shalwar kameez and kurtas. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no writing anywhere in the image. The three scenes in order are: 1 a young man at a doorway gesturing an older man to enter ahead of him, both smiling, 2 a host pouring tea for a seated guest with one hand respectfully touching their own chest, 3 two people at a table, one pushing a plate of food towards the other, who has a hand raised in polite refusal.
+
+### 8.6 Poetry's cast (2 × 2, four tiles) — for C1 and C3
+Four figures the ghazal keeps talking about. Drawn as characters, not
+portraits of anyone real.
+
+> Flat editorial illustration sheet, 2 columns by 2 rows, exactly 4 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each figure is centred on its own plain cream card with a thin single-colour border, Pakistani, warm brown skin, drawn in a gentle vintage storybook manner. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No text, no lettering, no writing anywhere in the image. The four items in order are: 1 a poet at a low desk by lamplight, pen in hand, mid-thought, 2 a lovelorn young man alone under a night sky with a crescent moon, hand over his heart, 3 an unreachable beloved seen from behind at a latticed window, face not visible, 4 a child in a school uniform standing to recite a poem from memory, hands at their sides.
+
+### 8.7 A level-quiz celebration card (single image)
+The quiz result screen has no art at all. One warm image for a pass.
+
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling. Wide landscape scene, generous margins. A celebratory arrangement in the centre: a box of mithai open with sweets visible, marigold petals scattered around it, a small brass cup of chai beside it, and a decorative truck-art style floral burst radiating outward behind everything. No people. No text, no lettering, no numbers, no writing anywhere in the image.
