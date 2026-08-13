@@ -116,6 +116,43 @@ const Speech = {
     return !!(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
   },
 
+  // Which app's browser this really is. In-app browsers (opening a
+  // link from inside LinkedIn, Instagram, Facebook) are WKWebViews on
+  // iOS, and most of them are not built to hand a page the microphone,
+  // so getUserMedia fails there whatever the site does. The only fix
+  // is "Open in Safari", so the message has to say that by name.
+  inAppBrowser() {
+    const ua = navigator.userAgent || "";
+    const hit = [
+      [/LinkedIn/i, "LinkedIn"],
+      [/Instagram/i, "Instagram"],
+      [/FBAN|FBAV|FB_IAB/i, "Facebook"],
+      [/Messenger/i, "Messenger"],
+      [/Twitter/i, "X"],
+      [/Snapchat/i, "Snapchat"],
+      [/BytedanceWebview|musical_ly|TikTok/i, "TikTok"],
+      [/WhatsApp/i, "WhatsApp"],
+      [/\bLine\//i, "LINE"],
+      [/GSA\//i, "the Google app"],
+    ].find(([re]) => re.test(ua));
+    return hit ? hit[1] : null;
+  },
+
+  // Everything that decides whether the mic can work here, in one
+  // object, so a bug report is one tap instead of twenty questions.
+  micDiag() {
+    return {
+      ua: navigator.userAgent,
+      inApp: this.inAppBrowser() || "no",
+      standalone: !!(window.navigator.standalone || matchMedia("(display-mode: standalone)").matches),
+      secure: window.isSecureContext,
+      mediaDevices: !!navigator.mediaDevices?.getUserMedia,
+      mediaRecorder: !!window.MediaRecorder,
+      recognition: this.recognitionSupported(),
+      audioSession: !!navigator.audioSession,
+    };
+  },
+
   _rec: null,
 
   async recordStart() {

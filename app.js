@@ -1406,6 +1406,30 @@ const MIC_ERRORS = {
   aborted: "Listening got interrupted, try again.",
 };
 
+// getUserMedia failures used to collapse into one shrug of a sentence,
+// which told a stuck learner nothing and told us less. Each cause has
+// a different fix, so each one gets named.
+const RECORD_ERRORS = {
+  NotAllowedError: "The microphone was blocked. Allow it for this site, and check the browser itself has mic permission in your phone's Settings.",
+  NotFoundError: "No microphone was found on this device.",
+  NotReadableError: "Something else is holding the microphone. Close any call, voice note or other tab using it, then try again.",
+  AbortError: "The microphone stopped before it could start. Try once more.",
+  SecurityError: "The mic only works over a secure (https) connection.",
+  NotSupportedError: "This browser can't record audio.",
+  TypeError: "This browser didn't offer a microphone at all.",
+};
+
+function recordFailHTML(e) {
+  const name = (e && e.name) || "unknown";
+  const inApp = Speech.inAppBrowser();
+  const base = RECORD_ERRORS[name] || "Couldn't reach the microphone just now.";
+  const inAppTip = inApp
+    ? `<br><b>You opened this inside ${esc(inApp)}.</b> In-app browsers don't hand over the microphone. Tap the ⋯ or share button and choose <b>Open in Safari</b> (or Chrome), then try again.`
+    : "";
+  return `<div class="pr warn">⚠️ ${base}${inAppTip}
+    <span class="hint">Detail: ${esc(name)} · <a class="linklike" href="mic-check.html" target="_blank" rel="noopener">run the mic check →</a></span></div>`;
+}
+
 let micFailStreak = 0;
 
 function selfCheckNote() {
@@ -1499,9 +1523,7 @@ async function goonjStart(outId, ur, tr) {
   try {
     await Speech.recordStart();
   } catch (e) {
-    out.innerHTML = `<div class="pr warn">⚠️ ${e?.name === "NotAllowedError"
-      ? "Microphone access was blocked, allow the mic in your browser's site settings and try again."
-      : "Couldn't reach the microphone just now, try again."}</div>`;
+    out.innerHTML = recordFailHTML(e);
     return;
   }
   out.innerHTML = `<div class="pr listening">🔴 Recording… say: <em>${esc(tr)}</em>

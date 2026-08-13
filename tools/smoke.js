@@ -175,6 +175,24 @@ for (const w of LOANWORDS) check(w.en && w.ur && w.tr && w.meaning && w.story, `
 check(new Set(meanings).size >= 40 && new Set(meanings).size >= LOANWORDS.length - 16,
   "too many duplicate meanings in LOANWORDS — distractors will starve");
 
+// ── 8. the CSP must allow a recording to be played back ──
+// Goonj hands the learner a blob: URL. media-src governs the <audio>
+// fallback and connect-src governs the fetch() the Web Audio path
+// makes, and 'self' does NOT cover blob:. Dropping either one breaks
+// "hear your take" silently, on every device, which is exactly how it
+// shipped once. mic-check.html carries the same policy on purpose, so
+// the diagnostic cannot pass while the app fails.
+for (const page of ["index.html", "mic-check.html"]) {
+  const html = fs.readFileSync(path.join(ROOT, page), "utf8");
+  const csp = (html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/) || [])[1];
+  check(!!csp, `${page}: no CSP meta found`);
+  if (!csp) continue;
+  for (const dir of ["media-src", "connect-src"]) {
+    const rule = (csp.match(new RegExp(dir + "[^;]*")) || [""])[0];
+    check(/\bblob:/.test(rule), `${page}: ${dir} must include blob: or recorded playback breaks (${rule || "missing"})`);
+  }
+}
+
 // ── verdict ──
 if (fail.length) {
   console.error(`SMOKE FAIL (${fail.length}):`);

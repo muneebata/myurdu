@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
+<!-- Deliberately the SAME policy as index.html. This page once passed
+     while the app failed, because it had no CSP and the app's blocked
+     blob: playback. A diagnostic that runs under easier rules than the
+     thing it is diagnosing is worse than no diagnostic at all. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
 <title>Mic check · Urdu Ustaadh</title>
 <link rel="icon" href="favicon-32.png" />
 <style>
@@ -73,8 +78,16 @@ document.getElementById("caps").innerHTML = [
 ].join("");
 
 const ua = navigator.userAgent;
+const inApp = [
+  [/LinkedIn/i, "LinkedIn"], [/Instagram/i, "Instagram"], [/FBAN|FBAV|FB_IAB/i, "Facebook"],
+  [/Messenger/i, "Messenger"], [/Twitter/i, "X"], [/Snapchat/i, "Snapchat"],
+  [/BytedanceWebview|musical_ly|TikTok/i, "TikTok"], [/WhatsApp/i, "WhatsApp"],
+  [/\bLine\//i, "LINE"], [/GSA\//i, "the Google app"],
+].find(([re]) => re.test(ua));
+const standalone = !!(navigator.standalone || matchMedia("(display-mode: standalone)").matches);
 say("device: " + ua);
 say("secure: " + window.isSecureContext + " | recorder: " + !!window.MediaRecorder + " | formats: " + (supportedMimes.join(",") || "none"));
+say("in-app browser: " + (inApp ? inApp[1] : "no") + " | home-screen app: " + standalone);
 
 let rec = null, chunks = [], blobUrl = null;
 
