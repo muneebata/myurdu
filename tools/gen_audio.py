@@ -58,6 +58,36 @@ CLIP_OVERRIDES = {
     "chirriyaa": (V, "चिड़िया"),
 }
 
+# ── The national anthem ───────────────────────────────────────
+# The Qaumī Tarānah is a chain of Persian izāfats, and Urdu writes the
+# izāfat as a zer, a diacritic that is almost never typed. The ur-PK
+# voice reads straight past it, so "kishwar-e-hasīn" came out as
+# "kishwar hasīn" and every line lost its hinge (user ear-flagged
+# 2026-08-12, candidates compared by ear). Devanagari has to spell the
+# vowel out, so it cannot be swallowed.
+#
+# All FIFTEEN lines are voiced from Devanagari, not only the ten with an
+# izāfat: mixing voices line by line would make the anthem lurch between
+# two readers halfway through a verse.
+ANTHEM_UR = {
+    "paak-sarzameen-shaad-baad": "पाक सरज़मीन शाद बाद",
+    "kishwar-e-haseen-shaad-baad": "किश्वर-ए-हसीन शाद बाद",
+    "too-nishaan-e-azm-e-aalee-shaan": "तू निशान-ए-अज़्म-ए-आली शान",
+    "arz-e-paakistaan": "अर्ज़-ए-पाकिस्तान",
+    "markaz-e-yaqeen-shaad-baad": "मरकज़-ए-यक़ीन शाद बाद",
+    "paak-sarzameen-kaa-nizaam": "पाक सरज़मीन का निज़ाम",
+    "quwwat-e-ukhuwwat-e-awaam": "क़ुव्वत-ए-उख़ुव्वत-ए-अवाम",
+    "qaum-mulk-saltanat": "क़ौम, मुल्क, सल्तनत",
+    "paainda-taabinda-baad": "पाइंदा ताबिंदा बाद",
+    "shaad-baad-manzil-e-muraad": "शाद बाद मंज़िल-ए-मुराद",
+    "parcham-e-sitaara-o-hilaal": "परचम-ए-सितारा-ओ-हिलाल",
+    "rahbar-e-taraqqee-o-kamaal": "रहबर-ए-तरक़्क़ी-ओ-कमाल",
+    "tarjumaan-e-maazee-shaan-e-haal": "तर्जुमान-ए-माज़ी, शान-ए-हाल",
+    "jaan-e-istiqbaal": "जान-ए-इस्तिक़बाल",
+    "saaya-e-khudaa-e-zoo-l-jalaal": "साया-ए-ख़ुदा-ए-ज़ुल-जलाल",
+}
+CLIP_OVERRIDES.update({k: (V, t) for k, t in ANTHEM_UR.items()})
+
 # Diacritized so the neural voice reads the letter NAMES cleanly
 # (bare "جیم" was getting mangled; جِیم forces jīm, etc.)
 LETTER_NAMES_UR = {
