@@ -18,10 +18,10 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 // top-level const bindings stay lexical — read them out with a second script
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
-  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
+  LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
   KUTUB,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS })",
   sandbox
 );
 
@@ -101,35 +101,63 @@ check(mulk.length >= 20, `country picture pool shrank to ${mulk.length}`);
 // ── 3. audio coverage: every speakable tr has a clip ──
 const audio = new Set(fs.readdirSync(path.join(ROOT, "audio")).map((f) => f.replace(/\.mp3$/, "")));
 const wanted = new Map(); // slug -> example tr
-const want = (tr) => { if (tr) { const k = slug(tr); if (k && !wanted.has(k)) wanted.set(k, tr); } };
-for (const g of RISHTAY) for (const p of g.people) want(p.tr);
-for (const u of SOUND_UNITS) for (const s of u.sections) for (const p of s.pairs || []) { want(p.a.tr); want(p.b.tr); }
-LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr)));
-AZADI_ITEMS.forEach((it) => want(it.tr));
-GEO_FEATURES.forEach((f) => want(f.tr));
-KAHAWATEIN.forEach((k) => want(k.tr));
-JUMMAH_KAHAWATEIN.forEach((k) => want(k.tr));
-LOANWORDS.forEach((w) => want(w.tr));
+// One slug = one clip file. Two DIFFERENT Urdu words that romanise to the
+// same slug would silently share a clip (شیر lion / شعر couplet both slugged
+// "sher" once, and the couplet played the lion). want() takes the Urdu too
+// and fails the deploy on any cross-word collision.
+const urOf = new Map();
+const normUr = (s) => String(s)
+  .replace(/[\u064B-\u0655\u0670\u0610-\u0615\u200B-\u200F]/g, "")
+  .replace(/[يى]/g, "ی").replace(/ك/g, "ک").replace(/ه/g, "ہ").replace(/ة/g, "ہ")
+  .replace(/[۔،؛:!?.,\-–—'"“”‘’()\[\]]/g, " ").replace(/\s+/g, " ").trim();
+const want = (tr, ur) => {
+  if (!tr) return;
+  const k = slug(tr);
+  if (!k) return;
+  if (!wanted.has(k)) wanted.set(k, tr);
+  if (!ur) return;
+  const n = normUr(ur);
+  // Same utterance deliberately written two ways (numeral-reading practice
+  // shows ۱۰۰ روپے; the speech is identical) — clip sharing is correct there.
+  const SAME_UTTERANCE_OK = new Set(["sau-rupaye"]);
+  if (!SAME_UTTERANCE_OK.has(k) && urOf.has(k) && urOf.get(k) !== n) check(false, `audio slug "${k}" serves two different words: ${urOf.get(k)} ≠ ${n}`);
+  else urOf.set(k, n);
+};
+for (const g of RISHTAY) for (const p of g.people) want(p.tr, p.ur);
+for (const u of SOUND_UNITS) for (const s of u.sections) for (const p of s.pairs || []) { want(p.a.tr, p.a.ur); want(p.b.tr, p.b.ur); }
+LEVELS.forEach((lv) => lv.items.forEach((it) => want(it.tr, it.ur)));
+AZADI_ITEMS.forEach((it) => want(it.tr, it.ur));
+GEO_FEATURES.forEach((f) => want(f.tr, f.ur));
+KAHAWATEIN.forEach((k) => want(k.tr, k.ur));
+JUMMAH_KAHAWATEIN.forEach((k) => want(k.tr, k.ur));
+LOANWORDS.forEach((w) => want(w.tr, w.ur));
 // `speak: false` entries are heard on a linked human recording instead of
 // through the app, so their lines need no clip. Keep this in step with
 // listen_only_blocks() in tools/gen_audio.py.
-(KUTUB || []).filter((w) => w.speak !== false).forEach((w) => w.lines.forEach((l) => want(l.tr)));
+(KUTUB || []).filter((w) => w.speak !== false).forEach((w) => w.lines.forEach((l) => want(l.tr, l.ur)));
 ROLEPLAYS.forEach((sc) => sc.turns.forEach((t) => {
-  if (t.tr) want(t.tr);
-  (t.choice || []).forEach((o) => want(o.tr));
+  if (t.tr) want(t.tr, t.ur);
+  (t.choice || []).forEach((o) => want(o.tr, o.ur));
 }));
 for (const arr of [READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS]) {
   arr.forEach((u) => u.sections.forEach((sec) => {
-    (sec.words || []).forEach((w) => want(w.tr));
-    (sec.joiner || []).forEach((w) => want(w.tr));
-    (sec.verse || []).forEach((w) => want(w.tr));
+    (sec.words || []).forEach((w) => want(w.tr, w.ur));
+    (sec.joiner || []).forEach((w) => want(w.tr, w.ur));
+    (sec.verse || []).forEach((w) => want(w.tr, w.ur));
   }));
 }
+// Letter names and word boards speak too. These were absent from the
+// required set — deleting jeem.mp3 used to pass smoke. No longer.
+TRACE_LETTERS.forEach((L) => want(L.name));
+(TRACE_WORDS || []).forEach((w) => want(w.tr, w.ur));
 let missingAudio = 0;
 for (const [k, tr] of wanted) {
   if (!audio.has(k)) { missingAudio++; if (missingAudio <= 5) fail.push(`missing audio: ${k}.mp3 (for "${tr}") — run tools/gen_audio.py`); }
 }
 if (missingAudio > 5) fail.push(`…and ${missingAudio - 5} more missing clips`);
+// informational: clips on disk that no speakable needs
+const orphanClips = [...audio].filter((f) => !wanted.has(f));
+if (orphanClips.length) console.log(`note: ${orphanClips.length} unused audio file(s): ${orphanClips.slice(0, 5).join(", ")}${orphanClips.length > 5 ? ", …" : ""}`);
 
 // ── 4. role-play graph integrity ──
 for (const sc of ROLEPLAYS) {
@@ -201,6 +229,25 @@ for (const page of ["index.html", "mic-check.html"]) {
     const rule = (csp.match(new RegExp(dir + "[^;]*")) || [""])[0];
     check(/\bblob:/.test(rule), `${page}: ${dir} must include blob: or recorded playback breaks (${rule || "missing"})`);
   }
+}
+
+// ── 9. script + romanisation hygiene ──
+// Arabic-preferred letterforms (ي ك ة ى ه) render wrongly in Nastaliq —
+// the classic paste-from-Arabic defect. The one place they are CORRECT is
+// K16's Quranic quotation, which is allowlisted by its unique phrase.
+const rawSrc = fs.readFileSync(path.join(ROOT, "data.js"), "utf8");
+for (const m of rawSrc.matchAll(/ur:\s*"([^"]+)"/g)) {
+  const u = m[1];
+  if (u.includes("رَفَعْنَا")) continue; // Quranic — Arabic forms are the correct ones
+  const bad = u.match(/[يكةىه]/);
+  check(!bad, `Arabic letterform "${bad && bad[0]}" (use its Urdu twin) in: ${u.slice(0, 40)}`);
+}
+// The romanisation charset is FROZEN (inventory 2026-08-13); the scheme is
+// docs/romanization.md. A character outside this set is drift, not style —
+// add it to the doc first if it is a conscious scheme decision.
+const TR_CHARSET = /^[A-Za-z0-9 āĀīĪūṉṭṬḍṛġṣʿʼ'\-?,!:.]+$/;
+for (const m of rawSrc.matchAll(/tr:\s*"([^"]+)"/g)) {
+  check(TR_CHARSET.test(m[1]), `tr outside the romanisation charset (see docs/romanization.md): "${m[1]}"`);
 }
 
 // ── verdict ──

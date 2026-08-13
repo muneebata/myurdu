@@ -6,6 +6,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 node tools/smoke.js || { echo "DEPLOY ABORTED: smoke tests failed"; exit 1; }
 python3 tools/gen_seo.py
+node tools/audio_manifest.js
 V=$(date +%Y%m%d%H%M)
 # Stamp every page that loads versioned assets. admin.html was left
 # out once and quietly served a cached app.js for a whole release,
