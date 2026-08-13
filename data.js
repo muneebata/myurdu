@@ -1592,6 +1592,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "The rules of the game",
+        img: { src: "images/virsa/virsa-ghazal.jpg", alt: "A ghazal singer at a harmonium with a tabla player beside him, a small audience sitting on the carpet around them by lamplight" },
         facts: [
           "<strong>Sher</strong>: a two-line couplet, complete in itself. Each sher is its own tiny story; a ghazal is an anthology, not a narrative.",
           "<strong>Radif</strong>: the identical refrain that ends both lines of the opening couplet, then the second line of every couplet after. The audience hears it coming and often says it WITH the singer.",
@@ -1641,6 +1642,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "Aadāb arz hai, the greeting that belongs to everyone",
+        img: { src: "images/virsa/virsa-aadab.jpg", alt: "A young man bowing slightly with his hand raised to his forehead in aadab, greeting a white-bearded elder at the door of a sitting room" },
         note: "Alongside assalām-o-alaikum lives a second classic greeting: aadāb (literally 'respects'). Associated with Lucknow and Delhi's shared Ganga-Jamuni culture, it was designed to be religion-neutral, anyone can offer it to anyone. The gesture: right palm raised toward your face, a slight bow of the head.",
         words: [
           { ur: "آداب عرض ہے", tr: "ādāb arz hai", en: "I offer my respects", spell: "the full formal version, plain 'ādāb' works too" },
@@ -1658,6 +1660,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "Takalluf, the beautiful theater of refusal",
+        img: { src: "images/virsa/virsa-takalluf.jpg", alt: "A guest at a crowded dinner table raising a hand to decline a bowl of biryani while the host leans in to serve him anyway" },
         note: "When a Pakistani host offers food, the guest refuses. The host insists. The guest refuses again. The host insists harder. Around the third round, the guest 'reluctantly' accepts what everyone knew they wanted. This ritual is takalluf, formality as affection. Refusing it ('bas, takalluf nahīṉ!') is itself a compliment, meaning 'we're close enough to skip the theater.'",
         words: [
           { ur: "تکلف", tr: "takalluf", en: "ceremonious formality", spell: "the politeness ritual itself" },
@@ -1689,6 +1692,7 @@ const CULTURE_UNITS = [
     sections: [
       {
         heading: "How the room works",
+        img: { src: "images/virsa/virsa-mushaira.jpg", alt: "A mushaira at night, a poet reciting on a carpeted platform behind a lit candle, the audience seated on the floor with hands raised in appreciation" },
         facts: [
           "Poets sit together facing the audience, and recite in order of seniority, newcomers first, the most celebrated poet last, deep into the night. The host is the <strong>sadr</strong> (president) of the gathering.",
           "In the classical mushaira, a lit candle, the <strong>shama</strong>: was placed before the poet whose turn it was, then passed along. 'The shama has reached…' still means 'it's your turn' in mushaira language.",

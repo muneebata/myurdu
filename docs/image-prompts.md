@@ -144,7 +144,7 @@ Then one of these:
 
 ---
 
-# BATCH 5 · Virsa scenes
+# BATCH 5 · Virsa scenes  ✅ DONE, live in C3, C4 and C5
 Four landscape scenes, 1536×1024. Use the Batch 4 opening line, then:
 
 ### 5.1 The aadab gesture
