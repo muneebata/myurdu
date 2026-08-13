@@ -2776,7 +2776,7 @@ const KUTUB = [
   {
     id: "K3",
     speak: false,
-    links: [{ label: "\ud83c\udfa7 Hear it: Lab pe Ātī Hai Duā, sung by Ali Zafar \u2192", url: "https://www.youtube.com/watch?v=Do74IFMkOQ4" }],
+    links: [{ label: "\ud83c\udfa7 Hear it: Lab pe Ātī Hai Duā, the recitation \u2192", url: "https://www.youtube.com/watch?v=Yqzmo82MOlI" }],
     scope: "complete",
     img: { src: "images/iqbal.jpg", alt: "Portrait photograph of Allama Iqbal", caption: "Allama Iqbal, the poem\u2019s author, whose duā still opens school mornings.", credit: "Photo: Iqbal Academy Pakistan \u00b7 public domain \u00b7 via Wikimedia Commons" },
     author: "Allama Iqbal",
