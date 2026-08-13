@@ -110,7 +110,7 @@ object big, simple and centred.
 
 ---
 
-# BATCH 4 · Level scene headers  ✅ DONE (22 of 23 live; #23 below is still missing)
+# BATCH 4 · Level scene headers  ✅ DONE, all 23 live (every level now has one)
 Twenty-two landscape scenes, 1536×1024. **Each prompt is the style line
 plus one scene**, so paste this opening every time:
 
@@ -140,7 +140,7 @@ Then one of these:
 20. **Comparisons** – two mangoes of very different sizes held up side by side
 21. **If and when** – a traveller pausing at a fork in a country road, deciding
 22. **The train journey** – a train crossing a stone bridge through mountains, seen from a distance
-23. **Compound verbs (L23, STILL NEEDED)** – one person handing a neatly wrapped parcel to another with both hands in a courtyard, the giver leaning in, the moment of finishing and handing over
+23. **Compound verbs (L23)** ✅ – one person handing a neatly wrapped parcel to another with both hands in a courtyard, the giver leaning in, the moment of finishing and handing over
 
 ---
 
@@ -184,7 +184,7 @@ Four landscape scenes, 1536×1024. Use the Batch 4 opening line, then:
 
 ---
 
-# BATCH 6 · Fixes and regenerations
+# BATCH 6 · Fixes and regenerations  ✅ ALL DONE, live
 
 Nine generations. Two are cast corrections, three are Pakistan-accuracy
 corrections, three add mixed guests to scenes where a diaspora learner
