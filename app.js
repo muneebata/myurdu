@@ -1738,7 +1738,9 @@ function finishLevelQuiz() {
   app().innerHTML = `
     ${backBar(`Quiz results · ${esc(lv.title)}`, "renderTrack('speak')")}
     <div class="result-card ${passed ? "pass" : "fail"}">
-      <div class="result-emoji">${passed ? "🎖️" : "💪"}</div>
+      ${passed
+        ? `<img class="result-art" src="images/virsa/quiz-mubarak.jpg" alt="An open box of mithai with marigold petals and a cup of chai" loading="lazy">`
+        : `<div class="result-emoji">💪</div>`}
       <h2 class="retro">${passed ? "Shābāsh! Level passed!" : "So close, one more go!"}</h2>
       <p class="result-score">${quiz.correct} / ${quiz.questions.length} correct, ${pct}%</p>
       ${passed ? rankUpNote() : ""}

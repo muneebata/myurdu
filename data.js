@@ -1699,10 +1699,10 @@ const CULTURE_UNITS = [
         heading: "Shāirī ke alfāz · the words of poetry",
         note: "Urdu poetry has a vocabulary of its own, and it is the vocabulary Pakistanis use in ordinary conversation too. Tap each one to hear it.",
         words: [
-          { ur: "شاعر", tr: "shāir", en: "poet", spell: "the honorific every Urdu speaker knows how to say properly" },
+          { ur: "شاعر", tr: "shāir", pic: "images/virsa/w-shair.jpg", en: "poet", spell: "the honorific every Urdu speaker knows how to say properly" },
           { ur: "شاعری", tr: "shāirī", en: "poetry", spell: "the art itself. Shāir does it, shāirī is the thing" },
           { ur: "نظم", tr: "nazm", en: "a poem", spell: "one continuous subject, start to finish, unlike a ghazal" },
-          { ur: "دعا", tr: "duā", en: "prayer, supplication", spell: "the duā in Iqbal's Lab pe ātī hai duā above" },
+          { ur: "دعا", tr: "duā", pic: "images/virsa/w-dua.jpg", en: "prayer, supplication", spell: "the duā in Iqbal's Lab pe ātī hai duā above" },
           { ur: "گیت", tr: "gīt", en: "song", spell: "the folk-song word, softer and older than naghma" },
           { ur: "مصرع", tr: "misra", en: "a line of verse", spell: "half a sher. Two of them make one couplet" },
           { ur: "شعر", tr: "sheʿr", en: "a couplet", spell: "the unit Urdu poetry is built from. Not sher the lion: this one has a catch in the middle" },
@@ -1818,8 +1818,8 @@ const CULTURE_UNITS = [
           { ur: "ردیف", tr: "radīf", en: "the refrain", spell: "the word or phrase repeated after the qāfiya, every single time" },
           { ur: "تخلص", tr: "takhallus", en: "the pen name", spell: "Ghalib, Faiz, Mir: none of them birth names" },
           { ur: "دیوان", tr: "dīwān", en: "a collected works", spell: "a poet's complete ghazals, arranged by rhyme" },
-          { ur: "عاشق", tr: "āshiq", en: "the lover", spell: "the ghazal's speaker, always suffering, always eloquent" },
-          { ur: "محبوب", tr: "mahbūb", en: "the beloved", spell: "never named, rarely present, frequently cruel" },
+          { ur: "عاشق", tr: "āshiq", pic: "images/virsa/w-aashiq.jpg", en: "the lover", spell: "the ghazal's speaker, always suffering, always eloquent" },
+          { ur: "محبوب", tr: "mahbūb", pic: "images/virsa/w-mahboob.jpg", en: "the beloved", spell: "never named, rarely present, frequently cruel" },
         ],
       },
     ],
@@ -1859,9 +1859,9 @@ const CULTURE_UNITS = [
         img: { src: "images/virsa/virsa-takalluf.jpg", alt: "A guest at a crowded dinner table raising a hand to decline a bowl of biryani while the host leans in to serve him anyway" },
         note: "When a Pakistani host offers food, the guest refuses. The host insists. The guest refuses again. The host insists harder. Around the third round, the guest 'reluctantly' accepts what everyone knew they wanted. This ritual is takalluf, formality as affection. Refusing it ('bas, takalluf nahīṉ!') is itself a compliment, meaning 'we're close enough to skip the theater.'",
         words: [
-          { ur: "تکلف", tr: "takalluf", en: "ceremonious formality", spell: "the politeness ritual itself" },
-          { ur: "پہلے آپ", tr: "pehle āp", en: "after you (literally: first, you)", spell: "Lucknow's signature phrase" },
-          { ur: "مہمان نوازی", tr: "mehmān-nawāzī", en: "hospitality", spell: "guest-cherishing, a core cultural value" },
+          { ur: "تکلف", tr: "takalluf", pic: "images/virsa/w-takalluf.jpg", en: "ceremonious formality", spell: "the politeness ritual itself" },
+          { ur: "پہلے آپ", tr: "pehle āp", pic: "images/virsa/w-pehleaap.jpg", en: "after you (literally: first, you)", spell: "Lucknow's signature phrase" },
+          { ur: "مہمان نوازی", tr: "mehmān-nawāzī", pic: "images/virsa/w-mehmannawazi.jpg", en: "hospitality", spell: "guest-cherishing, a core cultural value" },
         ],
       },
       {
@@ -1909,6 +1909,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "Talking back, the audience's job",
+        img: { src: "images/virsa/mushaira-daad.jpg", alt: "A seated mushaira audience with hands raised, shouting appreciation at a couplet" },
         note: "Silence at a mushaira is failure. The audience pays in dād, vocal appreciation: wāh wāh for a fine line, mukarrar ('again!') to demand an instant encore, and finishing the refrain along with the poet. You already met these in Ghazal 101, here's where they live.",
         words: [
           { ur: "ارشاد", tr: "irshād", en: "please recite / go ahead", spell: "the host's invitation to begin" },
@@ -1919,6 +1920,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "Two ways to recite",
+        img: { src: "images/virsa/mushaira-poet.jpg", alt: "An elderly poet seated cross-legged behind a lit candle, one hand raised mid-recitation" },
         facts: [
           "<strong>Tarannum</strong>: reciting in melody, half-singing the verses. Crowd-pleasing, hypnotic, and controversial: purists have argued about it for a century.",
           "<strong>Taht-ul-lafz</strong>: spoken recitation, no melody, all timing. The poet's pauses do the work a singer's voice would.",
@@ -1935,6 +1937,7 @@ const CULTURE_UNITS = [
       },
       {
         heading: "Mehfil kī zabān · what gets shouted",
+        img: { src: "images/virsa/mushaira-shama.jpg", alt: "A lit candle being passed by hand from one seated poet to the next" },
         note: "A mushaira is loud. These are the words flying between the poet and the room.",
         words: [
           { ur: "سامعین", tr: "sāmaīn", en: "the audience", spell: "literally 'the listeners'. Their job is not to be quiet" },
@@ -1967,7 +1970,7 @@ const CULTURE_UNITS = [
           "Tariq Aziz went on to host <strong>Neelam Ghar</strong> (from 1974), the beloved quiz show whose greeting, 'dekhtī āṉkhoṉ, sunte kānoṉ ko Tariq Aziz kā salām' ('Tariq Aziz's salaam to watching eyes and listening ears'), is quotable to this day.",
         ],
         words: [
-          { ur: "خبرنامہ", tr: "khabarnāma", en: "news bulletin", spell: "khabar (news) + nāma (letter/document)" },
+          { ur: "خبرنامہ", tr: "khabarnāma", pic: "images/virsa/w-khabarnama.jpg", en: "news bulletin", spell: "khabar (news) + nāma (letter/document)" },
           { ur: "فنکار", tr: "fankār", en: "artist, performer", spell: "fan (art) + kār (doer)" },
           { ur: "نغمہ", tr: "naghma", en: "song, melody", spell: "the word for film and national songs alike" },
         ],
@@ -1994,11 +1997,11 @@ const CULTURE_UNITS = [
         heading: "Screen ke alfāz · television Urdu",
         note: "The words on every PTV title card, and in every conversation about a drama since.",
         words: [
-          { ur: "ڈراما", tr: "ḍrāmā", en: "drama serial", spell: "borrowed, and now more Urdu than English" },
+          { ur: "ڈراما", tr: "ḍrāmā", pic: "images/virsa/w-drama.jpg", en: "drama serial", spell: "borrowed, and now more Urdu than English" },
           { ur: "قسط", tr: "qist", en: "episode", spell: "also an instalment of a payment. Same idea: one part of many" },
           { ur: "اداکار", tr: "adākār", en: "actor", spell: "adā (grace, gesture) + kār (doer)" },
-          { ur: "گلوکار", tr: "gulūkār", en: "singer", spell: "same -kār ending. A doer of song" },
-          { ur: "ہدایت کار", tr: "hidāyatkār", en: "director", spell: "hidāyat = guidance. The one who gives direction" },
+          { ur: "گلوکار", tr: "gulūkār", pic: "images/virsa/w-gulukar.jpg", en: "singer", spell: "same -kār ending. A doer of song" },
+          { ur: "ہدایت کار", tr: "hidāyatkār", pic: "images/virsa/w-hidayatkar.jpg", en: "director", spell: "hidāyat = guidance. The one who gives direction" },
           { ur: "کہانی", tr: "kahānī", en: "story", spell: "the same kahānī as your reading units" },
         ],
       },
@@ -2028,7 +2031,7 @@ const CULTURE_UNITS = [
         words: [
           { ur: "خطاطی", tr: "khattātī", en: "calligraphy", spell: "khatt (line/script) is the root" },
           { ur: "کاتب", tr: "kātib", en: "scribe, calligrapher", spell: "the professional who wrote the newspapers" },
-          { ur: "قلم", tr: "qalam", en: "pen", spell: "the reed pen, cut at an angle, made the strokes" },
+          { ur: "قلم", tr: "qalam", pic: "images/virsa/w-qalam.jpg", en: "pen", spell: "the reed pen, cut at an angle, made the strokes" },
         ],
       },
       {
@@ -2064,9 +2067,9 @@ const CULTURE_UNITS = [
           { ur: "نستعلیق", tr: "nastālīq", en: "the hanging script", spell: "naskh + taʿlīq, the two scripts it was bred from" },
           { ur: "حرف", tr: "harf", en: "a letter", spell: "harf-ba-harf, letter by letter, means word for word" },
           { ur: "لفظ", tr: "lafz", en: "a word", spell: "alfāz is its plural, the word used in these headings" },
-          { ur: "روشنائی", tr: "roshnāī", en: "ink", spell: "from roshan, bright. Ink as the bringer of light" },
-          { ur: "کاغذ", tr: "kāghaz", en: "paper", spell: "travelled from China through the Muslim world, name and all" },
-          { ur: "تحریر", tr: "tehrīr", en: "writing, a written piece", spell: "tehrīr karnā: to commit to writing" },
+          { ur: "روشنائی", tr: "roshnāī", pic: "images/virsa/w-roshnai.jpg", en: "ink", spell: "from roshan, bright. Ink as the bringer of light" },
+          { ur: "کاغذ", tr: "kāghaz", pic: "images/virsa/w-kaghaz.jpg", en: "paper", spell: "travelled from China through the Muslim world, name and all" },
+          { ur: "تحریر", tr: "tehrīr", pic: "images/virsa/w-tehrir.jpg", en: "writing, a written piece", spell: "tehrīr karnā: to commit to writing" },
         ],
       },
     ],

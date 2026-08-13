@@ -264,7 +264,7 @@ cream gaps between cards, nothing touching the edge.
 
 ---
 
-# BATCH 8 · Art for the deepened content
+# BATCH 8 · Art for the deepened content  ✅ 6 of 7 live · 8.1 REJECTED, see note
 
 Seven sheets. Batch 7 (the three food sheets) is still outstanding and
 comes first if you only have appetite for a few; these seven cover the
@@ -273,12 +273,23 @@ Virsa vocabulary and the two thinnest illustrated corners left.
 **Same rules:** keep the item ORDER exactly as listed, clear cream gaps
 between cards, nothing touching the edge, and no lettering anywhere.
 
-### 8.1 The parts of a ghazal (2 × 3, six tiles) — for C3
+### 8.1 The parts of a ghazal — ❌ DO NOT REGENERATE
+**Rejected on delivery.** The model filled the pages with convincing
+pseudo-Urdu: the same invented word-shape repeated on every line. On a
+site that teaches people to read Urdu, a learner will try to decode it
+and an Urdu reader will spot it as nonsense. No prompt fixes this, since
+the model cannot spell Urdu. This diagram should be built in HTML from
+the real Ghalib verses already in C3, where the maṭla, radīf, qāfiya and
+maqta can be highlighted in genuine script and tapped to hear.
+
+<details><summary>original prompt, kept for the record</summary>
 The one place a picture genuinely teaches: each tile shows a page of
 verse with a DIFFERENT part highlighted, so the shape of a ghazal
 becomes visible without anyone reading a word.
 
 > Flat editorial illustration sheet, 2 columns by 3 rows, exactly 6 separate items, arranged in a neat grid with a clear empty cream gap between every card and a margin around the whole image so no card touches the edge. Each card shows the same stylised page of handwritten poetry, drawn as decorative flowing ink strokes that suggest Urdu script without being readable, six lines to a page, with one element picked out in warm terracotta while the rest stays soft grey. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain. No real letters, no readable text, no numbers, no labels anywhere in the image. The six cards in order highlight: 1 the topmost pair of lines on the page, 2 the bottommost pair of lines on the page, 3 the last word of every second line, repeated down the page, 4 the word immediately before that repeated word, on every second line, 5 a small ornate seal mark in the bottom corner of the page, 6 a stack of several such pages bound together as a book.
+
+</details>
 
 ### 8.2 The mushaira, three moments (3 × 1, three tiles) — for C5
 > Flat editorial illustration sheet, 3 columns by 1 row, exactly 3 separate items, side by side with a clear empty cream gap between them and a margin around the whole image so none touches the edge. Each scene is centred on its own plain cream card with a thin single-colour border. Warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani vintage printed-card feeling, shalwar kameez and kurta clothing. No text, no lettering, no writing anywhere in the image. The three scenes in order are: 1 an elderly poet seated cross-legged on a carpeted platform behind a lit candle, one hand raised mid-recitation, 2 a seated audience of men and women with hands raised and mouths open in a shout of appreciation, 3 a single lit candle being passed by hand from one seated poet to the next.
