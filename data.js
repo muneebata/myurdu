@@ -1602,6 +1602,7 @@ const READING_UNITS = [
     sections: [
       {
         heading: "Sher aur Chūhā · The Lion and the Mouse",
+        img: { src: "images/story-sher-chuha.jpg", alt: "A lion resting under a tree raises a paw while a tiny mouse stands before him on its hind legs, a bundled rope net in the background" },
         note: "The zoo's sher meets the proverb's chūhā. Watch the ne-past do its work (Qawāid Q9): madad kī agrees with madad, a she.",
         words: [
           { ur: "ایک شیر سو رہا تھا۔", tr: "ek sher so rahā thā", en: "A lion was sleeping.", spell: "sher from the zoo, so rahā thā from your -rahā pattern" },
@@ -1617,6 +1618,7 @@ const READING_UNITS = [
       },
       {
         heading: "Lomṛī aur Kawwā · The Fox and the Crow",
+        img: { src: "images/story-lomri-kawwa.jpg", alt: "A crow on a branch holding a piece of roti in its beak while a fox looks up admiringly, one paw on its chest" },
         note: "The zoo's kawwā, a roti from L5, and flattery in the polite āp. Two new words, one old lesson.",
         words: [
           { ur: "ایک کوے کے پاس روٹی تھی۔", tr: "ek kawwe ke pās roṭī thī", en: "A crow had a piece of roti.", spell: "kawwā bends to kawwe before ke pās (Qawāid Q5)" },
@@ -4679,7 +4681,7 @@ const ROLEPLAYS = [
   },
   {
     id: "RP9",
-    img: { src: "images/virsa/virsa-takalluf.jpg", alt: "A guest at a crowded dinner table raising a hand in polite refusal while the host leans in to serve more" },
+    img: { src: "images/sair-dawat.jpg", alt: "A host serving biryani onto a laughing guest's plate at a table crowded with Pakistani dishes, the family mid-laughter around them" },
     title: "The Dawat",
     urName: "دعوت",
     desc: "Dinner guest at a Pakistani home: survive the takalluf, praise the cook, leave with grace (and probably a container of food).",

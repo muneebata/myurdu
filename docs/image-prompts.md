@@ -316,7 +316,7 @@ The quiz result screen has no art at all. One warm image for a pass.
 
 ---
 
-# BATCH 9 · Kahānī 3 story scenes
+# BATCH 9 · Kahānī 3 story scenes  ✅ DONE, all three live
 
 Two landscape scenes for the new folk-tale readers, same storybook style
 and recurring world as Batch 2.
@@ -329,3 +329,16 @@ and recurring world as Batch 2.
 
 ### 9.3 The Dawat (for the RP9 scene header; it borrows the takalluf art until then)
 > Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani vintage printed-card feeling, shalwar kameez and kurta clothing. Wide landscape scene, action centred vertically, generous margins. A dinner table crowded with Pakistani dishes, a warm host standing and serving biryani onto a seated guest's plate while the guest half-raises a hand in happy protest, other family members around the table mid-laughter. No text, no lettering, no writing anywhere in the image.
+
+
+---
+
+# BATCH 10 · Kahānī 4 story scenes
+
+Two scenes for the newest tales, same storybook world.
+
+### 10.1 The Thirsty Crow
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling. Wide landscape scene, action centred vertically, generous margins. A crow perched on the rim of a rounded clay water-pot on a dusty plain, dropping a small pebble from its beak into the pot, a few pebbles scattered below and the water level visible partway up inside the pot's mouth. No text, no lettering, no writing anywhere in the image.
+
+### 10.2 The Boy Who Cried Wolf
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling, shalwar kameez clothing. Wide landscape scene, action centred vertically, generous margins. A young boy in a kurta standing on a grassy hillside among a small herd of goats, hands cupped around his mouth mid-shout, while far in the background a grey wolf slips out from the treeline unnoticed. No text, no lettering, no writing anywhere in the image.
