@@ -333,7 +333,7 @@ and recurring world as Batch 2.
 
 ---
 
-# BATCH 10 · Kahānī 4 story scenes
+# BATCH 10 · Kahānī 4 story scenes  ✅ DONE, both live
 
 Two scenes for the newest tales, same storybook world.
 

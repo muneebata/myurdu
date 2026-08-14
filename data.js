@@ -1646,6 +1646,7 @@ const READING_UNITS = [
     sections: [
       {
         heading: "Pyāsā Kawwā · The Thirsty Crow",
+        img: { src: "images/story-pyasa-kawwa.jpg", alt: "A crow perched on the rim of a painted clay pot, dropping a pebble into the water, pebbles scattered on the ground below" },
         note: "Aesop's cleverest bird, starring the zoo's kawwā and Level 13's pyāsā.",
         words: [
           { ur: "ایک کوا بہت پیاسا تھا۔", tr: "ek kawwā bahut pyāsā thā", en: "A crow was very thirsty.", spell: "pyāsā from the feelings unit, doing real work" },
@@ -1660,6 +1661,7 @@ const READING_UNITS = [
       },
       {
         heading: "Laṛkā aur Bheṛiyā · The Boy Who Cried Wolf",
+        img: { src: "images/story-larka-bheriya.jpg", alt: "A boy in a kurta on a hillside among goats, hands cupped shouting, while a wolf slips out of the far treeline unnoticed" },
         note: "The zoo's bheṛiyā, Sound School's laṛkā, and a lesson about jhūṭ.",
         words: [
           { ur: "ایک لڑکے کے پاس بکریاں تھیں۔", tr: "ek laṛke ke pās bakriyāṉ thīṉ", en: "A boy was keeping goats.", spell: "bakrī pluralises to bakriyāṉ, and thī to thīṉ, all feminine" },
