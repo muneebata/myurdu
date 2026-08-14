@@ -45,7 +45,7 @@ def split_entries(arr_text, id_prefix):
 
 def parse_items(block):
     items = []
-    for m in re.finditer(r'\{ ur: "((?:[^"\\]|\\.)*)", tr: "((?:[^"\\]|\\.)*)", en: "((?:[^"\\]|\\.)*)"(?:, (?:note|spell): "((?:[^"\\]|\\.)*)")?', block):
+    for m in re.finditer(r'\{ ur: "((?:[^"\\]|\\.)*)", tr: "((?:[^"\\]|\\.)*)"(?:, pic: "[^"]*")?(?:, quiz: false)?, en: "((?:[^"\\]|\\.)*)"(?:, (?:note|spell): "((?:[^"\\]|\\.)*)")?', block):
         items.append({"ur": unesc(m.group(1)), "tr": unesc(m.group(2)),
                       "en": unesc(m.group(3)), "note": unesc(m.group(4) or "")})
     return items
@@ -104,14 +104,22 @@ h1{color:#0c5f66;margin:6px 0 2px}.sub{color:#8a7458;margin:0 0 14px}
 .crumbs,.nextprev{font-size:.9rem;color:#8a7458}.crumbs a,.nextprev a,.foot a{color:#12808b}
 .foot{margin-top:36px;border-top:1.5px solid #ecdcbb;padding-top:14px;font-size:.85rem;color:#8a7458}
 .printbtn{float:right;font:inherit;font-size:.85rem;border:1.5px solid #ecdcbb;background:#fffdf3;border-radius:10px;padding:6px 12px;cursor:pointer}
+@page{margin:10mm}
 @media print{
- .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn{display:none!important}
- body{background:#fff;color:#000}
+ .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn,.intro{display:none!important}
+ body{background:#fff;color:#000;line-height:1.35}
  .wrap{max-width:100%;padding:0}
- h1{font-size:1.4rem;margin:0 0 2px}
- .phrase{border:1px solid #bbb;border-radius:6px;padding:6px 10px;margin:5px 0;page-break-inside:avoid}
- .phrase .u{font-size:1.35rem;line-height:1.9;color:#000}
- .fact{border:1px solid #ccc;background:#fff;page-break-inside:avoid}
+ h1{font-size:1.15rem;margin:0}
+ .sub{font-size:.8rem;margin:0 0 4px}
+ h2{font-size:.85rem;margin:6px 0 2px;border-bottom:1px solid #999;column-span:all}
+ .sheet{column-count:2;column-gap:7mm}
+ .sheet.dense{column-count:3}
+ .phrase{border:none;border-bottom:1px dotted #bbb;border-radius:0;background:#fff;padding:2px 0 3px;margin:0 0 2px;break-inside:avoid}
+ .phrase .u{font-size:.98rem;line-height:1.7;color:#000}
+ .phrase b{font-size:.8rem}
+ .phrase .n{font-size:.66rem;line-height:1.3;color:#444}
+ .fact{border:none;background:#fff;border-left:2px solid #999;border-radius:0;padding:2px 6px;margin:2px 0;font-size:.7rem;line-height:1.35;break-inside:avoid}
+ .sheet.dense .phrase .u{font-size:.9rem}
 }
 ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;font-weight:600;text-decoration:none}ul.hub a:hover{text-decoration:underline}ul.hub span{color:#8a7458;font-weight:400;font-size:.85rem}"""
 
@@ -161,8 +169,10 @@ for idx, l in enumerate(lessons):
     body.append(f'<p class="crumbs"><a href="index.html">All lessons</a> › {e(l["kind"])}</p>')
     body.append(f'<button class="printbtn" onclick="window.print()">🖨 Print cheat sheet</button>')
     body.append(f'<h1>{e(l["title"])}</h1><p class="sub">{e(l["subtitle"])}</p>')
-    body.append(f'<p>{e(l["intro"])}</p>')
+    body.append(f'<p class="intro">{e(l["intro"])}</p>')
     body.append(f'<a class="cta" href="https://myurdu.org/">Practice this lesson free, with audio, quizzes & games →</a>')
+    dense = " dense" if len(l["items"]) >= 20 else ""
+    body.append(f'<div class="sheet{dense}">')
     if l["items"]:
         body.append("<h2>The phrases</h2>")
         for it in l["items"]:
@@ -175,6 +185,7 @@ for idx, l in enumerate(lessons):
         body.append("<h2>Good to know</h2>")
         for f in l["facts"][:6]:
             body.append(f'<div class="fact">✨ {f}</div>')  # facts carry trusted <em>/<strong> markup
+    body.append("</div>")
     nav = []
     if prev_l: nav.append(f'← <a href="{prev_l["slug"]}.html">{e(prev_l["title"])}</a>')
     if next_l: nav.append(f'<a href="{next_l["slug"]}.html">{e(next_l["title"])}</a> →')

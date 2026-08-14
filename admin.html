@@ -329,10 +329,10 @@ async function loadStats() {
   <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
-<script src="data.js?v=202608131529"></script>
-<script src="speech.js?v=202608131529"></script>
+<script src="data.js?v=202608132218"></script>
+<script src="speech.js?v=202608132218"></script>
 <script>window.MYURDU_NO_BOOT = true;</script>
-<script src="app.js?v=202608131529"></script>
+<script src="app.js?v=202608132218"></script>
 <script>
 // Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
 // (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
@@ -386,6 +386,11 @@ async function loadStats() {
             ask = esc(typeof rishtaAsk === "function" ? rishtaAsk(p) : "Kinship question");
             extra = `<div class="d5-ur ur">${esc(p.ur)}</div><div class="note">answer word: ${esc(p.tr)} · ${esc(p.en)}</div>`;
             play = p.ur ? `<button class="d5-play" data-ur="${esc(p.ur)}" data-tr="${esc(p.tr)}">▶ hear</button>` : "";
+          } else if (q.kind === "muhavara") {
+            const m = q.m || {};
+            ask = `💬 A muhāvara, literally “${esc(m.lit)}”. What does it really mean?`;
+            extra = `<div class="d5-ur ur">${esc(m.ur)}</div><div class="note">${esc(m.tr)} · answer: ${esc(m.en)}</div>`;
+            play = m.ur ? `<button class="d5-play" data-ur="${esc(m.ur)}" data-tr="${esc(m.tr)}">▶ hear</button>` : "";
           } else if (q.kind === "kahawat") {
             const s = q.saying || {};
             ask = "🫖 A kahāwat is shown. What does it mean?";

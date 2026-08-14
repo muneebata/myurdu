@@ -29,14 +29,22 @@ h1{color:#0c5f66;margin:6px 0 2px}.sub{color:#8a7458;margin:0 0 14px}
 .crumbs,.nextprev{font-size:.9rem;color:#8a7458}.crumbs a,.nextprev a,.foot a{color:#12808b}
 .foot{margin-top:36px;border-top:1.5px solid #ecdcbb;padding-top:14px;font-size:.85rem;color:#8a7458}
 .printbtn{float:right;font:inherit;font-size:.85rem;border:1.5px solid #ecdcbb;background:#fffdf3;border-radius:10px;padding:6px 12px;cursor:pointer}
+@page{margin:10mm}
 @media print{
- .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn{display:none!important}
- body{background:#fff;color:#000}
+ .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn,.intro{display:none!important}
+ body{background:#fff;color:#000;line-height:1.35}
  .wrap{max-width:100%;padding:0}
- h1{font-size:1.4rem;margin:0 0 2px}
- .phrase{border:1px solid #bbb;border-radius:6px;padding:6px 10px;margin:5px 0;page-break-inside:avoid}
- .phrase .u{font-size:1.35rem;line-height:1.9;color:#000}
- .fact{border:1px solid #ccc;background:#fff;page-break-inside:avoid}
+ h1{font-size:1.15rem;margin:0}
+ .sub{font-size:.8rem;margin:0 0 4px}
+ h2{font-size:.85rem;margin:6px 0 2px;border-bottom:1px solid #999;column-span:all}
+ .sheet{column-count:2;column-gap:7mm}
+ .sheet.dense{column-count:3}
+ .phrase{border:none;border-bottom:1px dotted #bbb;border-radius:0;background:#fff;padding:2px 0 3px;margin:0 0 2px;break-inside:avoid}
+ .phrase .u{font-size:.98rem;line-height:1.7;color:#000}
+ .phrase b{font-size:.8rem}
+ .phrase .n{font-size:.66rem;line-height:1.3;color:#444}
+ .fact{border:none;background:#fff;border-left:2px solid #999;border-radius:0;padding:2px 6px;margin:2px 0;font-size:.7rem;line-height:1.35;break-inside:avoid}
+ .sheet.dense .phrase .u{font-size:.9rem}
 }
 ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;font-weight:600;text-decoration:none}ul.hub a:hover{text-decoration:underline}ul.hub span{color:#8a7458;font-weight:400;font-size:.85rem}</style></head><body><div class="strap"></div><div class="wrap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Jism aur Mizāj · Body and Mood", "description": "head to toe, plus how you feel and when. The words you need at the doctor, at the dinner table, and any time somebody asks kyā hāl hai. Twelve body parts, eig", "url": "https://myurdu.org/learn/jism-aur-mizaj-body-and-mood.html", "inLanguage": "en", "teaches": "Urdu language", "learningResourceType": "Lesson", "isAccessibleForFree": true, "provider": {"@type": "Organization", "name": "Urdu Ustaadh", "url": "https://myurdu.org"}}</script>
@@ -44,12 +52,39 @@ ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;f
 <p class="crumbs"><a href="index.html">All lessons</a> › Reading unit 15</p>
 <button class="printbtn" onclick="window.print()">🖨 Print cheat sheet</button>
 <h1>Jism aur Mizāj · Body and Mood</h1><p class="sub">head to toe, plus how you feel and when</p>
-<p>The words you need at the doctor, at the dinner table, and any time somebody asks kyā hāl hai. Twelve body parts, eight feelings, and the four names for the parts of a day. Urdu builds most feelings as &#x27;to me, hunger is attached&#x27; rather than &#x27;I am hungry&#x27;, and that small flip is worth meeting early.</p>
+<p class="intro">The words you need at the doctor, at the dinner table, and any time somebody asks kyā hāl hai. Twelve body parts, eight feelings, and the four names for the parts of a day. Urdu builds most feelings as &#x27;to me, hunger is attached&#x27; rather than &#x27;I am hungry&#x27;, and that small flip is worth meeting early.</p>
 <a class="cta" href="https://myurdu.org/">Practice this lesson free, with audio, quizzes & games →</a>
+<div class="sheet dense">
+<h2>The phrases</h2>
+<div class="phrase"><button class="play" onclick="play('sar')">🔊 Listen</button><span class="u ur">سر</span><b>sar</b>: head<span class="n">sar dard = headache, literally head-pain</span></div>
+<div class="phrase"><button class="play" onclick="play('aankh')">🔊 Listen</button><span class="u ur">آنکھ</span><b>āṉkh</b>: eye<span class="n">nasal ṉ then aspirated kh, the whole Sound School in one word</span></div>
+<div class="phrase"><button class="play" onclick="play('kaan')">🔊 Listen</button><span class="u ur">کان</span><b>kān</b>: ear<span class="n">kān kā kachchā = gullible, &#x27;soft of ear&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('naak')">🔊 Listen</button><span class="u ur">ناک</span><b>nāk</b>: nose<span class="n">nāk kaṭnā, &#x27;the nose being cut&#x27;, is to be publicly humiliated</span></div>
+<div class="phrase"><button class="play" onclick="play('munh')">🔊 Listen</button><span class="u ur">منہ</span><b>muṉh</b>: mouth<span class="n">written with the gol he, said with a nasal hum</span></div>
+<div class="phrase"><button class="play" onclick="play('haath')">🔊 Listen</button><span class="u ur">ہاتھ</span><b>hāth</b>: hand<span class="n">hāthī, the elephant, is &#x27;the one with a hand&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('paaon')">🔊 Listen</button><span class="u ur">پاؤں</span><b>pāoṉ</b>: foot<span class="n">pair is the other everyday word for it</span></div>
+<div class="phrase"><button class="play" onclick="play('pett')">🔊 Listen</button><span class="u ur">پیٹ</span><b>peṭ</b>: stomach<span class="n">retroflex ṭ, tongue curled back</span></div>
+<div class="phrase"><button class="play" onclick="play('baal')">🔊 Listen</button><span class="u ur">بال</span><b>bāl</b>: hair<span class="n">one hair or a whole head of it, same word</span></div>
+<div class="phrase"><button class="play" onclick="play('daant')">🔊 Listen</button><span class="u ur">دانت</span><b>dāṉt</b>: tooth<span class="n">your Sound School minimal pair, now with a picture</span></div>
+<div class="phrase"><button class="play" onclick="play('baazoo')">🔊 Listen</button><span class="u ur">بازو</span><b>bāzū</b>: arm<span class="n">also the arm of a chair, and a wing of a building</span></div>
+<div class="phrase"><button class="play" onclick="play('ttaang')">🔊 Listen</button><span class="u ur">ٹانگ</span><b>ṭāṉg</b>: leg<span class="n">ṭāṉg aṛānā, &#x27;to jam your leg in&#x27;, is to butt into someone&#x27;s business</span></div>
+<div class="phrase"><button class="play" onclick="play('khush')">🔊 Listen</button><span class="u ur">خوش</span><b>khush</b>: happy<span class="n">Persian; never changes shape, for anyone</span></div>
+<div class="phrase"><button class="play" onclick="play('udaas')">🔊 Listen</button><span class="u ur">اداس</span><b>udās</b>: sad<span class="n">the quiet, wistful kind of sad that ghazals live on</span></div>
+<div class="phrase"><button class="play" onclick="play('bhookaa')">🔊 Listen</button><span class="u ur">بھوکا</span><b>bhūkā</b>: hungry<span class="n">a woman says bhūkī; or say mujhe bhūk lagī hai, &#x27;hunger has struck me&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('pyaasaa')">🔊 Listen</button><span class="u ur">پیاسا</span><b>pyāsā</b>: thirsty<span class="n">same pattern: pyāsī for a woman, pyās for the thirst itself</span></div>
+<div class="phrase"><button class="play" onclick="play('thakaa-huaa')">🔊 Listen</button><span class="u ur">تھکا ہوا</span><b>thakā huā</b>: tired<span class="n">literally &#x27;having tired&#x27;; thak gayā is the everyday way to say it</span></div>
+<div class="phrase"><button class="play" onclick="play('ghussa')">🔊 Listen</button><span class="u ur">غصہ</span><b>ghussa</b>: anger<span class="n">the noun: mujhe ghussa ā rahā hai, &#x27;anger is coming to me&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('ddaraa-huaa')">🔊 Listen</button><span class="u ur">ڈرا ہوا</span><b>ḍarā huā</b>: frightened<span class="n">from ḍar, fear; ḍar lagtā hai = it scares me</span></div>
+<div class="phrase"><button class="play" onclick="play('hairaan')">🔊 Listen</button><span class="u ur">حیران</span><b>hairān</b>: surprised<span class="n">surprised, amazed, and slightly bewildered, all at once</span></div>
+<div class="phrase"><button class="play" onclick="play('subah')">🔊 Listen</button><span class="u ur">صبح</span><b>subah</b>: morning<span class="n">subah bakhair = good morning</span></div>
+<div class="phrase"><button class="play" onclick="play('dopahar')">🔊 Listen</button><span class="u ur">دوپہر</span><b>dopahar</b>: midday / afternoon<span class="n">do (two) + pahar, the old three-hour watch of the day</span></div>
+<div class="phrase"><button class="play" onclick="play('shaam')">🔊 Listen</button><span class="u ur">شام</span><b>shām</b>: evening<span class="n">the same word Urdu uses for Syria, Shām</span></div>
+<div class="phrase"><button class="play" onclick="play('raat')">🔊 Listen</button><span class="u ur">رات</span><b>rāt</b>: night<span class="n">rāt ko = at night; shab is its poetic twin</span></div>
 <h2>Good to know</h2>
 <div class="fact">✨ Urdu rarely says 'I am hungry'. It says <b>mujhe bhūk lagī hai</b>, 'hunger has struck me'. Feelings arrive and happen to you, they are not things you are, and the grammar keeps that idea alive.</div>
 <div class="fact">✨ A <b>pahar</b> is an old three-hour division of the day, eight to a full cycle. <b>dopahar</b> (midday) still carries that arithmetic inside it, long after anyone stopped counting the day that way.</div>
 <div class="fact">✨ Body parts run Urdu's idioms: nāk kaṭnā (nose cut, to be humiliated), kān kā kachchā (soft-eared, gullible), ṭāṉg aṛānā (leg jammed in, to interfere). Learn the twelve words and a whole layer of conversation opens up.</div>
+</div>
 <p class="nextprev">← <a href="ghar-at-home.html">Ghar · At Home</a> &nbsp;·&nbsp; <a href="shehr-aur-mausam-town-and-weather.html">Shehr aur Mausam · Town and Weather</a> →</p>
 <div class="foot">Urdu Ustaadh is a free Urdu-learning resource: native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
 <script>var AR={"bakree": 2, "bherr": 2, "bherriyaa": 2, "ghorraa": 2, "chirriyaa": 2, "alif": 2, "be": 2, "pe": 2, "te": 2, "tte": 2, "se": 2, "jeem": 2, "che": 2, "barree-he": 2, "khe": 2, "daal": 2, "ddaal": 2, "zaal": 2, "re": 2, "rre": 2, "ze": 2, "zhe": 2, "seen": 2, "sheen": 2, "swaad": 2, "zwaad": 2, "toe": 2, "zoe": 2, "ain": 2, "ghain": 3, "fe": 2, "qaaf": 2, "kaaf": 2, "gaaf": 2, "laam": 2, "meem": 2, "noon": 2, "noon-ghunna": 2, "waao": 2, "gol-he": 2, "do-chashmee-he": 2, "hamza": 2, "chottee-ye": 2, "barree-ye": 2, "ek": 2, "do": 2, "paanch": 2, "chhe": 2, "saat": 2, "nau": 2, "das": 2, "gyaarah": 2, "baarah": 2, "pandrah": 2, "bees": 2, "tees": 2, "chaalees": 2, "pachaas": 2, "sau": 2, "dderrh": 2, "saarrhe": 2, "chaar": 2, "aatth": 2, "teen": 2, "duudh": 2, "laakh": 2, "khodaa-pahaarr-niklaa-choohaa": 2, "paak-sarzameen-shaad-baad": 2, "kishwar-e-haseen-shaad-baad": 2, "too-nishaan-e-azm-e-aalee-shaan": 2, "arz-e-paakistaan": 2, "markaz-e-yaqeen-shaad-baad": 2, "paak-sarzameen-kaa-nizaam": 2, "quwwat-e-ukhuwwat-e-awaam": 3, "qaum-mulk-saltanat": 2, "paainda-taabinda-baad": 2, "shaad-baad-manzil-e-muraad": 2, "parcham-e-sitaara-o-hilaal": 2, "rahbar-e-taraqqee-o-kamaal": 2, "tarjumaan-e-maazee-shaan-e-haal": 2, "jaan-e-istiqbaal": 3, "saaya-e-khudaa-e-zoo-l-jalaal": 3};function play(s){new Audio('../audio/'+s+'.mp3'+(AR[s]?('?r='+AR[s]):'')).play()}</script>

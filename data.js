@@ -1635,6 +1635,47 @@ const READING_UNITS = [
       "The subcontinent has its own great fable river: the Panchatantra's animal stories travelled west through Persian retellings of <b>Kalīla wa Dimna</b>, and centuries of dāstān-tellers carried them into Urdu. Your nānī's animal stories have a very long pedigree.",
     ],
   },
+  {
+    id: "R19",
+    title: "Kahānī 4 · Do Aur Kahāniyāṉ",
+    subtitle: "the thirsty crow and the boy who cried bheṛiyā",
+    intro:
+      "Two more of the world's oldest stories, told in your Urdu. The crow you already know from the zoo; the wolf too. As always: read each line aloud before you tap it, and the flagged new words come glossed.",
+    sections: [
+      {
+        heading: "Pyāsā Kawwā · The Thirsty Crow",
+        note: "Aesop's cleverest bird, starring the zoo's kawwā and Level 13's pyāsā.",
+        words: [
+          { ur: "ایک کوا بہت پیاسا تھا۔", tr: "ek kawwā bahut pyāsā thā", en: "A crow was very thirsty.", spell: "pyāsā from the feelings unit, doing real work" },
+          { ur: "پانی نہیں تھا۔", tr: "pānī nahīṉ thā", en: "There was no water.", spell: "the simplest sentence of trouble" },
+          { ur: "پھر اس نے ایک گھڑا دیکھا۔", tr: "phir us ne ek ghaṛā dekhā", en: "Then he saw a clay pot.", spell: "NEW: ghaṛā = clay water-pot, with the retroflex ṛ" },
+          { ur: "گھڑے میں تھوڑا پانی تھا۔", tr: "ghaṛe meṉ thoṛā pānī thā", en: "In the pot was a little water.", spell: "ghaṛā bends to ghaṛe before meṉ (Qawāid Q5)" },
+          { ur: "کوے نے چھوٹے پتھر ڈالے۔", tr: "kawwe ne chhoṭe patthar ḍāle", en: "The crow dropped in small stones.", spell: "NEW: patthar = stone, ḍālnā = to drop in. The famous trick" },
+          { ur: "پانی اوپر آ گیا۔", tr: "pānī ūpar ā gayā", en: "The water rose up.", spell: "NEW: ūpar = up. Ā gayā — arrived, completely (L23)" },
+          { ur: "کوے نے پانی پیا۔", tr: "kawwe ne pānī piyā", en: "The crow drank the water.", spell: "piyā — pīnā in the ne-past, agreeing with pānī" },
+          { ur: "چھوٹی کوشش، بڑا کام۔", tr: "chhoṭī koshish, baṛā kām", en: "Small effort, big result.", spell: "koshish from Level 15, promoted to a moral" },
+        ],
+      },
+      {
+        heading: "Laṛkā aur Bheṛiyā · The Boy Who Cried Wolf",
+        note: "The zoo's bheṛiyā, Sound School's laṛkā, and a lesson about jhūṭ.",
+        words: [
+          { ur: "ایک لڑکے کے پاس بکریاں تھیں۔", tr: "ek laṛke ke pās bakriyāṉ thīṉ", en: "A boy was keeping goats.", spell: "bakrī pluralises to bakriyāṉ, and thī to thīṉ, all feminine" },
+          { ur: "لڑکے نے کہا: بھیڑیا! بھیڑیا!", tr: "laṛke ne kahā: bheṛiyā! bheṛiyā!", en: "The boy shouted: wolf! wolf!", spell: "the zoo word, now a false alarm" },
+          { ur: "سب دوست آئے۔", tr: "sab dost āe", en: "All his friends came running.", spell: "āe — the plural past of ānā" },
+          { ur: "لیکن بھیڑیا نہیں تھا۔", tr: "lekin bheṛiyā nahīṉ thā", en: "But there was no wolf.", spell: "lekin from Level 19's honest sentence" },
+          { ur: "لڑکا ہنسا۔", tr: "laṛkā haṉsā", en: "The boy laughed.", spell: "NEW: haṉsnā = to laugh. He thought it was funny" },
+          { ur: "پھر ایک دن بھیڑیا آ گیا۔", tr: "phir ek din bheṛiyā ā gayā", en: "Then one day the wolf really came.", spell: "ā gayā again — arrival, complete and real" },
+          { ur: "لڑکے نے کہا: بھیڑیا! لیکن کوئی نہیں آیا۔", tr: "laṛke ne kahā: bheṛiyā! lekin koī nahīṉ āyā", en: "The boy shouted: wolf! But nobody came.", spell: "koī nahīṉ — the loneliest words in the story" },
+          { ur: "جھوٹ گیا، اعتبار گیا۔", tr: "jhūṭ gayā, iʿtibār gayā", en: "The lie went out; the trust went with it.", spell: "NEW: jhūṭ = a lie, iʿtibār = trust. The whole fable in four words" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Both are Aesop again — The Crow and the Pitcher, and The Boy Who Cried Wolf — and the second one became an English idiom outright: 'to cry wolf' is the fable compressed to two words.",
+      "The crow's trick is real. Corvids actually drop stones into water to raise its level — researchers have tested it — which makes this one of the few fables that is also a lab result.",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -1903,6 +1944,27 @@ const AUR_SEEKHIYE = [
       { name: "Rekhta Learning (Aamozish)", url: "https://aamozish.com", note: "Script and vocabulary courses taught through poetry, by the Rekhta Foundation. Parts are paid." },
     ],
   },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Muhāvare: idioms. lit = the literal image, en = what it really
+// means. The C8 unit renders these, and Aaj Ka Paanch quizzes
+// them literal-vs-real. Classics only — every entry is a fixture
+// of everyday speech, not a dictionary curiosity.
+// ─────────────────────────────────────────────────────────────
+const MUHAVARE = [
+  { ur: "ناک کٹنا", tr: "nāk kaṭnā", lit: "the nose gets cut", en: "to be publicly shamed", note: "Izzat lives in the nose. Nāk rakh lī = honour saved." },
+  { ur: "ٹانگ اڑانا", tr: "ṭāṉg aṛānā", lit: "to jam your leg in", en: "to butt into others' business", note: "Said of the uncle with opinions on everything." },
+  { ur: "کان کا کچا", tr: "kān kā kachchā", lit: "raw of ear", en: "believes anything he hears", note: "Kachchā = raw, unripe, unfinished — gullible." },
+  { ur: "آنکھ کا تارا", tr: "āṉkh kā tārā", lit: "the star of the eye", en: "the most beloved person", note: "What every nānī calls her favourite grandchild." },
+  { ur: "الو بنانا", tr: "ullū banānā", lit: "to make someone an owl", en: "to make a fool of someone", note: "The owl is a fool in Urdu, not a sage — the exact opposite of English." },
+  { ur: "دال میں کچھ کالا", tr: "dāl meṉ kuchh kālā", lit: "something black in the daal", en: "something suspicious is going on", note: "One dark stone in the lentils spoils trust in the whole pot." },
+  { ur: "منہ میں پانی آنا", tr: "muṉh meṉ pānī ānā", lit: "water comes to the mouth", en: "to make your mouth water", note: "What the dastarkhwān unit does to readers." },
+  { ur: "سر پر سوار ہونا", tr: "sar par sawār honā", lit: "to ride on someone's head", en: "to pester without mercy", note: "Sawār = mounted, as on a horse. Usually said of children and deadlines." },
+  { ur: "پانچوں انگلیاں گھی میں", tr: "pāṉchoṉ ungliyāṉ ghī meṉ", lit: "all five fingers in the ghee", en: "to be in luck on every side", note: "Ghī from the food unit — wealth you can taste." },
+  { ur: "آسمان سے باتیں کرنا", tr: "āsmān se bāteṉ karnā", lit: "to chat with the sky", en: "to be extremely tall", note: "Said of towers, mountains, and teenage nephews." },
+  { ur: "ہاتھ تنگ ہونا", tr: "hāth tang honā", lit: "the hand is tight", en: "to be short of money", note: "Tang = tight, narrow. Money troubles, said with dignity." },
+  { ur: "آگ بگولہ ہونا", tr: "āg bagūlā honā", lit: "to become a whirlwind of fire", en: "to fly into a rage", note: "Bagūlā = a dust-devil. Anger as weather." },
 ];
 
 const QUIZ_PASS_PERCENT = 70;
@@ -2340,6 +2402,83 @@ const CULTURE_UNITS = [
     funFacts: [
       "A kātib's apprenticeship traditionally began with years of practicing single letters before being allowed to write a full word, the same alif-se-shurū patience your tracing boards ask of you, just with higher stakes.",
       "This app's own icon is painted in the truck-art style, flowers, borders, and all. The tradition now decorates trucks, rickshaws, teapots, sneakers… and Urdu-learning apps.",
+    ],
+  },
+  {
+    id: "C8",
+    title: "Muhāvare · The Idiom Machine",
+    urName: "محاورے",
+    subtitle: "what Urdu says versus what Urdu means",
+    intro:
+      "A muhāvara is a fixed phrase whose real meaning left its literal meaning behind long ago — cut noses, jammed legs, owls in the making. They are how the language jokes, scolds and consoles, and no amount of vocabulary substitutes for knowing them. Each one below shows the literal image first, because the image is the mnemonic. Aaj Ka Paanch will start quizzing you on these.",
+    sections: [
+      {
+        heading: "Bārah muhāvare · the essential twelve",
+        note: "Tap to hear each one. Learn the picture, then the meaning arrives free.",
+        muhavare: true,
+      },
+      {
+        heading: "Muhāvara, kahāwat — what's the difference?",
+        facts: [
+          "A <b>kahāwat</b> (proverb) is a complete saying with a complete lesson: nekī kar, daryā meṉ ḍāl. A <b>muhāvara</b> is a phrase-part that plugs into your own sentence: us ne merī nāk kāṭ dī. Proverbs advise; idioms describe.",
+          "Muhāvare conjugate. Nāk kaṭnā becomes nāk kaṭ gaī (the shame happened), nāk kāṭnā (to shame someone else), nāk rakh lenā (to save the honour). One image, a whole verb family.",
+          "The body carries most of them: nāk (honour), kān (credulity), hāth (means), sar (burden), āṉkh (love). Learn Jism aur Mizāj's words and the idiom map lights up.",
+        ],
+      },
+    ],
+    funFacts: [
+      "The owl flip is real: in English the owl is wise, in Urdu an <b>ullū</b> is a fool — so 'making someone an owl' is tricking them. Same bird, opposite reputations, and a classic trap for translators.",
+      "Urdu's formal word for idiom, muhāvara, comes from an Arabic root meaning 'to converse, to go back and forth' — an idiom is literally 'the way people talk'.",
+    ],
+  },
+  {
+    id: "C9",
+    title: "Ramzān aur Eid · The Great Month",
+    urName: "رمضان",
+    subtitle: "the vocabulary of fasting, moon-sighting, and the sweetest morning of the year",
+    intro:
+      "For a month the whole day reorganises itself around two meals, and then a sliver of moon turns everything into celebration. This is the vocabulary a diaspora kid hears every Ramzān without ever being taught it: the words of the fast, the night before, and Eid morning itself.",
+    sections: [
+      {
+        heading: "Roze ke din · the fasting day",
+        note: "The day's clock runs sehrī to iftār. Say each word aloud — you will use every one of them.",
+        words: [
+          { ur: "رمضان", tr: "Ramzān", en: "Ramadan", spell: "Urdu says Ramzān with a z — the ض, one of the four z's" },
+          { ur: "روزہ", tr: "roza", en: "a fast", spell: "roza rakhnā = to keep a fast; roza khulnā = the fast opens" },
+          { ur: "سحری", tr: "sehrī", en: "the pre-dawn meal", spell: "from sehr, daybreak. Alarm clocks at 3 a.m., the whole house up" },
+          { ur: "افطار", tr: "iftār", en: "the fast-breaking meal", spell: "traditionally opened with a khajūr, a date" },
+          { ur: "کھجور", tr: "khajūr", en: "date (the fruit)", spell: "the first taste after a long day" },
+          { ur: "دعا", tr: "duā", en: "prayer, supplication", spell: "the same duā as Iqbal's poem on the shelf" },
+          { ur: "مغرب", tr: "maghrib", en: "sunset (and its prayer)", spell: "iftār lands at maghrib, to the minute" },
+          { ur: "رمضان مبارک", tr: "Ramzān Mubārak", en: "blessed Ramadan!", spell: "the month's greeting, mubārak from your Azadi words" },
+        ],
+      },
+      {
+        heading: "Chāṉd rāt · the night of the moon",
+        note: "Eid waits on an actual crescent sighting, so the last evening is electric.",
+        words: [
+          { ur: "چاند رات", tr: "chāṉd rāt", en: "the moon night before Eid", spell: "bazaars open past midnight, mehndi on every hand" },
+          { ur: "چاند نظر آیا", tr: "chāṉd nazar āyā", en: "the moon has been sighted!", spell: "nazar ānā = to come into view. The sentence that starts Eid" },
+          { ur: "مہندی", tr: "mehndī", en: "henna", spell: "from the wedding unit, and every chāṉd rāt" },
+          { ur: "چوڑیاں", tr: "chūṛiyāṉ", en: "bangles", spell: "with the retroflex ṛ and the nasal plural" },
+        ],
+      },
+      {
+        heading: "Eid kā din · Eid morning",
+        note: "New clothes, sweet dishes, and the one word every child is waiting for.",
+        words: [
+          { ur: "عید مبارک", tr: "Eid Mubārak", en: "blessed Eid!", spell: "said with three hugs, alternating shoulders" },
+          { ur: "عیدی", tr: "Eidī", en: "Eid money for children", spell: "the crisp new note from every elder. Non-negotiable tradition" },
+          { ur: "سویاں", tr: "sawaiyyāṉ", en: "sweet vermicelli", spell: "the Eid-morning dish, often as sheer khurma with milk and dates" },
+          { ur: "نئے کپڑے", tr: "nae kapṛe", en: "new clothes", spell: "kapṛe from the clothes unit, at their annual peak" },
+          { ur: "گلے ملنا", tr: "gale milnā", en: "to embrace", spell: "gala = neck; meeting neck-to-neck, the Eid greeting made physical" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Pakistan has an official <b>Ruet-e-Hilāl Committee</b> — a moon-sighting committee, founded 1974 — whose televised announcement of the crescent is what actually starts Eid. Whole living rooms sit waiting for it.",
+      "The three-hug Eid embrace alternates shoulders — right, left, right — and children collect <b>Eidī</b> from every elder in the room. The crisp new banknote is part of the ritual; banks in Pakistan issue fresh notes before Eid for exactly this reason.",
+      "<b>Sheer khurma</b> — milk, dates, and the fine vermicelli called sawaiyyāṉ — is the Eid-morning dish across the subcontinent. Khurmā is Persian for date, so the name says exactly what is in the pot.",
     ],
   },
 ];
@@ -2805,6 +2944,50 @@ const PAKISTAN_UNITS = [
     funFacts: [
       "The markhor's name is Persian for 'snake-eater', folklore claims it kills and eats snakes (it doesn't; it's a vegetarian goat with a dramatic reputation). The corkscrew horns are real, though: up to 160 cm of built-in mythology.",
       "Trophy-hunt permits for a handful of aging markhor sell for hundreds of thousands of dollars, and most of the money goes to the mountain villages that protect the herds, the counterintuitive economics that saved the species.",
+    ],
+  },
+  {
+    id: "P7",
+    title: "Zubānein · Pakistan's Languages",
+    postfrom: "from: everywhere at once",
+    subtitle: "Urdu is the bridge, not the whole country",
+    intro:
+      "Urdu is Pakistan's lingua franca, but it is the mother tongue of less than a tenth of the country. Most Pakistanis grow up in Punjabi, Sindhi, Pashto, Balochi or one of dozens of mountain languages, and meet Urdu at school and on television. Knowing the map of tongues is knowing why your family's Urdu carries the accent it does.",
+    sections: [
+      {
+        heading: "The big four, by province",
+        facts: [
+          "<strong>Punjabi</strong>, the most spoken mother tongue in Pakistan — the language of Punjab, of Heer Ranjha, and of half the diaspora's grandparents. Its 'kiddāṉ?' is the friendliest hello in South Asia.",
+          "<strong>Sindhi</strong>: the language of Sindh and one of the subcontinent's oldest literary tongues, written in its own extended Arabic script with 52 letters — more than Urdu's 39.",
+          "<strong>Pashto</strong>: the language of Khyber Pakhtunkhwa and the Pathans, with a poetic tradition built on the two-line landay and the great 17th-century poet Rahman Baba.",
+          "<strong>Balochi</strong>: the language of Pakistan's largest province by land, kept alive for centuries by oral poets across some of the world's emptiest terrain.",
+        ],
+      },
+      {
+        heading: "The mountain treasury",
+        facts: [
+          "Northern Pakistan is one of the densest language regions on earth: <strong>Shina</strong> and <strong>Balti</strong> in Gilgit-Baltistan, <strong>Khowar</strong> in Chitral, <strong>Burushaski</strong> in Hunza — a language with no known relative anywhere in the world.",
+          "<strong>Balti</strong> is a Tibetan language written today in Perso-Arabic script — and it gave English the word <em>polo</em>, which you met in Desi Roots.",
+          "The Kalash valleys of Chitral speak <strong>Kalasha</strong>, the language of Pakistan's smallest religious community — a few thousand speakers keeping an entire cosmology alive.",
+        ],
+      },
+      {
+        heading: "Words for the map of tongues",
+        note: "The Urdu you need to talk about languages at all.",
+        words: [
+          { ur: "زبان", tr: "zabān", en: "language, tongue", spell: "from the proverbs unit — one word for the organ and the language" },
+          { ur: "مادری زبان", tr: "mādarī zabān", en: "mother tongue", spell: "mādar = mother, the Persian root inside the phrase" },
+          { ur: "پنجابی", tr: "Panjābī", en: "Punjabi", spell: "panj = five, āb = waters: the land of five rivers" },
+          { ur: "سندھی", tr: "Sindhī", en: "Sindhi", spell: "from the Sindhu, the old name of the Indus itself" },
+          { ur: "پشتو", tr: "Pashto", en: "Pashto", spell: "its speakers are Pashtūn — Pathan in the older English spelling" },
+          { ur: "بلوچی", tr: "Balochī", en: "Balochi", spell: "language of the Baloch, hence Balochistān, their place" },
+          { ur: "بلتی", tr: "Baltī", en: "Balti", spell: "the Tibetan cousin that gave English the word polo" },
+        ],
+      },
+    ],
+    funFacts: [
+      "Urdu is the first language of only about 7–8% of Pakistanis, yet nearly everyone speaks it — the national bridge between provinces that each have their own mother tongue. That is exactly the job it was given in 1947.",
+      "<b>Burushaski</b>, spoken in the Hunza valley, is a language isolate: linguists have never convincingly connected it to any other language family on earth.",
     ],
   },
 ];
@@ -3850,7 +4033,7 @@ const RANKS = [
   { need: 19, name: "Parhaku · Bookworm", ur: "پڑھاکو" },
   { need: 30, name: "Hoshiyar · Whiz", ur: "ہوشیار" },
   { need: 41, name: "Ustaadh · Master", ur: "استاد" },
-  { need: 57, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
+  { need: 61, name: "Ustaadh-e-Azam · Grand Master", ur: "استاد اعظم" },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -4492,6 +4675,43 @@ const ROLEPLAYS = [
       { at: "quote", who: "them", ur: "سلائی کے پندرہ سو", tr: "silāī ke pandrah sau", en: "Fifteen hundred for the stitching", next: "seeyou" },
       { at: "seeyou", who: "you", ur: "شکریہ! اللہ حافظ", tr: "shukriya! Allāh hāfiz", en: "Thank you! Goodbye" },
       { at: "reassure", who: "them", ur: "اللہ حافظ، فکر نہ کریں", tr: "Allāh hāfiz, fikar na kareṉ", en: "Goodbye, don't you worry", next: "end" },
+    ],
+  },
+  {
+    id: "RP9",
+    img: { src: "images/virsa/virsa-takalluf.jpg", alt: "A guest at a crowded dinner table raising a hand in polite refusal while the host leans in to serve more" },
+    title: "The Dawat",
+    urName: "دعوت",
+    desc: "Dinner guest at a Pakistani home: survive the takalluf, praise the cook, leave with grace (and probably a container of food).",
+    youRole: "the guest",
+    themRole: "the mezbān (your host)",
+    turns: [
+      { at: "door", who: "them", ur: "السلام علیکم! تشریف رکھیے", tr: "assalām-o-alaikum! tashrīf rakhiye", en: "Salaam! Please, have a seat" },
+      { at: "reply", who: "you", ur: "وعلیکم السلام، بہت شکریہ", tr: "wa-alaikum-us-salām, bahut shukriya", en: "Salaam, thank you so much" },
+      { at: "served", who: "them", ur: "کھانا لگ گیا ہے", tr: "khānā lag gayā hai", en: "Dinner is served" },
+      { at: "offer", who: "them", ur: "بریانی لیجیے، گھر کی بنی ہے", tr: "biryānī lījiye, ghar kī banī hai", en: "Have some biryani, it's homemade" },
+      { at: "takalluf", choice: [
+        { ur: "جی، ضرور", tr: "jī, zarūr", en: "Yes, certainly", fx: "You accepted first ask — efficient, and the aunties noted it.", next: "plate" },
+        { ur: "نہیں نہیں، تکلف مت کریں", tr: "nahīṉ nahīṉ, takalluf mat kareṉ", en: "No no, please don't fuss", fx: "The ritual first refusal. Nobody believed it, exactly as intended.", next: "insist" },
+      ] },
+      { at: "insist", who: "them", ur: "ارے، لینا پڑے گا!", tr: "are, lenā paṛe gā!", en: "Oh come now, you must!", next: "relent" },
+      { at: "relent", who: "you", ur: "اچھا، تھوڑا سا", tr: "achhā, thoṛā sā", en: "Alright, just a little", next: "plate" },
+      { at: "plate", who: "them", ur: "اور لیجیے", tr: "aur lījiye", en: "Have some more" },
+      { at: "more", choice: [
+        { ur: "بس بس، بہت ہو گیا", tr: "bas bas, bahut ho gayā", en: "Enough, that's plenty!", fx: "Hand over the plate, the classic defence. It held — barely.", next: "praise" },
+        { ur: "تھوڑا اور", tr: "thoṛā aur", en: "A little more", fx: "You said a little; you received a lot. This is how it works.", next: "praise" },
+      ] },
+      { at: "praise", choice: [
+        { ur: "کھانا لاجواب تھا", tr: "khānā lājawāb thā", en: "The food was superb", fx: "Lājawāb — the compliment that makes a host's whole week.", next: "blessing" },
+        { ur: "بریانی بہت مزیدار تھی", tr: "biryānī bahut mazedār thī", en: "The biryani was delicious", fx: "Named the dish specifically. The recipe may now be offered.", next: "blessing" },
+      ] },
+      { at: "blessing", who: "them", ur: "اللہ آپ کو خوش رکھے", tr: "Allāh āp ko khush rakhe", en: "May God keep you happy" },
+      { at: "leave", choice: [
+        { ur: "اجازت دیجیے", tr: "ijāzat dījiye", en: "With your permission (I'll take my leave)", fx: "The graceful exit — nobody just leaves a dawat.", next: "sendoff" },
+        { ur: "پھر ملیں گے، انشاءاللہ", tr: "phir mileṉ ge, inshāallāh", en: "We'll meet again, God willing", fx: "Open-ended, warm, exactly right.", next: "sendoff" },
+      ] },
+      { at: "sendoff", who: "them", ur: "یہ کھانا ساتھ لے جائیے", tr: "yeh khānā sāth le jāiye", en: "Take this food with you", next: "accept" },
+      { at: "accept", who: "you", ur: "آپ کا بہت شکریہ، اللہ حافظ", tr: "āp kā bahut shukriya, Allāh hāfiz", en: "Thank you so much, goodbye", next: "end" },
     ],
   },
 ];

@@ -29,14 +29,22 @@ h1{color:#0c5f66;margin:6px 0 2px}.sub{color:#8a7458;margin:0 0 14px}
 .crumbs,.nextprev{font-size:.9rem;color:#8a7458}.crumbs a,.nextprev a,.foot a{color:#12808b}
 .foot{margin-top:36px;border-top:1.5px solid #ecdcbb;padding-top:14px;font-size:.85rem;color:#8a7458}
 .printbtn{float:right;font:inherit;font-size:.85rem;border:1.5px solid #ecdcbb;background:#fffdf3;border-radius:10px;padding:6px 12px;cursor:pointer}
+@page{margin:10mm}
 @media print{
- .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn{display:none!important}
- body{background:#fff;color:#000}
+ .strap,.cta,.crumbs,.nextprev,.foot,.play,.printbtn,.intro{display:none!important}
+ body{background:#fff;color:#000;line-height:1.35}
  .wrap{max-width:100%;padding:0}
- h1{font-size:1.4rem;margin:0 0 2px}
- .phrase{border:1px solid #bbb;border-radius:6px;padding:6px 10px;margin:5px 0;page-break-inside:avoid}
- .phrase .u{font-size:1.35rem;line-height:1.9;color:#000}
- .fact{border:1px solid #ccc;background:#fff;page-break-inside:avoid}
+ h1{font-size:1.15rem;margin:0}
+ .sub{font-size:.8rem;margin:0 0 4px}
+ h2{font-size:.85rem;margin:6px 0 2px;border-bottom:1px solid #999;column-span:all}
+ .sheet{column-count:2;column-gap:7mm}
+ .sheet.dense{column-count:3}
+ .phrase{border:none;border-bottom:1px dotted #bbb;border-radius:0;background:#fff;padding:2px 0 3px;margin:0 0 2px;break-inside:avoid}
+ .phrase .u{font-size:.98rem;line-height:1.7;color:#000}
+ .phrase b{font-size:.8rem}
+ .phrase .n{font-size:.66rem;line-height:1.3;color:#444}
+ .fact{border:none;background:#fff;border-left:2px solid #999;border-radius:0;padding:2px 6px;margin:2px 0;font-size:.7rem;line-height:1.35;break-inside:avoid}
+ .sheet.dense .phrase .u{font-size:.9rem}
 }
 ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;font-weight:600;text-decoration:none}ul.hub a:hover{text-decoration:underline}ul.hub span{color:#8a7458;font-weight:400;font-size:.85rem}</style></head><body><div class="strap"></div><div class="wrap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Dastarkhwan · Food", "description": "A regional eating tour, from nihari dawn to falooda midnight. The dastarkhwan is the cloth spread for a meal, and Pakistan's is enormous. Every province cooks", "url": "https://myurdu.org/learn/dastarkhwan-food.html", "inLanguage": "en", "teaches": "Urdu language", "learningResourceType": "Lesson", "isAccessibleForFree": true, "provider": {"@type": "Organization", "name": "Urdu Ustaadh", "url": "https://myurdu.org"}}</script>
@@ -44,8 +52,9 @@ ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;f
 <p class="crumbs"><a href="index.html">All lessons</a> › Pakistan break 5</p>
 <button class="printbtn" onclick="window.print()">🖨 Print cheat sheet</button>
 <h1>Dastarkhwan · Food</h1><p class="sub">A regional eating tour, from nihari dawn to falooda midnight</p>
-<p>The dastarkhwan is the cloth spread for a meal, and Pakistan&#x27;s is enormous. Every province cooks a different country. Arrive hungry; this unit has no other prerequisite.</p>
+<p class="intro">The dastarkhwan is the cloth spread for a meal, and Pakistan&#x27;s is enormous. Every province cooks a different country. Arrive hungry; this unit has no other prerequisite.</p>
 <a class="cta" href="https://myurdu.org/">Practice this lesson free, with audio, quizzes & games →</a>
+<div class="sheet dense">
 <h2>The phrases</h2>
 <div class="phrase"><button class="play" onclick="play('mitthaaee')">🔊 Listen</button><span class="u ur">مٹھائی</span><b>miṭhāī</b>: sweets<span class="n">good news comes in boxes of it</span></div>
 <div class="phrase"><button class="play" onclick="play('aam')">🔊 Listen</button><span class="u ur">آم</span><b>ām</b>: mango<span class="n">the king of fruits, and of arguments</span></div>
@@ -53,6 +62,36 @@ ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;f
 <div class="phrase"><button class="play" onclick="play('garam')">🔊 Listen</button><span class="u ur">گرم</span><b>garam</b>: hot (temperature)<span class="n">as in garam chai, garam samosay</span></div>
 <div class="phrase"><button class="play" onclick="play('meetthaa')">🔊 Listen</button><span class="u ur">میٹھا</span><b>mīṭhā</b>: sweet (taste)<span class="n">the national flavor</span></div>
 <div class="phrase"><button class="play" onclick="play('namak')">🔊 Listen</button><span class="u ur">نمک</span><b>namak</b>: salt<span class="n">namkeen = the salty snack family</span></div>
+<div class="phrase"><button class="play" onclick="play('biryaanee')">🔊 Listen</button><span class="u ur">بریانی</span><b>biryānī</b>: biryani<span class="n">from Persian biryān, roasted. Karachi&#x27;s is the fiery one</span></div>
+<div class="phrase"><button class="play" onclick="play('nihaaree')">🔊 Listen</button><span class="u ur">نہاری</span><b>nihārī</b>: nihari<span class="n">the dawn stew, slow-cooked all night</span></div>
+<div class="phrase"><button class="play" onclick="play('haleem')">🔊 Listen</button><span class="u ur">حلیم</span><b>halīm</b>: haleem<span class="n">wheat, lentils and meat pounded for hours into one thing</span></div>
+<div class="phrase"><button class="play" onclick="play('karraahee')">🔊 Listen</button><span class="u ur">کڑاہی</span><b>kaṛāhī</b>: karahi<span class="n">named after the pan it is cooked in, not the recipe</span></div>
+<div class="phrase"><button class="play" onclick="play('chapli-kabaab')">🔊 Listen</button><span class="u ur">چپلی کباب</span><b>chapli kabāb</b>: chapli kebab<span class="n">Peshawar&#x27;s flat minced patty, wide as a hand</span></div>
+<div class="phrase"><button class="play" onclick="play('seekh-kabaab')">🔊 Listen</button><span class="u ur">سیخ کباب</span><b>sīkh kabāb</b>: seekh kebab<span class="n">sīkh = skewer. The kebab named after its stick</span></div>
+<div class="phrase"><button class="play" onclick="play('saag')">🔊 Listen</button><span class="u ur">ساگ</span><b>sāg</b>: mustard greens<span class="n">Punjab&#x27;s winter dish, eaten with makkai kī roṭī</span></div>
+<div class="phrase"><button class="play" onclick="play('daal-chaawal')">🔊 Listen</button><span class="u ur">دال چاول</span><b>dāl chāwal</b>: lentils and rice<span class="n">the everyday plate, the comfort food of the whole region</span></div>
+<div class="phrase"><button class="play" onclick="play('halwaa-pooree')">🔊 Listen</button><span class="u ur">حلوہ پوری</span><b>halwā pūrī</b>: halwa puri<span class="n">Sunday breakfast: fried bread, semolina halwa, chickpeas</span></div>
+<div class="phrase"><button class="play" onclick="play('samosa')">🔊 Listen</button><span class="u ur">سموسہ</span><b>samosa</b>: samosa<span class="n">travelled from Central Asia, and then into English</span></div>
+<div class="phrase"><button class="play" onclick="play('pakorraa')">🔊 Listen</button><span class="u ur">پکوڑا</span><b>pakoṛā</b>: pakora<span class="n">gram-flour fritters, the food of a rainy afternoon</span></div>
+<div class="phrase"><button class="play" onclick="play('faalooda')">🔊 Listen</button><span class="u ur">فالودہ</span><b>fālūda</b>: falooda<span class="n">noodles, ice cream and rose syrup, drunk near midnight</span></div>
+<div class="phrase"><button class="play" onclick="play('haldee')">🔊 Listen</button><span class="u ur">ہلدی</span><b>haldī</b>: turmeric<span class="n">the yellow that stains everything it touches</span></div>
+<div class="phrase"><button class="play" onclick="play('mirch')">🔊 Listen</button><span class="u ur">مرچ</span><b>mirch</b>: chilli<span class="n">lāl mirch is red, harī mirch is green and worse</span></div>
+<div class="phrase"><button class="play" onclick="play('zeera')">🔊 Listen</button><span class="u ur">زیرہ</span><b>zīra</b>: cumin<span class="n">the seed you hear crackle when the oil is ready</span></div>
+<div class="phrase"><button class="play" onclick="play('dhaniyaa')">🔊 Listen</button><span class="u ur">دھنیا</span><b>dhaniyā</b>: coriander<span class="n">the seed AND the fresh leaf, one word for both</span></div>
+<div class="phrase"><button class="play" onclick="play('adrak')">🔊 Listen</button><span class="u ur">ادرک</span><b>adrak</b>: ginger<span class="n">adrak lehsan, ginger-garlic, is said as one word</span></div>
+<div class="phrase"><button class="play" onclick="play('lehsan')">🔊 Listen</button><span class="u ur">لہسن</span><b>lehsan</b>: garlic<span class="n">its partner, never far behind</span></div>
+<div class="phrase"><button class="play" onclick="play('piyaaz')">🔊 Listen</button><span class="u ur">پیاز</span><b>piyāz</b>: onion<span class="n">where every curry begins</span></div>
+<div class="phrase"><button class="play" onclick="play('ttamaattar')">🔊 Listen</button><span class="u ur">ٹماٹر</span><b>ṭamāṭar</b>: tomato<span class="n">your Sound School retroflex word, back in the kitchen</span></div>
+<div class="phrase"><button class="play" onclick="play('aattaa')">🔊 Listen</button><span class="u ur">آٹا</span><b>āṭā</b>: flour<span class="n">the wheat flour roṭī is made from. English took it as &#x27;atta&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('ghee')">🔊 Listen</button><span class="u ur">گھی</span><b>ghī</b>: clarified butter<span class="n">English borrowed this one whole, as &#x27;ghee&#x27;</span></div>
+<div class="phrase"><button class="play" onclick="play('tel')">🔊 Listen</button><span class="u ur">تیل</span><b>tel</b>: oil<span class="n">tel chhoṛnā, &#x27;to release oil&#x27;, is how you know the masala is done</span></div>
+<div class="phrase"><button class="play" onclick="play('garam-masaala')">🔊 Listen</button><span class="u ur">گرم مصالحہ</span><b>garam masāla</b>: garam masala<span class="n">&#x27;warm spices&#x27;, warming to the body, not hot on the tongue</span></div>
+<div class="phrase"><button class="play" onclick="play('kaattnaa')">🔊 Listen</button><span class="u ur">کاٹنا</span><b>kāṭnā</b>: to cut<span class="n">piyāz kāṭnā, cutting onions, and crying about it</span></div>
+<div class="phrase"><button class="play" onclick="play('bhoonnaa')">🔊 Listen</button><span class="u ur">بھوننا</span><b>bhūnnā</b>: to fry and brown<span class="n">the technique the whole cuisine turns on</span></div>
+<div class="phrase"><button class="play" onclick="play('ubaalnaa')">🔊 Listen</button><span class="u ur">ابالنا</span><b>ubālnā</b>: to boil<span class="n">pānī ubālnā, to boil water</span></div>
+<div class="phrase"><button class="play" onclick="play('talnaa')">🔊 Listen</button><span class="u ur">تلنا</span><b>talnā</b>: to deep-fry<span class="n">what happens to samose and pakoṛe</span></div>
+<div class="phrase"><button class="play" onclick="play('chakhnaa')">🔊 Listen</button><span class="u ur">چکھنا</span><b>chakhnā</b>: to taste<span class="n">chakh kar dekheṉ, taste it and see</span></div>
+<div class="phrase"><button class="play" onclick="play('paknaa')">🔊 Listen</button><span class="u ur">پکنا</span><b>paknā</b>: to be cooking<span class="n">pakānā is what YOU do; paknā is what the food does</span></div>
 <div class="phrase"><button class="play" onclick="play('bismillaah-karen')">🔊 Listen</button><span class="u ur">بسم اللہ کریں</span><b>bismillāh kareṉ</b>: Begin (say bismillah)<span class="n">how a host tells the table to start eating</span></div>
 <div class="phrase"><button class="play" onclick="play('thorraa-aur')">🔊 Listen</button><span class="u ur">تھوڑا اور</span><b>thoṛā aur</b>: a little more<span class="n">what you say. What you get is a lot more</span></div>
 <div class="phrase"><button class="play" onclick="play('bas-bas-bahut-ho-gayaa')">🔊 Listen</button><span class="u ur">بس بس، بہت ہو گیا</span><b>bas bas, bahut ho gayā</b>: Enough, that&#x27;s plenty!<span class="n">said with a hand over the plate. Rarely obeyed</span></div>
@@ -66,6 +105,7 @@ ul.hub{list-style:none;padding:0}ul.hub li{margin:7px 0}ul.hub a{color:#0c5f66;f
 <div class="fact">✨ <strong>Balochistan:</strong> sajji, whole lamb salt-roasted on stakes around a fire, and kaak, bread baked hard on hot stones.</div>
 <div class="fact">✨ <strong>Mithai</strong> is a love language: gulab jamun, jalebi (fried spirals of syrup), barfi, kheer. Good news travels in a box of mithai, job, engagement, exam result, all of it.</div>
 <div class="fact">✨ <strong>Falooda</strong>: rose syrup, vermicelli, basil seeds, ice cream, is dessert, drink, and architecture at once.</div>
+</div>
 <p class="nextprev">← <a href="khel-sports.html">Khel · Sports</a> &nbsp;·&nbsp; <a href="qudrat-nature-wildlife.html">Qudrat · Nature &amp; Wildlife</a> →</p>
 <div class="foot">Urdu Ustaadh is a free Urdu-learning resource: native audio, daily games, the Nastaliq script, and Pakistani culture. A project of Muneeb Ata Enterprises. <a href="https://myurdu.org/">Start learning free →</a></div>
 <script>var AR={"bakree": 2, "bherr": 2, "bherriyaa": 2, "ghorraa": 2, "chirriyaa": 2, "alif": 2, "be": 2, "pe": 2, "te": 2, "tte": 2, "se": 2, "jeem": 2, "che": 2, "barree-he": 2, "khe": 2, "daal": 2, "ddaal": 2, "zaal": 2, "re": 2, "rre": 2, "ze": 2, "zhe": 2, "seen": 2, "sheen": 2, "swaad": 2, "zwaad": 2, "toe": 2, "zoe": 2, "ain": 2, "ghain": 3, "fe": 2, "qaaf": 2, "kaaf": 2, "gaaf": 2, "laam": 2, "meem": 2, "noon": 2, "noon-ghunna": 2, "waao": 2, "gol-he": 2, "do-chashmee-he": 2, "hamza": 2, "chottee-ye": 2, "barree-ye": 2, "ek": 2, "do": 2, "paanch": 2, "chhe": 2, "saat": 2, "nau": 2, "das": 2, "gyaarah": 2, "baarah": 2, "pandrah": 2, "bees": 2, "tees": 2, "chaalees": 2, "pachaas": 2, "sau": 2, "dderrh": 2, "saarrhe": 2, "chaar": 2, "aatth": 2, "teen": 2, "duudh": 2, "laakh": 2, "khodaa-pahaarr-niklaa-choohaa": 2, "paak-sarzameen-shaad-baad": 2, "kishwar-e-haseen-shaad-baad": 2, "too-nishaan-e-azm-e-aalee-shaan": 2, "arz-e-paakistaan": 2, "markaz-e-yaqeen-shaad-baad": 2, "paak-sarzameen-kaa-nizaam": 2, "quwwat-e-ukhuwwat-e-awaam": 3, "qaum-mulk-saltanat": 2, "paainda-taabinda-baad": 2, "shaad-baad-manzil-e-muraad": 2, "parcham-e-sitaara-o-hilaal": 2, "rahbar-e-taraqqee-o-kamaal": 2, "tarjumaan-e-maazee-shaan-e-haal": 2, "jaan-e-istiqbaal": 3, "saaya-e-khudaa-e-zoo-l-jalaal": 3};function play(s){new Audio('../audio/'+s+'.mp3'+(AR[s]?('?r='+AR[s]):'')).play()}</script>

@@ -19,9 +19,9 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, "data.js"), "utf8"), sandbox);
 const {
   LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS,
   LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS,
-  KUTUB, QAWAID, AUR_SEEKHIYE,
+  KUTUB, QAWAID, AUR_SEEKHIYE, MUHAVARE,
 } = vm.runInContext(
-  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS, QAWAID, AUR_SEEKHIYE })",
+  "({ LEVELS, READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS, LOANWORDS, GEO_FEATURES, AZADI_ITEMS, ROLEPLAYS, TRACE_LETTERS, TRACE_WORDS, RANKS, KUTUB, KAHAWATEIN, JUMMAH_KAHAWATEIN, RISHTAY, D5_FACTS, QAWAID, AUR_SEEKHIYE, MUHAVARE })",
   sandbox
 );
 
@@ -150,6 +150,7 @@ for (const arr of [READING_UNITS, CULTURE_UNITS, SOUND_UNITS, PAKISTAN_UNITS]) {
 }
 // Letter names and word boards speak too. These were absent from the
 // required set — deleting jeem.mp3 used to pass smoke. No longer.
+MUHAVARE.forEach((m) => want(m.tr, m.ur));
 TRACE_LETTERS.forEach((L) => want(L.name));
 (TRACE_WORDS || []).forEach((w) => want(w.tr, w.ur));
 let missingAudio = 0;
@@ -169,6 +170,11 @@ for (const q of QAWAID || []) {
   for (const tr of q.ex) check(rawTrs.has(tr), `QAWAID ${q.id}: example is not a taught line: "${tr}"`);
   for (const dd of q.drills) check(LEVELS.some((lv) => lv.id === dd), `QAWAID ${q.id}: unknown drill ${dd}`);
 }
+
+// Muhāvare: quizzed literal-vs-real, so options must never collide
+check((MUHAVARE || []).length >= 10, `muhavara bank shrank to ${(MUHAVARE || []).length}`);
+for (const m of MUHAVARE || []) check(m.ur && m.tr && m.lit && m.en && m.note, `muhavara incomplete: ${m.tr || "?"}`);
+check(new Set(MUHAVARE.map((m) => m.en)).size === MUHAVARE.length, "two muhavare share a real-meaning string — distractors would collide");
 
 // Aur Seekhiye: every outbound door must be complete and https
 for (const g of AUR_SEEKHIYE || []) for (const it of g.items) {

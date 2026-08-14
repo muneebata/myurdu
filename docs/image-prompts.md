@@ -326,3 +326,6 @@ and recurring world as Batch 2.
 
 ### 9.2 The Fox and the Crow
 > Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling. Wide landscape scene, action centred vertically, generous margins. A crow perched on the branch of a leafy tree holding a piece of flatbread in its beak, while a fox sits below looking up with an exaggeratedly admiring expression, one paw on its chest mid-flattery. No text, no lettering, no writing anywhere in the image.
+
+### 9.3 The Dawat (for the RP9 scene header; it borrows the takalluf art until then)
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani vintage printed-card feeling, shalwar kameez and kurta clothing. Wide landscape scene, action centred vertically, generous margins. A dinner table crowded with Pakistani dishes, a warm host standing and serving biryani onto a seated guest's plate while the guest half-raises a hand in happy protest, other family members around the table mid-laughter. No text, no lettering, no writing anywhere in the image.

@@ -2158,6 +2158,15 @@ function mulkQuestion(country, rng) {
   };
 }
 
+function muhavaraQuestion(m, rng) {
+  const distractors = seededPick(MUHAVARE.filter((x) => x.tr !== m.tr), 3, rng);
+  return {
+    kind: "muhavara",
+    m,
+    options: seededPick([m, ...distractors], 4, rng).map((x) => ({ label: x.en, correct: x === m })),
+  };
+}
+
 function factQuestion(fact, rng) {
   const opts = [{ label: fact.a, correct: true }, ...fact.wrong.map((w) => ({ label: w, correct: false }))];
   return { kind: "fact", fact, options: seededPick(opts, 4, rng) };
@@ -2194,12 +2203,12 @@ function everydayThings() {
 // site taught you, and one picture. The last two rotate through their
 // own pools so the deck stays deep (a kinship question comes round
 // every third day, an animal every other day).
-const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", cheez: "🧺 Rozmarra", fact: "💡 Yād hai?" };
+const D5_KIND_TAG = { suno: "🎧 Suno · listen", roots: "🌱 Desi Roots", geo: "🗺️ Naqsha", rishta: "👪 Rishtay", kahawat: "🫖 Kahāwat", muhavara: "💬 Muhāvara", janwar: "🐾 Chiṛiyā Ghar", mulk: "🌍 Duniyā", cheez: "🧺 Rozmarra", fact: "💡 Yād hai?" };
 // Proverbs used to sit in this rotation, but answering one means
 // reading a whole Urdu idiom, which a beginner simply cannot do.
 // They live on the home screen as the proverb of the day instead,
 // where they are shown WITH their meaning rather than quizzed.
-const D5_KNOWLEDGE = ["rishta", "fact", "fact"];
+const D5_KNOWLEDGE = ["rishta", "fact", "muhavara", "fact"];
 const D5_PICTURE = ["janwar", "cheez", "mulk", "cheez"];
 
 // Which kind is up today, and how many times that kind has come round
@@ -2223,7 +2232,7 @@ function daily5Picks(key) {
   const k = rotationSlot(D5_KNOWLEDGE, di);
   const p = rotationSlot(D5_PICTURE, di);
   const kKind = k.kind, pKind = p.kind, kStep = k.step, pStep = p.step;
-  const knowledgePool = { rishta: RISHTAY.flatMap((g) => g.people).filter((p) => !p.you), kahawat: [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], fact: D5_FACTS }[kKind];
+  const knowledgePool = { rishta: RISHTAY.flatMap((g) => g.people).filter((p) => !p.you), kahawat: [...KAHAWATEIN, ...JUMMAH_KAHAWATEIN], fact: D5_FACTS, muhavara: MUHAVARE }[kKind];
   const picturePool = { janwar: zooAnimals(), mulk: worldCountries(), cheez: everydayThings() }[pKind];
   return {
     sunoPicks: azadiPeak(key)
@@ -2243,7 +2252,7 @@ function daily5Preview(key) {
   const sunoPool = LEVELS.flatMap((lv) => lv.items);
   const fullPool = azadiPeak(key) ? [...sunoPool, ...AZADI_ITEMS] : sunoPool;
   const d = daily5Picks(key);
-  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion };
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion, muhavara: muhavaraQuestion };
   return seededPick([
     ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
     ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
@@ -2274,6 +2283,7 @@ function startDaily5() {
     janwar: [() => zooAnimals(), (x) => x.tr],
     mulk: [() => worldCountries(), (x) => x.tr],
     cheez: [() => everydayThings(), (x) => x.tr],
+    muhavara: [() => MUHAVARE, (x) => x.tr],
   };
   const lookup = (kind, keys) => {
     const [pool, id] = KEYED[kind] || [];
@@ -2311,7 +2321,7 @@ function startDaily5() {
     };
     saveRoot();
   }
-  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion };
+  const build = { rishta: rishtaQuestion, kahawat: kahawatQuestion, fact: factQuestion, janwar: janwarQuestion, mulk: mulkQuestion, cheez: cheezQuestion, muhavara: muhavaraQuestion };
   const questions = seededPick([
     ...d.sunoPicks.map((it) => sunoQuestion(it, fullPool, rng)),
     ...d.rootsPicks.map((w) => rootsQuestion(w, rng)),
@@ -2345,6 +2355,14 @@ function renderD5() {
       <div class="quiz-prompt">
         <p class="daily-lead">👪 From the family tree:</p>
         <p class="d5-ask">${esc(rishtaAsk(q.person))}</p>
+      </div>`;
+  } else if (q.kind === "muhavara") {
+    body = `
+      <div class="quiz-prompt">
+        <p class="daily-lead">💬 A muhāvara — literally <em>“${esc(q.m.lit)}”</em>:</p>
+        <div class="q-ur ur">${esc(q.m.ur)}</div>
+        <div class="q-tr">${esc(q.m.tr)} <button class="btn speak small" onclick='Speech.speak(${JSON.stringify(q.m.ur)}, ${JSON.stringify(q.m.tr)})' aria-label="Play audio">🔊</button></div>
+        <p>What does it really mean?</p>
       </div>`;
   } else if (q.kind === "kahawat") {
     body = `
@@ -2419,6 +2437,7 @@ function answerD5(i) {
   if (q.kind === "roots") detail = `<em>${esc(q.word.story)}</em>`;
   else if (q.kind === "geo") detail = `${chosen.correct ? "" : `It's ${esc(q.feature.name)}. `}${hear(q.feature.ur, q.feature.tr)}`;
   else if (q.kind === "rishta") detail = `<span class="ur-inline">${esc(q.person.ur)}</span> <strong>${esc(q.person.tr)}</strong>: ${esc(q.person.en)} ${hear(q.person.ur, q.person.tr)}`;
+  else if (q.kind === "muhavara") detail = `<em>${esc(q.m.note)}</em> ${hear(q.m.ur, q.m.tr)}`;
   else if (q.kind === "kahawat") detail = `<em>${esc(q.saying.en)}</em>${q.saying.ctx ? ` <span class="hint">${esc(q.saying.ctx)}</span>` : ""}`;
   else if (q.kind === "janwar") detail = `<span class="ur-inline">${esc(q.animal.ur)}</span> <strong>${esc(q.animal.tr)}</strong>: ${esc(q.animal.en)} ${hear(q.animal.ur, q.animal.tr)}`;
   else if (q.kind === "cheez") detail = `<span class="ur-inline">${esc(q.thing.ur)}</span> <strong>${esc(q.thing.tr)}</strong>: ${esc(q.thing.en)} ${hear(q.thing.ur, q.thing.tr)}`;
@@ -2622,6 +2641,7 @@ function openUnit(unitsName, i) {
       </figure>`;
     }
     if (sec.rishtaTree && typeof RISHTAY !== "undefined") body += rishtaTreeHTML();
+    if (sec.muhavare && typeof MUHAVARE !== "undefined") body += muhavareRows();
     const dia = sec.diagram && typeof SOUND_DIAGRAMS !== "undefined" ? SOUND_DIAGRAMS[sec.diagram] : null;
     if (dia) body += `<figure class="diagram">${dia.svg}<figcaption>${esc(dia.caption)}</figcaption></figure>`;
     if (sec.facts) body += sec.facts.map((f) => `<p class="read-fact">${f}</p>`).join("");
@@ -3043,7 +3063,7 @@ function trackPakistanHTML() {
 
 // ── Role-play: live conversations with the mic ──────────────
 
-const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "🩺", RP6: "🛺", RP7: "📞", RP8: "🧵" };
+const SAIR_STOPS = { RP1: "☕", RP2: "🤝", RP3: "🍋", RP4: "🧭", RP5: "🩺", RP6: "🛺", RP7: "📞", RP8: "🧵", RP9: "🍽️" };
 
 function renderSair() {
   app().innerHTML = `
@@ -4336,6 +4356,24 @@ function renderAurSeekhiye() {
     <p class="hint">Our own reference shelf lives in the footer: 📖 Lughat, 📐 Qawāid, and the 🔤 Harf Chart on the reading track.</p>
   `;
   window.scrollTo(0, 0);
+}
+
+// C8 renders the MUHAVARE bank directly — one source for the unit AND
+// the daily game, so the idiom list can never fork.
+function muhavareRows() {
+  return MUHAVARE.map((m) => `
+    <div class="phrase">
+      <div class="phrase-main">
+        <div class="phrase-ur ur">${esc(m.ur)}</div>
+        <div class="phrase-tr">${esc(m.tr)}</div>
+        <div class="phrase-en">literally: <em>${esc(m.lit)}</em> → <b>${esc(m.en)}</b></div>
+        <div class="phrase-note">${esc(m.note)}</div>
+      </div>
+      <div class="phrase-btns">
+        <button class="btn speak" onclick='Speech.speak(${JSON.stringify(m.ur)}, ${JSON.stringify(m.tr)})'>🔊 Listen</button>
+        ${nishaanBtn(m.ur, m.tr, m.en, "Muhāvare", false)}
+      </div>
+    </div>`).join("");
 }
 
 const NAV_PAGES = [
