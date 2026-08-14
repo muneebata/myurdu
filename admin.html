@@ -79,6 +79,8 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
     <div id="signups"></div>
     <h2>Most-completed levels &amp; units</h2>
     <div id="units"></div>
+    <h2>Level funnel <span class="note">accounts that have passed each level — where the bars fall is where learners stall</span></h2>
+    <div id="funnel"></div>
     <h2>Account roster</h2>
     <div class="card" style="padding:8px 12px; overflow-x:auto">
       <table id="roster" style="width:100%; border-collapse:collapse; font-size:0.85rem"></table>
@@ -90,6 +92,23 @@ h2 { font-family:"Baloo 2",sans-serif; font-size:1.05rem; color:var(--teal-dark)
 <script>
 const API = "https://myurdu-backend-production.up.railway.app";
 let token = null;
+
+// Learnability funnel: distinct accounts that passed each level. A
+// standalone function so it can be driven with synthetic data in tests.
+function renderFunnel(byUser) {
+  const lvlCounts = {};
+  for (const rec of Object.values(byUser || {})) {
+    const done = new Set();
+    for (const p of Object.values(rec?.data?.profiles || {}))
+      for (const id of Object.keys(p.completed || {})) if (/^L\d+$/.test(id)) done.add(id);
+    for (const id of done) lvlCounts[id] = (lvlCounts[id] || 0) + 1;
+  }
+  const maxL = Math.max(1, ...Object.values(lvlCounts));
+  document.getElementById("funnel").innerHTML = Array.from({ length: 24 }, (_, i) => {
+    const id = "L" + (i + 1), n = lvlCounts[id] || 0;
+    return `<div class="bar-row"><span>Level ${i + 1}</span><div class="bar"><i style="width:${(n / maxL) * 100}%"></i></div><span>${n}</span></div>`;
+  }).join("");
+}
 
 async function api(path) {
   const res = await fetch(API + path, { headers: { Authorization: token } });
@@ -256,6 +275,7 @@ async function loadStats() {
     <tr style="text-align:left; color:var(--muted)"><th style="padding:6px 8px">Account</th><th style="padding:6px 8px">Learner profiles</th><th style="padding:6px 8px">Done</th><th style="padding:6px 8px">Joined</th><th style="padding:6px 8px">Last active</th></tr>
     ${rosterRows || '<tr><td style="padding:8px" class="note">No accounts yet.</td></tr>'}`;
 
+  renderFunnel(byUser);
   const top = Object.entries(unitCounts).sort((a, b) => b[1] - a[1]).slice(0, 12);
   const maxU = top[0]?.[1] || 1;
   document.getElementById("units").innerHTML = top.map(([id, n]) =>
@@ -329,10 +349,10 @@ async function loadStats() {
   <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
-<script src="data.js?v=202608132218"></script>
-<script src="speech.js?v=202608132218"></script>
+<script src="data.js?v=202608132225"></script>
+<script src="speech.js?v=202608132225"></script>
 <script>window.MYURDU_NO_BOOT = true;</script>
-<script src="app.js?v=202608132218"></script>
+<script src="app.js?v=202608132225"></script>
 <script>
 // Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
 // (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
