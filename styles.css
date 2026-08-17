@@ -1095,6 +1095,11 @@ html[data-theme="dark"] .jummah-chip { background: #0b2e16; color: #cfe8d5; }
 @media (max-width: 700px) { .azadi-fireworks { display: none; } }
 @media (prefers-reduced-motion: reduce) { .azadi-fireworks { display: none; } }
 
+/* Basant patang drifting under the fireworks */
+.azadi-kite { position: absolute; z-index: 2; pointer-events: none; }
+@media (max-width: 700px) { .azadi-kite { display: none; } }
+@media (prefers-reduced-motion: reduce) { .azadi-kite { display: none; } }
+
 /* Qawāid reference cards */
 .qw-points li { margin-bottom: 6px; }
 .qw-table { border-collapse: collapse; margin: 8px 0 12px; font-size: 0.92rem; }

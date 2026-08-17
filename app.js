@@ -1001,6 +1001,50 @@ const AZADI_FIREWORKS_R = `<svg class="azadi-fireworks azadi-fw-right" viewBox="
     </g>
 </svg>`;
 
+// Basant patang: three small kites seen far off on the horizon, drifting
+// under the fireworks with long angled lines running down to unseen flyers.
+// Lines end above the profile/streak/level row. Hidden on phones and for
+// reduced-motion users, same as the fireworks.
+const AZADI_KITES = `
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="uu-kite">
+    <path d="M17,0 L34,20 L17,44 L0,20 Z" stroke="#3b2e1f" stroke-width="1.6"/>
+    <path d="M17,0 L17,44 M0,20 L34,20" stroke="#3b2e1f" stroke-width="1" opacity=".55" fill="none"/>
+    <path d="M17,44 C15,54 20,60 17,70" stroke="#3b2e1f" stroke-width="1.2" fill="none"/>
+    <path d="M13,52 l8,-3 M14,62 l7,3" stroke="currentColor" stroke-width="1.2" fill="none"/>
+  </g>
+</defs></svg>
+<svg class="azadi-kite" style="left:19%; top:8px;" width="100" height="185" viewBox="0 0 100 185" aria-hidden="true">
+  <path d="M63.5,41 C50,80 62,124 12,178" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M63.5,41 C50,80 62,124 12,178; M63.5,41 C58,84 50,126 12,178; M63.5,41 C50,80 62,124 12,178" dur="8s" repeatCount="indefinite"/>
+  </path>
+  <g transform="translate(55,6) scale(0.5)">
+    <g><use href="#uu-kite" fill="#12808b" style="color:#12808b"/>
+      <animateTransform attributeName="transform" type="rotate" values="-6 17 20; 7 17 20; -6 17 20" dur="5.8s" repeatCount="indefinite"/></g>
+  </g>
+  <animateTransform attributeName="transform" type="translate" values="0,0; 12,-5; 22,0; 10,4; 0,0" dur="17s" repeatCount="indefinite" additive="sum"/>
+</svg>
+<svg class="azadi-kite" style="left:56%; top:24px;" width="90" height="160" viewBox="0 0 90 160" aria-hidden="true">
+  <path d="M25,33 C40,70 28,110 68,152" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M25,33 C40,70 28,110 68,152; M25,33 C32,74 40,112 68,152; M25,33 C40,70 28,110 68,152" dur="9.4s" repeatCount="indefinite"/>
+  </path>
+  <g transform="translate(18,4) scale(0.42)">
+    <g><use href="#uu-kite" fill="#c26a3a" style="color:#c26a3a"/>
+      <animateTransform attributeName="transform" type="rotate" values="5 17 20; -7 17 20; 5 17 20" dur="6.6s" repeatCount="indefinite"/></g>
+  </g>
+  <animateTransform attributeName="transform" type="translate" values="0,0; -10,5; -18,0; -8,-4; 0,0" dur="21s" repeatCount="indefinite" additive="sum"/>
+</svg>
+<svg class="azadi-kite" style="left:76%; top:4px;" width="105" height="190" viewBox="0 0 105 190" aria-hidden="true">
+  <path d="M67,40 C52,85 68,130 20,184" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M67,40 C52,85 68,130 20,184; M67,40 C62,88 54,132 20,184; M67,40 C52,85 68,130 20,184" dur="7.2s" repeatCount="indefinite"/>
+  </path>
+  <g transform="translate(58,2) scale(0.55)">
+    <g><use href="#uu-kite" fill="#b05464" style="color:#b05464"/>
+      <animateTransform attributeName="transform" type="rotate" values="-8 17 20; 6 17 20; -8 17 20" dur="7.2s" repeatCount="indefinite"/></g>
+  </g>
+  <animateTransform attributeName="transform" type="translate" values="0,0; 9,6; 17,0; 7,-5; 0,0" dur="15s" repeatCount="indefinite" additive="sum"/>
+</svg>`;
+
 const AZADI_FLAG_SVG = `
 <svg class="azadi-flag" viewBox="0 0 184 158" aria-label="Waving flag of Pakistan with confetti">
   <defs>
@@ -1118,7 +1162,7 @@ function renderHome() {
         <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       </div>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${AZADI_FIREWORKS_L + AZADI_FIREWORKS_R}
+      ${AZADI_FIREWORKS_L + AZADI_FIREWORKS_R + AZADI_KITES}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it. Thora thora, har roz.</p>
