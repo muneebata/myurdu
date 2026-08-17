@@ -104,7 +104,7 @@ function renderFunnel(byUser) {
     for (const id of done) lvlCounts[id] = (lvlCounts[id] || 0) + 1;
   }
   const maxL = Math.max(1, ...Object.values(lvlCounts));
-  document.getElementById("funnel").innerHTML = Array.from({ length: 24 }, (_, i) => {
+  document.getElementById("funnel").innerHTML = Array.from({ length: (typeof LEVELS !== "undefined" ? LEVELS.length : 30) }, (_, i) => {
     const id = "L" + (i + 1), n = lvlCounts[id] || 0;
     return `<div class="bar-row"><span>Level ${i + 1}</span><div class="bar"><i style="width:${(n / maxL) * 100}%"></i></div><span>${n}</span></div>`;
   }).join("");
@@ -349,10 +349,10 @@ async function loadStats() {
   <h2>🎧 Audio spot-check <span class="note">the shortest clips are the likeliest to be mispronounced (the jīm lesson). Tap ▶, flag anything that sounds wrong.</span></h2>
   <div id="qa-list" class="note">Loading clip list…</div>
 </div>
-<script src="data.js?v=202608171257"></script>
-<script src="speech.js?v=202608171257"></script>
+<script src="data.js?v=202608171258"></script>
+<script src="speech.js?v=202608171258"></script>
 <script>window.MYURDU_NO_BOOT = true;</script>
-<script src="app.js?v=202608171257"></script>
+<script src="app.js?v=202608171258"></script>
 <script>
 // Aaj Ka Paanch preview. app.js is loaded above purely for its dealer
 // (MYURDU_NO_BOOT keeps it from rendering the app or counting a visit),
