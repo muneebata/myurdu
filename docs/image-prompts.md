@@ -342,3 +342,23 @@ Two scenes for the newest tales, same storybook world.
 
 ### 10.2 The Boy Who Cried Wolf
 > Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, vintage storybook feeling, shalwar kameez clothing. Wide landscape scene, action centred vertically, generous margins. A young boy in a kurta standing on a grassy hillside among a small herd of goats, hands cupped around his mouth mid-shout, while far in the background a grey wolf slips out from the treeline unnoticed. No text, no lettering, no writing anywhere in the image.
+
+---
+
+# BATCH 11 · B2 level headers (L25–L30)
+
+Six landscape scenes, 1536×1024, same style line as Batch 4:
+
+> Flat editorial illustration, warm cream paper background, soft muted palette of sage green, terracotta, mustard, dusty rose and teal, gentle clean linework, subtle paper grain, Pakistani truck-art and vintage printed-card feeling, shalwar kameez and kurta clothing where people appear. Wide landscape scene, action centred vertically, generous margins. No text, no lettering, no signs, no writing anywhere in the image. The scene is:
+
+1. **L25 Jo–Wo** – two people on a bridge over a stream, one pointing across, the other following the gesture, the bridge visually linking two banks
+2. **L26 The passive** – a busy chai stall where cups are being filled and passed along a counter, no single person the focus, the work simply happening
+3. **L27 Shāyad** – a person at a window looking at gathering monsoon clouds, an umbrella held half-open, undecided
+4. **L28 Causatives** – a tailor's shop where a customer gestures at fabric while the tailor measures, an assistant pressing a finished kameez behind them, three layers of work in one frame
+5. **L29 The izāfat** – a grand illuminated archway with a ceremonial garland being hung across it by two people on ladders, formal and festive
+6. **L30 The dawat capstone** – a warmly lit doorway at dusk, a family arriving with a wrapped gift, the host opening the door with both arms wide, food-laden table glowing inside
+
+---
+
+# BATCH 12 · Kahānī 4 second thoughts (optional)
+(reserved)

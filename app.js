@@ -1149,7 +1149,7 @@ function renderHome() {
         <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       </div>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${azadiPeak() ? AZADI_FIREWORKS_L + AZADI_FIREWORKS_R : ""}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
+      ${AZADI_FIREWORKS_L + AZADI_FIREWORKS_R}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it. Thora thora, har roz.</p>
@@ -1164,7 +1164,6 @@ function renderHome() {
         <span class="progress-label">${pct}% complete</span>
       </div>
       <div class="notice" id="voice-notice" ${notice ? "" : "hidden"}>🔈 ${esc(notice || "")}</div>
-      ${azadiMonth() ? azadiBanner() : ""}
       ${due > 0 ? `<button class="review-banner" onclick="startFlashcards()">🃏 ${due} word${due === 1 ? "" : "s"} due, flip through your flashcards →</button>` : ""}
     </header>
 
@@ -2756,24 +2755,6 @@ function completeUnit(unitsName, i) {
 
 // ── Jashn-e-Azadi UI ─────────────────────────────────────────
 
-function azadiBanner() {
-  const [y, m, d] = todayKey().split("-").map(Number);
-  const daysLeft = m === 8 ? 14 - d : null;
-  const years = y - 1947;
-  const line = isAzadiDay()
-    ? `🇵🇰 Jashn-e-Azadi Mubarak! ${years} years of azadi. Happy 14th of August!`
-    : azadiPeak()
-      ? `🇵🇰 Jashn-e-Azadi week, ${daysLeft} din to the 14th. Suno! is serving azadi words all week.`
-      : daysLeft && daysLeft > 0
-        ? `🇵🇰 Azadi month is here, the big day lands on the 14th (${daysLeft} din). Jashn shurū!`
-        : `🇵🇰 ${years} saal of azadi, celebrating all month. Azadi Mubarak!`;
-  return `
-    <div class="azadi-banner">
-      <span>${line}</span>
-      <button class="btn small azadi-share-btn" onclick="showAzadiCard()">📤 Share your Azadi card</button>
-    </div>`;
-}
-
 function launchConfetti() {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (sessionStorage.getItem("azadi-confetti")) return;
@@ -2794,50 +2775,6 @@ function launchConfetti() {
   setTimeout(() => box.remove(), 8000);
 }
 
-async function showAzadiCard() {
-  const overlay = document.createElement("div");
-  overlay.className = "modal-overlay";
-  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
-  overlay.innerHTML = `
-    <div class="modal-card cert-modal">
-      <canvas id="azadi-canvas" width="1000" height="700"></canvas>
-      <div class="result-actions">
-        <a class="btn primary" id="azadi-dl" download="jashn-e-azadi.png">⬇️ Download</a>
-        <button class="btn" onclick="this.closest('.modal-overlay').remove()">Close</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  try { await document.fonts.load("700 60px 'Baloo 2'"); await document.fonts.load("700 60px 'Noto Nastaliq Urdu'"); } catch {}
-  const cv = document.getElementById("azadi-canvas");
-  const ctx = cv.getContext("2d");
-  ctx.fillStyle = "#01411C"; ctx.fillRect(0, 0, 1000, 700);
-  ctx.fillStyle = "#f7f2e6"; ctx.fillRect(0, 0, 250, 700);
-  // crescent + star on the green field
-  ctx.beginPath(); ctx.arc(660, 300, 150, 0, Math.PI * 2); ctx.fillStyle = "#f7f2e6"; ctx.fill();
-  ctx.beginPath(); ctx.arc(705, 262, 128, 0, Math.PI * 2); ctx.fillStyle = "#01411C"; ctx.fill();
-  ctx.save(); ctx.translate(740, 230); ctx.rotate(0.35); ctx.fillStyle = "#f7f2e6";
-  ctx.beginPath();
-  for (let i = 0; i < 5; i++) {
-    const a = (i * 4 * Math.PI) / 5 - Math.PI / 2;
-    ctx[i ? "lineTo" : "moveTo"](Math.cos(a) * 55, Math.sin(a) * 55);
-  }
-  ctx.closePath(); ctx.fill(); ctx.restore();
-  ctx.textAlign = "center";
-  ctx.fillStyle = "#f7f2e6"; ctx.font = "700 64px 'Noto Nastaliq Urdu', serif";
-  ctx.fillText("جشن آزادی مبارک", 620, 520);
-  ctx.font = "700 36px 'Baloo 2', sans-serif";
-  ctx.fillText("Jashn-e-Azadi Mubarak · 14 August", 620, 580);
-  ctx.font = "24px 'Baloo 2', sans-serif"; ctx.fillStyle = "#d9a413";
-  ctx.fillText("I'm learning Urdu at myurdu.org, a free Urdu-learning resource", 620, 640);
-  document.getElementById("azadi-dl").href = cv.toDataURL("image/png");
-}
-
-// ── About ────────────────────────────────────────────────────
-
-// ── Add to phone ─────────────────────────────────────────────
-// Installing a web app is a different ritual on every platform and
-// none of them are discoverable, so this explains the one the visitor
-// is actually on rather than listing all of them.
 function isStandalone() {
   return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
 }

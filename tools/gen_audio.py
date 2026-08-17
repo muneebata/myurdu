@@ -92,6 +92,28 @@ ANTHEM_UR = {
 }
 CLIP_OVERRIDES.update({k: (V, t) for k, t in ANTHEM_UR.items()})
 
+# ── L29 and the izāfat titles ─────────────────────────────────
+# Same defect class as the anthem: the zer vowel of Quaid-e-Azam etc.
+# is swallowed by ur-PK. Same ear-approved fix: Devanagari, attached
+# form. Also repairs jashn-e-āzādī mubārak, broken since the Azadi
+# items shipped (flagged during the anthem work, fixed here).
+B2_IZAFAT = {
+    "quaid-e-aazam": "क़ाइदे आज़म",
+    "wazeer-e-aazam": "वज़ीरे आज़म",
+    "jashn-e-aazaadee": "जश्ने आज़ादी",
+    "yaum-e-aazaadee": "यौमे आज़ादी",
+    "sher-e-punjab": "शेरे पंजाब",
+    "maadar-e-watan": "मादरे वतन",
+    "haal-e-dil": "हाले दिल",
+    "ahl-e-zabaan": "अहले ज़बान",
+    "khat-e-nastaaleeq": "ख़ते नस्तालीक़",
+    "kalaam-e-iqbaal": "कलामे इक़बाल",
+    "wazeer-e-khaarja": "वज़ीरे ख़ारजा",
+    "aap-ahl-e-zabaan-kee-tarah-bolte-hain": "आप अहले ज़बान की तरह बोलते हैं",
+    "jashn-e-aazaadee-mubaarak": "जश्ने आज़ादी मुबारक",
+}
+CLIP_OVERRIDES.update({k: (V, t) for k, t in B2_IZAFAT.items()})
+
 # Diacritized so the neural voice reads the letter NAMES cleanly
 # (bare "جیم" was getting mangled; جِیم forces jīm, etc.)
 LETTER_NAMES_UR = {
