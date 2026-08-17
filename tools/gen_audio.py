@@ -98,7 +98,7 @@ CLIP_OVERRIDES.update({k: (V, t) for k, t in ANTHEM_UR.items()})
 # form. Also repairs jashn-e-āzādī mubārak, broken since the Azadi
 # items shipped (flagged during the anthem work, fixed here).
 B2_IZAFAT = {
-    "quaid-e-aazam": "क़ाइदे आज़म",
+    "quaid-e-azam": "क़ाइदे आज़म",  # site spells it Azam (no macron), matching K8
     "wazeer-e-aazam": "वज़ीरे आज़म",
     "jashn-e-aazaadee": "जश्ने आज़ादी",
     "yaum-e-aazaadee": "यौमे आज़ादी",
