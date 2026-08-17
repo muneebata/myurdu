@@ -1086,37 +1086,6 @@ const AZADI_FLAG_SVG = `
 // Gentle page-wide confetti rain for Jashn-e-Azadi week, home page only:
 // renderHome() turns it on, backBar() (built by every other view) turns it
 // off. Sparse, click-through, and hidden for reduced-motion users (CSS).
-function ensureAzadiRain() {
-  if (!azadiPeak() || document.querySelector(".confetti-rain")) return;
-  const colors = ["#01411C", "#f7f2e6", "#d9a413", "#12808b", "#c26a3a", "#b05464"];
-  const box = document.createElement("div");
-  box.className = "confetti-rain";
-  box.setAttribute("aria-hidden", "true");
-  let bits = "";
-  for (let i = 0; i < 16; i++) {
-    const left = (i * 6.4 + (i % 3) * 2.2) % 100;
-    const dur = 7 + (i % 5) * 1.6;
-    const delay = -(i * 0.9);
-    const size = 6 + (i % 3) * 3;
-    bits += `<i style="left:${left}%; width:${size}px; height:${size * 1.5}px; background:${colors[i % colors.length]}; animation-duration:${dur}s; animation-delay:${delay}s"></i>`;
-  }
-  box.innerHTML = bits;
-  document.body.appendChild(box);
-  // confine the rain to the hero: stop right where Roz ka Khel begins
-  const firstSection = document.querySelector(".track-title");
-  if (firstSection) {
-    const h = Math.max(200, firstSection.getBoundingClientRect().top + window.scrollY - 30);
-    box.style.height = h + "px";
-    box.style.setProperty("--rain-h", h + "px");
-  }
-}
-
-function removeAzadiRain() {
-  document.querySelector(".confetti-rain")?.remove();
-}
-
-// ── Home ─────────────────────────────────────────────────────
-
 function renderHome() {
   if (!root.active) {
     // First visit: start instantly as "Mehmaan" (guest), no questions
@@ -1149,7 +1118,7 @@ function renderHome() {
         <button class="about-btn" onclick="showAbout()" title="About Urdu Ustaadh">ℹ️ About</button>
       </div>
       <button class="save-btn" onclick="showAccount()" title="Back up your progress">${Cloud.status === "in" ? "☁️ Progress saved" : "💾 Save your progress"}</button>
-      ${AZADI_FIREWORKS_L + AZADI_FIREWORKS_R}${azadiMonth() ? AZADI_FLAG_SVG + AZADI_FLAG_SVG.replace('rotate(-13 22 152)', 'rotate(13 22 152)').replace('class="azadi-flag"', 'class="azadi-flag azadi-flag-right"') : ""}
+      ${AZADI_FIREWORKS_L + AZADI_FIREWORKS_R}
       <img class="hero-logo" src="icon-192.png" alt="Urdu Ustaadh, اردو" />
       <h1 class="retro">Urdu Ustaadh</h1>
       <p class="tagline">Speak it, hear it, read it. Thora thora, har roz.</p>
@@ -1260,7 +1229,6 @@ function renderHome() {
 
     <footer class="foot">Progress is saved per learner on this device. · <button class="linklike" onclick="renderProfiles()">Switch learner</button> · <button class="linklike" onclick="renderLughat()">📖 Lughat · Glossary</button> · <button class="linklike" onclick="renderQawaid()">📐 Qawāid · Grammar</button> · <button class="linklike" onclick="renderAurSeekhiye()">🧭 Aur Seekhiye</button> · <a class="linklike" href="learn/">Browse lessons as pages</a></footer>
   `;
-  ensureAzadiRain();
 }
 
 function levelCard(lv, i) {
@@ -2755,26 +2723,6 @@ function completeUnit(unitsName, i) {
 
 // ── Jashn-e-Azadi UI ─────────────────────────────────────────
 
-function launchConfetti() {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (sessionStorage.getItem("azadi-confetti")) return;
-  sessionStorage.setItem("azadi-confetti", "1");
-  const box = document.createElement("div");
-  box.className = "confetti-box";
-  const colors = ["#01411C", "#f7f2e6", "#1a7a3c", "#d9a413"];
-  for (let i = 0; i < 44; i++) {
-    const c = document.createElement("i");
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = colors[i % colors.length];
-    c.style.animationDelay = Math.random() * 2.5 + "s";
-    c.style.animationDuration = 2.8 + Math.random() * 2 + "s";
-    c.style.transform = `rotate(${Math.random() * 360}deg)`;
-    box.appendChild(c);
-  }
-  document.body.appendChild(box);
-  setTimeout(() => box.remove(), 8000);
-}
-
 function isStandalone() {
   return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
 }
@@ -4116,7 +4064,6 @@ function renderKutubWork(i) {
 // ── Shared bits ──────────────────────────────────────────────
 
 function backBar(title, backFn = "renderHome()") {
-  removeAzadiRain(); // confetti is a home-page greeting only
   // History-tracked pages pop real history so the browser and the button
   // agree; transient pages (quizzes, game rounds) run their fallback
   // directly, their parent is still the current history entry.
@@ -4402,4 +4349,3 @@ function pingPlay(game) {
     }).then((r) => { if (r.ok) localStorage.setItem(k, today); }).catch(() => {});
   } catch (_) {}
 })();
-if (!window.MYURDU_NO_BOOT && isAzadiDay()) launchConfetti();

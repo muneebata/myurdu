@@ -345,7 +345,7 @@ Two scenes for the newest tales, same storybook world.
 
 ---
 
-# BATCH 11 · B2 level headers (L25–L30)
+# BATCH 11 · B2 level headers (L25–L30)  ✅ DONE, all six live
 
 Six landscape scenes, 1536×1024, same style line as Batch 4:
 

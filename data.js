@@ -776,6 +776,7 @@ const LEVELS = [
   },
   {
     id: "L25",
+    img: { src: "images/levels/l25.jpg", alt: "Two friends on a small painted bridge over a stream, one pointing across to the far bank" },
     title: "Jo–Wo · Which and That",
     urName: "جو وہ",
     subtitle: "Relative clauses, the hinge of every complex sentence",
@@ -807,6 +808,7 @@ const LEVELS = [
   },
   {
     id: "L26",
+    img: { src: "images/levels/l26.jpg", alt: "A busy roadside chai stall, kettles pouring and cups passing along the counter, the work simply happening" },
     title: "Bolī Jātī Hai · The Passive",
     urName: "مجہول",
     subtitle: "How signs, news, and polite distance are phrased",
@@ -838,6 +840,7 @@ const LEVELS = [
   },
   {
     id: "L27",
+    img: { src: "images/levels/l27.jpg", alt: "A man at a shuttered window holding a half-open umbrella, monsoon clouds gathering over the valley" },
     title: "Shāyad Ho · Maybe, Hopefully",
     urName: "شاید",
     subtitle: "Doubt, hope, and educated guessing, the grammar of politeness",
@@ -869,6 +872,7 @@ const LEVELS = [
   },
   {
     id: "L28",
+    img: { src: "images/levels/l28.jpg", alt: "A tailor's shop: a customer choosing fabric, the master measuring cloth, an assistant pressing a finished kameez" },
     title: "Karnā, Karānā, Karwānā · The Causative Ladder",
     urName: "تعدیہ",
     subtitle: "Do it, make it happen, have it done, three rungs of one verb",
@@ -900,6 +904,7 @@ const LEVELS = [
   },
   {
     id: "L29",
+    img: { src: "images/levels/l29.jpg", alt: "A grand illuminated archway with two men on ladders hanging a marigold garland across it" },
     title: "Sher-e-Punjab · The Izāfat",
     urName: "اضافت",
     subtitle: "The Persian hinge in every grand title, and the formal register",
@@ -931,6 +936,7 @@ const LEVELS = [
   },
   {
     id: "L30",
+    img: { src: "images/levels/l30.jpg", alt: "A family arriving at a warmly lit doorway at dusk with a wrapped gift, the host opening both arms in welcome" },
     title: "Dāwat · The Capstone Evening",
     urName: "دعوت",
     subtitle: "A whole evening as the mehmān, every B2 pattern at one table",
