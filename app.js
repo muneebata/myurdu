@@ -1014,9 +1014,9 @@ const AZADI_KITES = `
     <path d="M13,52 l8,-3 M14,62 l7,3" stroke="currentColor" stroke-width="1.2" fill="none"/>
   </g>
 </defs></svg>
-<svg class="azadi-kite" style="left:19%; top:8px;" width="100" height="185" viewBox="0 0 100 185" aria-hidden="true">
-  <path d="M63.5,41 C50,80 62,124 12,178" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
-    <animate attributeName="d" values="M63.5,41 C50,80 62,124 12,178; M63.5,41 C58,84 50,126 12,178; M63.5,41 C50,80 62,124 12,178" dur="8s" repeatCount="indefinite"/>
+<svg class="azadi-kite" style="left:19%; top:108px;" width="100" height="130" viewBox="0 0 100 130" aria-hidden="true">
+  <path d="M63.5,41 C52,68 62,96 16,126" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M63.5,41 C52,68 62,96 16,126; M63.5,41 C58,72 52,98 16,126; M63.5,41 C52,68 62,96 16,126" dur="8s" repeatCount="indefinite"/>
   </path>
   <g transform="translate(55,6) scale(0.5)">
     <g><use href="#uu-kite" fill="#12808b" style="color:#12808b"/>
@@ -1024,9 +1024,9 @@ const AZADI_KITES = `
   </g>
   <animateTransform attributeName="transform" type="translate" values="0,0; 12,-5; 22,0; 10,4; 0,0" dur="17s" repeatCount="indefinite" additive="sum"/>
 </svg>
-<svg class="azadi-kite" style="left:56%; top:24px;" width="90" height="160" viewBox="0 0 90 160" aria-hidden="true">
-  <path d="M25,33 C40,70 28,110 68,152" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
-    <animate attributeName="d" values="M25,33 C40,70 28,110 68,152; M25,33 C32,74 40,112 68,152; M25,33 C40,70 28,110 68,152" dur="9.4s" repeatCount="indefinite"/>
+<svg class="azadi-kite" style="left:56%; top:118px;" width="90" height="112" viewBox="0 0 90 112" aria-hidden="true">
+  <path d="M25,33 C36,58 28,82 60,108" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M25,33 C36,58 28,82 60,108; M25,33 C30,62 38,86 60,108; M25,33 C36,58 28,82 60,108" dur="9.4s" repeatCount="indefinite"/>
   </path>
   <g transform="translate(18,4) scale(0.42)">
     <g><use href="#uu-kite" fill="#c26a3a" style="color:#c26a3a"/>
@@ -1034,9 +1034,9 @@ const AZADI_KITES = `
   </g>
   <animateTransform attributeName="transform" type="translate" values="0,0; -10,5; -18,0; -8,-4; 0,0" dur="21s" repeatCount="indefinite" additive="sum"/>
 </svg>
-<svg class="azadi-kite" style="left:76%; top:4px;" width="105" height="190" viewBox="0 0 105 190" aria-hidden="true">
-  <path d="M67,40 C52,85 68,130 20,184" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
-    <animate attributeName="d" values="M67,40 C52,85 68,130 20,184; M67,40 C62,88 54,132 20,184; M67,40 C52,85 68,130 20,184" dur="7.2s" repeatCount="indefinite"/>
+<svg class="azadi-kite" style="left:76%; top:100px;" width="105" height="138" viewBox="0 0 105 138" aria-hidden="true">
+  <path d="M67,40 C56,72 68,102 24,134" stroke="#8a7458" stroke-width="1" fill="none" opacity=".7">
+    <animate attributeName="d" values="M67,40 C56,72 68,102 24,134; M67,40 C62,76 56,106 24,134; M67,40 C56,72 68,102 24,134" dur="7.2s" repeatCount="indefinite"/>
   </path>
   <g transform="translate(58,2) scale(0.55)">
     <g><use href="#uu-kite" fill="#b05464" style="color:#b05464"/>
