@@ -399,10 +399,26 @@ function startFlashcards() {
   renderFlashcard(false);
 }
 
+// A whole level as a flashcard run, shuffled, as warm-up for its quiz.
+// Same engine, same honest grading; the grades stamp the Leitner ladder,
+// so a ❌ here comes back through the review deck once the level is done.
+function startLevelFlashcards(levelIdx) {
+  const lv = LEVELS[levelIdx];
+  const deck = shuffle([...lv.items]).map((it) => ({
+    key: Speech.slug(it.tr), ur: it.ur, tr: it.tr, en: it.en,
+    src: `Level ${levelIdx + 1} · ${lv.title}`, saved: false,
+  }));
+  fc = { deck, i: 0, again: 0, good: 0, easy: 0, level: levelIdx };
+  renderFlashcard(false);
+}
+
 function renderFlashcard(revealed) {
   const c = fc.deck[fc.i];
+  const lvl = fc.level;
   app().innerHTML = `
-    ${backBar("🃏 Flashcards", "renderHome()")}
+    ${lvl != null
+      ? backBar(`🃏 Level ${lvl + 1} flashcards`, `openLevel(${lvl})`)
+      : backBar("🃏 Flashcards", "renderHome()")}
     <div class="quiz-progress">Card ${fc.i + 1} of ${fc.deck.length}${c.saved ? " · 🔖 saved by you" : ""}</div>
     <div class="fc-card">
       <div class="fc-src">${esc(c.src)}</div>
@@ -450,6 +466,30 @@ function fcGrade(g) {
 }
 
 function finishFlashcards() {
+  const lvl = fc.level;
+  if (lvl != null) {
+    app().innerHTML = `
+      ${backBar(`🃏 Level ${lvl + 1} flashcards`, `openLevel(${lvl})`)}
+      <div class="fc-card fc-done">
+        <p class="fc-empty-art">${fc.again === 0 ? "🌟" : "📚"}</p>
+        <p><b>All ${fc.deck.length} phrases flipped.</b></p>
+        <div class="fc-tally">
+          <span>❌ Phir se · ${fc.again}</span>
+          <span>🙂 Thīk hai · ${fc.good}</span>
+          <span>⚡ Āsān · ${fc.easy}</span>
+        </div>
+        <p class="hint">${fc.again > 0
+          ? "Another flip through will shuffle them fresh, or head into the quiz and let it find the gaps."
+          : "You knew every one. The quiz is a formality now."}</p>
+        <div class="result-actions">
+          <button class="btn primary big" onclick="startQuiz(${lvl})">Take the Level ${lvl + 1} quiz →</button>
+          ${fc.again > 0 ? `<button class="btn" onclick="startLevelFlashcards(${lvl})">Flip them again →</button>` : ""}
+          <button class="btn" onclick="openLevel(${lvl})">Back to the lesson</button>
+        </div>
+      </div>`;
+    window.scrollTo(0, 0);
+    return;
+  }
   const more = flashDeck().length;
   app().innerHTML = `
     ${backBar("🃏 Flashcards")}
@@ -1346,6 +1386,7 @@ function openLevel(i) {
     ${micCompatNote()}
     <div class="phrase-list">${body}</div>
     <div class="lesson-actions">
+      <button class="btn big" onclick="startLevelFlashcards(${i})">🃏 Warm up: flip this level as flashcards</button>
       <button class="btn primary big" onclick="startQuiz(${i})">Take the Level ${i + 1} quiz →</button>
       <p class="hint">Score ${QUIZ_PASS_PERCENT}%+ to mark this level passed.</p>
       <p class="hint"><a class="linklike" href="learn/${slugifyTitle(lv.title)}.html" target="_blank" rel="noopener">🖨 Printable cheat sheet</a></p>
@@ -4308,7 +4349,7 @@ const NAV_PAGES = [
   "renderHome", "renderTrack", "openLevel", "openUnit", "renderSair",
   "startRolePlay", "renderKutub", "renderKutubWork", "renderLughat",
   "renderReport", "renderTracing", "startTracing", "renderTyping",
-  "startFlashcards", "renderQawaid", "renderHarfChart", "renderAurSeekhiye",
+  "startFlashcards", "startLevelFlashcards", "renderQawaid", "renderHarfChart", "renderAurSeekhiye",
 ];
 let navPopping = false;
 let navStableRender = false;
