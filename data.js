@@ -2114,7 +2114,7 @@ const AUR_SEEKHIYE = [
   {
     group: "From the same desk", urName: "ہمارا",
     items: [
-      { name: "Indus Maps", url: "https://indusmaps.org", note: "Our sister site: a hand-drawn, zoomable map of the Indus basin. Its rivers, peaks and deserts, 51 legends and folk stories, the cities of the Indus Civilization, and the travellers who crossed it. Free, and every entry links to its sources." },
+      { name: "Indus Maps", url: "https://indusmaps.org", note: "Our sister site: an interactive map of the Indus River basin, its histories and folk stories, including ancient trade routes and modern natural features." },
     ],
   },
   {
