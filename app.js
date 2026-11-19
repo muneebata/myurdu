@@ -4312,7 +4312,7 @@ function chartCard() {
 function renderAurSeekhiye() {
   app().innerHTML = `
     ${backBar("🧭 Aur Seekhiye · Beyond Ustaadh")}
-    <p class="lesson-intro">This site is one door into Urdu, not the last one. These are the doors we trust when you want more — each link checked by hand (last: ${esc(AUR_SEEKHIYE_CHECKED)}), each note honest about what you'll find, including what costs money. They are other people's sites, not ours.</p>
+    <p class="lesson-intro">This site is one door into Urdu, not the last one. These are the doors we trust when you want more, each link checked by hand (last: ${esc(AUR_SEEKHIYE_CHECKED)}), each note honest about what you'll find, including what costs money. The first is our own sister site; the rest are other people's.</p>
     ${AUR_SEEKHIYE.map((g) => `
       <div class="read-section">
         <h3>${esc(g.group)} · <span class="ur">${esc(g.urName)}</span></h3>

@@ -2109,8 +2109,14 @@ const QAWAID = [
 // says honestly what it is (including "paid" where true). Checked
 // dates matter — recheck before adding, prune on rot.
 // ─────────────────────────────────────────────────────────────
-const AUR_SEEKHIYE_CHECKED = "13 August 2026";
+const AUR_SEEKHIYE_CHECKED = "19 November 2026";
 const AUR_SEEKHIYE = [
+  {
+    group: "From the same desk", urName: "ہمارا",
+    items: [
+      { name: "Indus Maps", url: "https://indusmaps.org", note: "Our sister site: a hand-drawn, zoomable map of the Indus basin. Its rivers, peaks and deserts, 51 legends and folk stories, the cities of the Indus Civilization, and the travellers who crossed it. Free, and every entry links to its sources." },
+    ],
+  },
   {
     group: "Dictionaries beyond our Lughat", urName: "لغات",
     items: [
