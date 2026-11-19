@@ -2051,6 +2051,9 @@ function finishGeo() {
         <button class="btn primary big" onclick="startGeo()">Another map →</button>
         <button class="btn" onclick="renderHome()">Home</button>
       </div>
+      <p class="hint">Want more than practice dots? Explore the whole basin on
+        <a class="linklike" href="https://indusmaps.org" target="_blank" rel="noopener">🗺️ Indus Maps</a>,
+        our sister site: its histories and folk stories, ancient trade routes, and natural features on one interactive map.</p>
     </div>
   `;
 }
